@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>НРИ-Атлас — какую настольную ролевую игру взять</title>
+<meta name="description" content="Интерактивный справочник по 135 настольным ролевым играм: рейтинг под вашу задачу, подбор за пять вопросов, сравнение систем, русские локализации и честные вердикты.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="НРИ-Атлас — какую настольную ролевую игру взять">
+<meta property="og:description" content="135 систем, честные вердикты, подбор за минуту. Рейтинг под вашу задачу, сравнение и таблица русских локализаций.">
+<meta property="og:url" content="https://vasaris.github.io/nri-atlas/">
+<meta property="og:image" content="https://vasaris.github.io/nri-atlas/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Crect width=%2224%22 height=%2224%22 fill=%22%23101914%22/%3E%3Cpath d=%22M12 3l7.8 4.5v9L12 21l-7.8-4.5v-9L12 3z%22 fill=%22none%22 stroke=%22%23C29A4B%22 stroke-width=%221.7%22/%3E%3C/svg%3E">
+<meta name="theme-color" content="#101914">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@600&family=Golos+Text:wght@400;500&family=PT+Mono&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --binding:#101914;--binding-deep:#0B120E;--board:#18241D;--board-raised:#1E2C24;--board-hover:#213127;
+    --parchment:#E8DFC8;--parchment-bright:#F4EDDC;--faded:#97927D;--faded-deep:#6E6A5A;
+    --wax:#B5432E;--wax-bright:#C9503A;--wax-deep:#8E3323;--wax-tint:rgba(181,67,46,.14);--wax-line:rgba(181,67,46,.45);
+    --brass:#C29A4B;--brass-bright:#D4AC5D;--brass-deep:#A07C33;--brass-tint:rgba(194,154,75,.10);--brass-line:rgba(194,154,75,.38);--brass-hairline:rgba(194,154,75,.22);
+    --rule:#243529;--rule-strong:#2F4436;--scrim:rgba(8,13,10,.72);
+    --shadow-sheet:0 24px 56px rgba(6,10,8,.62);
+    --disp:"Spectral",Georgia,serif;--ui:"Golos Text",system-ui,sans-serif;--mono:"PT Mono",monospace;
+    --ease:cubic-bezier(.2,.6,.2,1);
+    /* псевдонимы для инлайн-стилей внутри скрипта (не менять) */
+    --ember:var(--brass);--paper:var(--parchment);--muted:var(--faded);--muted2:var(--faded-deep);}
+  *{box-sizing:border-box} html,body{margin:0}
+  body{background:var(--binding);color:var(--parchment);font-family:var(--ui);font-size:15px;line-height:1.58;padding:0 0 96px;-webkit-font-smoothing:antialiased}
+  a{color:var(--brass);text-decoration:none} a:hover{color:var(--brass-bright)}
+  b,strong{font-weight:500;color:var(--parchment)}
+  ::selection{background:rgba(181,67,46,.38)}
+  :focus-visible{outline:1px solid var(--brass-bright);outline-offset:2px}
+  button{font-family:var(--ui)}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+  /* шапка */
+  header{padding:40px 0 8px}
+  h1{font-family:var(--disp);font-weight:600;font-size:clamp(30px,4.6vw,44px);letter-spacing:-.01em;margin:0;line-height:1.05}
+  h1 .dot{color:var(--wax)}
+  .tag{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--faded);border:1px solid currentColor;border-radius:4px;padding:5px 9px;margin-left:14px;vertical-align:middle;white-space:nowrap}
+  .sub{color:var(--faded);max-width:74ch;margin:14px 0 0;font-size:14px;line-height:1.62}
+  .sub b{color:var(--parchment)}
+  /* герой */
+  .hero{margin:24px 0 28px}
+  .hero-line{font-family:var(--disp);font-weight:600;font-size:23px;line-height:1.32;letter-spacing:-.01em;color:var(--parchment);margin-bottom:16px;max-width:640px;text-wrap:pretty}
+  .hero-btns{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+  .hbtn{appearance:none;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font:500 15px/1 var(--ui);color:var(--parchment);background:transparent;border:1px solid var(--brass-line);border-radius:6px;padding:14px 22px;min-height:48px;transition:background 90ms var(--ease),border-color 90ms var(--ease),color 90ms var(--ease)}
+  .hbtn:hover{background:var(--brass-tint);border-color:var(--brass)}
+  .hbtn.hb1{background:var(--wax);border-color:var(--wax);color:var(--parchment-bright)}
+  .hbtn.hb1:hover{background:var(--wax-bright);border-color:var(--wax-bright)}
+  .hbtn:active{background:var(--wax-tint);border-color:var(--wax)}
+  .hbtn.hb1:active{background:var(--wax-deep);border-color:var(--wax-deep)}
+  .hero-by{font-size:13px;color:var(--faded)}
+  .hero-by a{border-bottom:1px dashed var(--brass-line)} .hero-by a:hover{border-bottom-style:solid}
+  /* раскладка */
+  .compass{display:grid;grid-template-columns:288px 1fr;gap:24px;margin-top:10px;align-items:start}
+  .rail{position:sticky;top:16px;max-height:calc(100vh - 32px);overflow-y:auto}
+  .card{background:var(--board);border:1px solid var(--rule);border-radius:6px}
+  .rail .card{padding:0}
+  .rail-check{display:none}
+  .rail-head{display:none}
+  .rail-body{padding:20px}
+  .rail h3{font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--faded);margin:0 0 10px}
+  /* пресеты */
+  .presets{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+  .chip{appearance:none;display:inline-flex;align-items:center;cursor:pointer;font:400 13px/1.2 var(--ui);color:var(--faded);background:transparent;border:1px solid var(--brass-hairline);border-radius:6px;padding:8px 12px;min-height:36px;transition:background 90ms var(--ease),border-color 90ms var(--ease),color 90ms var(--ease)}
+  .chip:hover{color:var(--parchment);background:var(--brass-tint);border-color:var(--brass-line)}
+  .chip.on{background:var(--wax);border-color:var(--wax);color:var(--parchment-bright)}
+  #lucky{background:var(--wax);border-color:var(--wax);color:var(--parchment-bright);font-weight:500}
+  #lucky:hover{background:var(--wax-bright);border-color:var(--wax-bright)}
+  /* веса */
+  .fader{margin:0 0 13px}
+  .fader .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:3px}
+  .fader .nm{font-size:13px;color:var(--parchment);flex:1;min-width:0}
+  .fader .nm small{display:block;color:var(--faded-deep);font-size:11px;line-height:1.35;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .fader .v{font-family:var(--mono);font-size:13px;color:var(--brass)}
+  .fader:has(input.zero) .nm{color:var(--faded-deep)}
+  .fader:has(input.zero) .v{color:var(--faded-deep)}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:24px;background:transparent;outline:none;cursor:pointer;margin:0;padding:0}
+  input[type=range]::-webkit-slider-runnable-track{height:8px;background:var(--binding-deep);border:1px solid var(--rule)}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:2px;background:var(--brass);border:1px solid var(--brass-deep);margin-top:-5px;transition:background 90ms var(--ease)}
+  input[type=range].zero::-webkit-slider-runnable-track{border-color:var(--rule)}
+  input[type=range].zero::-webkit-slider-thumb{background:var(--faded-deep);border-color:var(--rule-strong)}
+  input[type=range]::-moz-range-track{height:8px;background:var(--binding-deep);border:1px solid var(--rule)}
+  input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:2px;background:var(--brass);border:1px solid var(--brass-deep)}
+  input[type=range].zero::-moz-range-thumb{background:var(--faded-deep);border-color:var(--rule-strong)}
+  .divider{height:1px;background:var(--rule);margin:16px 0}
+  /* фильтры */
+  .filt{display:flex;flex-direction:column;gap:5px;font-size:13px}
+  .row{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:38px}
+  .row>span:first-child{color:var(--faded)}
+  select,input[type=text]{font-family:var(--ui);font-size:13px;color:var(--parchment);background:var(--binding-deep);border:1px solid var(--rule);border-radius:4px;padding:10px 11px;transition:border-color 90ms var(--ease)}
+  select:hover,input[type=text]:hover,select:focus,input[type=text]:focus{border-color:var(--brass-line);outline:none}
+  select option{background:var(--board);color:var(--parchment)}
+  input[type=text]{width:100%;margin-bottom:6px}
+  input[type=text]::placeholder{color:var(--faded-deep)}
+  .toggle{display:inline-flex;align-items:center;gap:8px;cursor:pointer;user-select:none;padding:8px 0}
+  .toggle input{display:none}
+  .sw{width:40px;height:22px;border-radius:4px;background:var(--binding-deep);border:1px solid var(--brass-hairline);position:relative;transition:background 90ms var(--ease),border-color 90ms var(--ease);flex:none}
+  .sw::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:2px;background:var(--brass-deep);transition:transform 90ms var(--ease),background 90ms var(--ease)}
+  .toggle:hover .sw{border-color:var(--brass-line)}
+  .toggle input:checked+.sw{background:var(--wax);border-color:var(--wax)}
+  .toggle input:checked+.sw::after{transform:translateX(18px);background:var(--parchment-bright)}
+  .reset{margin-top:14px;width:100%;cursor:pointer;font:400 13px/1 var(--ui);color:var(--faded);background:none;border:1px dashed var(--rule-strong);border-radius:4px;padding:12px;min-height:40px;transition:color 90ms var(--ease),border-color 90ms var(--ease)}
+  .reset:hover{color:var(--parchment);border-color:var(--brass-line)}
+  /* список */
+  .results-head{display:flex;align-items:center;justify-content:space-between;margin:0 0 12px;flex-wrap:wrap;gap:10px}
+  .cnt{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--faded)}
+  .head-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .list{display:flex;flex-direction:column;gap:8px}
+  .sys{position:relative;background:var(--board);border:1px solid var(--rule);border-radius:6px;overflow:hidden;transition:background 90ms var(--ease),border-color 90ms var(--ease)}
+  .sys:hover{background:var(--board-hover)}
+  .sys.open{border-color:var(--rule-strong)}
+  .sys.open::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--brass);z-index:1}
+  .sys.spin{border-color:var(--brass);background:var(--brass-tint)}
+  .sys.lucky{border-color:var(--wax-line);background:var(--wax-tint)}
+  .sys.lucky.open::before{background:var(--wax)}
+  .sys-main{position:relative;z-index:0;display:grid;grid-template-columns:34px 1fr auto;gap:14px;align-items:center;padding:13px 18px;cursor:pointer;min-height:56px}
+  .rank{position:relative;z-index:0;width:34px;height:38px;display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-weight:600;font-size:14px;color:var(--brass);line-height:1}
+  .rank::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--brass-line);-webkit-clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+  .rank::after{content:"";position:absolute;inset:1px;z-index:-1;background:var(--board);-webkit-clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);transition:background 90ms var(--ease)}
+  .sys:hover .rank::after{background:var(--board-hover)}
+  .sys.top1 .rank::before,.sys.top1 .rank::after,.sys.lucky .rank::before,.sys.lucky .rank::after{background:var(--wax)}
+  .sys.top1 .rank,.sys.lucky .rank{color:var(--parchment-bright)}
+  .nm2{min-width:0}
+  .nm2 .n{font-family:var(--disp);font-size:19px;font-weight:600;line-height:1.2;letter-spacing:-.01em}
+  .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;align-items:center}
+  .bdg{font-family:var(--mono);font-size:11px;line-height:1;letter-spacing:.08em;text-transform:uppercase;color:var(--faded-deep);border:1px solid currentColor;border-radius:4px;padding:4px 7px;white-space:nowrap}
+  .bdg.eng{color:var(--faded)}
+  .bdg.ruL,.bdg.fr{color:var(--brass)}
+  .bdg.ruO{color:var(--wax-bright)}
+  .bdg.cN,.bdg.cS{color:var(--faded-deep);border-style:dashed}
+  .bdg[data-tip]{cursor:help;border-bottom-style:dotted}
+  .score{display:flex;flex-direction:column;align-items:flex-end;gap:6px;min-width:120px}
+  .pct{font-family:var(--mono);font-size:17px;letter-spacing:-.02em}
+  .bar{width:112px;height:6px;background:var(--binding-deep);border:1px solid var(--rule);overflow:hidden}
+  .bar>i{display:block;height:100%;background:var(--brass);transition:width .28s var(--ease)}
+  /* раскрытый лист */
+  .sys-body{display:none;padding:0 18px 18px;border-top:1px solid var(--rule)}
+  .sys.open .sys-body{display:block}
+  .note{font-size:14px;line-height:1.62;color:var(--parchment);margin:15px 0;max-width:64ch;text-wrap:pretty}
+  .note .wt{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--faded-deep);margin-bottom:3px}
+  .note .vd{margin-top:12px}
+  .lnk{display:inline-block;font-size:13px;margin-top:12px;color:var(--brass);text-decoration:none;border-bottom:1px dashed var(--brass-line);padding-bottom:1px;transition:color 90ms var(--ease)}
+  .lnk:hover{color:var(--brass-bright);border-bottom-style:solid}
+  .trow{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin:0 0 10px}
+  .tagc{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--faded)}
+  .simlab{font-size:12px;color:var(--faded-deep)}
+  .simc{display:inline-flex;align-items:center;font-size:13px;color:var(--brass);border:1px solid var(--brass-hairline);border-radius:4px;padding:6px 10px;min-height:32px;cursor:pointer;transition:background 90ms var(--ease),border-color 90ms var(--ease)}
+  .simc:hover{background:var(--brass-tint);border-color:var(--brass-line)}
+  .cmpc{display:inline-flex;align-items:center;font-size:13px;color:var(--brass);border:1px solid var(--brass-hairline);border-radius:4px;padding:6px 10px;min-height:32px;cursor:pointer;margin-left:10px;transition:background 90ms var(--ease),border-color 90ms var(--ease),color 90ms var(--ease)}
+  .cmpc:hover{background:var(--brass-tint);border-color:var(--brass-line)}
+  .cmpc.on{background:var(--wax);border-color:var(--wax);color:var(--parchment-bright)}
+  .dis{display:inline-block;font-size:12px;color:var(--faded-deep);text-decoration:none;border-bottom:1px dotted var(--faded-deep);margin-left:12px}
+  .dis:hover{color:var(--faded);border-bottom-color:var(--faded)}
+  /* оси */
+  .axes{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px 20px;margin-top:16px}
+  .ax{font-size:12px}
+  .ax .lab{color:var(--faded);display:flex;justify-content:space-between;gap:8px}
+  .ax .lab span:last-child{font-family:var(--mono);font-size:11px;letter-spacing:-.02em;white-space:nowrap;color:var(--faded)}
+  .ax .lab.dim{opacity:.38}
+  .ax .lab.dim+.mb{opacity:.38}
+  .ax .mb{height:6px;background:var(--binding-deep);border:1px solid var(--rule);overflow:hidden;margin-top:4px}
+  .ax .mb>i{display:block;height:100%;background:var(--brass)}
+  .ax .mb>i.hot{background:var(--wax)}
+  /* тултип */
+  #tip{position:fixed;z-index:60;max-width:280px;display:none;background:var(--board-raised);border:1px solid var(--brass-line);border-radius:6px;padding:10px 12px;font-size:13px;line-height:1.5;color:var(--parchment);box-shadow:var(--shadow-sheet)}
+  /* панель сравнения */
+  #cmpbar{position:fixed;left:50%;transform:translateX(-50%);bottom:16px;z-index:55;display:none;gap:10px;align-items:center;background:var(--board-raised);border:1px solid var(--brass-line);border-radius:6px;padding:10px 14px;box-shadow:var(--shadow-sheet);font-size:13px;max-width:calc(100vw - 24px)}
+  #cmpbar.show{display:flex}
+  #cmpbar>span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  #cmpbar .go{background:var(--wax);color:var(--parchment-bright);border:1px solid var(--wax);border-radius:4px;padding:9px 14px;font:500 13px/1 var(--ui);min-height:36px;cursor:pointer;transition:background 90ms var(--ease)}
+  #cmpbar .go:hover{background:var(--wax-bright);border-color:var(--wax-bright)}
+  #cmpbar .clr{background:none;border:none;color:var(--faded);cursor:pointer;font-family:var(--mono);font-size:15px;padding:9px;margin:-4px}
+  #cmpbar .clr:hover{color:var(--parchment)}
+  /* лист-оверлей */
+  .ovl{position:fixed;inset:0;z-index:70;display:none;background:var(--scrim);overflow-y:auto;padding:28px 12px 48px}
+  .ovl.show{display:block}
+  .panel{max-width:720px;margin:0 auto;background:var(--board-raised);border:1px solid var(--brass-line);border-radius:6px;padding:24px 24px 26px;box-shadow:var(--shadow-sheet)}
+  .ovl.show .panel{animation:sheetIn 160ms var(--ease)}
+  @keyframes sheetIn{from{opacity:0;transform:translateY(10px)}}
+  .panel h2{font-family:var(--disp);font-weight:600;font-size:26px;letter-spacing:-.01em;line-height:1.15;margin:0 0 6px}
+  .pnl-x{float:right;background:none;border:1px solid var(--rule-strong);border-radius:4px;color:var(--faded);font-family:var(--mono);font-size:15px;line-height:1;min-width:40px;min-height:40px;padding:8px;cursor:pointer;margin:-2px -2px 10px 12px;transition:color 90ms var(--ease),border-color 90ms var(--ease)}
+  .pnl-x:hover{color:var(--parchment);border-color:var(--brass-line)}
+  /* таблицы листов */
+  .cmp-wrap{overflow-x:auto}
+  .cmp-t{border-collapse:collapse;width:100%;min-width:460px;font-size:13px;margin-top:10px}
+  .cmp-t th,.cmp-t td{border-bottom:1px solid var(--rule);padding:9px 10px;text-align:left;vertical-align:top}
+  .cmp-t th{font-family:var(--disp);font-weight:600;font-size:16px;line-height:1.25}
+  .cmp-t td.axn{color:var(--faded);white-space:nowrap;font-size:12px}
+  .cmp-t td.best{color:var(--brass-bright);background:var(--brass-tint)}
+  .mini{color:var(--faded-deep);font-size:11px;font-family:var(--mono);font-weight:400;letter-spacing:0;margin-top:3px}
+  /* подбор */
+  .wq{margin:18px 0 0;font-size:14px;color:var(--parchment)}
+  .wq b{color:var(--brass);font-family:var(--mono);font-weight:400;font-size:12px;margin-right:8px}
+  .wopts{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+  .wopt{display:inline-flex;align-items:center;font-size:13px;border:1px solid var(--brass-hairline);border-radius:4px;padding:9px 13px;min-height:40px;cursor:pointer;color:var(--faded);background:transparent;transition:background 90ms var(--ease),border-color 90ms var(--ease),color 90ms var(--ease)}
+  .wopt:hover{color:var(--parchment);background:var(--brass-tint);border-color:var(--brass-line)}
+  .wopt.on{background:var(--wax);border-color:var(--wax);color:var(--parchment-bright)}
+  .wres{border:1px solid var(--rule);border-radius:6px;background:var(--board);padding:15px 16px;margin-top:12px}
+  .wres .nm3{font-family:var(--disp);font-size:18px;font-weight:600;line-height:1.2}
+  .wres .what{font-size:13px;color:var(--parchment);margin:7px 0;line-height:1.55;max-width:64ch}
+  .wres .why{font-size:12px;color:var(--faded);margin:4px 0 10px}
+  .wres .act{font-size:13px;color:var(--brass);cursor:pointer;border-bottom:1px dashed var(--brass-line);margin-right:14px}
+  .act:hover{color:var(--brass-bright)}
+  /* методология */
+  .method{margin-top:32px;padding:24px;font-size:14px;color:var(--parchment);line-height:1.62}
+  .method h3{font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--faded);margin:0 0 12px}
+  .method p{max-width:74ch;text-wrap:pretty}
+  /* прокрутка */
+  .rail,.cmp-wrap,.ovl{scrollbar-width:thin;scrollbar-color:var(--rule-strong) transparent}
+  .rail::-webkit-scrollbar,.cmp-wrap::-webkit-scrollbar{width:8px;height:8px}
+  .rail::-webkit-scrollbar-thumb,.cmp-wrap::-webkit-scrollbar-thumb{background:var(--rule-strong);border-radius:4px}
+  /* мобильная раскладка */
+  @media(max-width:900px){
+    .compass{grid-template-columns:1fr;gap:14px}
+    .rail{position:static;max-height:none;overflow:visible}
+    .rail-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:15px 16px;min-height:48px;cursor:pointer;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--parchment)}
+    .rail-head::after{content:"";width:8px;height:8px;border-right:1px solid var(--brass);border-bottom:1px solid var(--brass);transform:rotate(45deg) translate(-2px,-2px);transition:transform 160ms var(--ease);flex:none}
+    .rail-body{display:none;padding:0 16px 16px}
+    .rail-check:checked~.rail-head::after{transform:rotate(225deg) translate(-2px,-2px)}
+    .rail-check:checked~.rail-body{display:block}
+    header{padding:26px 0 6px}
+    .hero{margin:18px 0 20px}
+    .hero-line{font-size:20px}
+  }
+  @media(max-width:720px){
+    .wrap{padding:0 16px}
+    body{font-size:14px}
+    .hbtn{padding:13px 16px;font-size:14px;min-height:46px}
+    .axes{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:560px){
+    .sys-main{grid-template-columns:28px 1fr;gap:11px;padding:12px 14px}
+    .rank{width:28px;height:32px;font-size:12px}
+    .score{grid-column:1/-1;flex-direction:row;align-items:center;min-width:0;justify-content:space-between;gap:12px}
+    .bar{flex:1;width:auto}
+    .pct{font-size:15px}
+    .nm2 .n{font-size:17px}
+    .sys-body{padding:0 14px 16px}
+    .axes{gap:8px 14px;margin-top:14px}
+    .ax{font-size:11.5px}
+    .ax .lab span:last-child{font-size:10.5px}
+    .row{min-height:44px}
+    .chip{min-height:40px}
+    .simc,.cmpc{min-height:40px}
+    .tag{margin-left:10px;font-size:10px}
+    .panel{padding:18px 14px 20px}
+    #cmpbar{left:12px;right:12px;transform:none;bottom:12px}
+    #cmpbar .go{min-height:40px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .ovl.show .panel{animation:none}
+    .bar>i,.rail-head::after{transition:none}
+    .sys{transition:background 90ms var(--ease),border-color 90ms var(--ease)!important}
+  }
+  .bico{display:inline-block;width:15px;height:15px;vertical-align:-2.5px;margin-right:3px}
+  .glyph-ru{display:inline-block;font-family:var(--mono,monospace);font-size:9px;letter-spacing:.05em;border:1px solid currentColor;border-radius:2px;padding:0 3px;vertical-align:1px;margin-right:3px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>НРИ<span class="dot">·</span>Атлас<span class="tag">135 систем · 10 осей</span></h1>
+  <p class="sub">Интерактивный рейтинг настольных ролевых игр с ведущим (безмастеровые и соло-системы не включены). Десять осей 0–10, вес каждой настраивается ползунком, итог пересчитывается на лету. Метка уверенности: <b>В</b> — оценка на твёрдой базе, <b>С</b> — приём проверен частично, <b>Н</b> — эскиз. <b>РФ</b> — российская разработка; зелёный бейдж — есть локализация (Ч — частичная или фанатская). Как считается рейтинг — пояснение внизу страницы.</p>
+<div class="hero">
+  <div class="hero-line">Какую настольную ролевую игру взять? Рейтинг под твою задачу, подбор за минуту и честные вердикты по всем 135 системам.</div>
+  <div class="hero-btns">
+   <button class="hbtn hb1" id="heroWiz"><svg class="bico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2.2 5-5 2.2 2.2-5z"/></svg> Подобрать игру</button>
+   <button class="hbtn" id="heroLucky"><svg class="bico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2l8.7 5v10L12 22 3.3 17V7L12 2z"/><path d="M12 8.2 6.2 15h11.6L12 8.2zM12 2v6.2M3.3 7l2.9 8M20.7 7l-2.9 8M12 22l-5.8-7M12 22l5.8-7"/></svg> Мне повезёт</button>
+   <button class="hbtn" id="heroList">К рейтингу ↓</button>
+  </div>
+  <div class="hero-by">Собрал Иван (<a href="https://t.me/vasaris" target="_blank" rel="noopener">@vasaris</a>) · тг-канал <a href="https://t.me/dndanube" target="_blank" rel="noopener">@dndanube</a> · оценки: август 2026</div>
+</div>
+</header>
+<section class="compass">
+<aside class="rail"><div class="card">
+  <input type="checkbox" class="rail-check" id="railOpen">
+  <label class="rail-head" for="railOpen">Веса и фильтры</label>
+  <div class="rail-body">
+  <h3>Пресеты весов</h3><div class="presets" id="presets"></div>
+  <h3>Оси (вес 0–5)</h3><div id="faders"></div>
+  <div class="divider"></div>
+  <h3>Фильтры</h3>
+  <div class="filt">
+    <input type="text" id="q" placeholder="Поиск по названию/движку…">
+    <div class="row"><span>Жанр</span><select id="fGen"><option value="">Все</option></select></div>
+    <div class="row"><span>Сложность ≤</span><select id="fDiff"><option value="3">Любая</option><option value="1">Легко</option><option value="2">Средне</option></select></div>
+    <div class="row"><span>Семейство движка</span><select id="fFam"><option value="">Все</option></select></div>
+    <div class="row"><span>Год издания</span><select id="fYear"><option value="0">Любой</option><option value="2010">2010+</option><option value="2015">2015+</option><option value="2020">2020+</option></select></div>
+    <div class="row"><span>Только с RU-локализацией</span><label class="toggle"><input type="checkbox" id="fRu"><span class="sw"></span></label></div>
+    <div class="row"><span>Только с бесплатной версией</span><label class="toggle"><input type="checkbox" id="fFree"><span class="sw"></span></label></div>
+    <div class="row"><span>Только российские</span><label class="toggle"><input type="checkbox" id="fRuO"><span class="sw"></span></label></div>
+    <div class="row"><span>Скрыть низкую уверенность</span><label class="toggle"><input type="checkbox" id="fConf"><span class="sw"></span></label></div>
+  </div>
+  <button class="reset" id="reset">Сбросить всё</button>
+  </div>
+</div></aside>
+<div>
+  <div class="results-head"><span class="cnt" id="cnt"></span>
+ <span class="head-actions"><span class="cnt">клик по строке — разбор</span>
+ <button class="chip" id="lucky"><svg class="bico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2l8.7 5v10L12 22 3.3 17V7L12 2z"/><path d="M12 8.2 6.2 15h11.6L12 8.2zM12 2v6.2M3.3 7l2.9 8M20.7 7l-2.9 8M12 22l-5.8-7M12 22l5.8-7"/></svg> Мне повезёт</button>
+ <button class="chip" id="wiz"><svg class="bico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2.2 5-5 2.2 2.2-5z"/></svg> Подбор</button>
+ <button class="chip" id="locs"><span class="glyph-ru" aria-hidden="true">RU</span> Локализации</button>
+ <button class="chip" id="share" title="Скопировать ссылку на текущий вид: веса, фильтры, открытая карточка">Ссылка</button>
+</span></div>
+  <div class="list" id="list"></div>
+  <div id="cmpbar"></div>
+  <div class="ovl" id="ovl"><div class="panel" id="ovlPanel"></div></div>
+  <div id="tip"></div>
+</div>
+</section>
+<div class="card method">
+<h3>Как считается рейтинг</h3>
+<p style="margin:0 0 8px">Каждая система оценена по десяти осям по шкале 0–10: удовольствие мастера (интересно ли готовить и вести), лёгкость ведения (насколько мало сил съедают подготовка и правила), удовольствие игроков, отклик сообщества (приём реальными столами, а не продажи), качество механики (насколько хорошо собраны правила и служат ли жанру), тон (шкала «комедия ↔ драма»: 0 — чистая комедия, 5 — универсальный тон, 10 — тяжёлое «стекло»; вес этой оси притягивает наверх драматичные системы, а для комедийных задач её вес ставится в ноль — лёгкие игры возьмут своё через лёгкость ведения и «игру одного вечера»), игра одного вечера (работает ли за 3–4 часа с нуля и с незнакомцами), длинная кампания (раскрывается ли на дистанции), дружелюбие к новичкам (10 — входит мгновенно) и материалы с поддержкой (живость линейки, библиотека приключений, инструменты).</p>
+<p style="margin:0 0 8px">Итоговый процент = Σ(вес оси × оценка) / Σ(вес оси × 10). Веса задаются ползунками; пресеты — семь контрастных профилей задач. Каждый пресет весит только определяющие его оси, остальные ставит в ноль — иначе общее качество систем задавило бы разницу между задачами. Ось с нулевым весом на результат не влияет.</p>
+<p style="margin:0 0 8px">На чём основаны оценки: тексты правил и практика систем; задокументированный приём сообществом — рецензии, обсуждения, соотношение продаж и реальной игры (для спорных случаев — Cosmere, Candela Obscura, The Expanse, Draw Steel и др. — приём проверялся по первоисточникам отдельно); история линейки и её поддержка. Оценки экспертные, а не измеренные прибором: метка уверенности показывает, насколько прочна база под конкретной строкой.</p>
+<p style="margin:0 0 8px"><b>Журнал изменений.</b> 03.08.2026 — все 126 заметок переписаны в формат «Что это + Вердикт», добавлены теги фантазии и связи «похоже на»; пресеты весов пересобраны в контрастные профили; добавлены сравнение систем, подбор по пяти вопросам, таблица русских локализаций и ссылки «узнать больше»; исправлены флаги локализаций у «Ведьмака», Shadowrun 6e и Cyberpunk RED; добавлены стартовый экран, блок авторства и фильтр бесплатных версий; список расширен десятью системами до 136 — от Shadow of the Demon Lord и The Dark Eye до Dolmenwood и Starfinder; пресет «Сильная механика» пересобран в «Готовы вложиться» — потолок отдачи для стола, которому не страшен долгий вход; проведён визуальный редизайн «Кабинетный атлас» (типографика, палитра, гекс-ранги); включена кнопка «Ссылка» — она копирует адрес с текущими весами, фильтрами и открытой карточкой; строка «Городские легенды» удалена — это оказалась не российская авторская система, а русское издание Urban Shadows от Студии 101 (флаг у Urban Shadows 2e исправлен); достроены обратные связи «похоже на» к новым системам.</p>
+<p style="margin:0 0 8px">Пресеты — неизменяемые типовые профили задач; любое ручное движение ползунка переводит рейтинг в режим «Свои веса», не трогая пресеты. Кнопка «Мне повезёт» выбирает случайную систему среди строк, прошедших текущие фильтры и настройки, — можно крутить рулетку внутри жанра, пресета или года.</p>
+<p style="margin:0">Что сознательно не учитывается: цена и физическая доступность книг (меняются по странам и времени), качество конкретных изданий и переводов, а также совместимость с личными вкусами конкретного стола — для этого и существуют ползунки.</p>
+</div>
+</div>
+<script>
+const AX=[
+ {k:"gm",n:"Удовольствие мастера",s:"интересно ли готовить и вести: инструменты, простор, отдача"},
+ {k:"ease",n:"Лёгкость ведения",s:"сколько сил едят подготовка и правила (10 — почти ничего)"},
+ {k:"pl",n:"Удовольствие игроков",s:"вовлечённость стола и желание вернуться"},
+ {k:"rec",n:"Отклик сообщества",s:"приём реальными столами: рецензии, живая игра — не продажи"},
+ {k:"mech",n:"Качество механики",s:"насколько хорошо собраны правила и служат ли они жанру"},
+ {k:"drama",n:"Тон: комедия ↔ драма",s:"0 — чистая комедия · 5 — универсальный тон · 10 — тяжёлое «стекло»"},
+ {k:"shot",n:"Игра одного вечера",s:"работает ли за 3–4 часа с нуля и с незнакомцами"},
+ {k:"camp",n:"Длинная кампания",s:"раскрывается ли на дистанции: развитие, арки"},
+ {k:"onb",n:"Дружелюбие к новичкам",s:"как быстро новичок играет уверенно (10 — мгновенно)"},
+ {k:"sup",n:"Материалы и поддержка",s:"живость линейки: приключения, дополнения, инструменты"}];
+const PRESETS={
+ "Игра как игра":{gm:5,ease:2,pl:5,rec:4,mech:4,drama:3,shot:1,camp:4,onb:1,sup:3},
+ "Фестиваль / лёгкий вечер":{gm:0,ease:4,pl:2,rec:0,mech:0,drama:0,shot:5,camp:0,onb:4,sup:0},
+ "Первая система":{gm:0,ease:2,pl:2,rec:5,mech:0,drama:0,shot:0,camp:0,onb:5,sup:3},
+ "Кампания в клубе":{gm:2,ease:0,pl:3,rec:0,mech:2,drama:0,shot:0,camp:5,onb:0,sup:5},
+ "Стекло и драма":{gm:2,ease:0,pl:1,rec:0,mech:0,drama:5,shot:0,camp:2,onb:0,sup:0},
+ "Готовы вложиться":{gm:4,ease:0,pl:3,rec:0,mech:5,drama:2,shot:0,camp:5,onb:0,sup:2},
+ "Инструменты мастера":{gm:5,ease:3,pl:0,rec:0,mech:0,drama:0,shot:0,camp:0,onb:0,sup:4}};
+const DIFFN={"Легко":1,"Средне":2,"Сложно":3};
+/* «Узнать больше»: официальные сайты там, где DriveThru не продаёт систему */
+const OFFICIAL={
+ "D&D 5e / 5.5e":"https://www.dndbeyond.com",
+ "Pathfinder 2e":"https://paizo.com/pathfinder",
+ "Pathfinder 1e":"https://paizo.com/pathfinder",
+ "Draw Steel":"https://mcdmproductions.com",
+ "Daggerheart":"https://www.daggerheart.com",
+ "Candela Obscura":"https://darringtonpress.com",
+ "Lancer":"https://massifpress.com",
+ "Star Wars (FFG/Edge)":"https://www.edge-studio.net",
+ "Genesys":"https://www.edge-studio.net",
+ "Cosmere RPG":"https://www.brotherwisegames.com",
+ "Starfinder":"https://paizo.com/starfinder",
+ "Degenesis":"https://degenesis.com",
+ "GURPS 4e":"https://www.sjgames.com/gurps/",
+ "Apocalypse World":"http://apocalypse-world.com",
+ "Cortex Prime":"https://www.cortexrpg.com"};
+/* Системы вне DriveThru без надёжного оф. адреса — честная поисковая ссылка */
+const GSEARCH=new Set(["Эра Водолея","Заколдованная Страна","Красная Земля (Fate)","1000 рентген в час","Новая Эра","Городские легенды","Dračí doupě","Příběhy Impéria","Dzikie Pola","Neuroshima","Triangle Agency","DC20","Stonetop","His Majesty the Worm"]);
+/* Чистка поискового запроса для DriveThru */
+const QFIX={"Paranoia (2023)":"Paranoia","Traveller (Mongoose 2e)":"Traveller","The Witcher (R.Talsorian)":"The Witcher RPG",
+ "WH40k: Wrath & Glory":"Wrath & Glory","WH40k: Imperium Maledictum":"Imperium Maledictum","AoS: Soulbound":"Age of Sigmar Soulbound",
+ "Warhammer Fantasy RP 4e":"Warhammer Fantasy Roleplay","L5R 5e":"Legend of the Five Rings","Call of Cthulhu 7e":"Call of Cthulhu",
+ "Numenera / Cypher":"Numenera","Into the Odd / Cairn":"Into the Odd","The One Ring 2e":"The One Ring","Pendragon 6":"Pendragon",
+ "Ars Magica 5":"Ars Magica","7th Sea 2e":"7th Sea","RuneQuest: Glorantha":"RuneQuest","Twilight 2000 4e":"Twilight 2000",
+ "Mothership 1e":"Mothership","Eclipse Phase 2e":"Eclipse Phase","Dune 2d20":"Dune Adventures in the Imperium","Fallout 2d20":"Fallout",
+ "Shadowrun 6e":"Shadowrun","Urban Shadows 2e":"Urban Shadows","Knave 2e":"Knave","Savage Worlds SWADE":"Savage Worlds",
+ "Star Trek Adventures 2e":"Star Trek Adventures","Nimble 2":"Nimble","Vampire: The Masquerade V5":"Vampire The Masquerade 5th Edition",
+ "Werewolf: The Apocalypse W5":"Werewolf The Apocalypse 5th Edition","Mage: The Ascension 20th":"Mage the Ascension 20th Anniversary",
+ "Monsterhearts 2":"Monsterhearts","The Dark Eye (DSA)":"The Dark Eye","Mutant: Year Zero":"Mutant Year Zero","Kult: Divinity Lost":"Kult Divinity Lost",
+ "Level Up: Advanced 5e":"Level Up Advanced 5th Edition","Root: The RPG":"Root RPG","Heart: The City Beneath":"Heart City Beneath","Feng Shui 2":"Feng Shui"};
+function linkFor(d){
+ const t="Узнать больше и купить →";
+ if(OFFICIAL[d.n])return{u:OFFICIAL[d.n],t};
+ if(GSEARCH.has(d.n))return{u:"https://www.google.com/search?q="+encodeURIComponent(d.n+" настольная ролевая игра"),t};
+ return{u:"https://www.drivethrurpg.com/en/browse?keyword="+encodeURIComponent(QFIX[d.n]||d.n),t};}
+/* Официальные бесплатные версии (полные правила или играбельная база) */
+const FREE=new Set(["Into the Odd / Cairn","Mausritter","Lancer","Eclipse Phase 2e","Worlds Without Number","Stars Without Number","Grimwild","Liminal Horror","Dungeon World","FATE Core","Pathfinder 2e","Mothership 1e","Mörk Borg","Degenesis","Cities Without Number"]);
+/* Глоссарий семейств движков — одна строка без птичьего языка */
+const GLOSS={
+ "d20-семья":"Наследники D&D: бросаешь двадцатигранник, прибавляешь модификатор и стараешься перебить заданную сложность. Классы и уровни — самая привычная механика хобби.",
+ "PbtA-семья":"Powered by the Apocalypse: бросаешь два шестигранника, и самый частый итог — «получилось, но с осложнением». Правила читаются за минуты, историю двигают провалы.",
+ "FitD-семья":"Forged in the Dark: кидаешь горсть шестигранников, считается лучший; таймеры угроз тикают, а вместо долгого планирования — флешбэк «я это предусмотрел». Создано для дерзких дел.",
+ "Year Zero":"Движок Free League: горсть шестигранников, успех на шестёрках; снаряжение и тело персонажа изнашиваются от нагрузки. Просто объяснить, жёстко играется.",
+ "d100 / BRP":"Процентная классика: навык записан как 45% — кидаешь стогранный бросок и хочешь выбросить меньше. Понятно с первой секунды; родная механика расследований и хоррора.",
+ "2d20":"Движок Modiphius: бросаешь два двадцатигранника, каждый ниже навыка — успех; плюс общие копилки очков стола (Momentum и Threat), к которым нужно привыкнуть.",
+ "Fate":"Аспекты — короткие фразы о персонаже и сцене («бывший чемпион с больным коленом»), которые включаются в игру за жетоны. Максимум соавторства, минимум симуляции.",
+ "Fortune":"Движок Two Little Mice: кидаешь горсть шестигранников и ищешь пары и тройки, как в покере. Быстрый, азартный, кинематографичный.",
+ "OSR / минимализм":"Старая школа: правил мало, смертность высокая, изобретательность игроков важнее цифр на листе персонажа.",
+ "Другое":"Авторский движок вне крупных семейств — как играется, смотри в заметке."};
+// [gm,ease,pl,rec,mech,drama,shot,onb,nov]
+const R=(n,e,g,y,ru,ro,d,cf,s,note,sim,tags)=>({n,e,g,y,ru,ro,d,cf,s:{gm:s[0],ease:s[1],pl:s[2],rec:s[3],mech:s[4],drama:s[5],shot:s[6],onb:s[7],camp:s[8],sup:s[9]},note,sim:sim||[],tags:tags||[]});
+const DATA=[
+R("D&D 5e / 5.5e","d20","Фэнтези",2014,"Да",0,"Средне","В",[6,5,8,8,6,5,6,7,8,10],"То самое фэнтези про партию героев, подземелья и драконов — язык, на котором говорит всё хобби: если человек играл хоть во что-то, он играл в это.||Максимум игроков, контента и готовых столов; по каждой отдельной оси — середняк. Ревизия 2024-го отполировала, не изменив. Лучшая точка входа в хобби — и повод однажды попробовать что-то ещё.",["Pathfinder 2e","Daggerheart","13th Age"],["героика","приключение","тактика"]),
+R("Pathfinder 2e","PF2 (d20)","Фэнтези",2019,"Да",0,"Сложно","В",[7,4,7,8,8,5,4,4,8,9],"Тактическое фэнтези для тех, кто любит собирать персонажа как конструктор и решать бой как шахматную задачу: три действия в ход, и каждое имеет цену.||Самая точная машина d20: баланс держит, билдов тысячи, все правила бесплатно лежат в сети. Цена — вес: подготовка и освоение съедают столько же, сколько дают.",["D&D 5e / 5.5e","Draw Steel","Starfinder"],["тактика","героика","приключение"]),
+R("Pathfinder 1e","d20/3.5","Фэнтези",2009,"Да",0,"Сложно","В",[5,3,6,6,5,4,3,3,7,8],"Наследница D&D 3.5, доведённая до предела: тысячи архетипов, талантов и заклинаний — конструктор персонажей глубже, чем где-либо ещё.||Гора контента никуда не делась и вся переиздана; баланс кривой по современным меркам, математика раздувается к высоким уровням. Сегодня это выбор ностальгии и глубокой сборки; новым столам Paizo сама предлагает вторую редакцию.",["Pathfinder 2e","D&D 5e / 5.5e","GURPS 4e"],["тактика","героика","приключение"]),
+R("13th Age","d20+нарратив","Фэнтези",2013,"—",0,"Средне","В",[7,6,7,7,7,5,5,6,7,6],"Героическое фэнтези, где у каждого персонажа есть отношения с владыками мира и одна черта, которой нет больше ни у кого во вселенной, — и правила это учитывают.||Лучшие нарративные надстройки над d20: связи с владыками мира сами порождают сюжет, а куб эскалации разгоняет бой. Вторая редакция обновила ядро в 2025-м; ниша — столы, которым D&D пресен, а инди радикальны.",["D&D 5e / 5.5e","Daggerheart","Fabula Ultima"],["героика","приключение","тактика"]),
+R("Shadowdark","OSR×5e","Фэнтези",2023,"—",0,"Легко","В",[8,8,7,9,7,5,8,8,7,7],"Подземелья старой школы с современной читаемостью: факел горит один реальный час, темнота убивает, сокровище дороже опыта.||Триумфатор Ennie заслуженно: страх темноты стал механикой, правила читаются как D&D на диете, ваншот собирается за вечер. Отклик сообщества — восторг без оговорок.",["Old-School Essentials","Dungeon Crawl Classics","Mörk Borg"],["приключение","выживание","хоррор"]),
+R("Old-School Essentials","B/X D&D","Фэнтези",2019,"Ч",0,"Легко","В",[8,9,6,8,6,3,7,7,7,8],"Точное переиздание правил D&D 1981 года: подземелья, счёт ресурсов, скорая смерть — всё как тогда, только свёрстано так, что любой ответ находится за десять секунд.||Ценность — в редактуре: каждый разворот закрывает тему целиком, за столом книга быстрее любого поиска по PDF. Механика архаична сознательно; брать ради инструмента и совместимости со старыми модулями.",["Shadowdark","Dolmenwood","Dungeon Crawl Classics"],["приключение","выживание","песочница"]),
+R("Dungeon Crawl Classics","d20+воронка","Фэнтези",2012,"—",0,"Средне","В",[8,6,7,8,6,3,8,6,6,8],"Фэнтези по обложкам семидесятых: на нулевом уровне вы ведёте в подземелье четырёх крестьян, выживший становится героем; магия дикая, кубы странные — d14, d24, d30.||Воронка нулевого уровня — готовый фестивальный формат, работает без подготовки игроков. Библиотека модулей огромная и ровная по качеству; стиль гонзо не для каждого стола, особые кубы придётся докупать или эмулировать.",["Old-School Essentials","Shadowdark","Mörk Borg"],["приключение","юмор","выживание"]),
+R("Worlds Without Number","OSR+генераторы","Фэнтези",2021,"—",0,"Средне","В",[9,7,6,8,7,4,5,5,8,7],"Фэнтези-песочница, где главный подарок — не правила, а генераторы: регион, интриги двора, руины и целая кампания собираются бросками по таблицам.||Инструментарий ведущего — лучший в жанре: даже если водишь другую систему, эти таблицы стоит держать под рукой. Сама механика скромна и этого не стесняется; бесплатной версии хватает на годы.",["Stars Without Number","Cities Without Number","Old-School Essentials"],["песочница","приключение","интриги"]),
+R("Draw Steel","Power Roll 2d10","Фэнтези",2025,"—",0,"Сложно","В",[7,3,8,8,9,5,3,4,8,6],"Героическая тактика без промахов: каждый ход что-то происходит, а бой — кинематографическая сцена с полётами через комнату, а не обмен «мимо — мимо».||MCDM сдержали обещания: лучший тактический бой поколения. Плата — вес и цена: это игра для стола, который любит готовиться и играть подолгу.",["Pathfinder 2e","D&D 5e / 5.5e","Lancer"],["тактика","героика","война"]),
+R("Daggerheart","Duality Dice","Фэнтези",2025,"Ч",0,"Средне","В",[8,7,8,8,8,7,7,7,8,7],"Героическое фэнтези от авторов Critical Role: два куба — Надежды и Страха — каждым броском решают не только «получилось ли», но и в чью пользу качнулась сцена.||Главный массовый релиз 2025-го выдержал проверку столами: дуальный бросок изящен, способности выбираются картами, а не листанием книги, и механика помогает истории, а не мешает ей.",["D&D 5e / 5.5e","Fabula Ultima","Draw Steel"],["героика","приключение"]),
+R("Dragonbane","BRP-лайт","Фэнтези",2023,"—",0,"Легко","В",[8,8,8,8,7,5,8,8,7,7],"Быстрое фэнтези-приключение шведской школы: смертность бодрит, утка с арбалетом — легальный персонаж, а бой решается за минуты, не за час.||«Смех и погибель», как и обещано: играется легко, готовится быстро, стартовый набор образцовый. Лучший середняк для стола, которому D&D тяжёл, а инди странны.",["Forbidden Lands","Shadowdark","D&D 5e / 5.5e"],["приключение","юмор","героика"]),
+R("Symbaroum","Симбарум d20","Фэнтези",2016,"Да",0,"Средне","В",[7,5,7,7,5,7,4,5,8,7],"Тёмное фэнтези о лесе Давокар: цивилизация беженцев грызёт край древней чащи, а под корнями спит то, что старше империй.||Художники сделали половину игры: визуальный ряд — среди сильнейших на рынке, и тон он держит сам. Механика с одной находкой (бросают только игроки) и разболтанным балансом порчи; кампания Throne of Thorns длинна и неровна.",["Shadow of the Demon Lord","Forbidden Lands","Warhammer Fantasy RP 4e"],["путешествие","хоррор","интриги"]),
+R("Warhammer Fantasy RP 4e","d100 WFRP","Фэнтези",2018,"Да",0,"Сложно","В",[7,4,8,7,5,7,4,4,8,8],"Старый Свет: империя на пороге гибели, крысолюди в канализации, а ваши герои — крысолов, писарь и цирюльник, у которых кончились деньги.||Тон грязного героизма не воспроизводит никто другой; кампания «Враг внутри» — легенда жанра, переиздана целиком. Движок капризен: авансы навыков и встречные броски требуют привычки, бой замедляется на группе больше четырёх.",["Zweihänder","Symbaroum","Forbidden Lands"],["приключение","выживание","интриги"]),
+R("AoS: Soulbound","d6-пулы","Фэнтези",2020,"—",0,"Средне","В",[7,6,7,6,6,4,5,6,7,6],"Мортальные Королевства после апокалипсиса, который уже случился: вы — избранные богов, связанные одной душой, и масштаб подвигов соответствует.||Редкий случай честной высокоуровневой игры с первого часа: герои сразу могущественны, и правила это выдерживают. Добротная середина без ярких находок; играется реже, чем упоминается, библиотека приключений скромная.",["Warhammer Fantasy RP 4e","WH40k: Wrath & Glory","Draw Steel"],["героика","война","приключение"]),
+R("Forbidden Lands","YZE","Фэнтези",2018,"Да",0,"Средне","В",[8,6,7,8,7,4,4,5,8,7],"Проклятые земли снова открыты: гекс за гексом вы исследуете мир, где еда, вода и лошади на счету, а на руинах можно отстроить собственную крепость.||Выживание Free League в лучшей форме: путешествие здесь — не фон, а сама игра. Раскрывается на дистанции — кампания, не слот.",["Dragonbane","Mutant: Year Zero","Worlds Without Number"],["выживание","путешествие","песочница"]),
+R("The One Ring 2e","TOR 2d","Фэнтези",2021,"—",0,"Средне","В",[8,6,8,8,7,7,4,5,8,6],"Средиземье между «Хоббитом» и «Властелином колец»: долгие дороги, усталость и Тень, которая копится в сердце героя и однажды прорывается.||Странствия и советы — лучшие процедуры жанра; правила требуют вчитаться, зато дорога, усталость и цена героизма здесь просчитаны правилами, а не оставлены на совесть ведущего.",["Pendragon 6","Forbidden Lands","Burning Wheel"],["путешествие","героика","трагедия"]),
+R("Ars Magica 5","Ars Magica","Фэнтези",2004,"—",0,"Сложно","В",[7,3,6,7,6,5,2,2,9,8],"Ковенант магов в мифической Европе XIII века: вы играете не одним героем, а всей общиной — маги, компаньоны, слуги, — и между сессиями проходят десятилетия.||Система магии по глубине не превзойдена с 1987 года: латинские техники и формы собираются в любое мыслимое заклинание. Темп размерен, порог высок: игра про исследование и быт общины, бой вторичен; стол нужен начитанный и терпеливый.",["Burning Wheel","Pendragon 6","RuneQuest: Glorantha"],["магия","песочница","интриги","отношения"]),
+R("Pendragon 6","Pendragon d20","Историч./др.",2024,"—",0,"Средне","В",[8,5,7,8,7,8,3,4,9,7],"Рыцари Артура сквозь поколения: вы играете не героем, а династией, и у персонажа есть собственный нрав — бросок гордости или страсти может решить за игрока.||Уникальный и вечный дизайн Стаффорда: единственная игра, где отыгрыш посчитан честной механикой, а кампания официально длится восемьдесят внутриигровых лет. Ни на что не похожа.",["The One Ring 2e","RuneQuest: Glorantha","Burning Wheel"],["героика","трагедия","война","отношения"]),
+R("Burning Wheel","BW","Фэнтези",2002,"—",0,"Сложно","В",[7,2,6,7,8,8,1,1,8,4],"Фэнтези, где у персонажа прописаны убеждения и инстинкты — и игра вознаграждает не победу, а моменты, когда убеждения проверяются на излом.||Самая последовательная система персонажной драмы: механика прямо платит за отыгрыш конфликта ценностей. Требовательна ко всем за столом — правила плотные, темп медленный; для сработанной группы, готовой читать. Как учебник дизайна полезна любому.",["Mouse Guard","Pendragon 6","Ars Magica 5"],["отношения","трагедия","приключение"]),
+R("Mouse Guard","BW-лайт","Фэнтези",2008,"—",0,"Средне","В",[7,6,7,7,7,6,5,6,7,4],"Мыши-стражи держат границы своих городов против сов, змей и зимы: каждая миссия — простое поручение, которое дорога превращает в испытание.||Структура сессии прописана жёстче, чем где-либо: фаза мастера и фаза игроков чередуются по правилам, и этому стоит поучиться любому ведущему. Механика — упрощённый Burning Wheel; детская обложка обманчива, игра строже многих взрослых.",["Burning Wheel","Mausritter","Root: The RPG"],["приключение","выживание","героика"]),
+R("Fabula Ultima","FU 2d","Фэнтези",2022,"—",0,"Средне","В",[7,5,8,7,7,6,4,5,8,6],"Японские консольные ролевые игры за столом: партия строит мир вместе с ведущим, злодеи получают собственные ходы, а бой устроен вокруг стихий и слабостей.||Кампанийная система с растущим сообществом: правила совместной настройки мира — из лучших в жанре, поддержка регулярная. Ваншоту противопоказана: смысл раскрывается на дистанции арок.",["Daggerheart","Ryuutama","Break!!"],["героика","приключение","отношения"]),
+R("Ryuutama","Ryuutama","Фэнтези",2007,"—",0,"Легко","В",[6,6,7,6,6,4,5,7,6,3],"Путешествие и есть игра: торговцы и травники идут из города в город, погода важнее монстров, а ведущий играет драконом, записывающим их историю.||Тихая, тёплая, честно подходящая детям и семьям: конфликтов мало, забота о спутниках — механика. Ниша узкая и ясно очерченная; вне её игре нечего предложить, внутри — почти без альтернатив.",["Golden Sky Stories","Fabula Ultima","Legend in the Mist"],["путешествие","отношения","приключение"]),
+R("7th Sea 2e","Roll&Keep 2e","Историч./др.",2016,"—",0,"Средне","В",[6,5,7,5,6,6,4,5,6,4],"Плащи и шпаги выдуманной Европы: дуэли, тайные общества, море — герои здесь не могут проиграть бой, вопрос лишь в цене успеха.||Вторая редакция сделала героев несокрушимыми по замыслу — «покупка успехов» вместо бросков на попадание расколола фанатов пополам. Линейка после краудфандинга заглохла; первая редакция у части сообщества до сих пор в чести.",["L5R 5e","Outgunned","FATE Core"],["приключение","интриги","героика"]),
+R("L5R 5e","Roll&Keep FFG","Фэнтези",2018,"—",0,"Сложно","В",[7,4,7,6,6,8,3,3,8,6],"Рокуган: самураи между долгом и желанием — каждый бросок спрашивает не «справился ли ты», а «чем пожертвовал: выдержкой, честью или правдой о себе».||Лучший сеттинг о чести в хобби, и пятая редакция впервые сделала внутренний конфликт механикой. Кастомные кубы и вес правил сужают аудиторию; вход через стартовый набор ощутимо легче корника.",["Pendragon 6","7th Sea 2e","Star Wars (FFG/Edge)"],["интриги","отношения","война"]),
+R("RuneQuest: Glorantha","BRP","Фэнтези",2018,"—",0,"Сложно","В",[7,4,7,7,5,6,3,3,8,8],"Глоранта: бронзовый век, где мифы — не фон, а действующие правила мира, каждый персонаж состоит в культе своего бога, а магия доступна всем, от пастуха до вождя.||Глубочайший сеттинг из существующих — сорок лет проработки без переписываний; культы и руны дают персонажам религию как игровую механику. BRP-ядро скрипит на стыках (страйк-ранги, зоны попаданий); порог высокий, награда соразмерна.",["Call of Cthulhu 7e","Pendragon 6","Ars Magica 5"],["героика","война","магия","песочница"]),
+R("Grimwild","Moxie (FitD-потомок)","Фэнтези",2024,"—",0,"Легко","В",[8,8,7,8,8,5,7,6,7,5],"Фэнтези-приключение, где вместо подсчётов — живые описания: сцены решаются горстью кубов и яркими деталями, которые игроки сами вносят в мир.||Горячий любимец сообщества 2025-го, и заслуженно: лёгкие правила с настоящей глубиной — редкое сочетание, и здесь оно работает. Полная версия бесплатна, порог входа нулевой.",["Blades in the Dark","Daggerheart","Dungeon World"],["приключение","героика","песочница"]),
+R("Mythic Bastionland","Into the Odd","Фэнтези",2025,"—",0,"Легко","В",[8,8,6,8,8,5,6,6,7,4],"Странствующие рыцари в мифическом королевстве: гекс за гексом вы ищете Мифы — живые странности этой земли, — приносите клятвы и однажды садитесь на трон.||Минимализм Into the Odd, доведённый до рыцарского романа: подготовка — одна таблица, каждый Миф — готовое приключение на разворот. Выдержит и кампанию: правила владений и смены поколений в комплекте.",["Into the Odd / Cairn","Electric Bastionland","Pendragon 6"],["приключение","героика","песочница","путешествие"]),
+R("Dungeon World","PbtA","Фэнтези",2012,"Да",0,"Легко","В",[7,7,7,6,6,4,6,7,6,6],"Знакомое фэнтези про подземелья, пересобранное на разговорных правилах: ведущий не готовит сюжет, а задаёт вопросы и строит мир из ответов.||Пятнадцать лет служит мостом из D&D в разговорные игры и для этой роли всё ещё пригоден; принципы ведущего из этой книги цитируют чаще самой игры. Дизайн постарел, сами авторы ушли дальше; брать как учебник, не как основную систему; прямое продолжение его идей — Stonetop.",["Stonetop","D&D 5e / 5.5e","Apocalypse World"],["приключение","героика"]),
+R("Root: The RPG","PbtA","Фэнтези",2020,"—",0,"Средне","В",[7,5,7,7,7,6,4,4,7,5],"Лесные зверушки между жерновами трёх воюющих фракций: вы — бродяги без флага, и каждая услуга одной стороне — счёт от другой.||Честный перенос настольной стратегии в ролевую форму: фракционное давление работает, серую мораль не выключить. Крепкий представитель семейства PbtA; милый арт обманчив — игра про войну и цену нейтралитета.",["Mouse Guard","Apocalypse World","Blades in the Dark"],["война","интриги","отношения"]),
+R("Avatar Legends","PbtA","Фэнтези",2022,"—",0,"Средне","В",[6,5,7,5,6,5,4,6,6,5],"Мир Аватара между эпохами сериалов: стихии, баланс и вопрос, за что ты готов драться, — ценности героев встроены прямо в правила.||Рекордный краудфандинг и прохладные столы: механика баланса громоздка для заявленной лёгкости, играют заметно меньше, чем купили. Материала по миру много, он аккуратный; лучше всего работает с фанатами сериала за столом.",["Masks","Root: The RPG","Fabula Ultima"],["подростки","героика","отношения"]),
+R("Heart: The City Beneath","Resistance","Фэнтези",2020,"—",0,"Средне","В",[9,6,8,8,8,9,4,4,8,5],"Спуск в живую бездну под городом: чем глубже, тем страшнее цена, и герой движется не к победе, а к собственному финалу, который вы выбрали ему сами.||Чистейшее «стекло»: механика последствий (fallout) превращает каждый провал в сюжет, а у каждого класса прописан личный финал-цель — готовая арка персонажа. Лучшая трагедийная система десятилетия.",["Spire","His Majesty the Worm","Blades in the Dark"],["трагедия","хоррор","путешествие"]),
+R("Spire","Resistance","Фэнтези",2018,"—",0,"Средне","В",[8,6,8,8,8,8,3,4,8,6],"Тёмные эльфы готовят революцию в городе-башне, где правят их угнетатели: вы — ячейка сопротивления, и каждая акция стоит кому-то из близких.||Старший брат Heart: классы один страннее другого — от жрицы глубинной богини до бывшего полицейского, — а каждый провал стоит чего-то конкретного: союзника, укрытия, здоровья. Сеттинговые главы читаются как хорошая проза.",["Heart: The City Beneath","Blades in the Dark","Symbaroum"],["интриги","трагедия","война"]),
+R("Into the Odd / Cairn","ItO","Фэнтези",2015,"Ч",0,"Легко","В",[8,9,6,8,7,4,8,8,6,7],"Странные приключения на минимуме правил: бросков атаки нет — урон проходит сразу, списка навыков нет — есть смекалка, а весь свод читается за обеденный перерыв.||Минимализм здесь — осознанный дизайн, а не лень: бой быстрый и страшный, подготовка нулевая. Cairn — бесплатный фэнтези-наследник, с которого проще всего начать.",["Electric Bastionland","Mausritter","Liminal Horror"],["приключение","выживание","песочница"]),
+R("Electric Bastionland","ItO","Фэнтези",2020,"—",0,"Легко","В",[9,8,7,8,7,4,8,8,6,4],"Вы — банкроты с провальными карьерами, от медиума-мошенника до заклинателя канализации, и единственный способ вернуть общий долг — очень плохие идеи в сюрреалистичном мегаполисе.||Лучший «ноль подготовки» для странного: генерация персонажей — уже аттракцион, каждый разворот книги — готовая идея. Гротеск и смех при совершенно серьёзных правилах.",["Into the Odd / Cairn","Mausritter","Paranoia (2023)"],["юмор","приключение","ограбление"]),
+R("Mausritter","ItO","Фэнтези",2020,"Ч",0,"Легко","В",[8,9,7,8,7,4,8,8,6,7],"Мыши с ножами против сов, крыс и колдовства: большой мир смертельно опасен, а инвентарь — карточки предметов на листе с ограниченными ячейками: что не поместилось, то не унесёшь.||Обаяние плюс образцовое ремесло: песочница собирается бросками прямо по книге, правила объясняются ребёнку, а взрослые остаются ради жёсткости, спрятанной под милотой.",["Into the Odd / Cairn","Mouse Guard","Electric Bastionland"],["приключение","выживание","песочница"]),
+R("Knave 2e","Knave","Фэнтези",2024,"—",0,"Легко","В",[7,8,6,7,6,3,7,7,5,6],"Тонкая книга, из которой можно вести целое фэнтези: минимум правил и десятки таблиц — от содержимого карманов до причуд волшебника.||Покупается как инструментарий: таблицы работают в любой системе, сами правила — совместимый со старыми модулями минимум. Второе издание собрало миллион на краудфандинге не за механику, а за полезность каждой страницы.",["Old-School Essentials","Into the Odd / Cairn","Worlds Without Number"],["приключение","песочница"]),
+R("CY_BORG","MB d20","Sci-fi",2022,"—",0,"Легко","В",[7,7,7,7,6,4,7,6,5,5],"Неоновый апокалипсис: наёмники против корпораций в городе, который уже умер и не заметил этого, — правил минимум, ярости максимум.||Профиль Mörk Borg перенесён в киберпанк без потерь: те же короткие злые ваншоты, та же кричащая вёрстка, которую либо любишь, либо не открываешь дважды. Кампании коротки по той же причине.",["Mörk Borg","Pirate Borg","The Sprawl"],["ограбление","выживание","трагедия"]),
+R("Call of Cthulhu 7e","BRP d100","Хоррор",2014,"Да",0,"Средне","В",[8,6,8,9,5,8,8,7,8,10],"Обычные люди 1920-х заглядывают туда, куда не надо: вы расследуете странные смерти, находите правду — и правда стоит вашему персонажу рассудка.||Полвека эталона хоррор-расследований и величайшая библиотека сценариев в хобби; правила местами архаичны, зато проценты навыков понятны любому с первой минуты.",["Delta Green","Trail of Cthulhu","Vaesen"],["расследование","хоррор","трагедия"]),
+R("Delta Green","BRP d100","Хоррор",2016,"Ч",0,"Средне","В",[8,6,8,9,5,9,8,7,8,8],"Агенты спецслужб прячут от мира то, что нельзя объяснить: каждое дело закрываете ложью и огнём, а домой возвращаетесь чуть более сломанными, чем уехали.||Лучшее, что случилось с лавкрафтианой за тридцать лет: плату за ужас механика Уз берёт не абстрактными очками, а семьёй и друзьями агента — «стекло» здесь системное, а не отыгранное. Строго 18+.",["Call of Cthulhu 7e","Night's Black Agents","Unknown Armies 3"],["расследование","хоррор","трагедия"]),
+R("Trail of Cthulhu","GUMSHOE","Хоррор",2008,"—",0,"Средне","В",[7,5,7,7,6,7,6,5,7,7],"Лавкрафтовское расследование, где ключевые улики находятся всегда: вопрос не «найдёте ли», а «что сделаете с найденным и какой ценой».||Решает главную проблему детективов — сюжет, застрявший на провальном броске; пулы навыков тратятся как ресурс, и игра в экономию — осознанная часть удовольствия. Бой и физика суховаты; сценарии (Eternal Lies) — среди лучших в лавкрафтиане.",["Call of Cthulhu 7e","Night's Black Agents","Delta Green"],["расследование","хоррор"]),
+R("Night's Black Agents","GUMSHOE","Современность",2012,"—",0,"Сложно","В",[8,4,7,8,7,6,4,4,8,6],"Бывшие разведчики обнаруживают, что миром финансов и спецслужб управляют вампиры, — и начинают войну, в которой нельзя доверять даже собственной сети контактов.||Конспирамида — рабочий инструмент: заговор строится по уровням заранее, и провисаний в расследовании не бывает. Требует серьёзной подготовки ведущего и вкуса к шпионской процедуре; кампания, не слот.",["Trail of Cthulhu","Delta Green","Unknown Armies 3"],["расследование","интриги","монстры"]),
+R("Unknown Armies 3","UA d100","Современность",2017,"—",0,"Сложно","В",[7,4,7,7,7,8,3,3,7,4],"Оккультный андеграунд Америки: магия здесь — одержимость, доведённая до ритуала, и платят за неё психикой, а не ячейками заклинаний.||Пять шкал психики вместо одного счётчика рассудка — до сих пор самая точная модель урона по личности. Умный и жёсткий текст; порог — не правила, а темы: нужен стол, готовый играть про зависимости и веру. Ниша узкая, культовый статус заслужен.",["Kult: Divinity Lost","Delta Green","Night's Black Agents"],["хоррор","расследование","интриги","магия"]),
+R("Kult: Divinity Lost","K:DL 2d10","Хоррор",2018,"—",0,"Средне","В",[7,4,7,7,6,10,4,3,8,6],"Реальность — тюрьма, выстроенная, чтобы мы не вспомнили, кем были: за фасадом города работает машинерия ада, и персонажи начинают видеть её швы.||Самый тяжёлый контент в списке: зависимости, насилие и распад личности — не фон, а темы игры; нужен взрослый, обо всём договорившийся стол. Механика родственна PbtA и работает; сценарная поддержка на английском регулярная. Строго 18+.",["Unknown Armies 3","Delta Green","Vampire: The Masquerade V5"],["хоррор","трагедия","расследование"]),
+R("Vampire: The Masquerade V5","Storyteller d10","Хоррор",2018,"Да",0,"Средне","В",[7,5,8,7,5,9,3,4,9,8],"Вы — хищник в человеческом городе: голод сильнее принципов, и каждую ночь вы решаете, сколько человеческого готовы отдать за силу.||Пятая редакция расколола сообщество: кубы голода хвалят, редактуру — нет. Но хроники живут как ни у одной другой игры — культура длинных вампирских саг не прерывалась с 1991-го.",["Werewolf: The Apocalypse W5","Urban Shadows 2e","Curseborne"],["интриги","отношения","хоррор","трагедия"]),
+R("Werewolf: The Apocalypse W5","Storyteller d10","Хоррор",2023,"—",0,"Средне","В",[6,5,6,4,5,7,3,4,6,4],"Оборотни против отравленного мира: последние воины Геи в проигранной экологической войне, где ярость — и оружие, и проклятие.||Перезапуск встречен холодно: вычищенный лор возмутил ветеранов, а новых игроков линейка не привела. Ядро на кубах ярости из V5 работает; брать при симпатии к новому курсу — старый Werewolf остаётся в изданиях 20th.",["Vampire: The Masquerade V5","Curseborne","Mage: The Ascension 20th"],["монстры","война","трагедия"]),
+R("Mage: The Ascension 20th","Storyteller d10","Современность",2015,"—",0,"Сложно","В",[6,2,7,6,4,7,2,2,8,5],"Реальность такова, какой её согласилось считать большинство, — а вы из тех, кто может переубедить вселенную: магия здесь — вопрос веры и воли.||Консенсус-реальность — из великих идей хобби; юбилейное издание — семисотстраничный монолит, в котором она погребена. Играют упрямые и влюблённые; остальным стоит читать главы о парадоксе и традициях как теорию.",["Unknown Armies 3","Vampire: The Masquerade V5","Ars Magica 5"],["магия","интриги"]),
+R("Curseborne","Storypath Ultra","Хоррор",2025,"—",0,"Средне","Н",[6,5,7,5,6,7,4,4,7,4],"Все проклятые рода — вампиры, оборотни, призраки — в одном современном городе и в одной игре, без деления на отдельные линейки.||Заявка на «Мир Тьмы без границ» от ветеранов Onyx Path; движок добротный по первым отзывам, приём пока сдержанный, библиотека тонкая. Оценка-эскиз по обзорам — уверенность низкая.",["Vampire: The Masquerade V5","Werewolf: The Apocalypse W5","Urban Shadows 2e"],["монстры","интриги","отношения"]),
+R("Candela Obscura","Illuminated Worlds","Хоррор",2023,"—",0,"Легко","В",[6,7,6,3,4,7,6,7,5,4],"Викторианский по духу город, где расследуют магические следы: кружки следователей, стильный антураж, лёгкие правила от студии Critical Role.||Обёртка красивая, актёрские трансляции хороши; сообщество зафиксировало тонкость механики — системе нечем поддержать длинную игру. Ваншот с фанатами Critical Role соберёт; глубже жанр закрывают GUMSHOE и Vaesen.",["Vaesen","Trail of Cthulhu","Daggerheart"],["расследование","хоррор"]),
+R("Vaesen","YZE","Хоррор",2020,"Ч",0,"Легко","В",[8,7,8,7,6,8,8,7,7,7],"Скандинавия XIX века: тайное общество охотников на существ из северных сказок, где чудовище чаще не зло, а нарушенный договор — убить или восстановить справедливость, решать вам.||Нордический фолк-хоррор с лучшей моральной развилкой жанра уже в базовых правилах; замок-штаб растёт вместе с группой, а готовые мистерии конвертируются в слот почти без подготовки.",["Call of Cthulhu 7e","The Between","Tales from the Loop"],["расследование","монстры","хоррор"]),
+R("Tales from the Loop","YZE","Современность",2017,"Да",0,"Легко","В",[7,7,8,8,6,6,6,8,6,6],"Шведские восьмидесятые, которых не было: дети на велосипедах расследуют странности вокруг гигантского ускорителя, пока взрослые ничего не замечают.||Мягкий вход для новичков и смешанных столов: персонажи не умирают, драма — про семью и школу, а не про бой. Готовых загадок в книге четыре, все играбельны; арт Столенхага делает половину работы по тону.",["Kids on Bikes","Vaesen","Mutant: Year Zero"],["подростки","расследование","отношения"]),
+R("Mutant: Year Zero","YZE","Sci-fi",2014,"Да",0,"Средне","В",[7,6,7,7,7,4,4,5,8,7],"Мутанты выходят из гибнущего Ковчега в Зону: каждая вылазка — за водой, запчастями и правдой о том, откуда вы взялись.||Исходник всего движка Free League, и здесь его цена жёстче всего: переброс доступен всегда, но платишь за него телом и снаряжением. Кампания со встроенным финалом и строительством базы; карта Зоны генерирует контент сама.",["Forbidden Lands","Twilight 2000 4e","Apocalypse World"],["выживание","песочница","приключение"]),
+R("Alien RPG","YZE","Sci-fi",2019,"Да",0,"Легко","В",[8,7,8,8,7,7,9,7,7,8],"Тот самый «Чужой»: экипаж со скрытыми приказами, нарастающий стресс — и кто-то за столом точно работает не на вас.||Cinematic-режим с секретными целями — лучший ваншот-формат индустрии: предательство прошито в раздатку, а накопленный стресс доводит до срыва в худший момент. Кампании система тянет заметно хуже.",["Mothership 1e","Blade Runner","Coriolis"],["хоррор","выживание","космос","интриги"]),
+R("Coriolis","YZE","Sci-fi",2017,"Да",0,"Средне","В",[7,5,7,6,5,6,4,4,7,6],"«Тысяча и одна ночь» в космосе: корабль-семья, базары станций, молитвы Иконам перед прыжком — ближневосточная опера вместо привычной западной фантастики.||Сеттинг и атмосфера сильнее механики — базовый движок Free League здесь без особых находок. Линейку перезапустил The Great Dark с новым регионом и правилами; старый корник дальше развиваться не будет, это стоит учесть при покупке.",["Traveller (Mongoose 2e)","Alien RPG","Scum & Villainy"],["космос","интриги","путешествие"]),
+R("Blade Runner","YZE","Sci-fi",2022,"—",0,"Средне","В",[7,6,7,7,7,7,6,6,7,5],"Лос-Анджелес «Бегущего по лезвию»: вы — детективы, решающие в каждом деле один и тот же вопрос — кто здесь человек и есть ли разница.||Самый взрослый продукт линейки Free League: кейсы устроены как процедуралы с уликами и моральной вилкой в финале, стартовый набор образцовый. Сообщество игру недоиграло — готовых кейсов меньше, чем заслуживает система.",["Alien RPG","Delta Green","Cyberpunk RED"],["расследование","интриги","трагедия"]),
+R("Twilight 2000 4e","YZE","Историч./др.",2021,"—",0,"Средне","В",[7,5,7,7,7,6,4,4,7,6],"Третья мировая случилась, и её никто не выиграл: ваш отряд застрял в разорённой Польше — топливо, патроны и тепло на счету, дом далеко.||Гекс-выживание с техникой и самой честной логистикой в жанре; тон выдержан безупречно. Медленная игра для терпеливого стола: сессия может уйти на один переход и одну засаду — это дизайн, а не недочёт.",["Mutant: Year Zero","Band of Blades","Forbidden Lands"],["война","выживание","песочница"]),
+R("Traveller (Mongoose 2e)","2d6 Traveller","Sci-fi",2016,"—",0,"Средне","В",[7,5,7,8,6,4,4,4,8,9],"Научная фантастика без сверхспособностей: торговые маршруты, кредит на корабль и сектор космоса, где каждая планета описана короткой формулой из цифр и букв.||Генерация персонажа проживает его биографию до старта игры — до сих пор лучшая в жанре; инструментов для песочницы — полвека накоплений. Тон суховат: приключения строятся вокруг логистики и денег, а не подвигов.",["Stars Without Number","Coriolis","The Expanse"],["космос","песочница","приключение"]),
+R("Stars Without Number","OSR+генераторы","Sci-fi",2017,"—",0,"Средне","В",[9,7,6,8,7,4,5,5,8,7],"Космическая песочница на тех же генераторах: сектор из десятков миров и фракции, которые живут и воюют без вашего участия.||Конструктор кампаний: фракции делают собственные ходы между сессиями и превращают фон в живой мир. Как и у собрата — скромные правила, отличные таблицы, щедрая бесплатная версия.",["Worlds Without Number","Cities Without Number","Traveller (Mongoose 2e)"],["космос","песочница","интриги"]),
+R("Mothership 1e","Panic Engine","Sci-fi",2024,"—",0,"Легко","В",[8,8,7,9,8,6,9,7,7,9],"Космический хоррор про экипаж работяг: чужой корабль, тесные скафандры, паника по нарастающей — как «Чужой», где вы не морпехи, а грузчики.||Король ваншотов: правила на четырёх страницах, механика паники работает всерьёз, а модули (Gradient Descent, Dead Planet) — лучшие в десятилетии независимо от системы.",["Alien RPG","Mörk Borg","Liminal Horror"],["хоррор","выживание","космос"]),
+R("Eclipse Phase 2e","EP d100","Sci-fi",2019,"—",0,"Сложно","В",[6,2,6,6,4,5,2,2,7,6],"Будущее, где разум копируется и переселяется в новые тела, а смерть — неудобство: вы — тайные агенты, спасающие остатки человечества от угроз его же изобретений.||Одна из самых умных научных фантастик хобби — читают взахлёб, играют единицы: объём давит даже во второй, облегчённой редакции. Все PDF официально по модели «плати сколько хочешь» — знакомство бесплатно.",["The Sprawl","Stars Without Number","Delta Green"],["космос","интриги","расследование"]),
+R("Lancer","Lancer","Sci-fi",2019,"—",0,"Сложно","В",[7,4,8,8,8,3,4,4,8,7],"Пилоты боевых мехов в далёком будущем: между миссиями вы — люди с историями, в бою — машины, собранные под задачу из сотен деталей и шасси.||Тактика уровня видеоигры с бесплатным конструктором Comp/Con, который берёт весь учёт на себя; правила боя бесплатны целиком. Вне боя система почти пуста — нарративную часть стол приносит свою.",["Draw Steel","Pathfinder 2e","Stars Without Number"],["тактика","космос","война"]),
+R("The Expanse","AGE 3d6","Sci-fi",2019,"—",0,"Средне","В",[6,6,6,5,5,4,4,5,6,4],"Игра по «Пространству»: реалистичный космос без магии, где Земля, Марс и шахтёры Пояса делят Солнечную систему.||Сделано компетентно и пресно: рецензии от «крепко» до «наспех», центральную тайну первоисточника книга почти обходит, линейка заглохла. Фанатам сериала хватит на вечер-другой; глубже жанр закрывают соседи по списку.",["Traveller (Mongoose 2e)","Star Trek Adventures 2e","Coriolis"],["космос","интриги"]),
+R("Dune 2d20","2d20","Sci-fi",2021,"Да",0,"Средне","В",[6,4,6,5,5,6,3,3,6,5],"Интриги великих домов Арракиса: пряность, вода, ножи в темноте — игра о власти, где армии двигают словами.||Домашняя политика реализована честно, вплоть до правил владений; мета-валюты 2d20 требуют любви к жетонам, а сеттинг — знания первоисточника. Порог двойной — системный и лорный, — и стол собирается редко.",["Star Trek Adventures 2e","L5R 5e","The Expanse"],["интриги","война","космос"]),
+R("Star Trek Adventures 2e","2d20","Sci-fi",2023,"—",0,"Средне","В",[7,5,7,6,6,5,5,5,7,8],"«Звёздный путь» по канону: мостик, выездная группа, моральная дилемма недели — каждая сессия устроена как эпизод сериала.||Лучшее применение движка 2d20: ценности персонажей и директивы миссии встроены в броски, вторая редакция заметно проще первой. Вне франшизы делать нечего — осознанно фанатский продукт, в своей нише образцовый.",["Star Wars (FFG/Edge)","The Expanse","Dune 2d20"],["космос","расследование","отношения"]),
+R("Star Wars (FFG/Edge)","Genesys-кубы","Sci-fi",2013,"—",0,"Средне","В",[7,5,8,8,7,5,5,5,8,8],"«Звёздные войны» про контрабандистов, повстанцев или джедаев — с особыми кубами, где у броска нет простого «да или нет»: успех приходит с угрозой, провал — с неожиданным подарком.||Нарративные кубы родились здесь и до сих пор не превзойдены: каждый бросок — маленькая сцена. Минус — кубы фирменные: без них или приложения не сыграть. Линейка жива переизданиями Edge.",["Genesys","Scum & Villainy","Star Trek Adventures 2e"],["космос","приключение","героика"]),
+R("Cyberpunk RED","Interlock","Sci-fi",2020,"Ч",0,"Средне","В",[6,4,7,7,5,5,4,4,7,7],"Найт-Сити после корпоративной войны: улицы, импланты, контракты — тот самый мир, что лёг в основу Cyberpunk 2077.||Держится на силе мира и притоке игроков из видеоигры; правила — переработка движка девяностых, и местами это чувствуется (экономика, сетраннинг). Поддержка активная, стартовый набор хороший; по-русски вышел только стартовый набор Hobby World — основная книга на паузе.",["The Witcher (R.Talsorian)","Shadowrun 6e","The Sprawl"],["ограбление","тактика","интриги"]),
+R("Shadowrun 6e","SR d6-пулы","Sci-fi",2019,"Да",0,"Сложно","В",[3,2,6,4,3,4,1,1,7,6],"Магия вернулась в мир мегакорпораций: эльф-хакер и тролль-уличный самурай идут на дело, где огненный шар и компьютерный вирус равноправны.||Легендарный сеттинг в заложниках у неудачной редакции: экономика Edge сломана по общему приговору сообщества, ошибки правились годами. Мир по-прежнему без аналогов; практический совет сообщества — пятая редакция или ожидание перемен.",["Cyberpunk RED","The Sprawl","Eclipse Phase 2e"],["ограбление","магия","тактика"]),
+R("The Sprawl","PbtA","Sci-fi",2016,"—",0,"Легко","В",[7,7,6,6,7,4,6,6,6,4],"Киберпанк-миссии по всем канонам жанра: получить заказ, собрать данные, войти, выйти — и не забыть, что корпорация помнит вас по именам.||Самая чистая структура забега в жанре: счётчики корпораций и фазы миссии держат каркас без подготовки. За пределами миссий контента мало — специализированный инструмент, точный в своей нише.",["Blades in the Dark","Cyberpunk RED","Apocalypse World"],["ограбление","интриги","тактика"]),
+R("Scum & Villainy","FitD","Sci-fi",2018,"—",0,"Средне","В",[8,7,8,8,8,5,6,6,8,5],"Экипаж потрёпанного корабля берёт сомнительные заказы на задворках галактики: долги растут, патрули ближе, «Светлячок» узнаётся с первой сцены.||Лучший вход в семейство Blades после оригинала: корабль — общий персонаж, шаблоны заданий готовы, а космос прощает больше, чем Дускволл.",["Blades in the Dark","Star Wars (FFG/Edge)","Coriolis"],["ограбление","космос","приключение","юмор"]),
+R("Slugblaster","FitD","Sci-fi",2023,"—",0,"Средне","В",[8,7,8,8,8,4,6,6,7,4],"Подростки на летающих досках гоняют по чужим измерениям ради роликов и славы: главные враги — скука родного городка, родители и собственное эго.||Свежайший тон семейства Blades: вместо мрачных счётчиков — стиль и неприятности, а самые важные сцены происходят за семейным ужином между трюками. Тёплый, смешной и неожиданно честный про взросление.",["Masks","Blades in the Dark","Kids on Bikes"],["подростки","юмор","приключение","отношения"]),
+R("Vaults of Vaarn","Knave","Sci-fi",2021,"—",0,"Легко","В",[7,7,6,6,5,4,6,6,5,5],"Бирюзовая пустыня умирающей Земли: кочевники, синтетики и грибные сады на костях сверхцивилизации — странствия в духе «Дюны» и Мёбиуса.||Серия зинов с отличными генераторами: столы имён, руин и странностей закрывают песочницу целиком. Механика заимствована из Knave; покупается за мир и таблицы, не за правила.",["Knave 2e","Numenera / Cypher","Mörk Borg"],["песочница","путешествие","выживание"]),
+R("Degenesis","KatharSys","Sci-fi",2014,"—",0,"Сложно","В",[7,3,7,7,5,8,3,3,7,6],"Европа через пятьсот лет после падения астероида: споры чужой жизни прорастают сквозь людей, культы делят руины, эстетика — дизель и кость.||Арт и лор мирового уровня — книги оформлены как альбомы, вселенная проработана до диалектов. Система тяжелее, чем нужно этому материалу; PDF всей линейки официально бесплатны, что снимает главный барьер знакомства.",["Mutant: Year Zero","Twilight 2000 4e","Symbaroum"],["выживание","война","интриги"]),
+R("Mörk Borg","MB d20","Хоррор",2020,"Ч",0,"Легко","В",[8,8,7,8,6,6,8,7,5,8],"Конец света в жанре дум-метала: жёлто-чёрный артбук, обречённые бродяги, мир умирает по пророчеству — и по правилам на двух страницах.||Книгу покупают как арт-объект, и не зря — вёрстку разглядывают дольше, чем читают правила. Играют на ней злые быстрые ваншоты «умри красиво»; на дистанции кампании тон выдыхается, и это честная цена.",["CY_BORG","Pirate Borg","Death in Space"],["хоррор","выживание","трагедия"]),
+R("Liminal Horror","ItO","Хоррор",2022,"—",0,"Легко","В",[8,8,6,7,7,6,8,7,6,6],"Современный хоррор на минимуме правил: вместо запаса здоровья — отметки порчи, которые переписывают персонажа насовсем.||База — Cairn, перенастроенный под ужасы, и она работает; но брать стоит ради модулей (The Bloom, The Mall) — они сильнее ядра и играются почти без подготовки. Бесплатная версия правил есть.",["Into the Odd / Cairn","Mothership 1e","Delta Green"],["хоррор","расследование","выживание"]),
+R("Trophy Dark","Trophy","Хоррор",2019,"—",0,"Легко","В",[7,7,7,7,8,9,8,6,5,6],"Экспедиция в проклятый лес, из которой никто не вернётся прежним: вопрос не «выживем ли», а «что каждый готов отдать за золото».||Игра одного вечера, где стол заранее согласился проиграть: искушение — механика, финал известен, и напряжение от этого только растёт.",["Trophy Gold","Ten Candles","Heart: The City Beneath"],["трагедия","хоррор","выживание"]),
+R("Ten Candles","Ten Candles","Хоррор",2015,"—",0,"Легко","В",[7,7,8,8,8,10,9,8,2,4],"Мир погас, света осталось на десять свечей: каждая догоревшая — шаг к концу. Персонажи погибнут все; игра о том, какими они встретят темноту.||Ритуал, а не партия: настоящие свечи, сжигаемые листы, финал известен с первой минуты — и всё равно пробирает. Один вечер, один раз с этой группой, надолго в памяти.",["Trophy Dark","Dread","Mörk Borg"],["трагедия","хоррор"]),
+R("Dread","Дженга","Хоррор",2005,"—",0,"Легко","В",[8,8,8,8,8,8,9,9,2,4],"Хоррор, где вместо кубов — башня дженги: хочешь действовать — тяни брусок; уронил башню — персонаж погиб. Башня шатается на глазах у всего стола.||Лучший фестивальный аттракцион жанра: правила объясняются одной фразой, зрители собираются сами, дрожь в пальцах настоящая. Одноразовый фокус? Да. Но какой.",["Ten Candles","Mothership 1e","Kids on Bikes"],["хоррор","выживание"]),
+R("Monsterhearts 2","PbtA","Хоррор",2017,"—",0,"Средне","В",[7,6,7,8,8,9,4,4,7,4],"Школа, в которой подростки — буквально монстры: желание, стыд и власть друг над другом бьют больнее клыков, и контроль над сценой всё время уплывает из рук.||Самый острый эмоциональный движок семейства: механика соблазна срабатывает независимо от согласия персонажа — в этом и суть. Строго для своих и со всеми предохранителями за столом.",["Masks","Apocalypse World","Urban Shadows 2e"],["подростки","отношения","хоррор"]),
+R("Urban Shadows 2e","PbtA","Современность",2023,"—",0,"Средне","В",[7,6,7,7,8,7,4,4,7,4],"Ночная политика большого города: вампиры, охотники и духи делят районы, а каждый долг записывается и однажды будет предъявлен.||Механика долгов — рабочий двигатель интриг: она заставляет фракции обмениваться услугами, и сюжет движется сам. Вторая редакция чище первой; нужен стол, которому политика интереснее охоты на монстров. Первая редакция издана по-русски как «Городские легенды» (Студия 101).",["Monsterhearts 2","Vampire: The Masquerade V5","The Between"],["интриги","отношения","монстры"]),
+R("City of Mist","CoM (2d6+тэги)","Современность",2017,"—",0,"Средне","В",[6,4,7,6,6,6,4,3,7,6],"Нуар о людях, в которых проснулись легенды: детектив с телом обычного человека и силой мифа ведёт дела, где обе половины его жизни тянут в разные стороны.||Тэги вместо характеристик выразительны, но новичков путают — свободной форме нужен опытный ведущий. Линейка передала эстафету наследникам (Otherscape, Legend in the Mist), где та же система стала чище.",["Legend in the Mist","Urban Shadows 2e","The Between"],["расследование","отношения","интриги"]),
+R("Monster of the Week","PbtA","Современность",2012,"Ч",0,"Легко","В",[8,8,9,9,8,5,9,8,7,8],"Охотники на нечисть в духе «Баффи» и «Сверхъестественного»: каждая сессия — серия с монстром недели, роли раздаются готовыми архетипами, и даже провал броска толкает историю вперёд.||Самый надёжный вариант «собрались и играем»: объясняется за десять минут, бесплатных мистерий десятки, включая официальные, и он вытянет даже пассивный стол. Идеал открытых столов и фестивалей.",["Brindlewood Bay","Urban Shadows 2e","Apocalypse World"],["расследование","монстры","юмор"]),
+R("Brindlewood Bay","Carved from Brindlewood","Современность",2019,"—",0,"Легко","В",[8,8,8,8,9,6,9,8,6,6],"Старушки из клуба любителей детективов раскрывают убийства в приморском городке — и постепенно замечают, что за уютом прячется культ.||Свежайшая идея детектива за декаду: у тайны нет заранее верного ответа, разгадку собирают сами игроки из улик — и она рождается на глазах. «Она написала убийство» пополам с Лавкрафтом.",["The Between","Monster of the Week","Call of Cthulhu 7e"],["расследование","юмор"]),
+R("The Between","Carved from Brindlewood","Хоррор",2022,"—",0,"Средне","В",[8,7,8,8,9,8,6,6,7,4],"Викторианский Лондон, особняк охотников на чудовищ: днём — светские маски и личные тайны, ночью — существа, которых нет в газетах.||Недооценённый шедевр: детектив собирается по правилам Brindlewood, но каждая охота цепляется за прошлое конкретного персонажа. Темп неспешный — для группы, которой личные тайны интереснее погонь.",["Brindlewood Bay","Vaesen","Urban Shadows 2e"],["расследование","хоррор","отношения","интриги"]),
+R("Apocalypse World","PbtA","Современность",2010,"Да",0,"Средне","В",[8,6,7,8,9,8,3,4,8,5],"Постапокалипсис, где голод, банды и странная психическая буря — только фон, а вопрос «кому ты доверяешь» важнее вопроса «сколько у тебя патронов».||Исходник целого семейства: ходы, фронты и принцип «играй, чтобы узнать» родились здесь. Жёсткий, интимный, откровенно 18+; читать обязательно даже тем, кто не сядет играть.",["Monsterhearts 2","The Sprawl","Mutant: Year Zero"],["выживание","отношения","интриги"]),
+R("Masks","PbtA","Современность",2016,"—",0,"Средне","В",[7,6,8,8,8,7,4,5,8,5],"Юные супергерои в городе взрослых легенд: сила уже есть, а вот кто ты — пока решают чужие слова, и главный бой идёт не со злодеем, а с ярлыками, которые на тебя вешают.||Лучший движок подростковой драмы в хобби: вместо характеристик — самооценка, которую двигают чужие мнения. Бой можно проиграть без последствий — персонажа меняют не победы, а слова взрослых о нём.",["Monsterhearts 2","Avatar Legends","Apocalypse World"],["подростки","отношения","героика"]),
+R("Triangle Agency","Stability/Chaos d4","Современность",2023,"—",0,"Средне","В",[7,4,8,8,9,7,4,3,8,5],"Корпорация нанимает вас ловить аномалии: KPI, отчётность, улыбка по регламенту — офисная сатира, сквозь которую всё отчётливее проступает космический ужас.||Инди-игра года по мнению почти всех, кто дочитал: комедия и хоррор переключаются одним рычагом, четвёртая стена — расходный материал. Но это кампания на десяток миссий с закрытым контентом, не слот.",["Delta Green","Paranoia (2023)","Monster of the Week"],["юмор","хоррор","расследование","интриги"]),
+R("Paranoia (2023)","Paranoia","Sci-fi",2023,"Да",0,"Легко","В",[7,6,8,7,5,1,8,7,4,6],"Подземный Альфа-Комплекс под властью безумного Компьютера: вы — солдаты-клоны, обязанные доносить друг на друга. Счастье обязательно; несчастье — измена.||Вечный фестивальный номер: смерть смешна (клонов шесть), предательство поощряется правилами, объяснять почти нечего. Механика — декорация к шоу, и это осознанный дизайн; на длинной дистанции шутка выдыхается.",["Electric Bastionland","Triangle Agency","Dread"],["юмор","интриги"]),
+R("Feng Shui 2","FS2","Современность",2015,"—",0,"Средне","В",[6,5,7,6,5,3,6,6,5,4],"Гонконгский боевик сквозь эпохи: современный коп, даосский монах и киборг из будущего дерутся за узлы силы, прыгая между временами.||Декларация трюков — «прыгаю с балкона на люстру и стреляю с двух рук» — здесь валюта, и бой действительно похож на кино. Дизайн 2015-го местами устарел (таблицы противников), но жанр по-прежнему передаёт лучше всех.",["Outgunned","Broken Compass","Savage Worlds SWADE"],["приключение","юмор","тактика"]),
+R("FATE Core","FATE","Универсальные",2013,"Да",0,"Сложно","В",[6,4,6,6,7,5,4,3,7,7],"Универсальные правила, где персонаж описан фразами-аспектами: «бывший чемпион с больным коленом» — одновременно и правило, и слабость, и козырь.||Гибкость честная: любой жанр, любая идея. Цена — абстракция: аспекты и жетоны требуют опытного стола и вкуса к соавторству. Пик моды прошёл в 2010-х, но для своей задачи система рабочая; на русском издана.",["Savage Worlds SWADE","Cortex Prime","Genesys"],["приключение","отношения"]),
+R("Savage Worlds SWADE","SW","Универсальные",2018,"Да",0,"Средне","В",[7,6,7,7,6,4,6,5,7,9],"Универсальные правила для любых жанров с прицелом на приключенческое кино: быстрый бой, взрывающиеся кубы, фишки на перебросы.||Один из двух главных универсалов рынка: конверсии есть подо всё, бой на миниатюрах масштабируется до взводов. Русское издание («Дневник авантюриста») давно живёт в сообществе. Глубокая драма — не его жанр: система честно заточена под пульп.",["FATE Core","Genesys","GURPS 4e"],["приключение","героика","тактика"]),
+R("GURPS 4e","GURPS","Универсальные",2004,"Ч",0,"Сложно","В",[5,2,6,6,6,5,2,2,7,9],"Симуляция чего угодно: от каменного века до звёздных империй — одна система, где просчитаны и дуэль на рапирах, и падение с орбиты.||Справочники (Low-Tech, Space) хороши как энциклопедии и полезны ведущему любой системы. Порог сборки кампании высочайший; GURPS читают больше, чем играют, и это устойчивое состояние последних двадцати лет.",["Savage Worlds SWADE","FATE Core","Cortex Prime"],["приключение","тактика","песочница"]),
+R("Cortex Prime","Cortex","Универсальные",2020,"—",0,"Сложно","В",[6,4,6,5,7,5,3,3,6,4],"Не игра, а набор деталей: пулы кубов, черты и модули, из которых собирается система под ваш сериал — от супергероики до семейной саги.||Собрать можно что угодно — если уже знаешь, что собираешь: это инструмент дизайнера, не готовый продукт. Официальные сборки (Tales of Xadia) показывают потолок; новичку без опыта конструктор противопоказан.",["FATE Core","GURPS 4e","Genesys"],["приключение","отношения"]),
+R("Genesys","Genesys-кубы","Универсальные",2017,"—",0,"Средне","В",[6,4,7,6,7,5,4,4,7,6],"Те самые повествовательные кубы, но без «Звёздных войн»: успех с угрозой и провал с удачей в любом жанре, от фэнтези до киберпанка.||Идея переносится хорошо: кому кубы понравились в Star Wars — получит их без лицензии. Поддержка вялая: линейка сеттингов почти остановилась, сообщество держится на самодельных конверсиях.",["Star Wars (FFG/Edge)","Savage Worlds SWADE","FATE Core"],["приключение","героика"]),
+R("Numenera / Cypher","Cypher","Sci-fi",2013,"Да",0,"Средне","В",[7,6,7,7,6,4,5,5,7,8],"Девятый Мир: Земля через миллиард лет, где технологии восьми погибших цивилизаций неотличимы от магии, а персонаж описывается одной фразой.||Вся математика на стороне игроков — вести очень легко, вмешательства ведущего встроены в экономику опыта. Сеттинг сильнее механики: система ровная, местами пресная; линейка Monte Cook Games огромна.",["Old Gods of Appalachia","Savage Worlds SWADE","13th Age"],["приключение","песочница","магия"]),
+R("Index Card RPG","ICRPG","Универсальные",2017,"Ч",0,"Легко","В",[8,8,7,7,6,4,8,8,5,6],"Конструктор быстрых приключений: цель каждой сцены лежит на столе, таймеры тикают, добыча раздаётся картами — правила подчинены темпу.||Покупается ради инструментов ведущего: таймеры, видимая цель каждой сцены и структура комнат переносимы в любую систему. Как самостоятельная игра прост до утилитарности; хорош для коротких игр без подготовки.",["Into the Odd / Cairn","Shadowdark","Nimble 2"],["приключение","тактика"]),
+R("Эра Водолея","ЭВ d10","Современность",2000,"Да",1,"Средне","В",[4,4,5,4,3,5,3,4,4,2],"Городская мистика России девяностых: тайные ордена в знакомых дворах — первая крупная отечественная ролевая игра.||Историческая веха: тираж 7500, с неё началась русская сцена. Механика эпоху не пережила — сегодня это документ времени и источник сеттинга, а не рабочая система.",["Urban Shadows 2e","Красная Земля (Fate)","Vampire: The Masquerade V5"],["расследование","интриги"]),
+R("Заколдованная Страна","наст.-гибрид","Фэнтези",1990,"Да",1,"Легко","В",[3,4,4,4,2,2,3,5,2,1],"Первая ролевая игра СССР (1990): поле, фишки и классы — гибрид настолки и ролевой игры, по которому страна узнала слово «подземелье».||Музейный экспонат и точка отсчёта отечественной истории хобби; играть сегодня — археология. Ценность сугубо историческая — для коллекции и для понимания, откуда всё пошло.",["Эра Водолея","D&D 5e / 5.5e","Dračí doupě"],["приключение"]),
+R("Красная Земля (Fate)","Fate Core","Историч./др.",2022,"Да",1,"Средне","В",[7,5,7,7,6,8,5,4,7,4],"Гражданская война в России, в которую вмешался Иной мир: комиссары и офицеры сталкиваются с тем, чего нет в сводках, и привычный ход истории ломается.||Сильнейший российский сеттинг: альтернативная история с мистикой прописана густо и без лубка. Ядро — Fate Core со всеми его особенностями: аспекты и жетоны либо ложатся на стол, либо нет; материалов за пределами базовой книги немного.",["FATE Core","Эра Водолея","Vaesen"],["война","хоррор","интриги"]),
+R("1000 рентген в час","авторская","Sci-fi",2019,"Да",1,"Средне","Н",[6,4,6,5,5,5,4,3,5,2],"Отечественный постапокалипсис большого масштаба: зоны, аномалии, сталкерская романтика на родном материале.||Один из самых заметных проектов русской сцены по амбициям и объёму; широкой обкатки за пределами своего сообщества пока мало. Оценка-эскиз — уверенность низкая.",["Mutant: Year Zero","Neuroshima","Twilight 2000 4e"],["выживание","песочница"]),
+R("Новая Эра","авторская","Фэнтези",2019,"Да",1,"Средне","Н",[5,4,5,4,4,4,3,3,4,1],"Агенты, путешествующие между временами, действуют в фэнтезийном прошлом: отечественный проект на стыке жанров.||Энтузиастский проект с крохотным тиражом; известность точечная, материалов для внешней оценки мало. Оценка-эскиз — уверенность низкая.",["Эра Водолея","Красная Земля (Fate)","Genesys"],["приключение","интриги"]),
+R("Shinobigami","Saikoro Fiction","Современность",2019,"—",0,"Средне","С",[6,5,7,7,7,6,7,5,5,4],"Современная Япония, тайная война кланов ниндзя: у каждого персонажа свой секрет и своя цель, и часть игры — интриги игроков друг против друга.||Структура, которой нет больше нигде: сцены по циклам, дуэли один на один, соревновательная драма по правилам. Требует стола, готового к PvP; круг играющих за пределами Японии узкий. Оценка частично по обзорам.",["Paranoia (2023)","City of Mist","Monsterhearts 2"],["интриги","тактика","отношения"]),
+R("Zweihänder","d100 (WFRP-клон)","Фэнтези",2017,"—",0,"Сложно","В",[6,3,6,5,5,7,3,3,7,5],"Мрачное и гибельное фэнтези по лекалам старого Warhammer: профессии из грязи, ранения с последствиями, смерть за углом — без лицензии Games Workshop.||Как ретроклон WFRP сделан основательно и стартовал с премии ENnie; затем репутационный скандал вокруг автора выел сообщество, и линейка сбавила ход. Книга от этого хуже не стала; столов вокруг неё меньше, чем механика заслуживает.",["Warhammer Fantasy RP 4e","Shadowdark","Mörk Borg"],["выживание","приключение","хоррор"]),
+R("WH40k: Wrath & Glory","d6-пулы","Sci-fi",2020,"—",0,"Средне","В",[6,5,7,6,5,5,4,4,7,6],"Сорок первое тысячелетие широкой кистью: в одной партии — космодесантник, инквизитор и техножрец, и правила это позволяют.||Играбельный середняк: пулы d6 просты, смешанные партии — главное отличие. Резкости старых специализированных линеек здесь нет — за ней теперь к Imperium Maledictum. Поддержка Cubicle 7 стабильная.",["WH40k: Imperium Maledictum","AoS: Soulbound","Warhammer Fantasy RP 4e"],["война","героика","космос"]),
+R("WH40k: Imperium Maledictum","d100","Sci-fi",2023,"—",0,"Средне","В",[7,4,7,7,6,6,4,4,7,5],"Сорок первое тысячелетие снизу: вы — расходные агенты инквизитора в городе-улье, где ересь пахнет ладаном, а патрон важнее правды.||Возвращение мрачного d100-детектива в мир 40k, тепло принятое фанатами старой Dark Heresy; система патронажа — удачная новинка. Требует любви к сеттингу; поддержка Cubicle 7 регулярная, русской локализации нет.",["WH40k: Wrath & Glory","Warhammer Fantasy RP 4e","Delta Green"],["расследование","хоррор","война"]),
+R("Household","Fortune System","Фэнтези",2021,"—",0,"Средне","С",[7,6,8,7,7,6,5,6,6,4],"Маленький народец обжил опустевший дом человека: феи, боггарты и сильфы делят комнаты как страны, и у гостиной есть своя война в прошлом.||Самый стильный малый сеттинг последних лет: масштаб «дом как континент» выдержан в каждой детали. Движок общий с Broken Compass — быстрый и лёгкий; кампания среднего размера, английский перевод полный.",["Broken Compass","Mausritter","Ryuutama"],["приключение","интриги","отношения"]),
+R("Broken Compass","Fortune System","Современность",2020,"—",0,"Легко","В",[7,7,8,7,7,3,7,6,5,5],"Приключенческое кино девяностых: гробницы, погони, сокровища — Индиана Джонс и Лара Крофт без лицензий, но с их темпом.||Предшественник Outgunned на том же движке покерных комбинаций: быстро, легко, кинематографично. Линейка сезонов закрывает поджанры от пиратов до золотого века; если выбирать один — Outgunned новее и отточеннее, Compass берут ради тона авантюры.",["Outgunned","Household","Savage Worlds SWADE"],["приключение","юмор","путешествие"]),
+R("Outgunned","Fortune System","Современность",2023,"—",0,"Легко","В",[7,7,8,8,7,3,7,6,6,6],"Боевик девяностых и нулевых за столом: погони, перестрелки, обратный отсчёт — герои не умирают, но всё время на волоске от провала миссии.||Комбинации d6 в духе покера считаются быстро и дают жанру нужную скорость; приём сообщества отличный, линейка активно растёт (Adventure, World of Killers). Драмы глубже жанра отсюда не достать — осознанная специализация.",["Broken Compass","Feng Shui 2","Savage Worlds SWADE"],["приключение","юмор","тактика"]),
+R("Neuroshima","Neuroshima 3d20","Sci-fi",2001,"—",0,"Средне","В",[6,4,7,7,4,5,3,3,7,6],"Постапокалиптическая Америка глазами польских авторов: машинный разум Молох наступает с севера, люди грызутся за остатки юга.||В Польше — национальная классика, породившая настольные ответвления (Neuroshima Hex); движок трёх d20 устарел и за пределы страны почти не выходил. Практический вход — только по-польски.",["Mutant: Year Zero","Twilight 2000 4e","Dzikie Pola"],["выживание","война"]),
+R("Dzikie Pola","авторская","Историч./др.",1997,"—",0,"Средне","С",[6,4,6,6,4,6,3,3,6,3],"Речь Посполитая XVII века: шляхта, сабли, сеймики и гонор — историческая игра о сарматской вольнице без фэнтези-примесей.||Веха польской сцены и редчайший случай чисто исторического сеттинга Восточной Европы; за пределами Польши почти недоступна, перевода нет. Оценка частично по обзорам.",["Warhammer Fantasy RP 4e","Pendragon 6","Neuroshima"],["интриги","война","приключение"]),
+R("The Witcher (R.Talsorian)","Interlock","Фэнтези",2018,"Да",0,"Средне","В",[5,4,6,5,4,5,3,3,6,4],"Мир Ведьмака на движке Cyberpunk: тракты после войн, монстры по контракту, алхимия и ненависть к нелюдям.||Лицензия сильнее исполнения: бестиарий и алхимия проработаны, но движок Interlock сеттингу велик и мешковат. Приём вялый, поддержка редкая; фанатам вселенной — со скидкой на систему.",["Cyberpunk RED","Warhammer Fantasy RP 4e","Symbaroum"],["монстры","приключение","выживание"]),
+R("Dračí doupě","авторская (D&D-клон)","Фэнтези",1990,"—",0,"Средне","В",[5,5,6,7,3,4,4,5,6,5],"«Драконье логово» — чешский взгляд на D&D девяностых: пещеры, драконы и профессии, через которые в хобби вошла целая страна.||Культурный феномен: для Чехии это то же, что D&D для Америки. Механика — честный привет из 1990-го; современные альтернативы и переводы давно есть. Интересна как история сцены.",["The Dark Eye (DSA)","D&D 5e / 5.5e","Old-School Essentials"],["приключение","героика"]),
+R("Příběhy Impéria","Fate-родня","Историч./др.",2012,"—",0,"Средне","Н",[6,5,6,6,6,5,4,4,6,3],"Стимпанк-нуар Австро-Венгрии, которая не распалась: тайные общества, дирижабли, пражские кафе — чешская игра о своей альтернативной империи.||Дома любима и отмечена премиями; за пределами Чехии почти неизвестна, перевода нет. По устройству — родня Fate. Оценка-эскиз по описаниям — уверенность низкая.",["FATE Core","Красная Земля (Fate)","City of Mist"],["интриги","расследование"]),
+R("Fallout 2d20","2d20","Sci-fi",2021,"—",0,"Средне","В",[5,4,6,5,5,4,4,5,6,6],"Пустошь по мотивам видеоигр: убежища, крышки, силовая броня — знакомый мир со счётчиком радиации.||Лицензия отработана добросовестно: бестиарий и снаряжение узнаваемы. Мета-валюты 2d20 сидят на S.P.E.C.I.A.L. неловко — система и сеттинг тянут в разные стороны; фанатам мира хватит, остальным пустошь дешевле обходится в соседних играх.",["Mutant: Year Zero","Dune 2d20","Twilight 2000 4e"],["выживание","приключение","песочница"]),
+R("Old Gods of Appalachia","Cypher","Хоррор",2023,"—",0,"Средне","В",[6,5,7,6,6,7,4,5,6,4],"Аппалачи начала XX века по одноимённому подкасту: шахтёрские городки, семейные предания и то, что спит под горами и старше их.||Тон перенесён из подкаста бережно — главы о крае и его людях сильнее любой механики. Движок Cypher здесь нейтрален: не мешает и не помогает. Брать за сеттинг; слушателям подкаста — в первую очередь.",["Numenera / Cypher","Vaesen","Delta Green"],["хоррор","расследование"]),
+R("Nimble 2","5e-спидхак","Фэнтези",2024,"—",0,"Легко","С",[7,7,7,7,7,4,6,7,6,4],"Те же герои и подземелья, но бой без ожидания: инициатива упрощена, промахи переработаны, ход занимает секунды.||Честно решает главную жалобу на D&D — хронометраж боя: столкновения ужимаются в три-четыре раза без потери тактики. Совместим с материалами 5e после лёгкой конверсии; это надстройка-ускоритель, а не новый мир.",["D&D 5e / 5.5e","Shadowdark","Index Card RPG"],["тактика","героика","приключение"]),
+R("DC20","d20-гибрид","Фэнтези",2025,"—",0,"Сложно","Н",[6,4,7,6,7,4,3,4,7,4],"Гибрид, обещающий лучшее из двух миров: глубину Pathfinder при темпе 5e, с переработанной экономикой действий.||Один из крупнейших краудфандингов жанра; релиз свежий, обкатка сообществом только началась, и обещания дистанцией не проверены. Оценка-эскиз — уверенность низкая, пересмотрим по факту.",["D&D 5e / 5.5e","Pathfinder 2e","Nimble 2"],["тактика","героика","приключение"]),
+R("Cosmere RPG","Plot Die d20","Фэнтези",2025,"—",0,"Средне","В",[5,4,6,4,6,5,3,4,7,6],"Миры Брендона Сандерсона за столом: буресвет, металлы алломантии и строгие законы магии, перенесённые в правила.||Рекордные продажи лицензии при тишине за столами: сообщество фиксирует разрыв «куплена фанатами, не играется». Кубик сюжета — рабочая находка, по механике добротно; вопрос второй жизни решат дополнения и время.",["Daggerheart","Fabula Ultima","Genesys"],["героика","магия","приключение"]),
+R("Tales of the Valiant","5e-клон","Фэнтези",2024,"—",0,"Средне","В",[6,5,6,5,6,4,5,6,7,6],"Знакомая 5e, пересобранная без Wizards of the Coast: те же кости, классы и монстры, слегка перебалансированные.||Сделано аккуратно, монстрятник Kobold Press традиционно хорош. Причин переходить с оригинала мало: это страховка эпохи лицензионного кризиса, а не новая игра.",["D&D 5e / 5.5e","Level Up: Advanced 5e","Nimble 2"],["героика","приключение","тактика"]),
+R("Level Up: Advanced 5e","5e-надстройка","Фэнтези",2021,"—",0,"Сложно","В",[6,3,6,6,7,4,3,3,7,6],"5e для тех, кому мало: полноценные правила путешествий, осмысленное снаряжение, боевые манёвры у всех классов — глубина без смены системы.||Задачу выполняет: это честно «продвинутая 5e», совместимая с обычной. Аудитория оказалась уже ожиданий — те, кому мало 5e, чаще уходят в Pathfinder целиком. Материалы EN Publishing выходят стабильно.",["D&D 5e / 5.5e","Pathfinder 2e","Tales of the Valiant"],["приключение","тактика","путешествие"]),
+R("Pirate Borg","MB d20","Хоррор",2022,"—",0,"Легко","В",[7,7,7,8,6,4,8,6,5,6],"Проклятый Карибский бассейн: команда висельников, корабль, кракен и ром — быстро, зло и со скелетами.||Лучший из наследников Mörk Borg по приёму сообщества: правила кораблей и абордажа дописаны по делу, а не для галочки. Формат тот же — ваншоты и короткие кампании; вёрстка читаемее прародителя.",["Mörk Borg","CY_BORG","Shadowdark"],["приключение","хоррор","юмор"]),
+R("Kids on Bikes","Kids on Bikes","Современность",2018,"—",0,"Легко","В",[6,7,7,6,5,4,6,7,5,4],"Маленький городок, велосипеды, странность на окраине: подростки расследуют то, во что взрослые не верят, а сверхсильного персонажа стол ведёт сообща.||Лёгкий вход в жанр «Очень странных дел»: генерация за десять минут, механика не мешает. Глубина небольшая по замыслу; совместное управление сверхсуществом — находка, ради которой игру и берут.",["Tales from the Loop","Monster of the Week","Dread"],["подростки","расследование","отношения"]),
+R("Break!!","Break!!","Фэнтези",2023,"—",0,"Средне","С",[7,6,7,7,7,4,5,6,6,4],"Аниме-фэнтези о странствиях по осколкам погибшего мира: яркие классы, находки в руинах, приёмы в бою как в консольных играх.||Десять лет разработки видны в вёрстке и иллюстрациях — книга сделана с редкой заботой. Пресса хвалит громче, чем играют столы: релиз недавний, обкатка идёт. Оценка частично по обзорам.",["Fabula Ultima","Ryuutama","Dungeon World"],["приключение","героика","путешествие"]),
+R("Blades in the Dark","FitD","Фэнтези",2017,"Да",0,"Средне","В",[9,6,8,9,9,7,4,4,9,7],"Вы — банда в городе вечной ночи: планируете дерзкое дело, а когда всё идёт наперекосяк, объявляете «я это предусмотрел» и вытаскиваете козырь задним числом.||Современная классика №1: механика флешбэков убила скучное планирование, часы угроз держат темп, а город Дускволл — половина обаяния игры. Вершина рейтинга — не случайность.",["Scum & Villainy","Band of Blades","Grimwild"],["ограбление","интриги","песочница"]),
+R("Band of Blades","FitD","Фэнтези",2018,"—",0,"Сложно","В",[8,4,7,8,8,9,2,3,8,3],"Разбитый легион отступает от армии нежити: вы — и бойцы в грязи, и штаб, решающий, кем пожертвовать, чтобы дойти до последней крепости.||Военная кампания, где отряд важнее одиночки: роли ротируются, потери записываются по именам, лёгких решений нет. Тяжело, мрачно, великолепно — и требует стола, готового к дисциплине.",["Blades in the Dark","Twilight 2000 4e","Trophy Dark"],["война","трагедия","тактика"]),
+R("The Wildsea","Wild Words","Фэнтези",2022,"—",0,"Средне","В",[8,6,8,8,8,6,4,4,7,5],"Корабли на цепных пилах идут по морю из древесных крон: под ветвями — затонувший мир, за бортом — не вода, а голодная зелень.||Лучший арт-проект пост-Blades волны: сеттинг без аналогов, а кубы добавляются за удачные описания — рассказывать выгоднее, чем считать. Механика мягче картинки: держится всё на тоне и фантазии стола.",["Heart: The City Beneath","Forbidden Lands","Scum & Villainy"],["путешествие","песочница","выживание"]),
+R("Legend in the Mist","Mist Engine","Фэнтези",2025,"—",0,"Средне","С",[7,6,8,7,7,6,4,5,7,4],"Фэнтези малых дорог от авторов City of Mist: деревня, туман, дальний путь — персонажи описаны не цифрами, а короткими фразами, которые растут вместе с ними.||Система тэгов доведена до зрелости: свободная форма персонажа работает надёжнее, чем в City of Mist. Релиз свежий, приём тёплый, но обкатка сообществом только идёт — библиотека приключений пока тонкая.",["City of Mist","Ryuutama","The One Ring 2e"],["путешествие","отношения","приключение"]),
+R("Shadow of the Demon Lord","SotDL d20","Фэнтези",2015,"—",0,"Средне","В",[8,7,7,8,8,7,7,6,8,9],"Фэнтези умирающего мира на пороге демонического конца света: путь героя от нулевого уровня до финала расписан на одиннадцать сессий, а мрак идёт пополам с грубым юмором.||Математика удач и помех — из самых чистых решений d20-семьи, а кампания со встроенным финалом лечит болезнь брошенных игр. Дополнений сотни, и они дёшевы; тон ниже пояса — сознательный выбор автора, проверь совместимость со столом. Наследник Weird Wizard (2024) — тот же скелет без похабщины.",["D&D 5e / 5.5e","Symbaroum","Mörk Borg"],["приключение","хоррор","героика"]),
+R("The Dark Eye (DSA)","3d20 (DSA)","Фэнтези",2015,"—",0,"Сложно","С",[6,4,6,6,5,5,3,4,8,7],"Авентурия — континент, на котором выросла вся немецкая ролевая сцена: проработка мира глубиной в сорок лет и проверка навыка сразу тремя двадцатигранниками.||Национальный феномен Германии масштаба D&D в Америке; по глубине сеттинга соперников мало. Бросок трёх кубов своеобразен и делит игроков на влюблённых и раздражённых; английская линейка Ulisses отстаёт от немецкой. Оценка частично по обзорам.",["D&D 5e / 5.5e","Warhammer Fantasy RP 4e","Dračí doupě"],["приключение","героика","путешествие"]),
+R("Dolmenwood","B/X D&D","Фэнтези",2024,"—",0,"Легко","В",[9,7,7,8,6,5,5,6,8,7],"Волшебный лес на границе смертных земель и страны фей: господа-фэйри, грибной народец, охота на единорога — сказка братьев Гримм с зубами на правилах старой школы.||Флагман Necrotic Gnome после OSE: три книги — правила, кампания, бестиарий — с той же эталонной вёрсткой, гекс-кампания готова целиком. Тон британского фольклора выдержан на редкость последовательно; один из главных релизов старой школы 2024 года.",["Old-School Essentials","Mausritter","Vaesen"],["приключение","песочница","монстры"]),
+R("Stonetop","PbtA","Фэнтези",2024,"—",0,"Средне","В",[8,6,8,8,8,6,3,5,9,6],"Ваша деревня на краю карты — и вы её защитники: между походами вы возвращаетесь домой, где урожай, соседи и зима значат не меньше, чем чудовища за частоколом.||Вершина эволюции Dungeon World: пятнадцать лет уроков жанра собраны в игру про дом, который стоит защищать. Деревня как общий персонаж — главная находка; слоту не поддаётся, это кампания по устройству. Долгострой вышел целиком в 2024-м и собрал редкий консенсус похвалы.",["Dungeon World","Mouse Guard","The One Ring 2e"],["отношения","приключение","выживание"]),
+R("Trophy Gold","Trophy","Фэнтези",2022,"—",0,"Легко","В",[8,8,7,8,7,7,8,6,6,6],"Охотники за сокровищами идут в руины, потому что долги не оставили выбора: золото здесь считается, а лес и подземелья всё так же не хотят никого отпускать.||Сестра Trophy Dark, в которой выжить всё-таки можно: механика охоты за золотом даёт кампании костяк, а готовые вылазки пишет полсообщества. Для стола, которому нравится тьма Dark, но хочется и завтрашнего дня.",["Trophy Dark","Heart: The City Beneath","Old-School Essentials"],["приключение","выживание","трагедия"]),
+R("Cities Without Number","OSR+генераторы","Sci-fi",2023,"—",0,"Средне","В",[9,7,6,7,7,4,4,5,8,7],"Киберпанк-песочница на генераторах Кроуфорда: город, корпорации, миссии и вся изнанка мегаполиса собираются бросками по таблицам.||Замыкает трилогию Without Number: те же таблицы-генераторы ведущего, теперь для неона и имплантов. Правила совместимы с собратьями — фэнтези, космос и киберпанк стыкуются в одну кампанию; щедрая бесплатная версия по традиции.",["Worlds Without Number","Stars Without Number","Cyberpunk RED"],["песочница","ограбление","интриги"]),
+R("Death in Space","OSR-минимализм","Sci-fi",2022,"—",0,"Легко","С",[7,8,6,7,6,6,7,7,5,5],"Космос после угасшей войны: экипаж чинит корабль-развалюху, берёт грязные подряды и смотрит, как пустота понемногу меняет людей.||Эстетика мёртвого фронтира от круга Mörk Borg, но с собственной сдержанной системой: корабль как общий дом, космические мутации вместо проклятий. Тише и медленнее собрата; берут за тон и вёрстку. Оценка частично по обзорам.",["Mörk Borg","Mothership 1e","Coriolis"],["космос","выживание","трагедия"]),
+R("Golden Sky Stories","GSS","Современность",2013,"—",0,"Легко","С",[6,9,7,6,5,2,8,9,3,3],"Японская деревенька, где зверята-оборотни тайком помогают людям: никакого боя — только доброта, дружба и чуть-чуть волшебства до заката.||Игра, в которой нельзя навредить, — и это правило, а не пожелание: конфликты решаются заботой и связями. Идеальна для детей и уставших взрослых; пара к Ryuutama по духу, ещё мягче по устройству. Оценка частично по обзорам.",["Ryuutama","Kids on Bikes","Household"],["отношения","юмор"]),
+R("His Majesty the Worm","Таро-OSR","Фэнтези",2024,"—",0,"Средне","С",[8,5,7,7,7,6,3,4,8,4],"Мегаподземелье под городом и гильдия авантюристов, связанных узами: вместо кубов — колода таро, а между вылазками — быт, готовка и ссоры.||Свежий взгляд на старейший жанр: таро в руках даёт бою осязаемость, а узы между персонажами — двигатель драмы, редкий для подземелий. Требует вложиться: правила плотные, нужна колода. Приём тёплый, дистанция покажет. Оценка частично по обзорам.",["Heart: The City Beneath","Old-School Essentials","Burning Wheel"],["приключение","отношения"]),
+R("Starfinder","d20 (Paizo)","Sci-fi",2017,"Да",0,"Сложно","В",[6,4,7,7,6,4,4,4,8,8],"Фэнтези улетело в космос: эльф-техномант и гоблин-пилот на одном корабле, лазеры рядом с заклинаниями — научная фантастика с душой Pathfinder.||Крепкая линейка Paizo с многотомными сериями приключений; вторая редакция (2025) переведена на рельсы Pathfinder 2e и совместима с ним. Русское издание первой редакции выпускала Hobby World. Тяжеловесна, как всё семейство, — берут ради структуры кампаний.",["Pathfinder 2e","Traveller (Mongoose 2e)","Star Wars (FFG/Edge)"],["космос","героика","тактика"]),
+];
+/* state */
+let W={...PRESETS["Игра как игра"]};
+const presetsEl=document.getElementById("presets");
+Object.keys(PRESETS).forEach(name=>{const b=document.createElement("button");b.className="chip";b.textContent=name;
+ b.onclick=()=>{W={...PRESETS[name]};sync();mark();render();};presetsEl.appendChild(b);});
+const customChip=document.createElement("button");customChip.className="chip";customChip.textContent="Свои веса";
+customChip.style.borderStyle="dashed";customChip.onclick=()=>{};presetsEl.appendChild(customChip);
+function mark(){let any=false;[...presetsEl.children].forEach(b=>{if(b===customChip)return;
+ const p=PRESETS[b.textContent];const on=AX.every(a=>p[a.k]===W[a.k]);b.classList.toggle("on",on);if(on)any=true;});
+ customChip.classList.toggle("on",!any);}
+const fadersEl=document.getElementById("faders");
+AX.forEach(a=>{const w=document.createElement("div");w.className="fader";
+ w.innerHTML=`<div class="top"><span class="nm">${a.n}<small>${a.s}</small></span><span class="v" id="v-${a.k}"></span></div><input type="range" min="0" max="5" step="1" id="r-${a.k}">`;
+ fadersEl.appendChild(w);
+ w.querySelector("input").addEventListener("input",e=>{W[a.k]=+e.target.value;
+  document.getElementById("v-"+a.k).textContent=e.target.value;
+  e.target.classList.toggle("zero",+e.target.value===0);mark();render();});});
+function sync(){AX.forEach(a=>{const r=document.getElementById("r-"+a.k);r.value=W[a.k];
+ document.getElementById("v-"+a.k).textContent=W[a.k];r.classList.toggle("zero",W[a.k]===0);});}
+/* filters */
+function fam(e){e=e.toLowerCase();
+ if(e.includes("pbta")||e.includes("carved"))return "PbtA-семья";
+ if(e.includes("fitd")||e.includes("forged")||e.includes("moxie"))return "FitD-семья";
+ if(e.includes("yze"))return "Year Zero";
+ if(e.includes("d100")||e.includes("brp")||e.includes("wfrp"))return "d100 / BRP";
+ if(e.includes("2d20"))return "2d20";
+ if(e.includes("fate"))return "Fate";
+ if(e.includes("fortune"))return "Fortune";
+ if(e.includes("ito")||e.includes("knave")||e.includes("mb d20")||e.includes("osr"))return "OSR / минимализм";
+ if(e.includes("d20")||e.includes("5e")||e.includes("pf2")||e.includes("d&d"))return "d20-семья";
+ return "Другое";}
+const genSel=document.getElementById("fGen");
+[...new Set(DATA.map(d=>d.g))].sort().forEach(g=>{const o=document.createElement("option");o.value=g;o.textContent=g;genSel.appendChild(o);});
+const famSel=document.getElementById("fFam");
+[...new Set(DATA.map(d=>fam(d.e)))].sort().forEach(f=>{const o=document.createElement("option");o.value=f;o.textContent=f;famSel.appendChild(o);});
+let q="",fGen="",fDiff=3,fRu=false,fRuO=false,fConf=false,fFam="",fYear=0,fFree=false;
+document.getElementById("fFree").addEventListener("change",e=>{fFree=e.target.checked;render();});
+famSel.addEventListener("change",e=>{fFam=e.target.value;render();});
+document.getElementById("fYear").addEventListener("change",e=>{fYear=+e.target.value;render();});
+document.getElementById("q").addEventListener("input",e=>{q=e.target.value.toLowerCase().trim();render();});
+genSel.addEventListener("change",e=>{fGen=e.target.value;render();});
+document.getElementById("fDiff").addEventListener("change",e=>{fDiff=+e.target.value;render();});
+document.getElementById("fRu").addEventListener("change",e=>{fRu=e.target.checked;render();});
+document.getElementById("fRuO").addEventListener("change",e=>{fRuO=e.target.checked;render();});
+document.getElementById("fConf").addEventListener("change",e=>{fConf=e.target.checked;render();});
+document.getElementById("reset").onclick=()=>{W={...PRESETS["Игра как игра"]};q="";fGen="";fDiff=3;fRu=false;fRuO=false;fConf=false;fFam="";fYear=0;fFree=false;
+ document.getElementById("q").value="";genSel.value="";famSel.value="";document.getElementById("fDiff").value="3";document.getElementById("fYear").value="0";
+ ["fRu","fRuO","fConf","fFree"].forEach(id=>document.getElementById(id).checked=false);sync();mark();render();};
+/* scoring */
+function score(d){let t=0,m=0;AX.forEach(a=>{t+=W[a.k]*d.s[a.k];m+=W[a.k]*10;});return m>0?t/m*100:0;}
+const listEl=document.getElementById("list"),cntEl=document.getElementById("cnt");
+let openSet=new Set();
+function render(){
+ let rows=DATA.filter(d=>{
+  if(fRu&&d.ru==="—")return false;
+  if(fRuO&&!d.ro)return false;
+  if(DIFFN[d.d]>fDiff)return false;
+  if(fConf&&d.cf==="Н")return false;
+  if(fFree&&!FREE.has(d.n))return false;
+  if(fFam&&fam(d.e)!==fFam)return false;
+  if(fYear&&d.y<fYear)return false;
+  if(q&&!(d.n.toLowerCase().includes(q)||d.e.toLowerCase().includes(q)||d.tags.some(t=>t.includes(q))))return false;
+  return true;}).map(d=>({d,p:score(d)})).sort((a,b)=>b.p-a.p||a.d.n.localeCompare(b.d.n));
+ cntEl.textContent=`${rows.length} систем · по убыванию совпадения с весами`;
+ const old=new Map();[...listEl.children].forEach(el=>old.set(el.dataset.k,el.getBoundingClientRect()));
+ listEl.innerHTML="";
+ rows.forEach((r,i)=>listEl.appendChild(card(r.d,r.p,i+1)));
+ [...listEl.children].forEach(el=>{const o=old.get(el.dataset.k);if(!o)return;
+  const n=el.getBoundingClientRect(),dy=o.top-n.top;
+  if(Math.abs(dy)>1){el.style.transform=`translateY(${dy}px)`;el.style.transition="none";
+   requestAnimationFrame(()=>{el.style.transition="transform .4s cubic-bezier(.2,.7,.2,1)";el.style.transform="";});}});
+}
+function card(d,p,rank){
+ const el=document.createElement("div");
+ el.className="sys"+(rank===1?" top1":"")+(openSet.has(d.n)?" open":"");
+ el.dataset.k=d.n;
+ const ruTip=d.ru==="Да"?"Есть официальная русская локализация":"Локализована частично: фанатские или неполные переводы";
+ const ruL=d.ru!=="—"?`<span class="bdg ruL" data-tip="${ruTip}">RU: ${d.ru}</span>`:"";
+ const ruO=d.ro?`<span class="bdg ruO" data-tip="Российская разработка">РФ</span>`:"";
+ const cfTip=d.cf==="Н"?"Уверенность оценки низкая: по репутации и откликам, книгу не разбирали":"Уверенность оценки средняя: частичное чтение и обзоры";
+ const cfB=d.cf!=="В"?`<span class="bdg ${d.cf==="Н"?"cN":"cS"}" data-tip="${cfTip}">уверенность: ${d.cf}</span>`:"";
+ const L=linkFor(d);
+ const noteHtml=d.note.includes("||")
+  ?(()=>{const nn=d.note.split("||");return `<div class="note"><span class="wt">Что это</span>${nn[0].trim()}<div class="vd"><span class="wt">Вердикт</span>${nn[1].trim()}</div></div>`;})()
+  :`<div class="note">${d.note}</div>`;
+ const tagsHtml=d.tags.length?`<div class="trow">${d.tags.map(t=>`<span class="tagc">${t}</span>`).join("")}</div>`:"";
+ const simHtml=d.sim.length?`<div class="trow"><span class="simlab">похоже на:</span>${d.sim.map(s2=>`<span class="simc" data-sim="${s2}">${s2}</span>`).join("")}</div>`:"";
+ el.innerHTML=`<div class="sys-main">
+  <div class="rank">${rank}</div>
+  <div class="nm2"><div class="n">${d.n}</div>
+   <div class="meta"><span class="bdg eng" data-tip="${GLOSS[fam(d.e)]||""}">${d.e}</span><span class="bdg">${d.g}</span><span class="bdg">${d.y}</span><span class="bdg">${d.d}</span>${ruO}${ruL}${cfB}${FREE.has(d.n)?`<span class="bdg fr" data-tip="Официальная бесплатная версия: полные правила или играбельная база">бесплатно</span>`:""}</div></div>
+  <div class="score"><span class="pct" style="color:${p>=70?"var(--ember)":p>=55?"#d9b96a":"var(--paper)"}">${Math.round(p)}<small style="font-size:10px;color:var(--muted2)">%</small></span>
+   <div class="bar"><i style="width:${p}%"></i></div></div></div>
+  <div class="sys-body">${noteHtml}${tagsHtml}${simHtml}
+   <div class="axes">${AX.map(a=>`<div class="ax"><span class="lab ${W[a.k]===0?"dim":""}"><span>${a.n}</span><span>${d.s[a.k]}/10${W[a.k]>0?" ×"+W[a.k]:""}</span></span><div class="mb"><i class="${W[a.k]>=4?"hot":""}" style="width:${d.s[a.k]*10}%"></i></div></div>`).join("")}</div>
+   <a class="lnk" href="${L.u}" target="_blank" rel="noopener">${L.t}</a><span class="cmpc${compareSet.has(d.n)?" on":""}" data-cmp="${d.n}">${compareSet.has(d.n)?"✓ в сравнении":"сравнить"}</span><a class="dis" href="https://t.me/vasaris" target="_blank" rel="noopener">не согласен с оценкой?</a></div>`;
+ el.querySelector(".sys-main").onclick=(e)=>{
+  const b=e.target.closest("[data-tip]");
+  if(b){showTip(b);e.stopPropagation();return;}
+  el.classList.toggle("open");
+  if(el.classList.contains("open"))openSet.add(d.n);else openSet.delete(d.n);};
+ el.querySelectorAll(".simc").forEach(c=>{c.onclick=()=>jumpTo(c.dataset.sim);});
+ el.querySelector(".cmpc").onclick=(e)=>toggleCmp(e.target);
+ return el;
+}
+let spinning=false;
+document.getElementById("lucky").onclick=()=>{
+ if(spinning)return;
+ const rows=[...listEl.children]; if(!rows.length)return;
+ spinning=true;
+ rows.forEach(r=>r.classList.remove("lucky","spin","open"));openSet.clear();
+ let t=0,d=45,seq=[];
+ for(let i=0;i<20;i++){seq.push(d);d=Math.round(d*1.16);}
+ seq.forEach((delay,i)=>{t+=delay;
+  setTimeout(()=>{
+   rows.forEach(r=>r.classList.remove("spin"));
+   const pick=rows[Math.floor(Math.random()*rows.length)];
+   pick.classList.add("spin");
+   pick.scrollIntoView({block:"center",behavior:"auto"});
+   if(i===seq.length-1){
+    pick.classList.remove("spin");pick.classList.add("lucky","open");
+    openSet.add(pick.dataset.k);spinning=false;
+    pick.scrollIntoView({block:"center",behavior:"smooth"});}
+  },t);});
+};
+/* переход к похожей системе */
+function jumpTo(name){
+ q=name.toLowerCase();document.getElementById("q").value=name;
+ openSet.clear();openSet.add(name);render();
+ let t=[...listEl.children].find(x=>x.dataset.k===name);
+ if(!t){fGen="";fDiff=3;fFam="";fYear=0;fRu=false;fRuO=false;fConf=false;fFree=false;document.getElementById("fFree").checked=false;
+  genSel.value="";famSel.value="";document.getElementById("fDiff").value="3";document.getElementById("fYear").value="0";
+  ["fRu","fRuO","fConf"].forEach(id=>document.getElementById(id).checked=false);render();
+  t=[...listEl.children].find(x=>x.dataset.k===name);}
+ if(t)t.scrollIntoView({block:"center",behavior:"smooth"});}
+/* тултип-глоссарий: тап по пунктирному бейджу */
+const tipEl=document.getElementById("tip");
+function showTip(b){
+ const t=b.dataset.tip||"";
+ if(!t){tipEl.style.display="none";return;}
+ tipEl.textContent=t;tipEl.style.display="block";
+ const r=b.getBoundingClientRect();
+ tipEl.style.left=Math.max(8,Math.min(r.left,innerWidth-tipEl.offsetWidth-12))+"px";
+ tipEl.style.top=(r.bottom+7)+"px";}
+document.addEventListener("click",e=>{if(!e.target.closest("[data-tip]"))tipEl.style.display="none";});
+addEventListener("scroll",()=>{tipEl.style.display="none";},{passive:true});
+/* сравнение: до трёх систем бок о бок */
+const NAME_IX=new Map(DATA.map(d=>[d.n,d]));
+const compareSet=new Set();
+const cmpbar=document.getElementById("cmpbar");
+const ovl=document.getElementById("ovl"),ovlPanel=document.getElementById("ovlPanel");
+function toggleCmp(btn){
+ const n=btn.dataset.cmp;
+ if(compareSet.has(n)){compareSet.delete(n);btn.classList.remove("on");btn.textContent="сравнить";}
+ else if(compareSet.size>=3){const t=btn.textContent;btn.textContent="максимум 3";setTimeout(()=>{btn.textContent=t;},1200);}
+ else{compareSet.add(n);btn.classList.add("on");btn.textContent="✓ в сравнении";}
+ renderCmpBar();}
+function renderCmpBar(){
+ if(compareSet.size<1){cmpbar.classList.remove("show");return;}
+ cmpbar.classList.add("show");
+ cmpbar.innerHTML=`<svg class="bico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 4v15M7 19h10M5 7h14M5 7l-2.4 5a2.9 2.9 0 0 0 4.8 0L5 7zM19 7l-2.4 5a2.9 2.9 0 0 0 4.8 0L19 7z"/></svg><span>${[...compareSet].map(n=>n.split(":")[0]).join(" × ")}</span>`+
+  (compareSet.size>=2?`<button class="go" id="cmpGo">Сравнить</button>`:`<span style="color:var(--muted2)">выбери ещё</span>`)+
+  `<button class="clr" id="cmpClr">✕</button>`;
+ const g=document.getElementById("cmpGo");if(g)g.onclick=openCompare;
+ document.getElementById("cmpClr").onclick=()=>{compareSet.clear();renderCmpBar();render();};}
+function openOvl(html){ovlPanel.innerHTML=html;ovl.classList.add("show");document.body.style.overflow="hidden";}
+function closeOvl(){ovl.classList.remove("show");document.body.style.overflow="";}
+ovl.addEventListener("click",e=>{if(e.target===ovl)closeOvl();});
+function openCompare(){
+ const items=[...compareSet].map(n=>NAME_IX.get(n)).filter(Boolean);
+ if(items.length<2)return;
+ const th=items.map(d=>`<th>${d.n}<div class="mini">${d.e} · ${d.y} · ${d.d}</div></th>`).join("");
+ const what=`<tr><td class="axn">Что это</td>${items.map(d=>`<td style="font-size:11.5px;color:#cdc6b6">${d.note.split("||")[0]}</td>`).join("")}</tr>`;
+ const axRows=AX.map(a=>{
+  const vals=items.map(d=>d.s[a.k]);
+  const best=a.k==="drama"?null:Math.max(...vals);
+  const tds=items.map(d=>`<td class="${best!==null&&d.s[a.k]===best?"best":""}">${d.s[a.k]}/10</td>`).join("");
+  return `<tr><td class="axn">${a.n}</td>${tds}</tr>`;}).join("");
+ const links=`<tr><td class="axn"></td>${items.map(d=>{const L=linkFor(d);
+  return `<td><a class="lnk" style="margin:0" href="${L.u}" target="_blank" rel="noopener">Узнать больше →</a></td>`;}).join("")}</tr>`;
+ openOvl(`<button class="pnl-x" onclick="closeOvl()">✕</button><h2>Сравнение</h2>
+  <div style="font-size:11px;color:var(--muted)">Лучшее значение по оси подсвечено. По оси «Тон» подсветки нет: это шкала от комедии к драме, а не оценка качества.</div>
+  <div class="cmp-wrap"><table class="cmp-t"><tr><td></td>${th}</tr>${what}${axRows}${links}</table></div>`);}
+/* визард «Подбор»: пять вопросов — топ-3 с объяснением */
+const WIZQ=[
+ {q:"Кто за столом?",o:["Все впервые","Уже пробовали","Опытная группа"]},
+ {q:"Сколько времени готовы вложить?",o:["Один вечер","Несколько встреч","Долгая кампания"]},
+ {q:"Какое настроение нужно?",o:["Смех и лёгкость","Приключение","Тайна и жуть","Тяжёлая драма"]},
+ {q:"Что в игре важнее?",o:["Люди и отношения","Тактика и бой","Исследование мира"]},
+ {q:"Язык правил?",o:["Только русский","Английский не пугает"]}];
+let wizA=[null,null,null,null,null];
+function openWiz(){wizA=[null,null,null,null,null];drawWiz();}
+function drawWiz(){
+ const qs=WIZQ.map((w,i)=>`<div class="wq"><b>${i+1}</b>${w.q}</div><div class="wopts">${
+  w.o.map((o,j)=>`<span class="wopt${wizA[i]===j?" on":""}" data-q="${i}" data-o="${j}">${o}</span>`).join("")}</div>`).join("");
+ const ready=wizA.every(a=>a!==null);
+ openOvl(`<button class="pnl-x" onclick="closeOvl()">✕</button><h2>Подбор системы</h2>
+  <div style="font-size:12px;color:var(--muted)">Пять ответов — три кандидата. Это стартовая тройка, а не приговор.</div>
+  ${qs}<div id="wizOut">${ready?wizResults():""}</div>`);
+ ovlPanel.querySelectorAll(".wopt").forEach(c=>{c.onclick=()=>{wizA[+c.dataset.q]=+c.dataset.o;const sc=ovl.scrollTop;drawWiz();ovl.scrollTop=sc;};});
+ ovlPanel.querySelectorAll(".wres .act[data-open]").forEach(c=>{c.onclick=()=>{closeOvl();jumpTo(c.dataset.open);};});}
+function wizResults(){
+ const [exp,time,mood,focus,lang]=wizA;
+ const W2={gm:0,ease:0,pl:3,rec:2,mech:0,drama:0,shot:0,camp:0,onb:0,sup:0};
+ if(exp===0){W2.onb=5;W2.ease=4;}else if(exp===1){W2.onb=2;W2.ease=2;}else{W2.mech=2;W2.gm=2;}
+ if(time===0){W2.shot=5;}else if(time===1){W2.shot=2;W2.camp=2;}else{W2.camp=5;W2.sup=3;}
+ let tagBoost=[],band=null;
+ if(mood===0){band=[0,3];tagBoost=["юмор"];}
+ else if(mood===1){band=[3,7];tagBoost=["приключение"];}
+ else if(mood===2){tagBoost=["расследование","хоррор"];W2.drama=1;}
+ else{W2.drama=5;tagBoost=["трагедия"];}
+ if(focus===0){tagBoost.push("отношения");W2.pl+=1;}
+ else if(focus===1){tagBoost.push("тактика");W2.mech+=3;}
+ else{tagBoost.push("песочница","путешествие");W2.gm+=2;}
+ let pool=DATA;
+ if(lang===0)pool=pool.filter(d=>d.ru!=="—");
+ const KS=AX.map(a=>a.k);
+ const picks=pool.map(d=>{
+  let t=0,m=0;KS.forEach(k=>{t+=W2[k]*d.s[k];m+=W2[k]*10;});
+  let p=m?t/m*100:0;
+  const hits=d.tags.filter(x=>tagBoost.includes(x));
+  p+=hits.length*7;
+  if(band&&d.s.drama>=band[0]&&d.s.drama<=band[1])p+=6;
+  if(mood===3&&d.s.drama>=8)p+=4;
+  return{d,p,hits};}).sort((a,b)=>b.p-a.p).slice(0,3);
+ return picks.map((x,i)=>{
+  const r=[];
+  if(exp===0&&x.d.s.onb>=7)r.push("дружелюбна к новичкам");
+  if(time===0&&x.d.s.shot>=7)r.push("играется за один вечер");
+  if(time===2&&x.d.s.camp>=7)r.push("раскрывается в кампании");
+  if(x.hits.length)r.push("темы: "+x.hits.join(", "));
+  if(lang===0)r.push(x.d.ru==="Да"?"есть официальный русский":"есть частичный русский перевод");
+  const L=linkFor(x.d);
+  return `<div class="wres"><div class="nm3">${i+1}. ${x.d.n}</div>
+   <div class="what">${x.d.note.split("||")[0]}</div>
+   ${r.length?`<div class="why">Почему: ${r.join(" · ")}</div>`:""}
+   <span class="act" data-open="${x.d.n}">Открыть в атласе</span><a class="lnk" style="margin:0" href="${L.u}" target="_blank" rel="noopener">Узнать больше →</a></div>`;}).join("");}
+document.getElementById("wiz").onclick=openWiz;
+/* локализации: официальные русские издания */
+const LOC_OFF=[
+ {n:"Blades in the Dark",t:"«Клинки во тьме»",p:"Студия 101",u:"https://studio101.ru"},
+ {n:"Call of Cthulhu 7e",t:"«Зов Ктулху»",p:"Студия 101 (ранее Hobby World)",u:"https://studio101.ru"},
+ {n:"Vampire: The Masquerade V5",t:"«Вампиры: Маскарад. Пятая редакция»",p:"Студия 101",u:"https://studio101.ru"},
+ {n:"Forbidden Lands",t:"«Запретные земли»",p:"Студия 101",u:"https://studio101.ru"},
+ {n:"Coriolis",t:"«Кориолис»",p:"Студия 101",u:"https://studio101.ru"},
+ {n:"Symbaroum",t:"«Симбарум»",p:"Студия 101",u:"https://studio101.ru"},
+ {n:"Warhammer Fantasy RP 4e",t:"",p:"Студия 101",u:"https://studio101.ru"},
+ {n:"Alien RPG",t:"«Чужой»",p:"Студия 101",u:"https://studio101.ru"},
+ {n:"Mutant: Year Zero",t:"«Мутанты»",p:"Студия 101",u:"https://studio101.ru"},
+ {n:"Tales from the Loop",t:"«Байки из Петли»",p:"Студия 101",u:"https://studio101.ru"},
+ {n:"Apocalypse World",t:"",p:"Студия 101",u:"https://studio101.ru"},
+ {n:"Dungeon World",t:"",p:"Студия 101",u:"https://studio101.ru"},
+ {n:"Savage Worlds SWADE",t:"«Дневник авантюриста» / SWADE",p:"Студия 101",u:"https://studio101.ru"},
+ {n:"D&D 5e / 5.5e",t:"«Подземелья и драконы»",p:"Hobby World",u:"https://hobbyworld.ru"},
+ {n:"Pathfinder 2e",t:"«Pathfinder. Вторая редакция»",p:"Hobby World",u:"https://hobbyworld.ru"},
+ {n:"Pathfinder 1e",t:"",p:"Hobby World",u:"https://hobbyworld.ru"},
+ {n:"Starfinder",t:"«Starfinder»",p:"Hobby World",u:"https://hobbyworld.ru"},
+ {n:"Numenera / Cypher",t:"«Нуменера»",p:"Hobby World",u:"https://hobbyworld.ru"},
+ {n:"Dune 2d20",t:"«Дюна»",p:"Hobby World",u:"https://hobbyworld.ru"},
+ {n:"Paranoia (2023)",t:"«Паранойя» (по редакции 2017)",p:"Hobby World",u:"https://hobbyworld.ru"},
+ {n:"The Witcher (R.Talsorian)",t:"«Ведьмак»",p:"Hobby World",u:"https://hobbyworld.ru"},
+ {n:"Shadowrun 6e",t:"«Shadowrun: Шестой мир»",p:"Hobby World",u:"https://hobbyworld.ru"},
+ {n:"FATE Core",t:"Fate Core (рус.)",p:"Indigo Games",u:""},
+ {n:"Эра Водолея",t:"",p:"авторское издание",u:""},
+ {n:"Красная Земля (Fate)",t:"",p:"издатель уточняется",u:""},
+ {n:"Urban Shadows 2e",t:"«Городские легенды» (1-я редакция)",p:"Студия 101",u:"https://studio101.ru"},
+ {n:"1000 рентген в час",t:"",p:"краудфандинг / авторское издание",u:""},
+ {n:"Новая Эра",t:"",p:"авторское издание",u:""},
+ {n:"Заколдованная Страна",t:"",p:"историческое издание (1990)",u:""}];
+const LOC_PART=[
+ {n:"Cyberpunk RED",note:"официально вышел только стартовый набор (Hobby World); основная книга — на паузе"},
+ {n:"Daggerheart",note:"официального русского издания нет; существуют любительские переводы"},
+ {n:"Delta Green",note:"официального русского издания нет; существуют любительские переводы"},
+ {n:"Vaesen",note:"официального русского издания нет; существуют любительские переводы"},
+ {n:"Monster of the Week",note:"официального русского издания нет; существуют любительские переводы"},
+ {n:"Mörk Borg",note:"официального русского издания нет; существуют любительские переводы"},
+ {n:"Old-School Essentials",note:"официального русского издания нет; существуют любительские переводы"},
+ {n:"Into the Odd / Cairn",note:"официального издания нет; Cairn распространяется под свободной лицензией — переводы легальны"},
+ {n:"Mausritter",note:"официального издания нет; игра под свободной лицензией — переводы легальны"},
+ {n:"GURPS 4e",note:"официального русского издания 4e нет; существуют любительские переводы"},
+ {n:"Index Card RPG",note:"официального русского издания нет"}];
+function openLocs(){
+ const row=l=>`<tr><td><span class="act" data-open="${l.n}" style="border-bottom:1px dashed var(--ember);cursor:pointer;color:var(--ember)">${l.n}</span>${l.t?`<div class="mini" style="color:var(--muted2);font-size:10.5px">${l.t}</div>`:""}</td><td>${l.u?`<a class="lnk" style="margin:0" href="${l.u}" target="_blank" rel="noopener">${l.p}</a>`:l.p}</td></tr>`;
+ openOvl(`<button class="pnl-x" onclick="closeOvl()">✕</button><h2>Русские локализации</h2>
+  <div style="font-size:12px;color:var(--muted);margin-bottom:4px">Официальные издания — проверены по издателям (август 2026). Доступность тиражей меняется — актуальность уточняй в магазине издателя. Заметил ошибку — напиши: <a class="lnk" style="margin:0" href="https://t.me/vasaris" target="_blank" rel="noopener">t.me/vasaris</a>.</div>
+  <div class="cmp-wrap"><table class="cmp-t" style="min-width:0"><tr><th>Система</th><th>Издатель</th></tr>${LOC_OFF.map(row).join("")}</table></div>
+  <h2 style="margin-top:18px;font-size:17px">Частичные и неофициальные</h2>
+  <div style="font-size:11.5px;color:var(--muted);margin-bottom:4px">Ссылок на любительские переводы коммерческих книг здесь нет намеренно.</div>
+  <div class="cmp-wrap"><table class="cmp-t" style="min-width:0">${LOC_PART.map(l=>`<tr><td><span class="act" data-open="${l.n}" style="border-bottom:1px dashed var(--ember);cursor:pointer;color:var(--ember)">${l.n}</span></td><td style="color:var(--muted)">${l.note}</td></tr>`).join("")}</table></div>`);
+ ovlPanel.querySelectorAll("[data-open]").forEach(c=>{c.onclick=()=>{closeOvl();jumpTo(c.dataset.open);};});}
+document.getElementById("locs").onclick=openLocs;
+document.getElementById("heroWiz").onclick=openWiz;
+document.getElementById("heroLucky").onclick=()=>document.getElementById("lucky").click();
+document.getElementById("heroList").onclick=()=>document.querySelector(".results-head").scrollIntoView({behavior:"smooth"});
+/* пермалинки: состояние → ссылка, ссылка → состояние */
+function shareUrl(){
+ const p=new URLSearchParams();
+ const preset=Object.keys(PRESETS).find(n=>AX.every(a=>PRESETS[n][a.k]===W[a.k]));
+ if(preset){if(preset!=="Игра как игра")p.set("p",preset);}
+ else p.set("w",AX.map(a=>W[a.k]).join(""));
+ if(q)p.set("q",q);if(fGen)p.set("g",fGen);if(fDiff!==3)p.set("d",fDiff);
+ if(fFam)p.set("f",fFam);if(fYear)p.set("y",fYear);
+ if(fRu)p.set("ru","1");if(fRuO)p.set("ro","1");if(fConf)p.set("c","1");if(fFree)p.set("fb","1");
+ const o=[...openSet];if(o.length)p.set("s",o[o.length-1]);
+ const h=p.toString();
+ return location.href.split("#")[0]+(h?"#"+h:"");}
+document.getElementById("share").onclick=async()=>{
+ const u=shareUrl(),b=document.getElementById("share");
+ try{await navigator.clipboard.writeText(u);b.textContent="✓ скопировано";}
+ catch(err){
+  try{const t=document.createElement("textarea");t.value=u;t.style.position="fixed";t.style.opacity="0";
+   document.body.appendChild(t);t.select();document.execCommand("copy");t.remove();b.textContent="✓ скопировано";}
+  catch(e2){prompt("Скопируй ссылку:",u);}}
+ setTimeout(()=>{b.textContent="Ссылка";},1400);};
+(function(){try{
+ const h=location.hash.slice(1);if(!h)return;
+ const p=new URLSearchParams(h);
+ const pn=p.get("p");if(pn&&PRESETS[pn])W={...PRESETS[pn]};
+ const w=p.get("w");if(w&&w.length===AX.length)AX.forEach((a,i)=>W[a.k]=Math.min(5,+w[i]||0));
+ if(p.get("q")){q=p.get("q").toLowerCase();document.getElementById("q").value=p.get("q");}
+ if(p.get("g")){fGen=p.get("g");genSel.value=fGen;}
+ if(p.get("d")){fDiff=+p.get("d")||3;document.getElementById("fDiff").value=String(fDiff);}
+ if(p.get("f")){fFam=p.get("f");famSel.value=fFam;}
+ if(p.get("y")){fYear=+p.get("y")||0;document.getElementById("fYear").value=String(fYear);}
+ if(p.get("ru")){fRu=true;document.getElementById("fRu").checked=true;}
+ if(p.get("ro")){fRuO=true;document.getElementById("fRuO").checked=true;}
+ if(p.get("c")){fConf=true;document.getElementById("fConf").checked=true;}
+ if(p.get("fb")){fFree=true;document.getElementById("fFree").checked=true;}
+ if(p.get("s"))openSet.add(p.get("s"));
+}catch(e){}})();
+sync();mark();render();
+</script>
+</body>
+</html>
