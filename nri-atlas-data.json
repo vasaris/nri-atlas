@@ -211,11 +211,14 @@
       "name": "13th Age",
       "engine": "d20+нарратив",
       "genre": "Фэнтези",
-      "year": 2013,
+      "year": 2025,
       "confidence": "В",
-      "russian_edition": "—",
+      "russian_edition": "Ч",
       "russian_origin": false,
-      "localization": null,
+      "localization": {
+        "status": "частичная",
+        "note": "идёт официальный предзаказ 2-й редакции (Студия 101); тираж не вышел"
+      },
       "scores": {
         "gm": 7,
         "ease": 6,
@@ -515,7 +518,7 @@
       "vtt": {
         "foundry": "community",
         "roll20": true,
-        "alchemy": false,
+        "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": true,
         "note": "официальные пакеты Darrington Press заведены в каталоге Foundry со статусом Unreleased — поддержка анонсирована, но не вышла"
@@ -559,7 +562,7 @@
       "free": "quickstart",
       "vtt": {
         "foundry": "official",
-        "roll20": false,
+        "roll20": "official",
         "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
@@ -824,7 +827,7 @@
         "sup": 8
       },
       "what_is_it": "Ковенант магов в мифической Европе XIII века: вы играете не одним героем, а всей общиной — маги, компаньоны, слуги, — и между сессиями проходят десятилетия.",
-      "verdict": "Система магии по глубине не превзойдена с 1987 года: латинские техники и формы собираются в любое мыслимое заклинание. Темп размерен, порог высок: игра про исследование и быт общины, бой вторичен; стол нужен начитанный и терпеливый.",
+      "verdict": "Система магии по глубине не превзойдена с 1987 года: латинские техники и формы собираются в любое мыслимое заклинание. Темп размерен, порог высок: игра про исследование и быт общины, бой вторичен; стол нужен начитанный и терпеливый. Актуальная форма — Definitive Edition: тот же 5e-текст, сведённый воедино и пересмотренный, под открытой лицензией CC BY-SA.",
       "similar": [
         "Burning Wheel",
         "Pendragon 6",
@@ -836,7 +839,7 @@
         "интриги",
         "отношения"
       ],
-      "dice": "разные кубы",
+      "dice": "d10",
       "free": null,
       "vtt": {
         "foundry": "community",
@@ -2314,7 +2317,7 @@
       "free": "quickstart",
       "vtt": {
         "foundry": "official",
-        "roll20": false,
+        "roll20": "official",
         "alchemy": "official",
         "fantasy_grounds": true,
         "demiplane": false,
@@ -2422,14 +2425,13 @@
       "name": "Alien RPG",
       "engine": "YZE",
       "genre": "Sci-fi",
-      "year": 2019,
+      "year": 2025,
       "confidence": "В",
-      "russian_edition": "Да",
+      "russian_edition": "Ч",
       "russian_origin": false,
       "localization": {
-        "status": "официальная",
-        "title": "«Чужой»",
-        "publisher": "Студия 101"
+        "status": "частичная",
+        "note": "локализация Студии 101 относится к прежней редакции; Evolved на русском не выходила"
       },
       "scores": {
         "gm": 8,
@@ -2915,7 +2917,7 @@
         "foundry": "official",
         "roll20": true,
         "alchemy": true,
-        "fantasy_grounds": false,
+        "fantasy_grounds": "official",
         "demiplane": false
       },
       "difficulty": "Средне"
@@ -2924,14 +2926,13 @@
       "name": "Star Trek Adventures 2e",
       "engine": "2d20",
       "genre": "Sci-fi",
-      "year": 2023,
+      "year": 2024,
       "confidence": "В",
-      "russian_edition": "Да",
+      "russian_edition": "Ч",
       "russian_origin": false,
       "localization": {
-        "status": "официальная",
-        "title": "«Звёздный путь» (по 1-й редакции)",
-        "publisher": "Hobby World"
+        "status": "частичная",
+        "note": "официально локализована 1-я редакция; перевода 2e нет"
       },
       "scores": {
         "gm": 7,
@@ -2958,12 +2959,12 @@
         "отношения"
       ],
       "dice": "d20",
-      "free": null,
+      "free": "quickstart",
       "vtt": {
         "foundry": "community",
         "roll20": true,
         "alchemy": false,
-        "fantasy_grounds": false,
+        "fantasy_grounds": "official",
         "demiplane": false
       },
       "difficulty": "Средне"
@@ -3616,12 +3617,11 @@
       "genre": "Современность",
       "year": 2023,
       "confidence": "В",
-      "russian_edition": "Да",
+      "russian_edition": "Ч",
       "russian_origin": false,
       "localization": {
-        "status": "официальная",
-        "title": "«Городские легенды» (1-я редакция)",
-        "publisher": "Студия 101"
+        "status": "частичная",
+        "note": "локализована 1-я редакция (Студия 101); официального издания 2e на русском нет"
       },
       "scores": {
         "gm": 7,
@@ -3710,7 +3710,7 @@
       "name": "Monster of the Week",
       "engine": "PbtA",
       "genre": "Современность",
-      "year": 2012,
+      "year": 2023,
       "confidence": "В",
       "russian_edition": "Ч",
       "russian_origin": false,
@@ -5658,7 +5658,7 @@
         "выживание"
       ],
       "dice": "d6",
-      "free": null,
+      "free": "full",
       "vtt": {
         "foundry": "community",
         "roll20": false,
@@ -5849,7 +5849,7 @@
       "name": "Stonetop",
       "engine": "PbtA",
       "genre": "Фэнтези",
-      "year": 2024,
+      "year": 2026,
       "confidence": "В",
       "russian_edition": "—",
       "russian_origin": false,
@@ -5867,7 +5867,7 @@
         "sup": 6
       },
       "what_is_it": "Ваша деревня на краю карты — и вы её защитники: между походами вы возвращаетесь домой, где урожай, соседи и зима значат не меньше, чем чудовища за частоколом.",
-      "verdict": "Вершина эволюции Dungeon World: пятнадцать лет уроков жанра собраны в игру про дом, который стоит защищать. Деревня как общий персонаж — главная находка; слоту не поддаётся, это кампания по устройству. Долгострой вышел целиком в 2024-м и собрал редкий консенсус похвалы.",
+      "verdict": "Вершина эволюции Dungeon World: пятнадцать лет уроков жанра собраны в игру про дом, который стоит защищать. Деревня как общий персонаж — главная находка; слоту не поддаётся, это кампания по устройству. Долгострой финальные PDF разосланы в феврале 2026-го.",
       "similar": [
         "Dungeon World",
         "Mouse Guard",
@@ -6717,9 +6717,12 @@
       "genre": "Современность",
       "year": 2010,
       "confidence": "В",
-      "russian_edition": "—",
+      "russian_edition": "Ч",
       "russian_origin": false,
-      "localization": null,
+      "localization": {
+        "status": "частичная",
+        "note": "идёт официальный предзаказ «Досье Дрездена» (Студия 101); тираж не вышел"
+      },
       "scores": {
         "gm": 6,
         "ease": 4,
