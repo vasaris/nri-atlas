@@ -162,6 +162,9 @@
   .ax{font-size:12px}
   .ax .lab{color:var(--faded);display:flex;justify-content:space-between;gap:8px}
   .ax .lab span:last-child{font-family:var(--mono);font-size:11px;letter-spacing:-.02em;white-space:nowrap;color:var(--faded)}
+  .ax .lab[data-sort]{cursor:pointer}
+  .ax .lab[data-sort]:hover span:first-child{color:var(--paper)}
+  .ax .lab.srt span:first-child{color:var(--ember)}
   .ax .lab.dim{opacity:.38}
   .ax .lab.dim+.mb{opacity:.38}
   .ax .mb{height:6px;background:var(--binding-deep);border:1px solid var(--rule);overflow:hidden;margin-top:4px}
@@ -317,7 +320,7 @@
 </div></aside>
 <div>
   <div class="results-head"><span class="cnt" id="cnt"></span>
- <span class="head-actions"><span class="cnt">клик по строке — разбор</span>
+ <span class="head-actions"><span class="cnt">клик по строке — разбор · по оси в разборе — сортировка</span>
  <button class="chip" id="lucky"><svg class="bico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2l8.7 5v10L12 22 3.3 17V7L12 2z"/><path d="M12 8.2 6.2 15h11.6L12 8.2zM12 2v6.2M3.3 7l2.9 8M20.7 7l-2.9 8M12 22l-5.8-7M12 22l5.8-7"/></svg> Мне повезёт</button>
  <button class="chip" id="wiz"><svg class="bico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2.2 5-5 2.2 2.2-5z"/></svg> Подбор</button>
  <button class="chip" id="locs"><span class="glyph-ru" aria-hidden="true">RU</span> Локализации</button>
@@ -654,7 +657,7 @@ document.getElementById("reset").onclick=()=>{W={...PRESETS["Игра как и�
 /* scoring */
 function score(d){let t=0,m=0;AX.forEach(a=>{t+=W[a.k]*d.s[a.k];m+=W[a.k]*10;});return m>0?t/m*100:0;}
 const listEl=document.getElementById("list"),cntEl=document.getElementById("cnt");
-let openSet=new Set();
+let openSet=new Set(),sortAx=null,pendingWiz=false,pendingCmp=false;
 function render(){
  let rows=DATA.filter(d=>{
   if(fRu&&d.ru==="—")return false;
@@ -669,8 +672,11 @@ function render(){
   if(fYear&&d.y<fYear)return false;
   if(fPick&&!AUTHOR_PICKS.has(d.n))return false;
   if(q&&!(d.n.toLowerCase().includes(q)||d.e.toLowerCase().includes(q)||d.tags.some(t=>t.includes(q))||d.note.toLowerCase().includes(q)))return false;
-  return true;}).map(d=>({d,p:score(d)})).sort((a,b)=>b.p-a.p||a.d.n.localeCompare(b.d.n));
- cntEl.textContent=`${rows.length} систем · по убыванию совпадения с весами`;
+  return true;}).map(d=>({d,p:score(d)})).sort(sortAx?((a,b)=>b.d.s[sortAx]-a.d.s[sortAx]||b.p-a.p||a.d.n.localeCompare(b.d.n)):((a,b)=>b.p-a.p||a.d.n.localeCompare(b.d.n)));
+ if(sortAx){const an=AX.find(a=>a.k===sortAx).n;
+  cntEl.innerHTML=`${rows.length} систем · по оси «${an}» по убыванию · <span id="srtOff" style="cursor:pointer;border-bottom:1px dashed var(--muted);color:var(--muted)">вернуть по совпадению</span>`;
+  document.getElementById("srtOff").onclick=()=>{sortAx=null;render();};}
+ else cntEl.textContent=`${rows.length} систем · по убыванию совпадения с весами`;
  const old=new Map();[...listEl.children].forEach(el=>old.set(el.dataset.k,el.getBoundingClientRect()));
  listEl.innerHTML="";
  rows.forEach((r,i)=>listEl.appendChild(card(r.d,r.p,i+1)));
@@ -701,7 +707,7 @@ function card(d,p,rank){
   <div class="score"><span class="pct" style="color:${p>=70?"var(--ember)":p>=55?"#d9b96a":"var(--paper)"}">${Math.round(p)}<small style="font-size:10px;color:var(--muted2)">%</small></span>
    <div class="bar"><i style="width:${p}%"></i></div></div></div>
   <div class="sys-body">${noteHtml}${tagsHtml}${simHtml}
-   <div class="axes">${AX.map(a=>`<div class="ax"><span class="lab ${W[a.k]===0?"dim":""}"><span>${a.n}</span><span>${d.s[a.k]}/10${W[a.k]>0?" ×"+W[a.k]:""}</span></span><div class="mb"><i class="${W[a.k]>=4?"hot":""}" style="width:${d.s[a.k]*10}%"></i></div></div>`).join("")}</div>
+   <div class="axes">${AX.map(a=>`<div class="ax"><span class="lab ${W[a.k]===0?"dim":""}${sortAx===a.k?" srt":""}" data-sort="${a.k}" title="Сортировать список по этой оси"><span>${sortAx===a.k?"↓ ":""}${a.n}</span><span>${d.s[a.k]}/10${W[a.k]>0?" ×"+W[a.k]:""}</span></span><div class="mb"><i class="${W[a.k]>=4?"hot":""}" style="width:${d.s[a.k]*10}%"></i></div></div>`).join("")}</div>
    <a class="lnk" href="${L.u}" target="_blank" rel="noopener">${L.t}</a><span class="cmpc${compareSet.has(d.n)?" on":""}" data-cmp="${d.n}">${compareSet.has(d.n)?"✓ в сравнении":"сравнить"}</span><a class="dis" href="https://t.me/vasaris" target="_blank" rel="noopener">не согласен с оценкой?</a></div>`;
  el.querySelector(".sys-main").onclick=(e)=>{
   const b=e.target.closest("[data-tip]");
@@ -710,6 +716,7 @@ function card(d,p,rank){
   if(el.classList.contains("open"))openSet.add(d.n);else openSet.delete(d.n);};
  el.querySelectorAll(".simc").forEach(c=>{c.onclick=()=>jumpTo(c.dataset.sim);});
  el.querySelector(".cmpc").onclick=(e)=>toggleCmp(e.target);
+ el.querySelectorAll("[data-sort]").forEach(c=>{c.onclick=()=>{const k=c.dataset.sort;sortAx=sortAx===k?null:k;render();};});
  return el;
 }
 let spinning=false;
@@ -789,7 +796,10 @@ function openCompare(){
   return `<td><a class="lnk" style="margin:0" href="${L.u}" target="_blank" rel="noopener">Узнать больше →</a></td>`;}).join("")}</tr>`;
  openOvl(`<button class="pnl-x" onclick="closeOvl()">✕</button><h2>Сравнение</h2>
   <div style="font-size:11px;color:var(--muted)">Лучшее значение по оси подсвечено. По оси «Тон» подсветки нет: это шкала от комедии к драме, а не оценка качества.</div>
-  <div class="cmp-wrap"><table class="cmp-t"><tr><td></td>${th}</tr>${what}${axRows}${links}</table></div>`);}
+  <div class="cmp-wrap"><table class="cmp-t"><tr><td></td>${th}</tr>${what}${axRows}${links}</table></div>
+  <button class="chip" id="cmpShare" style="margin-top:12px" title="Ссылка откроет это сравнение сразу">Ссылка на сравнение</button>`);
+ const cs=document.getElementById("cmpShare");
+ if(cs)cs.onclick=()=>{const sp=new URLSearchParams();sp.set("cmp",items.map(d=>d.n).join("~"));sp.set("co","1");copyToClip(location.href.split("#")[0]+"#"+sp.toString(),cs,"Ссылка на сравнение");};}
 /* визард «Подбор»: пять вопросов — топ-3 с объяснением */
 const WIZQ=[
  {q:"Кто за столом?",o:["Все впервые","Уже пробовали","Опытная группа"]},
@@ -815,7 +825,9 @@ function drawWiz(){
    else return;
   } else wizA[q]=o;
   const sc=ovl.scrollTop;drawWiz();ovl.scrollTop=sc;};});
- ovlPanel.querySelectorAll(".wres .act[data-open]").forEach(c=>{c.onclick=()=>{closeOvl();jumpTo(c.dataset.open);};});}
+ ovlPanel.querySelectorAll(".wres .act[data-open]").forEach(c=>{c.onclick=()=>{closeOvl();jumpTo(c.dataset.open);};});
+ const ws=ovlPanel.querySelector("#wizShare");
+ if(ws)ws.onclick=()=>{const sp=new URLSearchParams();sp.set("wz",wizEnc(wizA));copyToClip(location.href.split("#")[0]+"#"+sp.toString(),ws,"Ссылка на тройку");};}
 function wizResults(){
  const [exp,time,mood,focus,lang]=wizA;
  const W2={gm:0,ease:0,pl:3,rec:2,mech:0,drama:0,shot:0,camp:0,onb:0,sup:0};
@@ -852,7 +864,17 @@ function wizResults(){
   return `<div class="wres"><div class="nm3">${i+1}. ${x.d.n}</div>
    <div class="what">${x.d.note.split("||")[0]}</div>
    ${r.length?`<div class="why">Почему: ${r.join(" · ")}</div>`:""}
-   <span class="act" data-open="${x.d.n}">Открыть в атласе</span><a class="lnk" style="margin:0" href="${L.u}" target="_blank" rel="noopener">Узнать больше →</a></div>`;}).join("");}
+   <span class="act" data-open="${x.d.n}">Открыть в атласе</span><a class="lnk" style="margin:0" href="${L.u}" target="_blank" rel="noopener">Узнать больше →</a></div>`;}).join("")+`<div style="margin-top:14px"><button class="chip" id="wizShare" title="Скопировать ссылку на эту тройку">Ссылка на тройку</button></div>`;}
+function wizEnc(a){return [a[0],a[1],[...a[2]].sort().join(""),a[3],a[4]].join("-");}
+function wizDec(x){
+ const p=String(x).split("-");if(p.length!==5)return null;
+ const v=y=>/^\d$/.test(y)?+y:NaN;
+ const e1=v(p[0]),t1=v(p[1]),f1=v(p[3]),l1=v(p[4]);
+ if(!(e1>=0&&e1<=2&&t1>=0&&t1<=2&&f1>=0&&f1<=2&&l1>=0&&l1<=1))return null;
+ if(!/^\d{1,2}$/.test(p[2]))return null;
+ const md=[...new Set(p[2].split("").map(Number))].sort();
+ if(md.length<1||md.length>2||md.some(y=>y>3))return null;
+ return [e1,t1,md,f1,l1];}
 document.getElementById("wiz").onclick=openWiz;
 /* локализации: официальные русские издания */
 const LOC_OFF=[
@@ -945,16 +967,18 @@ function shareUrl(){
  if(fFam)p.set("f",fFam);if(fYear)p.set("y",fYear);
  if(fRu)p.set("ru","1");if(fRuO)p.set("ro","1");if(fConf)p.set("c","1");if(fFree)p.set("fb",fFree);if(fPick)p.set("ap","1");
  const o=[...openSet];if(o.length)p.set("s",o[o.length-1]);
+ if(sortAx)p.set("srt",sortAx);
+ if(compareSet.size)p.set("cmp",[...compareSet].join("~"));
  const h=p.toString();
  return location.href.split("#")[0]+(h?"#"+h:"");}
-document.getElementById("share").onclick=async()=>{
- const u=shareUrl(),b=document.getElementById("share");
+async function copyToClip(u,b,label){
  try{await navigator.clipboard.writeText(u);b.textContent="✓ скопировано";}
  catch(err){
   try{const t=document.createElement("textarea");t.value=u;t.style.position="fixed";t.style.opacity="0";
    document.body.appendChild(t);t.select();document.execCommand("copy");t.remove();b.textContent="✓ скопировано";}
   catch(e2){prompt("Скопируй ссылку:",u);}}
- setTimeout(()=>{b.textContent="Ссылка";},1400);};
+ setTimeout(()=>{b.textContent=label;},1400);}
+document.getElementById("share").onclick=()=>copyToClip(shareUrl(),document.getElementById("share"),"Ссылка");
 (function(){try{
  const h=location.hash.slice(1);if(!h)return;
  const p=new URLSearchParams(h);
@@ -971,8 +995,15 @@ document.getElementById("share").onclick=async()=>{
  if(p.get("fb")){fFree=p.get("fb")==="1"?"f":p.get("fb");document.getElementById("fFree").value=fFree;}
  if(p.get("ap")){fPick=true;document.getElementById("fPick").checked=true;}
  if(p.get("s"))openSet.add(p.get("s"));
+ const sr=p.get("srt");if(sr&&AX.some(a=>a.k===sr))sortAx=sr;
+ const cm=p.get("cmp");if(cm)cm.split("~").forEach(n=>{if(NAME_IX.has(n)&&compareSet.size<3)compareSet.add(n);});
+ if(p.get("co")&&compareSet.size>=2)pendingCmp=true;
+ const wza=p.get("wz")?wizDec(p.get("wz")):null;if(wza){wizA=wza;pendingWiz=true;}
 }catch(e){}})();
 sync();mark();render();
+if(compareSet.size)renderCmpBar();
+if(pendingCmp)openCompare();
+if(pendingWiz)drawWiz();
 </script>
 <script data-goatcounter="https://vasaris.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>

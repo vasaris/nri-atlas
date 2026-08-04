@@ -31,6 +31,8 @@ const names = new Set(DATA.map(d => d.n));
 check(DATA.length >= 140, 'систем не меньше 140', DATA.length);
 const dup = DATA.map(d => d.n).filter((n, i, a) => a.indexOf(n) !== i);
 check(dup.length === 0, 'нет дублей имён', dup);
+const tld = DATA.filter(d => d.n.includes('~')).map(d => d.n);
+check(tld.length === 0, 'в именах нет «~» (разделитель cmp-пермалинка)', tld);
 
 // 3. Счётчики в текстах = реальность
 const tag = html.match(/(\d+) систем[аы]? · 10 осей/);
@@ -81,6 +83,18 @@ for (let a = 0; a < 3; a++) for (let b = 0; b < 3; b++) for (const md of moods)
     catch (x) { wizErr++; }
   }
 check(wizErr === 0 && not3 === 0, 'визард: ' + combos + ' комбинаций, всегда тройка', { errors: wizErr, not3 });
+
+// 8b. wz-пермалинк: кодек обратим и отбрасывает мусор
+let rtBad = 0;
+for (let a = 0; a < 3; a++) for (let b = 0; b < 3; b++) for (const md of moods)
+  for (let d = 0; d < 3; d++) for (let e = 0; e < 2; e++) {
+    const dec = wizDec(wizEnc([a, b, md, d, e]));
+    if (!dec || dec[0] !== a || dec[1] !== b || dec[3] !== d || dec[4] !== e ||
+        dec[2].join('') !== [...md].sort().join('')) rtBad++;
+  }
+check(rtBad === 0, 'wz-пермалинк: кодек обратим на всех 540 комбо', rtBad);
+const junk = ['', '1-2-3', '9-0-0-0-0', '0-0-44-0-0', '0-0-012-0-0', '0-0--0-0', 'a-b-c-d-e', '0-0-0-0-2'];
+check(junk.every(j => wizDec(j) === null), 'wz-пермалинк: мусор отклоняется', junk.filter(j => wizDec(j) !== null));
 
 // 9. Каждая строка полна
 const broken = DATA.filter(d => !d.n || !d.e || !d.g || !d.note.includes('||') || d.sim.length < 2 || d.tags.length < 1);
