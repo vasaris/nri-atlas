@@ -6,7 +6,7 @@
     "systems": 150,
     "license": "CC-BY-4.0",
     "attribution": "Данные: НРИ-Атлас Ивана Трифонова (vasaris.github.io/nri-atlas). Оценки авторские, шкалы описаны в методологии атласа.",
-    "vtt_methodology": "Поле vtt: поддержка виртуальных столов, верифицирована по витринам платформ и страницам издателей 04.08.2026. Колонка закрыта: все 150 систем проверены (батчи 1–6). foundry=official означает: издатель официально продаёт/выпускает свой контент или систему на платформе. Бинарные платформы = играбельная поддержка (рулсет, лист или контент). foundry=none во всех полях = проверено, поддержки нет (см. note)."
+    "vtt_methodology": "Поле vtt: поддержка виртуальных столов, верифицирована по витринам платформ и страницам издателей 04.08.2026. Колонка закрыта: все 150 систем проверены (батчи 1–6). foundry=official означает: издатель официально продаёт/выпускает свой контент или систему на платформе. Бинарные платформы = играбельная поддержка (рулсет, лист или контент). foundry=none во всех полях = проверено, поддержки нет (см. note). Обновление 04.08: на бинарных платформах значение может быть повышено до official — издатель официально представлен на витрине платформы; в index.html это код 2."
   },
   "axes": [
     {
@@ -103,7 +103,7 @@
       "vtt": {
         "foundry": "official",
         "roll20": true,
-        "alchemy": true,
+        "alchemy": "official",
         "fantasy_grounds": true,
         "demiplane": true
       }
@@ -550,7 +550,7 @@
       "vtt": {
         "foundry": "official",
         "roll20": false,
-        "alchemy": true,
+        "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
       }
@@ -596,7 +596,7 @@
       "vtt": {
         "foundry": "official",
         "roll20": true,
-        "alchemy": true,
+        "alchemy": "official",
         "fantasy_grounds": true,
         "demiplane": false,
         "note": "на Alchemy есть Ruins of Symbaroum (5e-версия)"
@@ -734,7 +734,7 @@
       "vtt": {
         "foundry": "official",
         "roll20": true,
-        "alchemy": true,
+        "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
       }
@@ -1003,7 +1003,7 @@
       "vtt": {
         "foundry": "community",
         "roll20": false,
-        "alchemy": true,
+        "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
       }
@@ -1771,7 +1771,7 @@
       "vtt": {
         "foundry": "official",
         "roll20": true,
-        "alchemy": true,
+        "alchemy": "official",
         "fantasy_grounds": true,
         "demiplane": false
       }
@@ -2047,7 +2047,7 @@
       "vtt": {
         "foundry": "community",
         "roll20": true,
-        "alchemy": true,
+        "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": true
       }
@@ -2221,7 +2221,7 @@
       "vtt": {
         "foundry": "community",
         "roll20": true,
-        "alchemy": true,
+        "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
       }
@@ -2267,7 +2267,7 @@
       "vtt": {
         "foundry": "official",
         "roll20": false,
-        "alchemy": true,
+        "alchemy": "official",
         "fantasy_grounds": true,
         "demiplane": false,
         "note": "Alchemy — в разработке у Free League"
@@ -2315,7 +2315,7 @@
       "vtt": {
         "foundry": "official",
         "roll20": true,
-        "alchemy": true,
+        "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
       }
@@ -2362,7 +2362,7 @@
       "vtt": {
         "foundry": "official",
         "roll20": true,
-        "alchemy": true,
+        "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": true
       }
@@ -2457,7 +2457,7 @@
       "vtt": {
         "foundry": "official",
         "roll20": true,
-        "alchemy": true,
+        "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
       }
@@ -2543,7 +2543,7 @@
       "vtt": {
         "foundry": "official",
         "roll20": true,
-        "alchemy": true,
+        "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
       }
@@ -3260,7 +3260,7 @@
       "vtt": {
         "foundry": "community",
         "roll20": false,
-        "alchemy": true,
+        "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
       }
@@ -3306,7 +3306,7 @@
       "vtt": {
         "foundry": "community",
         "roll20": true,
-        "alchemy": true,
+        "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
       }
@@ -3622,7 +3622,7 @@
       "vtt": {
         "foundry": "community",
         "roll20": true,
-        "alchemy": true,
+        "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
       }
@@ -3846,7 +3846,7 @@
       "vtt": {
         "foundry": "community",
         "roll20": true,
-        "alchemy": true,
+        "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
       }
@@ -3932,7 +3932,7 @@
       "vtt": {
         "foundry": "community",
         "roll20": false,
-        "alchemy": true,
+        "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "оф. Roll20-версия анонсировалась Mongoose"
@@ -4659,7 +4659,7 @@
       "vtt": {
         "foundry": "community",
         "roll20": false,
-        "alchemy": true,
+        "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
       }
@@ -4745,7 +4745,7 @@
       "vtt": {
         "foundry": "community",
         "roll20": false,
-        "alchemy": true,
+        "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "официальный релиз на Alchemy"
@@ -5009,7 +5009,7 @@
       "vtt": {
         "foundry": "official",
         "roll20": false,
-        "alchemy": true,
+        "alchemy": "official",
         "fantasy_grounds": true,
         "demiplane": false
       }
@@ -5228,7 +5228,7 @@
       "vtt": {
         "foundry": "official",
         "roll20": true,
-        "alchemy": true,
+        "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": true
       }
@@ -5317,7 +5317,7 @@
       "vtt": {
         "foundry": "official",
         "roll20": false,
-        "alchemy": true,
+        "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
       }
@@ -5360,7 +5360,7 @@
       "vtt": {
         "foundry": "community",
         "roll20": true,
-        "alchemy": true,
+        "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
       }
@@ -5451,7 +5451,7 @@
       "vtt": {
         "foundry": "community",
         "roll20": true,
-        "alchemy": true,
+        "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
       }
@@ -5541,7 +5541,7 @@
       "vtt": {
         "foundry": "community",
         "roll20": false,
-        "alchemy": true,
+        "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
       }
@@ -6737,7 +6737,7 @@
       "vtt": {
         "foundry": "community",
         "roll20": false,
-        "alchemy": true,
+        "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
       },

@@ -382,7 +382,6 @@ const PRESETS={
  "Быстрое приключение":{gm:0,ease:3,pl:3,rec:2,mech:0,drama:0,shot:5,camp:0,onb:3,sup:0},
  "Смех и веселье":{gm:0,ease:4,pl:4,rec:2,mech:0,drama:0,shot:4,camp:0,onb:2,sup:0}};
 const PRESET_TAG={"Быстрое приключение":"приключение","Смех и веселье":"юмор"};
-let presetTag="";
 const DIFFN={"Легко":1,"Средне":2,"Сложно":3};
 /* «Узнать больше»: официальные сайты там, где DriveThru не продаёт систему */
 const OFFICIAL={
@@ -429,7 +428,7 @@ const DICE_OVR={"Salvage Union":"d20","City of Mist":"d6","Draw Steel":"d10","Tr
  "Genesys":"разные кубы","Star Wars (FFG/Edge)":"разные кубы","Legend of the Five Rings 5e":"разные кубы","The One Ring 2e":"разные кубы",
  "FATE Core":"разные кубы","Красная Земля (Fate)":"разные кубы","Cortex Prime":"разные кубы","Fabula Ultima":"разные кубы",
  "Ryuutama":"разные кубы","Kids on Bikes":"разные кубы","Blade Runner":"разные кубы","Twilight 2000 4e":"разные кубы",
- "Draw Steel":"разные кубы","Heart: The City Beneath":"разные кубы","Spire":"d10",
+ "Heart: The City Beneath":"разные кубы","Spire":"d10",
  "Vampire: The Masquerade V5":"разные кубы","Werewolf: The Apocalypse W5":"разные кубы","Mage: The Ascension 20th":"разные кубы",
  "Curseborne":"разные кубы","Cyberpunk RED":"разные кубы","The Witcher (R.Talsorian)":"разные кубы","7th Sea 2e":"разные кубы",
  "Kult: Divinity Lost":"разные кубы","Ars Magica 5":"разные кубы","Эра Водолея":"разные кубы","1000 рентген в час":"разные кубы",
@@ -457,10 +456,10 @@ const FREE=new Set(["Blades in the Dark", "Cities Without Number", "D&D 5e / 5.5
 /* VTT: [Foundry, Roll20, Alchemy, Fantasy Grounds, Demiplane]. Foundry: 0 нет / 1 комьюнити / 2 оф. контент издателя.
    Отсутствие в карте = не проверено (бейдж не показываем). Верифицировано по витринам 04.08.2026, батч 1. */
 const VTT={
- "Blades in the Dark":[1,1,1,0,0],
+ "Blades in the Dark":[1,1,2,0,0],
  "Daggerheart":[1,1,0,0,1],
  "Monster of the Week":[1,1,0,0,0],
- "Call of Cthulhu 7e":[2,1,1,1,0],
+ "Call of Cthulhu 7e":[2,1,2,1,0],
  "Delta Green":[1,1,0,1,0],
  "Mothership 1e":[1,0,0,0,0],
  "Alien RPG":[2,1,1,1,1],
@@ -468,33 +467,33 @@ const VTT={
  "Heart: The City Beneath":[1,0,0,0,0],
  "Brindlewood Bay":[1,0,0,0,0],
  "Legend in the Mist":[2,0,0,0,0],
- "Dragonbane":[2,0,1,0,0],
+ "Dragonbane":[2,0,2,0,0],
  "Shadowdark":[1,1,0,0,0],
  "The One Ring 2e":[1,0,0,0,0],
  "Spire":[1,0,0,0,0],
- "Vaesen":[2,0,1,1,0],
+ "Vaesen":[2,0,2,1,0],
  "Apocalypse World":[1,1,0,0,0],
  "Pendragon 6":[2,0,0,0,0],
  "Scum & Villainy":[1,0,0,0,0],
  "Dolmenwood":[2,1,0,0,0],
- "Masks":[1,1,1,0,0],
+ "Masks":[1,1,2,0,0],
  "Draw Steel":[2,0,0,0,0],
  /* батч 2 (строки 26–50 рейтинга) + хвосты батча 1, верифицировано 04.08.2026 */
- "D&D 5e / 5.5e":[2,1,1,1,1],
+ "D&D 5e / 5.5e":[2,1,2,1,1],
  "Grimwild":[1,0,0,0,0],
  "Mausritter":[1,0,0,0,0],
  "Star Wars (FFG/Edge)":[1,1,0,0,0],
  "Triangle Agency":[1,0,0,0,0],
- "The Wildsea":[1,0,1,0,0],
- "Mörk Borg":[1,1,1,0,0],
+ "The Wildsea":[1,0,2,0,0],
+ "Mörk Borg":[1,1,2,0,0],
  "Pathfinder 2e":[2,1,1,1,1],
  "Stars Without Number":[1,1,0,0,0],
- "Vampire: The Masquerade V5":[1,1,1,0,1],
+ "Vampire: The Masquerade V5":[1,1,2,0,1],
  "Worlds Without Number":[1,0,0,0,0],
  "Vampire: The Masquerade V20":[1,1,0,0,0],
  "Slugblaster":[1,0,0,0,0],
- "Fabula Ultima":[1,0,1,0,0],
- "Forbidden Lands":[2,1,1,0,0],
+ "Fabula Ultima":[1,0,2,0,0],
+ "Forbidden Lands":[2,1,2,0,0],
  "Into the Odd / Cairn":[1,1,0,0,0],
  "Monsterhearts 2":[1,1,0,0,0],
  "Band of Blades":[1,0,0,0,0],
@@ -506,7 +505,7 @@ const VTT={
  "Stonetop":[1,0,0,0,0],
  /* батч 3 (строки 51–75 рейтинга), верифицировано 04.08.2026; отложены: Godbound, His Majesty the Worm, Night Witches */
  "Old-School Essentials":[2,1,0,0,0],
- "Tales from the Loop":[2,1,1,0,0],
+ "Tales from the Loop":[2,1,2,0,0],
  "Kult: Divinity Lost":[1,0,0,0,0],
  "Lancer":[1,1,0,0,0],
  "Liminal Horror":[1,0,0,0,0],
@@ -514,66 +513,66 @@ const VTT={
  "Warhammer Fantasy RP 4e":[2,1,0,1,0],
  "Traveller (Mongoose 2e)":[2,1,0,1,0],
  "Dungeon Crawl Classics":[2,1,0,1,0],
- "Symbaroum":[2,1,1,1,0],
- "Outgunned":[1,0,1,0,0],
+ "Symbaroum":[2,1,2,1,0],
+ "Outgunned":[1,0,2,0,0],
  "Trail of Cthulhu":[1,1,0,0,0],
- "Mutant: Year Zero":[2,1,1,0,1],
+ "Mutant: Year Zero":[2,1,2,0,1],
  "Savage Worlds SWADE":[2,1,0,1,0],
  "Urban Shadows 2e":[1,1,0,0,0],
  "13th Age":[1,1,0,1,0],
  "Index Card RPG":[1,0,0,0,0],
- "Household":[1,0,1,0,0],
+ "Household":[1,0,2,0,0],
  "Numenera / Cypher":[1,1,0,0,0],
- "Twilight 2000 4e":[2,1,1,0,0],
+ "Twilight 2000 4e":[2,1,2,0,0],
  "Mouse Guard":[1,1,0,0,0],
  "Legend of the Five Rings 5e":[1,1,0,0,0],
  /* добавления 04.08.2026 */
- "Eat the Reich":[1,0,1,0,0],
+ "Eat the Reich":[1,0,2,0,0],
  /* батч 4 (строки 76–100 рейтинга), верифицировано 04.08.2026; отложены: Broken Compass, Lady Blackbird, Break!! */
  "RuneQuest: Glorantha":[1,1,0,0,0],
  "Root: The RPG":[1,1,0,0,0],
  "Star Trek Adventures 2e":[1,1,0,0,0],
- "Pirate Borg":[2,0,1,0,0],
+ "Pirate Borg":[2,0,2,0,0],
  "Unknown Armies 3":[1,0,0,0,0],
  "Cosmere RPG":[2,1,0,1,1],
  "Ars Magica 5":[1,1,0,0,0],
  "Nimble 2":[2,0,0,0,0],
  "Starfinder":[2,1,0,1,1],
  "Death in Space":[1,1,0,0,0],
- "Degenesis":[1,0,1,0,0],
+ "Degenesis":[1,0,2,0,0],
  "Age of Sigmar: Soulbound":[2,0,0,0,0],
  "Burning Wheel":[1,0,0,0,0],
  "Dungeon World":[1,1,0,0,0],
  "WH40k: Imperium Maledictum":[2,0,0,0,0],
  "AGON":[1,0,0,0,0],
- "Coriolis: The Third Horizon":[2,1,1,0,0],
+ "Coriolis: The Third Horizon":[2,1,2,0,0],
  "CY_BORG":[1,1,0,0,0],
  "Mutants & Masterminds":[1,1,0,1,0],
  "Genesys":[1,1,0,0,0],
  /* батч 5 (строки 101–125 рейтинга), верифицировано 04.08.2026; отложены: Royal Blood, The Sprawl, Neuroshima */
  "Knave 2e":[1,0,0,0,0],
  "Cyberpunk RED":[2,1,0,1,0],
- "City of Mist":[1,1,1,0,0],
+ "City of Mist":[1,1,2,0,0],
  "FATE Core":[1,1,0,0,0],
  "DC20":[2,0,0,0,0],
  "Old Gods of Appalachia":[0,0,0,0,1],
  "Curseborne":[1,0,0,0,0],
  "Dresden Files (Fate)":[0,1,0,0,0],
  "WH40k: Wrath & Glory":[2,0,0,0,0],
- "Paranoia (Perfect Edition)":[1,0,1,0,0],
+ "Paranoia (Perfect Edition)":[1,0,2,0,0],
  "Salvage Union":[1,0,0,0,0],
  "The Dark Eye (DSA)":[2,1,0,0,0],
  "Avatar Legends":[1,1,0,0,0],
- "Tales of the Valiant":[2,1,1,0,1],
+ "Tales of the Valiant":[2,1,2,0,1],
  "7th Sea 2e":[1,1,0,0,0],
  "Level Up: Advanced 5e":[1,1,0,0,0],
  "Ryuutama":[1,0,0,0,0],
  "Vaults of Vaarn":[1,0,0,0,0],
  "GURPS 4e":[1,1,0,0,0],
  "Mage: The Ascension 20th":[1,1,0,0,0],
- "Kids on Bikes":[1,1,1,0,0],
+ "Kids on Bikes":[1,1,2,0,0],
  /* батч 6 (строки 126–150 + отложенные всех батчей), верифицировано 04.08.2026 — КОЛОНКА ЗАКРЫТА 150/150 */
- "Candela Obscura":[1,1,1,0,0],
+ "Candela Obscura":[1,1,2,0,0],
  "Zweihänder":[1,1,0,0,0],
  "Pathfinder 1e":[1,1,0,1,0],
  "Cortex Prime":[1,0,0,0,0],
@@ -585,7 +584,7 @@ const VTT={
  "The Expanse":[1,1,0,1,0],
  "Hunter: The Reckoning 5e":[1,1,0,0,1],
  "Shadowrun 5e":[1,1,0,0,0],
- "Fallout 2d20":[2,0,1,1,0],
+ "Fallout 2d20":[2,0,2,1,0],
  "The Witcher (R.Talsorian)":[1,1,0,0,0],
  "Shadowrun 6e":[1,1,0,0,0],
  "Broken Compass":[1,0,0,0,0],
@@ -599,7 +598,7 @@ const VTT_PLAT=["Foundry","Roll20","Alchemy","Fantasy Grounds","Demiplane"];
 function vttTip(n){const v=VTT[n];if(!v)return"";
  const parts=[];
  if(v[0])parts.push("Foundry — "+(v[0]===2?"официальный контент":"комьюнити-модуль"));
- for(let i=1;i<5;i++)if(v[i])parts.push(VTT_PLAT[i]);
+ for(let i=1;i<5;i++)if(v[i])parts.push(VTT_PLAT[i]+(v[i]===2?" — официальный контент":""));
  return parts.join(" · ")+(VTT_NOTE[n]?" · "+VTT_NOTE[n]:"");}
 /* Глоссарий семейств движков — одна строка без птичьего языка */
 const GLOSS={
@@ -774,8 +773,8 @@ let W={...PRESETS["Игра как игра"]};
 const presetsEl=document.getElementById("presets");
 Object.keys(PRESETS).forEach(name=>{const b=document.createElement("button");b.className="chip";b.textContent=name;
  b.onclick=()=>{const p=PRESETS[name];
-  if(name!=="Игра как игра"&&AX.every(a=>p[a.k]===W[a.k])){W={...PRESETS["Игра как игра"]};presetTag="";}
-  else{W={...p};presetTag=PRESET_TAG[name]||"";}
+  if(name!=="Игра как игра"&&AX.every(a=>p[a.k]===W[a.k])){W={...PRESETS["Игра как игра"]};if(PRESET_TAG[name]&&fTag===PRESET_TAG[name]){fTag="";document.getElementById("fTag").value="";}}
+  else{W={...p};if(PRESET_TAG[name]){fTag=PRESET_TAG[name];document.getElementById("fTag").value=fTag;}}
   sync();mark();render();};presetsEl.appendChild(b);});
 const customChip=document.createElement("button");customChip.className="chip";customChip.textContent="Свои веса";
 customChip.style.borderStyle="dashed";customChip.onclick=()=>{};presetsEl.appendChild(customChip);
@@ -786,7 +785,7 @@ const fadersEl=document.getElementById("faders");
 AX.forEach(a=>{const w=document.createElement("div");w.className="fader";
  w.innerHTML=`<div class="top"><span class="nm">${a.n}<small>${a.s}</small></span><span class="v" id="v-${a.k}"></span></div><input type="range" min="0" max="5" step="1" id="r-${a.k}">`;
  fadersEl.appendChild(w);
- w.querySelector("input").addEventListener("input",e=>{W[a.k]=+e.target.value;presetTag="";
+ w.querySelector("input").addEventListener("input",e=>{W[a.k]=+e.target.value;
   document.getElementById("v-"+a.k).textContent=e.target.value;
   e.target.classList.toggle("zero",+e.target.value===0);mark();render();});});
 function sync(){AX.forEach(a=>{const r=document.getElementById("r-"+a.k);r.value=W[a.k];
@@ -795,7 +794,7 @@ function sync(){AX.forEach(a=>{const r=document.getElementById("r-"+a.k);r.value
 function fam(e){e=e.toLowerCase();
  if(e.includes("pbta")||e.includes("carved"))return "PbtA-семья";
  if(e.includes("fitd")||e.includes("forged")||e.includes("moxie"))return "FitD-семья";
- if(e.includes("yze"))return "Year Zero";
+ if(e.includes("yze")||e.includes("year zero"))return "Year Zero";
  if(e.includes("d100")||e.includes("brp")||e.includes("wfrp"))return "d100 / BRP";
  if(e.includes("2d20"))return "2d20";
  if(e.includes("fate"))return "Fate";
@@ -824,7 +823,7 @@ document.getElementById("fDiff").addEventListener("change",e=>{fDiff=+e.target.v
 document.getElementById("fRu").addEventListener("change",e=>{fRu=e.target.checked;render();});
 document.getElementById("fRuO").addEventListener("change",e=>{fRuO=e.target.checked;render();});
 document.getElementById("fConf").addEventListener("change",e=>{fConf=e.target.checked;render();});
-document.getElementById("reset").onclick=()=>{W={...PRESETS["Игра как игра"]};q="";fGen="";fDiff=3;fRu=false;fRuO=false;fConf=false;fFam="";fYear=0;fFree="";fDice="";fPick=false;fTag="";presetTag="";document.getElementById("fDice").value="";document.getElementById("fFree").value="";document.getElementById("fTag").value="";
+document.getElementById("reset").onclick=()=>{W={...PRESETS["Игра как игра"]};q="";fGen="";fDiff=3;fRu=false;fRuO=false;fConf=false;fFam="";fYear=0;fFree="";fDice="";fPick=false;fTag="";document.getElementById("fDice").value="";document.getElementById("fFree").value="";document.getElementById("fTag").value="";
  document.getElementById("q").value="";genSel.value="";famSel.value="";document.getElementById("fDiff").value="3";document.getElementById("fYear").value="0";
  ["fRu","fRuO","fConf","fPick"].forEach(id=>document.getElementById(id).checked=false);sync();mark();render();};
 /* scoring */
@@ -842,7 +841,6 @@ function render(){
   if(fFree==="f"&&!FREE.has(d.n))return false;
   if(fFree==="q"&&!FREE.has(d.n)&&!FREE_QS.has(d.n))return false;
   if(fDice&&diceCat(d)!==fDice)return false;
-  if(presetTag&&!d.tags.includes(presetTag))return false;
   if(fFam&&fam(d.e)!==fFam)return false;
   if(fYear&&d.y<fYear)return false;
   if(fPick&&!AUTHOR_PICKS.has(d.n))return false;
@@ -881,7 +879,7 @@ function card(d,p,rank){
  el.innerHTML=`<div class="sys-main">
   <div class="rank">${rank}</div>
   <div class="nm2"><div class="n">${d.n}${AUTHOR_PICKS.has(d.n)?` <span class="apick" data-tip="Выбор автора: лично вожу и рекомендую">★</span>`:``}</div>
-   <div class="meta"><span class="bdg eng" data-tip="${GLOSS[fam(d.e)]||""}">${d.e}</span><span class="bdg">${d.g}</span><span class="bdg">${d.y}</span><span class="bdg">${d.d}</span>${ruO}${ruL}${cfB}${FREE.has(d.n)?`<span class="bdg fr" data-tip="Официальная бесплатная версия: полные правила или играбельная база">бесплатно</span>`:""}${VTT[d.n]?`<span class="bdg vt${VTT[d.n][0]===2?" vtOf":""}" data-tip="${vttTip(d.n)}">VTT</span>`:""}</div></div>
+   <div class="meta"><span class="bdg eng" data-tip="${GLOSS[fam(d.e)]||""}">${d.e}</span><span class="bdg">${d.g}</span><span class="bdg">${d.y}</span><span class="bdg">${d.d}</span>${ruO}${ruL}${cfB}${FREE.has(d.n)?`<span class="bdg fr" data-tip="Официальная бесплатная версия: полные правила или играбельная база">бесплатно</span>`:""}${VTT[d.n]?`<span class="bdg vt${VTT[d.n].some(x=>x===2)?" vtOf":""}" data-tip="${vttTip(d.n)}">VTT</span>`:""}</div></div>
   <div class="score"><span class="pct" style="color:${p>=70?"var(--ember)":p>=55?"#d9b96a":"var(--paper)"}">${Math.round(p)}<small style="font-size:10px;color:var(--muted2)">%</small></span>
    <div class="bar"><i style="width:${p}%"></i></div></div></div>
   <div class="sys-body">${noteHtml}${tagsHtml}${simHtml}
@@ -1142,7 +1140,7 @@ function shareUrl(){
  if(preset){if(preset!=="Игра как игра")p.set("p",preset);}
  else p.set("w",AX.map(a=>W[a.k]).join(""));
  if(q)p.set("q",q);if(fGen)p.set("g",fGen);if(fDiff!==3)p.set("d",fDiff);
- if(fFam)p.set("f",fFam);if(fYear)p.set("y",fYear);if(fTag)p.set("tg",fTag);
+ if(fFam)p.set("f",fFam);if(fYear)p.set("y",fYear);if(fTag)p.set("tg",fTag);if(fDice)p.set("dice",fDice);
  if(fRu)p.set("ru","1");if(fRuO)p.set("ro","1");if(fConf)p.set("c","1");if(fFree)p.set("fb",fFree);if(fPick)p.set("ap","1");
  const o=[...openSet];if(o.length)p.set("s",o[o.length-1]);
  if(sortAx)p.set("srt",sortAx);
@@ -1160,19 +1158,19 @@ document.getElementById("share").onclick=()=>copyToClip(shareUrl(),document.getE
 (function(){try{
  const h=location.hash.slice(1);if(!h)return;
  const p=new URLSearchParams(h);
- const pn=p.get("p");if(pn&&PRESETS[pn])W={...PRESETS[pn]};
- const w=p.get("w");if(w&&w.length===AX.length)AX.forEach((a,i)=>W[a.k]=Math.min(5,+w[i]||0));
+ const pn=p.get("p");if(pn&&PRESETS[pn]){W={...PRESETS[pn]};if(PRESET_TAG[pn]){fTag=PRESET_TAG[pn];document.getElementById("fTag").value=fTag;}}
+ const w=p.get("w");if(w&&/^[0-5]{10}$/.test(w))AX.forEach((a,i)=>W[a.k]=Math.min(5,+w[i]||0));
  if(p.get("q")){q=p.get("q").toLowerCase();document.getElementById("q").value=p.get("q");}
- if(p.get("g")){fGen=p.get("g");genSel.value=fGen;}
- if(p.get("tg")){fTag=p.get("tg");document.getElementById("fTag").value=fTag;}
- if(p.get("d")){fDiff=+p.get("d")||3;document.getElementById("fDiff").value=String(fDiff);}
- if(p.get("f")){fFam=p.get("f");famSel.value=fFam;}
- if(p.get("y")){fYear=+p.get("y")||0;document.getElementById("fYear").value=String(fYear);}
- if(p.get("ru")){fRu=true;document.getElementById("fRu").checked=true;}
- if(p.get("ro")){fRuO=true;document.getElementById("fRuO").checked=true;}
- if(p.get("c")){fConf=true;document.getElementById("fConf").checked=true;}
- if(p.get("fb")){fFree=p.get("fb")==="1"?"f":p.get("fb");document.getElementById("fFree").value=fFree;}
- if(p.get("ap")){fPick=true;document.getElementById("fPick").checked=true;}
+ if(p.get("g")){genSel.value=p.get("g");fGen=genSel.value===p.get("g")?p.get("g"):"";}
+ if(p.get("tg")){const el=document.getElementById("fTag");el.value=p.get("tg");fTag=el.value===p.get("tg")?p.get("tg"):"";}
+ if(p.get("d")){const dv=+p.get("d");if([1,2,3].includes(dv)){fDiff=dv;document.getElementById("fDiff").value=String(dv);}}
+ if(p.get("f")){famSel.value=p.get("f");fFam=famSel.value===p.get("f")?p.get("f"):"";}
+ if(p.get("y")){const el=document.getElementById("fYear");el.value=p.get("y");fYear=el.value===p.get("y")?+p.get("y"):0;if(!fYear)el.value="0";}
+ if(p.get("ru")==="1"){fRu=true;document.getElementById("fRu").checked=true;}
+ if(p.get("ro")==="1"){fRuO=true;document.getElementById("fRuO").checked=true;}
+ if(p.get("c")==="1"){fConf=true;document.getElementById("fConf").checked=true;}
+ if(p.get("fb")){const v=p.get("fb")==="1"?"f":p.get("fb");const el=document.getElementById("fFree");el.value=v;fFree=el.value===v?v:"";}  if(p.get("dice")){const el=document.getElementById("fDice");el.value=p.get("dice");fDice=el.value===p.get("dice")?p.get("dice"):"";}
+ if(p.get("ap")==="1"){fPick=true;document.getElementById("fPick").checked=true;}
  if(p.get("s"))openSet.add(p.get("s"));
  const sr=p.get("srt");if(sr&&AX.some(a=>a.k===sr))sortAx=sr;
  const cm=p.get("cmp");if(cm)cm.split("~").forEach(n=>{if(NAME_IX.has(n)&&compareSet.size<3)compareSet.add(n);});

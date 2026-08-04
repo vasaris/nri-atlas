@@ -66,7 +66,7 @@ check([...FREE_QS].filter(n => FREE.has(n)).length === 0, 'ярусы беспл
 const vttOrph = Object.keys(VTT).filter(n => !names.has(n));
 check(vttOrph.length === 0, 'VTT без сирот', vttOrph);
 const vttBad = Object.entries(VTT).filter(([n, v]) => !Array.isArray(v) || v.length !== 5 ||
-  ![0, 1, 2].includes(v[0]) || v.slice(1).some(x => x !== 0 && x !== 1) ||
+  ![0, 1, 2].includes(v[0]) || v.slice(1).some(x => ![0, 1, 2].includes(x)) ||
   v.reduce((a, b) => a + b, 0) === 0).map(([n]) => n);
 check(vttBad.length === 0, 'VTT: форма значений корректна', vttBad);
 const vnOrph = [...VTT_NONE].filter(n => !names.has(n));
