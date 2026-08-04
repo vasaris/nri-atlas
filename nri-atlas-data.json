@@ -5,7 +5,8 @@
   "updated": "2026-08-04",
   "systems": 150,
   "license": "CC-BY-4.0",
-  "attribution": "Данные: НРИ-Атлас Ивана Трифонова (vasaris.github.io/nri-atlas). Оценки авторские, шкалы описаны в методологии атласа."
+  "attribution": "Данные: НРИ-Атлас Ивана Трифонова (vasaris.github.io/nri-atlas). Оценки авторские, шкалы описаны в методологии атласа.",
+  "vtt_methodology": "Поле vtt: поддержка виртуальных столов, верифицирована по витринам платформ и страницам издателей 04.08.2026 (батч 1 из 6 — топ-25 рейтинга). foundry=official означает: издатель официально продаёт/выпускает свой контент или систему на платформе. Отсутствие поля vtt = ещё не проверялось."
  },
  "axes": [
   {
@@ -253,7 +254,14 @@
     "хоррор"
    ],
    "dice": "d20",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Old-School Essentials",
@@ -401,7 +409,14 @@
     "билдострой"
    ],
    "dice": "разные кубы",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "official",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Daggerheart",
@@ -439,7 +454,14 @@
     "приключение"
    ],
    "dice": "d12",
-   "free": "quickstart"
+   "free": "quickstart",
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": true
+   }
   },
   {
    "name": "Dragonbane",
@@ -475,7 +497,14 @@
     "героика"
    ],
    "dice": "d100",
-   "free": "quickstart"
+   "free": "quickstart",
+   "vtt": {
+    "foundry": "official",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Symbaroum",
@@ -670,7 +699,14 @@
     "трагедия"
    ],
    "dice": "разные кубы",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Ars Magica 5",
@@ -744,7 +780,14 @@
     "отношения"
    ],
    "dice": "d20",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "official",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Burning Wheel",
@@ -1234,7 +1277,14 @@
     "путешествие"
    ],
    "dice": "разные кубы",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Spire",
@@ -1270,7 +1320,14 @@
     "война"
    ],
    "dice": "разные кубы",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Into the Odd / Cairn",
@@ -1501,7 +1558,14 @@
     "трагедия"
    ],
    "dice": "d100",
-   "free": "quickstart"
+   "free": "quickstart",
+   "vtt": {
+    "foundry": "official",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": true,
+    "demiplane": false
+   }
   },
   {
    "name": "Delta Green",
@@ -1540,7 +1604,14 @@
     "трагедия"
    ],
    "dice": "d100",
-   "free": "quickstart"
+   "free": "quickstart",
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": true,
+    "demiplane": false
+   }
   },
   {
    "name": "Trail of Cthulhu",
@@ -1918,7 +1989,15 @@
     "хоррор"
    ],
    "dice": "d6",
-   "free": "quickstart"
+   "free": "quickstart",
+   "vtt": {
+    "foundry": "official",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": true,
+    "demiplane": false,
+    "note": "Alchemy — в разработке у Free League"
+   }
   },
   {
    "name": "Tales from the Loop",
@@ -2039,7 +2118,14 @@
     "интриги"
    ],
    "dice": "d6",
-   "free": "quickstart"
+   "free": "quickstart",
+   "vtt": {
+    "foundry": "official",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": true,
+    "demiplane": true
+   }
   },
   {
    "name": "Coriolis: The Third Horizon",
@@ -2259,7 +2345,14 @@
     "космос"
    ],
    "dice": "разные кубы",
-   "free": "full"
+   "free": "full",
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Eclipse Phase 2e",
@@ -2644,7 +2737,14 @@
     "юмор"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Slugblaster",
@@ -3095,7 +3195,14 @@
     "юмор"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Brindlewood Bay",
@@ -3131,7 +3238,14 @@
     "хоррор"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "The Between",
@@ -3208,7 +3322,14 @@
     "интриги"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Masks",
@@ -3244,7 +3365,14 @@
     "героика"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Triangle Agency",
@@ -4623,7 +4751,14 @@
     "песочница"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Band of Blades",
@@ -4735,7 +4870,14 @@
     "приключение"
    ],
    "dice": "разные кубы",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "official",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Shadow of the Demon Lord",
@@ -4771,7 +4913,14 @@
     "героика"
    ],
    "dice": "d20",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "official",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "The Dark Eye (DSA)",
@@ -4843,7 +4992,15 @@
     "монстры"
    ],
    "dice": "d20",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "official",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false,
+    "note": "оф. система Foundry — ранний доступ"
+   }
   },
   {
    "name": "Stonetop",

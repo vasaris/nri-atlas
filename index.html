@@ -133,6 +133,8 @@
   .bdg.eng{color:var(--faded)}
   .bdg.ruL,.bdg.fr{color:var(--brass)}
   .bdg.ruO{color:var(--wax-bright)}
+  .bdg.vt{color:var(--faded)}
+  .bdg.vtOf{color:var(--brass)}
   .bdg.cN,.bdg.cS{color:var(--faded-deep);border-style:dashed}
   .bdg[data-tip]{cursor:help;border-bottom-style:dotted}
   .score{display:flex;flex-direction:column;align-items:flex-end;gap:6px;min-width:120px}
@@ -438,6 +440,39 @@ const FREE_QS=new Set(["D&D 5e / 5.5e","Starfinder","Call of Cthulhu 7e","Delta 
  "Savage Worlds SWADE","GURPS 4e","Daggerheart","Cyberpunk RED"]);
 /* Официальные бесплатные версии (полные правила или играбельная база) */
 const FREE=new Set(["Into the Odd / Cairn","Mausritter","Lancer","Eclipse Phase 2e","Worlds Without Number","Stars Without Number","Grimwild","Liminal Horror","Dungeon World","FATE Core","Pathfinder 2e","Mothership 1e","Mörk Borg","Degenesis","Cities Without Number","Godbound","Lady Blackbird"]);
+/* VTT: [Foundry, Roll20, Alchemy, Fantasy Grounds, Demiplane]. Foundry: 0 нет / 1 комьюнити / 2 оф. контент издателя.
+   Отсутствие в карте = не проверено (бейдж не показываем). Верифицировано по витринам 04.08.2026, батч 1. */
+const VTT={
+ "Blades in the Dark":[1,1,0,0,0],
+ "Daggerheart":[1,1,0,0,1],
+ "Monster of the Week":[1,1,0,0,0],
+ "Call of Cthulhu 7e":[2,1,0,1,0],
+ "Delta Green":[1,1,0,1,0],
+ "Mothership 1e":[1,0,0,0,0],
+ "Alien RPG":[2,1,0,1,1],
+ "Shadow of the Demon Lord":[2,1,0,0,0],
+ "Heart: The City Beneath":[1,0,0,0,0],
+ "Brindlewood Bay":[1,0,0,0,0],
+ "Legend in the Mist":[2,0,0,0,0],
+ "Dragonbane":[2,0,0,0,0],
+ "Shadowdark":[1,1,0,0,0],
+ "The One Ring 2e":[1,0,0,0,0],
+ "Spire":[1,0,0,0,0],
+ "Vaesen":[2,0,0,1,0],
+ "Apocalypse World":[1,1,0,0,0],
+ "Pendragon 6":[2,0,0,0,0],
+ "Scum & Villainy":[1,0,0,0,0],
+ "Dolmenwood":[2,1,0,0,0],
+ "Masks":[1,1,0,0,0],
+ "Draw Steel":[2,0,0,0,0],
+};
+const VTT_NOTE={"Dolmenwood":"оф. система Foundry — ранний доступ","Vaesen":"Alchemy — в разработке у Free League"};
+const VTT_PLAT=["Foundry","Roll20","Alchemy","Fantasy Grounds","Demiplane"];
+function vttTip(n){const v=VTT[n];if(!v)return"";
+ const parts=[];
+ if(v[0])parts.push("Foundry — "+(v[0]===2?"официальный контент":"комьюнити-модуль"));
+ for(let i=1;i<5;i++)if(v[i])parts.push(VTT_PLAT[i]);
+ return parts.join(" · ")+(VTT_NOTE[n]?" · "+VTT_NOTE[n]:"");}
 /* Глоссарий семейств движков — одна строка без птичьего языка */
 const GLOSS={
  "d20-семья":"Наследники D&D: бросаешь двадцатигранник, прибавляешь модификатор и стараешься перебить заданную сложность. Классы и уровни — самая привычная механика хобби.",
@@ -703,7 +738,7 @@ function card(d,p,rank){
  el.innerHTML=`<div class="sys-main">
   <div class="rank">${rank}</div>
   <div class="nm2"><div class="n">${d.n}${AUTHOR_PICKS.has(d.n)?` <span class="apick" data-tip="Выбор автора: лично вожу и рекомендую">★</span>`:``}</div>
-   <div class="meta"><span class="bdg eng" data-tip="${GLOSS[fam(d.e)]||""}">${d.e}</span><span class="bdg">${d.g}</span><span class="bdg">${d.y}</span><span class="bdg">${d.d}</span>${ruO}${ruL}${cfB}${FREE.has(d.n)?`<span class="bdg fr" data-tip="Официальная бесплатная версия: полные правила или играбельная база">бесплатно</span>`:""}</div></div>
+   <div class="meta"><span class="bdg eng" data-tip="${GLOSS[fam(d.e)]||""}">${d.e}</span><span class="bdg">${d.g}</span><span class="bdg">${d.y}</span><span class="bdg">${d.d}</span>${ruO}${ruL}${cfB}${FREE.has(d.n)?`<span class="bdg fr" data-tip="Официальная бесплатная версия: полные правила или играбельная база">бесплатно</span>`:""}${VTT[d.n]?`<span class="bdg vt${VTT[d.n][0]===2?" vtOf":""}" data-tip="${vttTip(d.n)}">VTT</span>`:""}</div></div>
   <div class="score"><span class="pct" style="color:${p>=70?"var(--ember)":p>=55?"#d9b96a":"var(--paper)"}">${Math.round(p)}<small style="font-size:10px;color:var(--muted2)">%</small></span>
    <div class="bar"><i style="width:${p}%"></i></div></div></div>
   <div class="sys-body">${noteHtml}${tagsHtml}${simHtml}

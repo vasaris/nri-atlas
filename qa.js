@@ -22,6 +22,7 @@ eval(cut('function fam(e)', 'const genSel'));
 eval(cut('const DICE_OVR', '/* Официальные').replace(/const /g, 'var '));
 eval('var FREE=' + js.match(/const FREE=(new Set\(\[[\s\S]*?\]\));/)[1]);
 eval('var FREE_QS=' + js.match(/const FREE_QS=(new Set\(\[[\s\S]*?\]\));/)[1]);
+eval('var VTT=' + js.match(/const VTT=(\{[\s\S]*?\});/)[1]);
 eval(cut('const LOC_OFF', 'function openLocs').replace(/const /g, 'var '));
 eval('var PRESET_TAG=' + js.match(/const PRESET_TAG=(\{[^}]+\});/)[1]);
 eval('var AUTHOR_PICKS=' + js.match(/const AUTHOR_PICKS=(new Set\(\[[\s\S]*?\]\));/)[1]);
@@ -61,6 +62,12 @@ check([...FREE].filter(n => !names.has(n)).length === 0, 'FREE без сирот
 check([...FREE_QS].filter(n => !names.has(n)).length === 0, 'FREE_QS без сирот', [...FREE_QS].filter(n => !names.has(n)));
 check([...FREE_QS].filter(n => FREE.has(n)).length === 0, 'ярусы бесплатных не пересекаются',
   [...FREE_QS].filter(n => FREE.has(n)));
+const vttOrph = Object.keys(VTT).filter(n => !names.has(n));
+check(vttOrph.length === 0, 'VTT без сирот', vttOrph);
+const vttBad = Object.entries(VTT).filter(([n, v]) => !Array.isArray(v) || v.length !== 5 ||
+  ![0, 1, 2].includes(v[0]) || v.slice(1).some(x => x !== 0 && x !== 1) ||
+  v.reduce((a, b) => a + b, 0) === 0).map(([n]) => n);
+check(vttBad.length === 0, 'VTT: форма значений корректна', vttBad);
 check([...GSEARCH].filter(n => !names.has(n)).length === 0, 'поисковые ссылки без сирот',
   [...GSEARCH].filter(n => !names.has(n)));
 check([...AUTHOR_PICKS].filter(n => !names.has(n)).length === 0, 'выбор автора без сирот',
