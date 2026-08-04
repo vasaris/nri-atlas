@@ -490,10 +490,33 @@ const VTT={
  "Cities Without Number":[1,0,0,0,0],
  "Night's Black Agents":[1,1,0,0,0],
  "Stonetop":[1,0,0,0,0],
+ /* батч 3 (строки 51–75 рейтинга), верифицировано 04.08.2026; отложены: Godbound, His Majesty the Worm, Night Witches */
+ "Old-School Essentials":[2,1,0,0,0],
+ "Tales from the Loop":[2,1,1,0,0],
+ "Kult: Divinity Lost":[1,0,0,0,0],
+ "Lancer":[1,1,0,0,0],
+ "Liminal Horror":[1,0,0,0,0],
+ "Mythic Bastionland":[1,0,0,0,0],
+ "Warhammer Fantasy RP 4e":[2,1,0,1,0],
+ "Traveller (Mongoose 2e)":[2,1,0,1,0],
+ "Dungeon Crawl Classics":[2,1,0,1,0],
+ "Symbaroum":[2,1,0,1,0],
+ "Outgunned":[1,0,1,0,0],
+ "Trail of Cthulhu":[1,1,0,0,0],
+ "Mutant: Year Zero":[2,1,0,0,1],
+ "Savage Worlds SWADE":[2,1,0,1,0],
+ "Urban Shadows 2e":[1,1,0,0,0],
+ "13th Age":[1,1,0,1,0],
+ "Index Card RPG":[1,0,0,0,0],
+ "Household":[1,0,0,0,0],
+ "Numenera / Cypher":[1,1,0,0,0],
+ "Twilight 2000 4e":[2,1,0,0,0],
+ "Mouse Guard":[1,1,0,0,0],
+ "Legend of the Five Rings 5e":[1,1,0,0,0],
 };
 /* Проверено — поддержки нет ни на одной из пяти платформ (дата в методологии). Бейдж не показываем. */
 const VTT_NONE=new Set(["Trophy Dark","Trophy Gold","Dread","The Between"]);
-const VTT_NOTE={"Dolmenwood":"оф. система Foundry — ранний доступ","Vaesen":"Alchemy — в разработке у Free League","Ten Candles":"на Roll20 — аддон-симулятор свечей","Slugblaster":"есть оф. онлайн-формат Turbo вне классических VTT"};
+const VTT_NOTE={"Dolmenwood":"оф. система Foundry — ранний доступ","Vaesen":"Alchemy — в разработке у Free League","Ten Candles":"на Roll20 — аддон-симулятор свечей","Slugblaster":"есть оф. онлайн-формат Turbo вне классических VTT","Traveller (Mongoose 2e)":"оф. система от Mongoose, контент-модулей пока нет","Symbaroum":"на Alchemy есть Ruins of Symbaroum (5e-версия)","Outgunned":"официальный релиз на Alchemy","Mouse Guard":"Foundry-система давно не обновлялась"};
 const VTT_PLAT=["Foundry","Roll20","Alchemy","Fantasy Grounds","Demiplane"];
 function vttTip(n){const v=VTT[n];if(!v)return"";
  const parts=[];

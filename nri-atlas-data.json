@@ -6,7 +6,7 @@
   "systems": 150,
   "license": "CC-BY-4.0",
   "attribution": "Данные: НРИ-Атлас Ивана Трифонова (vasaris.github.io/nri-atlas). Оценки авторские, шкалы описаны в методологии атласа.",
-  "vtt_methodology": "Поле vtt: поддержка виртуальных столов, верифицирована по витринам платформ и страницам издателей 04.08.2026 (батчи 1–2 из 6 — топ-50 рейтинга). foundry=official означает: издатель официально продаёт/выпускает свой контент или систему на платформе. Бинарные платформы = играбельная поддержка (рулсет, лист или контент). Отсутствие поля vtt = ещё не проверялось; foundry=none во всех полях = проверено, поддержки нет."
+  "vtt_methodology": "Поле vtt: поддержка виртуальных столов, верифицирована по витринам платформ и страницам издателей 04.08.2026 (батчи 1–3 из 6 — топ-75 рейтинга; отложены 3 строки). foundry=official означает: издатель официально продаёт/выпускает свой контент или систему на платформе. Бинарные платформы = играбельная поддержка (рулсет, лист или контент). Отсутствие поля vtt = ещё не проверялось; foundry=none во всех полях = проверено, поддержки нет."
  },
  "axes": [
   {
@@ -232,7 +232,14 @@
     "тактика"
    ],
    "dice": "d20",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": true,
+    "demiplane": false
+   }
   },
   {
    "name": "Shadowdark",
@@ -314,7 +321,14 @@
     "песочница"
    ],
    "dice": "d20",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "official",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Dungeon Crawl Classics",
@@ -350,7 +364,14 @@
     "выживание"
    ],
    "dice": "разные кубы",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "official",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": true,
+    "demiplane": false
+   }
   },
   {
    "name": "Worlds Without Number",
@@ -564,7 +585,15 @@
     "интриги"
    ],
    "dice": "d20",
-   "free": "quickstart"
+   "free": "quickstart",
+   "vtt": {
+    "foundry": "official",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": true,
+    "demiplane": false,
+    "note": "на Alchemy есть Ruins of Symbaroum (5e-версия)"
+   }
   },
   {
    "name": "Warhammer Fantasy RP 4e",
@@ -604,7 +633,14 @@
     "интриги"
    ],
    "dice": "d100",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "official",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": true,
+    "demiplane": false
+   }
   },
   {
    "name": "Age of Sigmar: Soulbound",
@@ -891,7 +927,15 @@
     "героика"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false,
+    "note": "Foundry-система давно не обновлялась"
+   }
   },
   {
    "name": "Fabula Ultima",
@@ -1045,7 +1089,14 @@
     "война"
    ],
    "dice": "разные кубы",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "RuneQuest: Glorantha",
@@ -1162,7 +1213,14 @@
     "путешествие"
    ],
    "dice": "d20",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Dungeon World",
@@ -1713,7 +1771,14 @@
     "хоррор"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Night's Black Agents",
@@ -1833,7 +1898,14 @@
     "расследование"
    ],
    "dice": "разные кубы",
-   "free": "quickstart"
+   "free": "quickstart",
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Vampire: The Masquerade V5",
@@ -2114,7 +2186,14 @@
     "отношения"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "official",
+    "roll20": true,
+    "alchemy": true,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Mutant: Year Zero",
@@ -2154,7 +2233,14 @@
     "приключение"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "official",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": true
+   }
   },
   {
    "name": "Alien RPG",
@@ -2321,7 +2407,14 @@
     "песочница"
    ],
    "dice": "разные кубы",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "official",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Traveller (Mongoose 2e)",
@@ -2357,7 +2450,15 @@
     "приключение"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "official",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": true,
+    "demiplane": false,
+    "note": "оф. система от Mongoose, контент-модулей пока нет"
+   }
   },
   {
    "name": "Stars Without Number",
@@ -2520,7 +2621,14 @@
     "билдострой"
    ],
    "dice": "разные кубы",
-   "free": "full"
+   "free": "full",
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "The Expanse",
@@ -3041,7 +3149,14 @@
     "выживание"
    ],
    "dice": "d20",
-   "free": "full"
+   "free": "full",
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Trophy Dark",
@@ -3260,7 +3375,14 @@
     "монстры"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "City of Mist",
@@ -3722,7 +3844,14 @@
     "тактика"
    ],
    "dice": "разные кубы",
-   "free": "quickstart"
+   "free": "quickstart",
+   "vtt": {
+    "foundry": "official",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": true,
+    "demiplane": false
+   }
   },
   {
    "name": "GURPS 4e",
@@ -3876,7 +4005,14 @@
     "магия"
    ],
    "dice": "разные кубы",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Index Card RPG",
@@ -3914,7 +4050,14 @@
     "тактика"
    ],
    "dice": "разные кубы",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Эра Водолея",
@@ -4253,7 +4396,14 @@
     "отношения"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Broken Compass",
@@ -4325,7 +4475,15 @@
     "тактика"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": true,
+    "fantasy_grounds": false,
+    "demiplane": false,
+    "note": "официальный релиз на Alchemy"
+   }
   },
   {
    "name": "Neuroshima",
