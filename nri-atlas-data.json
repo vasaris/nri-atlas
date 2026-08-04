@@ -1439,8 +1439,9 @@
    "russian_origin": false,
    "localization": {
     "status": "официальная",
-    "title": "Into the Odd (рус. издание); Cairn — люб. переводы",
-    "publisher": "издатель уточняется"
+    "title": "Cairn 2e — полный перевод (бета); Into the Odd — рус. издание",
+    "publisher": "Hex Cat, CC-BY-SA (Cairn); издатель ItO уточняется",
+    "url": "https://ru.cairnrpg.com"
    },
    "scores": {
     "gm": 8,
