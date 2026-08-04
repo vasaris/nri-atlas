@@ -6,7 +6,7 @@
   "systems": 150,
   "license": "CC-BY-4.0",
   "attribution": "Данные: НРИ-Атлас Ивана Трифонова (vasaris.github.io/nri-atlas). Оценки авторские, шкалы описаны в методологии атласа.",
-  "vtt_methodology": "Поле vtt: поддержка виртуальных столов, верифицирована по витринам платформ и страницам издателей 04.08.2026 (батчи 1–3 из 6 — топ-75 рейтинга; отложены 3 строки). foundry=official означает: издатель официально продаёт/выпускает свой контент или систему на платформе. Бинарные платформы = играбельная поддержка (рулсет, лист или контент). Отсутствие поля vtt = ещё не проверялось; foundry=none во всех полях = проверено, поддержки нет."
+  "vtt_methodology": "Поле vtt: поддержка виртуальных столов, верифицирована по витринам платформ и страницам издателей 04.08.2026 (батчи 1–4 из 6 — топ-100 рейтинга; отложено 6 строк). foundry=official означает: издатель официально продаёт/выпускает свой контент или систему на платформе. Бинарные платформы = играбельная поддержка (рулсет, лист или контент). Отсутствие поля vtt = ещё не проверялось; foundry=none во всех полях = проверено, поддержки нет."
  },
  "axes": [
   {
@@ -676,7 +676,14 @@
     "приключение"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "official",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Forbidden Lands",
@@ -807,7 +814,14 @@
     "отношения"
    ],
    "dice": "разные кубы",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Pendragon 6",
@@ -887,7 +901,14 @@
     "приключение"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Mouse Guard",
@@ -1133,7 +1154,15 @@
     "песочница"
    ],
    "dice": "d100",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false,
+    "note": "оф. модули Chaosium анонсированы"
+   }
   },
   {
    "name": "Grimwild",
@@ -1259,7 +1288,14 @@
     "героика"
    ],
    "dice": "d6",
-   "free": "full"
+   "free": "full",
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Root: The RPG",
@@ -1299,7 +1335,14 @@
     "отношения"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Avatar Legends",
@@ -1640,7 +1683,14 @@
     "трагедия"
    ],
    "dice": "d20",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Call of Cthulhu 7e",
@@ -1863,7 +1913,15 @@
     "магия"
    ],
    "dice": "d100",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false,
+    "note": "Foundry — установка по манифесту с GitHub"
+   }
   },
   {
    "name": "Kult: Divinity Lost",
@@ -2329,7 +2387,14 @@
     "путешествие"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "official",
+    "roll20": true,
+    "alchemy": true,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Blade Runner",
@@ -2744,7 +2809,14 @@
     "отношения"
    ],
    "dice": "d20",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Star Wars (FFG/Edge)",
@@ -3068,7 +3140,14 @@
     "интриги"
    ],
    "dice": "разные кубы",
-   "free": "full"
+   "free": "full",
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": true,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Mörk Borg",
@@ -3966,7 +4045,14 @@
     "героика"
    ],
    "dice": "разные кубы",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Numenera / Cypher",
@@ -4132,7 +4218,15 @@
     "интриги"
    ],
    "dice": "разные кубы",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "none",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false,
+    "note": "проверено — играбельной поддержки нет"
+   }
   },
   {
    "name": "1000 рентген в час",
@@ -4315,7 +4409,14 @@
     "война"
    ],
    "dice": "d100",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "official",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Household",
@@ -4729,7 +4830,15 @@
     "приключение"
    ],
    "dice": "d20",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "official",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false,
+    "note": "поддержка Alchemy анонсирована"
+   }
   },
   {
    "name": "DC20",
@@ -4803,7 +4912,14 @@
     "билдострой"
    ],
    "dice": "d20",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "official",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": true,
+    "demiplane": true
+   }
   },
   {
    "name": "Tales of the Valiant",
@@ -4914,7 +5030,14 @@
     "юмор"
    ],
    "dice": "d20",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "official",
+    "roll20": false,
+    "alchemy": true,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Kids on Bikes",
@@ -5455,7 +5578,14 @@
     "трагедия"
    ],
    "dice": "d20",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Golden Sky Stories",
@@ -5566,7 +5696,14 @@
     "билдострой"
    ],
    "dice": "d20",
-   "free": "quickstart"
+   "free": "quickstart",
+   "vtt": {
+    "foundry": "official",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": true,
+    "demiplane": true
+   }
   },
   {
    "name": "Royal Blood",
@@ -5677,7 +5814,15 @@
     "расследование"
    ],
    "dice": "разные кубы",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "none",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false,
+    "note": "проверено — играбельной поддержки нет"
+   }
   },
   {
    "name": "Рождественская Эдда",
@@ -5941,7 +6086,14 @@
     "путешествие"
    ],
    "dice": "разные кубы",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Mutants & Masterminds",
@@ -5977,7 +6129,14 @@
     "билдострой"
    ],
    "dice": "d20",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": true,
+    "demiplane": false
+   }
   },
   {
    "name": "Lady Blackbird",

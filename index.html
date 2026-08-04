@@ -520,10 +520,31 @@ const VTT={
  "Legend of the Five Rings 5e":[1,1,0,0,0],
  /* добавления 04.08.2026 */
  "Eat the Reich":[1,0,0,0,0],
+ /* батч 4 (строки 76–100 рейтинга), верифицировано 04.08.2026; отложены: Broken Compass, Lady Blackbird, Break!! */
+ "RuneQuest: Glorantha":[1,1,0,0,0],
+ "Root: The RPG":[1,1,0,0,0],
+ "Star Trek Adventures 2e":[1,1,0,0,0],
+ "Pirate Borg":[2,0,1,0,0],
+ "Unknown Armies 3":[1,0,0,0,0],
+ "Cosmere RPG":[2,1,0,1,1],
+ "Ars Magica 5":[1,1,0,0,0],
+ "Nimble 2":[2,0,0,0,0],
+ "Starfinder":[2,1,0,1,1],
+ "Death in Space":[1,1,0,0,0],
+ "Degenesis":[1,0,1,0,0],
+ "Age of Sigmar: Soulbound":[2,0,0,0,0],
+ "Burning Wheel":[1,0,0,0,0],
+ "Dungeon World":[1,1,0,0,0],
+ "WH40k: Imperium Maledictum":[2,0,0,0,0],
+ "AGON":[1,0,0,0,0],
+ "Coriolis: The Third Horizon":[2,1,1,0,0],
+ "CY_BORG":[1,1,0,0,0],
+ "Mutants & Masterminds":[1,1,0,1,0],
+ "Genesys":[1,1,0,0,0],
 };
 /* Проверено — поддержки нет ни на одной из пяти платформ (дата в методологии). Бейдж не показываем. */
-const VTT_NONE=new Set(["Trophy Dark","Trophy Gold","Dread","The Between"]);
-const VTT_NOTE={"Dolmenwood":"оф. система Foundry — ранний доступ","Vaesen":"Alchemy — в разработке у Free League","Ten Candles":"на Roll20 — аддон-симулятор свечей","Slugblaster":"есть оф. онлайн-формат Turbo вне классических VTT","Traveller (Mongoose 2e)":"оф. система от Mongoose, контент-модулей пока нет","Symbaroum":"на Alchemy есть Ruins of Symbaroum (5e-версия)","Outgunned":"официальный релиз на Alchemy","Mouse Guard":"Foundry-система давно не обновлялась"};
+const VTT_NONE=new Set(["Trophy Dark","Trophy Gold","Dread","The Between","Красная Земля (Fate)","По ту сторону Врат"]);
+const VTT_NOTE={"Dolmenwood":"оф. система Foundry — ранний доступ","Vaesen":"Alchemy — в разработке у Free League","Ten Candles":"на Roll20 — аддон-симулятор свечей","Slugblaster":"есть оф. онлайн-формат Turbo вне классических VTT","Traveller (Mongoose 2e)":"оф. система от Mongoose, контент-модулей пока нет","Symbaroum":"на Alchemy есть Ruins of Symbaroum (5e-версия)","Outgunned":"официальный релиз на Alchemy","Mouse Guard":"Foundry-система давно не обновлялась","RuneQuest: Glorantha":"оф. модули Chaosium анонсированы","Unknown Armies 3":"Foundry — установка по манифесту с GitHub","Nimble 2":"поддержка Alchemy анонсирована"};
 const VTT_PLAT=["Foundry","Roll20","Alchemy","Fantasy Grounds","Demiplane"];
 function vttTip(n){const v=VTT[n];if(!v)return"";
  const parts=[];
