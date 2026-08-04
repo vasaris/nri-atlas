@@ -306,7 +306,7 @@
     <div class="row"><span>Кубы</span><select id="fDice"><option value="">Любые</option><option>d20</option><option>d100</option><option>d6</option><option>d12</option><option>разные кубы</option><option>карты и другое</option></select></div>
     <div class="row"><span>Год издания</span><select id="fYear"><option value="0">Любой</option><option value="2010">2010+</option><option value="2015">2015+</option><option value="2020">2020+</option></select></div>
     <div class="row"><span>Только с RU-локализацией</span><label class="toggle"><input type="checkbox" id="fRu"><span class="sw"></span></label></div>
-    <div class="row"><span>Только с бесплатной версией</span><label class="toggle"><input type="checkbox" id="fFree"><span class="sw"></span></label></div>
+    <div class="row"><span>Бесплатная версия</span><select id="fFree"><option value="">Неважно</option><option value="f">Полные правила</option><option value="q">Хотя бы квикстарт</option></select></div>
     <div class="row"><span>Только российские</span><label class="toggle"><input type="checkbox" id="fRuO"><span class="sw"></span></label></div>
     <div class="row"><span>Скрыть низкую уверенность</span><label class="toggle"><input type="checkbox" id="fConf"><span class="sw"></span></label></div>
   </div>
@@ -333,6 +333,7 @@
 <p><span class="mk">Десять осей, шкала 0–10.</span> <b>Отдача для мастера</b> — интересно ли готовить и вести · <b>Лёгкость ведения</b> — сколько сил съедают подготовка и правила · <b>Отдача для игроков</b> · <b>Отклик сообщества</b> — приём реальными столами, не продажи · <b>Качество механики</b> — насколько хорошо собраны правила и служат ли жанру · <b>Тон</b> — <i>шкала, не оценка:</i> 0 — комедия, 5 — универсал, 10 — тяжёлое «стекло» · <b>Игра одного вечера</b> — 3–4 часа, с нуля, с незнакомцами · <b>Длинная кампания</b> — раскрывается ли на дистанции · <b>Дружелюбие к новичкам</b> · <b>Материалы и поддержка</b> — живость линейки, приключения, инструменты.</p>
 <p><span class="mk">Формула.</span> Итог = Σ(вес × оценка) / Σ(вес × 10). Веса — ползунками; <b>пресеты</b> — девять контрастных профилей задач: каждый весит только определяющие его оси, остальные ставит в ноль, иначе общее качество систем задавило бы разницу между задачами. Два пресета-настроения — «Быстрое приключение» и «Смех и веселье» — дополнительно сужают список по тегу; любой другой пресет или движение ползунка снимает это сужение. Любое движение ползунка — режим «Свои веса». <b>«Мне повезёт»</b> крутит рулетку среди строк, прошедших текущие фильтры.</p>
 <p><span class="mk">На чём основаны оценки.</span> Тексты правил и практика систем; задокументированный приём сообществом — рецензии, обсуждения, соотношение продаж и реальной игры; история линейки. Оценки <b>экспертные, а не измеренные прибором</b>: метка уверенности (В / С / Н) показывает, насколько прочна база под строкой.</p>
+<p><span class="mk">Открытые данные.</span> Все данные атласа доступны одним файлом: <a href="nri-atlas-data.json">nri-atlas-data.json</a> — лицензия CC-BY 4.0, используйте свободно со ссылкой на атлас.</p>
 <p><span class="mk">Что сознательно не учитывается.</span> Цена и доступность книг (меняются по странам и времени), качество конкретных изданий и переводов, вкусы конкретного стола — для этого и существуют ползунки.</p>
 </div>
 </div>
@@ -424,6 +425,10 @@ function diceCat(d){
  if(f==="Fate")return "разные кубы";
  if(f==="2d20"||f==="d20-семья"||f==="OSR / минимализм")return "d20";
  return "разные кубы";}
+/* Официальные бесплатные квикстарты и стартовые наборы (сверх полных бесплатных FREE) */
+const FREE_QS=new Set(["D&D 5e / 5.5e","Starfinder","Call of Cthulhu 7e","Delta Green",
+ "Dragonbane","Symbaroum","Vaesen","Alien RPG","Kult: Divinity Lost","Fabula Ultima",
+ "Savage Worlds SWADE","GURPS 4e","Daggerheart","Cyberpunk RED"]);
 /* Официальные бесплатные версии (полные правила или играбельная база) */
 const FREE=new Set(["Into the Odd / Cairn","Mausritter","Lancer","Eclipse Phase 2e","Worlds Without Number","Stars Without Number","Grimwild","Liminal Horror","Dungeon World","FATE Core","Pathfinder 2e","Mothership 1e","Mörk Borg","Degenesis","Cities Without Number","Godbound","Lady Blackbird"]);
 /* Глоссарий семейств движков — одна строка без птичьего языка */
@@ -627,9 +632,9 @@ const genSel=document.getElementById("fGen");
 [...new Set(DATA.map(d=>d.g))].sort().forEach(g=>{const o=document.createElement("option");o.value=g;o.textContent=g;genSel.appendChild(o);});
 const famSel=document.getElementById("fFam");
 [...new Set(DATA.map(d=>fam(d.e)))].sort().forEach(f=>{const o=document.createElement("option");o.value=f;o.textContent=f;famSel.appendChild(o);});
-let q="",fGen="",fDiff=3,fRu=false,fRuO=false,fConf=false,fFam="",fYear=0,fFree=false,fDice="";
+let q="",fGen="",fDiff=3,fRu=false,fRuO=false,fConf=false,fFam="",fYear=0,fFree="",fDice="";
 document.getElementById("fDice").addEventListener("change",e=>{fDice=e.target.value;render();});
-document.getElementById("fFree").addEventListener("change",e=>{fFree=e.target.checked;render();});
+document.getElementById("fFree").addEventListener("change",e=>{fFree=e.target.value;render();});
 famSel.addEventListener("change",e=>{fFam=e.target.value;render();});
 document.getElementById("fYear").addEventListener("change",e=>{fYear=+e.target.value;render();});
 document.getElementById("q").addEventListener("input",e=>{q=e.target.value.toLowerCase().trim();render();});
@@ -638,9 +643,9 @@ document.getElementById("fDiff").addEventListener("change",e=>{fDiff=+e.target.v
 document.getElementById("fRu").addEventListener("change",e=>{fRu=e.target.checked;render();});
 document.getElementById("fRuO").addEventListener("change",e=>{fRuO=e.target.checked;render();});
 document.getElementById("fConf").addEventListener("change",e=>{fConf=e.target.checked;render();});
-document.getElementById("reset").onclick=()=>{W={...PRESETS["Игра как игра"]};q="";fGen="";fDiff=3;fRu=false;fRuO=false;fConf=false;fFam="";fYear=0;fFree=false;fDice="";presetTag="";document.getElementById("fDice").value="";
+document.getElementById("reset").onclick=()=>{W={...PRESETS["Игра как игра"]};q="";fGen="";fDiff=3;fRu=false;fRuO=false;fConf=false;fFam="";fYear=0;fFree="";fDice="";presetTag="";document.getElementById("fDice").value="";document.getElementById("fFree").value="";
  document.getElementById("q").value="";genSel.value="";famSel.value="";document.getElementById("fDiff").value="3";document.getElementById("fYear").value="0";
- ["fRu","fRuO","fConf","fFree"].forEach(id=>document.getElementById(id).checked=false);sync();mark();render();};
+ ["fRu","fRuO","fConf"].forEach(id=>document.getElementById(id).checked=false);sync();mark();render();};
 /* scoring */
 function score(d){let t=0,m=0;AX.forEach(a=>{t+=W[a.k]*d.s[a.k];m+=W[a.k]*10;});return m>0?t/m*100:0;}
 const listEl=document.getElementById("list"),cntEl=document.getElementById("cnt");
@@ -651,7 +656,8 @@ function render(){
   if(fRuO&&!d.ro)return false;
   if(DIFFN[d.d]>fDiff)return false;
   if(fConf&&d.cf==="Н")return false;
-  if(fFree&&!FREE.has(d.n))return false;
+  if(fFree==="f"&&!FREE.has(d.n))return false;
+  if(fFree==="q"&&!FREE.has(d.n)&&!FREE_QS.has(d.n))return false;
   if(fDice&&diceCat(d)!==fDice)return false;
   if(presetTag&&!d.tags.includes(presetTag))return false;
   if(fFam&&fam(d.e)!==fFam)return false;
@@ -725,7 +731,7 @@ function jumpTo(name){
  q=name.toLowerCase();document.getElementById("q").value=name;
  openSet.clear();openSet.add(name);render();
  let t=[...listEl.children].find(x=>x.dataset.k===name);
- if(!t){fGen="";fDiff=3;fFam="";fYear=0;fRu=false;fRuO=false;fConf=false;fFree=false;fDice="";document.getElementById("fDice").value="";document.getElementById("fFree").checked=false;
+ if(!t){fGen="";fDiff=3;fFam="";fYear=0;fRu=false;fRuO=false;fConf=false;fFree="";fDice="";document.getElementById("fDice").value="";document.getElementById("fFree").value="";
   genSel.value="";famSel.value="";document.getElementById("fDiff").value="3";document.getElementById("fYear").value="0";
   ["fRu","fRuO","fConf"].forEach(id=>document.getElementById(id).checked=false);render();
   t=[...listEl.children].find(x=>x.dataset.k===name);}
@@ -931,7 +937,7 @@ function shareUrl(){
  else p.set("w",AX.map(a=>W[a.k]).join(""));
  if(q)p.set("q",q);if(fGen)p.set("g",fGen);if(fDiff!==3)p.set("d",fDiff);
  if(fFam)p.set("f",fFam);if(fYear)p.set("y",fYear);
- if(fRu)p.set("ru","1");if(fRuO)p.set("ro","1");if(fConf)p.set("c","1");if(fFree)p.set("fb","1");
+ if(fRu)p.set("ru","1");if(fRuO)p.set("ro","1");if(fConf)p.set("c","1");if(fFree)p.set("fb",fFree);
  const o=[...openSet];if(o.length)p.set("s",o[o.length-1]);
  const h=p.toString();
  return location.href.split("#")[0]+(h?"#"+h:"");}
@@ -956,7 +962,7 @@ document.getElementById("share").onclick=async()=>{
  if(p.get("ru")){fRu=true;document.getElementById("fRu").checked=true;}
  if(p.get("ro")){fRuO=true;document.getElementById("fRuO").checked=true;}
  if(p.get("c")){fConf=true;document.getElementById("fConf").checked=true;}
- if(p.get("fb")){fFree=true;document.getElementById("fFree").checked=true;}
+ if(p.get("fb")){fFree=p.get("fb")==="1"?"f":p.get("fb");document.getElementById("fFree").value=fFree;}
  if(p.get("s"))openSet.add(p.get("s"));
 }catch(e){}})();
 sync();mark();render();
