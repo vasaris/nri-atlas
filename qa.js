@@ -115,5 +115,58 @@ check(junk.every(j => wizDec(j) === null), 'wz-пермалинк: мусор о
 const broken = DATA.filter(d => !d.n || !d.e || !d.g || !d.note.includes('||') || d.sim.length < 2 || d.tags.length < 1);
 check(broken.length === 0, 'все строки полны (движок, жанр, вердикт, связи, теги)', broken.map(d => d.n));
 
+
+// 10. Дубли ключей в плоских JS-картах (регресс Draw Steel)
+const litOf = (re) => (js.match(re) || ['', ''])[1];
+const flatLits = {
+  DICE_OVR: litOf(/const DICE_OVR=(\{[\s\S]*?\});/),
+  VTT: litOf(/const VTT=(\{[\s\S]*?\});/),
+  VTT_NOTE: litOf(/const VTT_NOTE=(\{[\s\S]*?\});/),
+  PRESET_TAG: litOf(/const PRESET_TAG=(\{[^}]+\});/),
+  OFFICIAL: litOf(/const OFFICIAL=(\{[\s\S]*?\});/)
+};
+let mapDups = [];
+Object.entries(flatLits).forEach(([nm, lit]) => {
+  const k = [...lit.matchAll(/"((?:[^"\\]|\\.)+)"\s*:/g)].map(x => x[1]);
+  k.filter((x, i) => k.indexOf(x) !== i).forEach(x => mapDups.push(nm + ':' + x));
+});
+check(mapDups.length === 0, 'в JS-картах нет дублей ключей', mapDups);
+
+// 11. Оценки: ровно десять целых осей 0-10
+const badScores = DATA.filter(d => Object.keys(d.s).length !== AX.length ||
+  !AX.every(a => Number.isInteger(d.s[a.k]) && d.s[a.k] >= 0 && d.s[a.k] <= 10)).map(d => d.n);
+check(badScores.length === 0, 'оценки: десять целых осей 0-10 у каждой строки', badScores);
+
+// 12. VTT_NOTE без сирот
+eval('var VTT_NOTE=' + js.match(/const VTT_NOTE=(\{[\s\S]*?\});/)[1]);
+const noteOrph = Object.keys(VTT_NOTE).filter(n => !names.has(n));
+check(noteOrph.length === 0, 'VTT_NOTE без сирот', noteOrph);
+
+// 13. Паритет JSON <-> HTML: html - эталон, data.json обязан совпадать
+eval(cut('function diceCat', '/* Выбор автора'));
+const J = JSON.parse(fs.readFileSync('nri-atlas-data.json', 'utf8'));
+const jBy = new Map(J.systems.map(s => [s.name, s]));
+const onlyH = DATA.filter(d => !jBy.has(d.n)).map(d => d.n);
+const onlyJ = J.systems.filter(s => !names.has(s.name)).map(s => s.name);
+check(!onlyH.length && !onlyJ.length && J.systems.length === DATA.length,
+  'паритет: состав строк совпадает с data.json', { onlyH, onlyJ });
+const vc = v => v === true ? 1 : v === false ? 0 : v === 'official' ? 2 : v === 'community' ? 1 : v === 'none' ? 0 : NaN;
+let par = [];
+DATA.forEach(d => {
+  const s = jBy.get(d.n); if (!s) return;
+  if (s.year !== d.y) par.push(d.n + ':year');
+  if (s.russian_edition !== d.ru) par.push(d.n + ':ru');
+  if (s.engine !== d.e) par.push(d.n + ':engine');
+  if ((s.difficulty || null) !== d.d) par.push(d.n + ':difficulty');
+  const tier = FREE.has(d.n) ? 'full' : FREE_QS.has(d.n) ? 'quickstart' : null;
+  if ((s.free || null) !== tier) par.push(d.n + ':free');
+  if (s.dice !== diceCat(d)) par.push(d.n + ':dice');
+  const hv = VTT[d.n], jv = s.vtt || null;
+  const jArr = jv ? [vc(jv.foundry), vc(jv.roll20), vc(jv.alchemy), vc(jv.fantasy_grounds), vc(jv.demiplane)] : null;
+  if (hv) { if (!jArr || jArr.join() !== hv.join()) par.push(d.n + ':vtt'); }
+  else if (VTT_NONE.has(d.n)) { if (jArr && jArr.some(x => x)) par.push(d.n + ':vtt-none'); }
+});
+check(par.length === 0, 'паритет JSON <-> HTML: год, RU, движок, сложность, free, кубы, VTT', par.slice(0, 15));
+
 console.log(fails === 0 ? '\nБАТАРЕЯ ЗЕЛЁНАЯ' : '\nПРОВАЛОВ: ' + fails);
 process.exit(fails === 0 ? 0 : 1);

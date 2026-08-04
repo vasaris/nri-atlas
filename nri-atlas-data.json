@@ -106,7 +106,8 @@
         "alchemy": "official",
         "fantasy_grounds": true,
         "demiplane": true
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Pathfinder 2e",
@@ -154,7 +155,8 @@
         "alchemy": true,
         "fantasy_grounds": true,
         "demiplane": true
-      }
+      },
+      "difficulty": "Сложно"
     },
     {
       "name": "Pathfinder 1e",
@@ -202,7 +204,8 @@
         "alchemy": false,
         "fantasy_grounds": true,
         "demiplane": false
-      }
+      },
+      "difficulty": "Сложно"
     },
     {
       "name": "13th Age",
@@ -245,7 +248,8 @@
         "alchemy": false,
         "fantasy_grounds": true,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Shadowdark",
@@ -288,7 +292,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Old-School Essentials",
@@ -334,7 +339,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Dungeon Crawl Classics",
@@ -377,7 +383,8 @@
         "alchemy": false,
         "fantasy_grounds": true,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Worlds Without Number",
@@ -420,7 +427,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Draw Steel",
@@ -464,7 +472,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Сложно"
     },
     {
       "name": "Daggerheart",
@@ -510,7 +519,8 @@
         "fantasy_grounds": false,
         "demiplane": true,
         "note": "официальные пакеты Darrington Press заведены в каталоге Foundry со статусом Unreleased — поддержка анонсирована, но не вышла"
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Dragonbane",
@@ -553,7 +563,8 @@
         "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Symbaroum",
@@ -600,7 +611,8 @@
         "fantasy_grounds": true,
         "demiplane": false,
         "note": "на Alchemy есть Ruins of Symbaroum (5e-версия)"
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Warhammer Fantasy RP 4e",
@@ -647,7 +659,8 @@
         "alchemy": false,
         "fantasy_grounds": true,
         "demiplane": false
-      }
+      },
+      "difficulty": "Сложно"
     },
     {
       "name": "Age of Sigmar: Soulbound",
@@ -690,7 +703,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Forbidden Lands",
@@ -737,7 +751,8 @@
         "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "The One Ring 2e",
@@ -784,7 +799,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Ars Magica 5",
@@ -828,7 +844,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Сложно"
     },
     {
       "name": "Pendragon 6",
@@ -872,7 +889,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Burning Wheel",
@@ -915,7 +933,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Сложно"
     },
     {
       "name": "Mouse Guard",
@@ -963,7 +982,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "Foundry-система давно не обновлялась"
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Fabula Ultima",
@@ -1006,7 +1026,8 @@
         "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Ryuutama",
@@ -1050,7 +1071,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "контент англ. издания включён с разрешения Kotodama"
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "7th Sea 2e",
@@ -1093,7 +1115,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Legend of the Five Rings 5e",
@@ -1139,7 +1162,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Сложно"
     },
     {
       "name": "RuneQuest: Glorantha",
@@ -1184,7 +1208,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "оф. модули Chaosium анонсированы"
-      }
+      },
+      "difficulty": "Сложно"
     },
     {
       "name": "Grimwild",
@@ -1227,7 +1252,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Mythic Bastionland",
@@ -1271,7 +1297,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Dungeon World",
@@ -1317,7 +1344,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Root: The RPG",
@@ -1364,7 +1392,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Avatar Legends",
@@ -1410,7 +1439,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Heart: The City Beneath",
@@ -1456,7 +1486,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Spire",
@@ -1499,7 +1530,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Into the Odd / Cairn",
@@ -1547,7 +1579,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Electric Bastionland",
@@ -1594,7 +1627,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Mausritter",
@@ -1641,7 +1675,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Knave 2e",
@@ -1683,7 +1718,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "CY_BORG",
@@ -1726,7 +1762,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Call of Cthulhu 7e",
@@ -1774,7 +1811,8 @@
         "alchemy": "official",
         "fantasy_grounds": true,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Delta Green",
@@ -1820,7 +1858,8 @@
         "alchemy": false,
         "fantasy_grounds": true,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Trail of Cthulhu",
@@ -1866,7 +1905,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Night's Black Agents",
@@ -1909,7 +1949,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Сложно"
     },
     {
       "name": "Unknown Armies 3",
@@ -1959,7 +2000,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "Foundry — установка по манифесту с GitHub"
-      }
+      },
+      "difficulty": "Сложно"
     },
     {
       "name": "Kult: Divinity Lost",
@@ -2002,7 +2044,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Vampire: The Masquerade V5",
@@ -2050,7 +2093,8 @@
         "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": true
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Werewolf: The Apocalypse W5",
@@ -2093,7 +2137,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": true
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Mage: The Ascension 20th",
@@ -2139,7 +2184,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Сложно"
     },
     {
       "name": "Curseborne",
@@ -2182,7 +2228,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Candela Obscura",
@@ -2224,7 +2271,8 @@
         "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Vaesen",
@@ -2271,7 +2319,8 @@
         "fantasy_grounds": true,
         "demiplane": false,
         "note": "Alchemy — в разработке у Free League"
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Tales from the Loop",
@@ -2318,7 +2367,8 @@
         "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Mutant: Year Zero",
@@ -2365,7 +2415,8 @@
         "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": true
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Alien RPG",
@@ -2413,7 +2464,8 @@
         "alchemy": true,
         "fantasy_grounds": true,
         "demiplane": true
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Coriolis: The Third Horizon",
@@ -2460,7 +2512,8 @@
         "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Blade Runner",
@@ -2503,7 +2556,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Twilight 2000 4e",
@@ -2546,7 +2600,8 @@
         "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Traveller (Mongoose 2e)",
@@ -2590,7 +2645,8 @@
         "fantasy_grounds": true,
         "demiplane": false,
         "note": "оф. система от Mongoose, контент-модулей пока нет"
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Stars Without Number",
@@ -2633,7 +2689,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Mothership 1e",
@@ -2676,7 +2733,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Eclipse Phase 2e",
@@ -2723,7 +2781,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Сложно"
     },
     {
       "name": "Lancer",
@@ -2767,7 +2826,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Сложно"
     },
     {
       "name": "The Expanse",
@@ -2809,7 +2869,8 @@
         "alchemy": false,
         "fantasy_grounds": true,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Dune 2d20",
@@ -2856,7 +2917,8 @@
         "alchemy": true,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Star Trek Adventures 2e",
@@ -2903,7 +2965,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Star Wars (FFG/Edge)",
@@ -2946,7 +3009,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Cyberpunk RED",
@@ -2992,7 +3056,8 @@
         "alchemy": false,
         "fantasy_grounds": true,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Shadowrun 6e",
@@ -3040,7 +3105,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Сложно"
     },
     {
       "name": "The Sprawl",
@@ -3084,7 +3150,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "проверено — выделенной поддержки нет; играбельна через generic-PbtA системы"
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Scum & Villainy",
@@ -3132,7 +3199,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Slugblaster",
@@ -3177,7 +3245,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "есть оф. онлайн-формат Turbo вне классических VTT"
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Vaults of Vaarn",
@@ -3220,7 +3289,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Degenesis",
@@ -3263,7 +3333,8 @@
         "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Сложно"
     },
     {
       "name": "Mörk Borg",
@@ -3309,7 +3380,8 @@
         "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Liminal Horror",
@@ -3352,7 +3424,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Trophy Dark",
@@ -3399,7 +3472,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "проверено — играбельной поддержки нет"
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Ten Candles",
@@ -3445,7 +3519,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "на Roll20 — аддон-симулятор свечей"
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Dread",
@@ -3488,7 +3563,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "проверено — играбельной поддержки нет"
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Monsterhearts 2",
@@ -3531,7 +3607,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Urban Shadows 2e",
@@ -3578,7 +3655,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "City of Mist",
@@ -3625,7 +3703,8 @@
         "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Monster of the Week",
@@ -3671,7 +3750,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Brindlewood Bay",
@@ -3714,7 +3794,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "The Between",
@@ -3759,7 +3840,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "проверено — играбельной поддержки нет"
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Apocalypse World",
@@ -3806,7 +3888,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Masks",
@@ -3849,7 +3932,8 @@
         "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Triangle Agency",
@@ -3893,7 +3977,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Paranoia (Perfect Edition)",
@@ -3936,7 +4021,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "оф. Roll20-версия анонсировалась Mongoose"
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Feng Shui 2",
@@ -3984,7 +4070,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "системы на GitLab — установка по манифесту"
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "FATE Core",
@@ -4031,7 +4118,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "система Fate Core Official — с одобрения Evil Hat"
-      }
+      },
+      "difficulty": "Сложно"
     },
     {
       "name": "Savage Worlds SWADE",
@@ -4078,7 +4166,8 @@
         "alchemy": false,
         "fantasy_grounds": true,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "GURPS 4e",
@@ -4125,7 +4214,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Сложно"
     },
     {
       "name": "Cortex Prime",
@@ -4167,7 +4257,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Сложно"
     },
     {
       "name": "Genesys",
@@ -4213,7 +4304,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Numenera / Cypher",
@@ -4256,7 +4348,8 @@
         "fantasy_grounds": false,
         "demiplane": false
       },
-      "localization": null
+      "localization": null,
+      "difficulty": "Средне"
     },
     {
       "name": "Index Card RPG",
@@ -4301,7 +4394,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Эра Водолея",
@@ -4348,7 +4442,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "проверено — играбельной поддержки нет"
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Красная Земля (Fate)",
@@ -4396,7 +4491,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "проверено — играбельной поддержки нет"
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "1000 рентген в час",
@@ -4443,7 +4539,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "проверено — играбельной поддержки нет"
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Shinobigami",
@@ -4487,7 +4584,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "проверено — на пяти западных платформах нет; японская сцена играет на Cocofolia и Udonarium"
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Zweihänder",
@@ -4530,7 +4628,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Сложно"
     },
     {
       "name": "WH40k: Wrath & Glory",
@@ -4573,7 +4672,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "WH40k: Imperium Maledictum",
@@ -4616,7 +4716,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Household",
@@ -4662,7 +4763,8 @@
         "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Broken Compass",
@@ -4705,7 +4807,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Outgunned",
@@ -4749,7 +4852,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "официальный релиз на Alchemy"
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Neuroshima",
@@ -4792,7 +4896,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "проверено — играбельной поддержки нет"
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Dzikie Pola",
@@ -4836,7 +4941,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "проверено — играбельной поддержки нет"
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "The Witcher (R.Talsorian)",
@@ -4883,7 +4989,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Dračí doupě",
@@ -4926,7 +5033,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "проверено — заброшенный фан-мод; у наследницы Dračí Hlídka есть оф. Foundry-модуль и Roll20-лист"
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Příběhy Impéria",
@@ -4969,7 +5077,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "проверено — играбельной поддержки нет"
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Fallout 2d20",
@@ -5012,7 +5121,8 @@
         "alchemy": "official",
         "fantasy_grounds": true,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Old Gods of Appalachia",
@@ -5055,7 +5165,8 @@
         "fantasy_grounds": false,
         "demiplane": true,
         "note": "на Foundry ведут через Cypher-систему, без выделенного профиля"
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Nimble 2",
@@ -5099,7 +5210,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "поддержка Alchemy анонсирована"
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "DC20",
@@ -5144,7 +5256,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "Alchemy обещана кикстартер-стретчем"
-      }
+      },
+      "difficulty": "Сложно"
     },
     {
       "name": "Cosmere RPG",
@@ -5188,7 +5301,8 @@
         "alchemy": false,
         "fantasy_grounds": true,
         "demiplane": true
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Tales of the Valiant",
@@ -5231,7 +5345,8 @@
         "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": true
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Level Up: Advanced 5e",
@@ -5274,7 +5389,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Сложно"
     },
     {
       "name": "Pirate Borg",
@@ -5320,7 +5436,8 @@
         "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Kids on Bikes",
@@ -5363,7 +5480,8 @@
         "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Break!!",
@@ -5407,7 +5525,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "платный корник-модуль анонсирован издателем"
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Blades in the Dark",
@@ -5454,7 +5573,8 @@
         "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Band of Blades",
@@ -5501,7 +5621,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Сложно"
     },
     {
       "name": "The Wildsea",
@@ -5544,7 +5665,8 @@
         "alchemy": "official",
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Legend in the Mist",
@@ -5587,7 +5709,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Shadow of the Demon Lord",
@@ -5630,7 +5753,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "The Dark Eye (DSA)",
@@ -5673,7 +5797,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Сложно"
     },
     {
       "name": "Dolmenwood",
@@ -5717,7 +5842,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "оф. система Foundry — ранний доступ"
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Stonetop",
@@ -5760,7 +5886,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Trophy Gold",
@@ -5804,7 +5931,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "проверено — играбельной поддержки нет"
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Cities Without Number",
@@ -5847,7 +5975,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Death in Space",
@@ -5890,7 +6019,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Golden Sky Stories",
@@ -5933,7 +6063,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "проверено — на пяти западных платформах нет; японская сцена играет на Cocofolia и Udonarium"
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "His Majesty the Worm",
@@ -5976,7 +6107,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "проверено — играбельной поддержки нет"
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Starfinder",
@@ -6023,7 +6155,8 @@
         "alchemy": false,
         "fantasy_grounds": true,
         "demiplane": true
-      }
+      },
+      "difficulty": "Сложно"
     },
     {
       "name": "Royal Blood",
@@ -6067,7 +6200,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "проверено — играбельной поддержки нет"
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Everway",
@@ -6110,7 +6244,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "проверено — играбельной поддержки нет"
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "По ту сторону Врат",
@@ -6158,7 +6293,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "проверено — играбельной поддержки нет"
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Рождественская Эдда",
@@ -6206,7 +6342,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "проверено — играбельной поддержки нет"
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Hunter: The Reckoning 5e",
@@ -6249,7 +6386,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": true
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Godbound",
@@ -6293,7 +6431,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "проверено — играбельной поддержки нет"
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "The Electric State",
@@ -6336,7 +6475,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Salvage Union",
@@ -6379,7 +6519,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Night Witches",
@@ -6427,7 +6568,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "проверено — играбельной поддержки нет"
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "AGON",
@@ -6474,7 +6616,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Mutants & Masterminds",
@@ -6517,7 +6660,8 @@
         "alchemy": false,
         "fantasy_grounds": true,
         "demiplane": false
-      }
+      },
+      "difficulty": "Сложно"
     },
     {
       "name": "Lady Blackbird",
@@ -6564,7 +6708,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "проверено — играбельной поддержки нет"
-      }
+      },
+      "difficulty": "Легко"
     },
     {
       "name": "Dresden Files (Fate)",
@@ -6608,7 +6753,8 @@
         "fantasy_grounds": false,
         "demiplane": false,
         "note": "на Foundry — через generic-Fate системы"
-      }
+      },
+      "difficulty": "Сложно"
     },
     {
       "name": "Vampire: The Masquerade V20",
@@ -6655,7 +6801,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Средне"
     },
     {
       "name": "Shadowrun 5e",
@@ -6699,7 +6846,8 @@
         "alchemy": false,
         "fantasy_grounds": false,
         "demiplane": false
-      }
+      },
+      "difficulty": "Сложно"
     },
     {
       "name": "Eat the Reich",
@@ -6742,7 +6890,8 @@
         "demiplane": false
       },
       "free": null,
-      "localization": null
+      "localization": null,
+      "difficulty": "Легко"
     },
     {
       "name": "Золото и прах",
@@ -6788,7 +6937,8 @@
         "demiplane": false,
         "note": "проверено — играбельной поддержки нет"
       },
-      "free": null
+      "free": null,
+      "difficulty": "Легко"
     }
   ]
 }

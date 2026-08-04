@@ -1,6 +1,6 @@
 // Линк-чекер локализаций и официальных ссылок НРИ-Атласа.
-// Запуск: node linkcheck.js. Падает (код 1) только на мёртвых ссылках (сеть/404/410);
-// 403/429/5xx считает предупреждением — магазины часто отбивают ботов, это не смерть ссылки.
+// Запуск: node linkcheck.js. Падает (код 1) только на мёртвых ссылках (HTTP 404/410);
+// 403/429/5xx и сетевые сбои (после одной повторной попытки) — предупреждение, не смерть ссылки.
 const fs = require('fs');
 const html = fs.readFileSync('index.html', 'utf8');
 const js = html.match(/<script[^>]*>([\s\S]*?)<\/script>/)[1];
@@ -13,7 +13,7 @@ LOC_OFF.forEach(l => { if (l.u) targets.set(l.u, 'локализация: ' + l.
 Object.entries(OFFICIAL).forEach(([n, u]) => { if (!targets.has(u)) targets.set(u, 'офиц. сайт: ' + n); });
 
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36';
-async function probe(url) {
+async function probe(url, attempt = 1) {
   const ctl = new AbortController();
   const timer = setTimeout(() => ctl.abort(), 15000);
   try {
@@ -22,7 +22,11 @@ async function probe(url) {
     if (r.status === 404 || r.status === 410) return { s: 'DEAD', code: r.status };
     if (r.ok) return { s: 'OK', code: r.status };
     return { s: 'WARN', code: r.status };
-  } catch (e) { clearTimeout(timer); return { s: 'DEAD', code: e.cause?.code || e.name }; }
+  } catch (e) {
+    clearTimeout(timer);
+    if (attempt < 2) { await new Promise(res => setTimeout(res, 2000)); return probe(url, attempt + 1); }
+    return { s: 'WARN', code: 'сеть: ' + (e.cause?.code || e.name) };
+  }
 }
 
 (async () => {
