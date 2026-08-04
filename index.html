@@ -72,6 +72,7 @@
   #lucky{background:var(--wax);border-color:var(--wax);color:var(--parchment-bright);font-weight:500}
   #lucky:hover{background:var(--wax-bright);border-color:var(--wax-bright)}
   /* веса */
+  .whint{font-size:12px;color:var(--faded-deep);margin:0 0 10px;line-height:1.5}
   .fader{margin:0 0 13px}
   .fader .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:3px}
   .fader .nm{font-size:13px;color:var(--parchment);flex:1;min-width:0}
@@ -154,8 +155,9 @@
   .simlab{font-size:12px;color:var(--faded-deep)}
   .simc{display:inline-flex;align-items:center;font-size:13px;color:var(--brass);border:1px solid var(--brass-hairline);border-radius:4px;padding:6px 10px;min-height:32px;cursor:pointer;transition:background 90ms var(--ease),border-color 90ms var(--ease)}
   .simc:hover{background:var(--brass-tint);border-color:var(--brass-line)}
-  .cmpc{display:inline-flex;align-items:center;font-size:13px;color:var(--brass);border:1px solid var(--brass-hairline);border-radius:4px;padding:6px 10px;min-height:32px;cursor:pointer;margin-left:10px;transition:background 90ms var(--ease),border-color 90ms var(--ease),color 90ms var(--ease)}
-  .cmpc:hover{background:var(--brass-tint);border-color:var(--brass-line)}
+  .cmpc,.shrc{display:inline-flex;align-items:center;font-size:13px;color:var(--brass);border:1px solid var(--brass-hairline);border-radius:4px;padding:6px 10px;min-height:32px;cursor:pointer;margin-left:10px;transition:background 90ms var(--ease),border-color 90ms var(--ease),color 90ms var(--ease)}
+  .shrc{margin-left:10px}
+  .cmpc:hover,.shrc:hover{background:var(--brass-tint);border-color:var(--brass-line)}
   .cmpc.on{background:var(--wax);border-color:var(--wax);color:var(--parchment-bright)}
   .dis{display:inline-block;font-size:12px;color:var(--faded-deep);text-decoration:none;border-bottom:1px dotted var(--faded-deep);margin-left:12px}
   .dis:hover{color:var(--faded);border-bottom-color:var(--faded)}
@@ -258,7 +260,7 @@
     .ax .lab span:last-child{font-size:10.5px}
     .row{min-height:44px}
     .chip{min-height:40px}
-    .simc,.cmpc{min-height:40px}
+    .simc,.cmpc,.shrc{min-height:40px}
     .tag{margin-left:10px;font-size:10px}
     .panel{padding:18px 14px 20px}
     #cmpbar{left:12px;right:12px;transform:none;bottom:12px}
@@ -301,7 +303,8 @@
   <label class="rail-head" for="railOpen">Веса и фильтры</label>
   <div class="rail-body">
   <h3>Пресеты весов</h3><div class="presets" id="presets"></div>
-  <h3>Оси (вес 0–5)</h3><div id="faders"></div>
+  <h3>Оси (вес 0–5)</h3>
+  <p class="whint">Ползунок — важность критерия для подбора, а не оценка систем: 0 — не учитывать, 5 — решающий. Подпись под осью говорит, какие системы поднимает высокий вес.</p><div id="faders"></div>
   <div class="divider"></div>
   <h3>Фильтры</h3>
   <div class="filt">
@@ -525,6 +528,7 @@ function vttTip(n){const v=VTT[n];if(!v)return"";
  return parts.join(" · ")+(VTT_NOTE[n]?" · "+VTT_NOTE[n]:"");}
 /* Глоссарий семейств движков — одна строка без птичьего языка */
 const GLOSS={
+ "Mist Engine":"Семейство City of Mist: 2d6 плюс свободные тэги вместо характеристик — персонаж описан фразами, которые дают плюсы к броскам и меняются по ходу истории.",
  "d20-семья":"Наследники D&D: бросаешь двадцатигранник, прибавляешь модификатор и стараешься перебить заданную сложность. Классы и уровни — самая привычная механика хобби.",
  "PbtA-семья":"Powered by the Apocalypse: бросаешь два шестигранника, и самый частый итог — «получилось, но с осложнением». Правила читаются за минуты, историю двигают провалы.",
  "FitD-семья":"Forged in the Dark: кидаешь горсть шестигранников, считается лучший; таймеры угроз тикают, а вместо долгого планирования — флешбэк «я это предусмотрел». Создано для дерзких дел.",
@@ -616,7 +620,7 @@ R("Ten Candles","Ten Candles","Хоррор",2015,"Ч",0,"Легко","В",[7,7,
 R("Dread","Дженга","Хоррор",2005,"—",0,"Легко","В",[8,8,8,8,8,8,9,9,2,4],"Хоррор, где вместо кубов — башня дженги: хочешь действовать — тяни брусок; уронил башню — персонаж погиб. Башня шатается на глазах у всего стола.||Лучший фестивальный аттракцион жанра: правила объясняются одной фразой, зрители собираются сами, дрожь в пальцах настоящая. Одноразовый фокус? Да. Но какой.",["Ten Candles","Mothership 1e","Kids on Bikes"],["хоррор","выживание"]),
 R("Monsterhearts 2","PbtA","Хоррор",2017,"—",0,"Средне","В",[7,6,7,8,8,9,4,4,7,4],"Школа, в которой подростки — буквально монстры: желание, стыд и власть друг над другом бьют больнее клыков, и контроль над сценой всё время уплывает из рук.||Самый острый эмоциональный движок семейства: механика соблазна срабатывает независимо от согласия персонажа — в этом и суть. Строго для своих и со всеми предохранителями за столом.",["Masks","Apocalypse World","Urban Shadows 2e"],["подростки","отношения","хоррор"]),
 R("Urban Shadows 2e","PbtA","Современность",2023,"Да",0,"Средне","В",[7,6,7,7,8,7,4,4,7,4],"Ночная политика большого города: вампиры, охотники и духи делят районы, а каждый долг записывается и однажды будет предъявлен.||Механика долгов — рабочий двигатель интриг: она заставляет фракции обмениваться услугами, и сюжет движется сам. Вторая редакция чище первой; нужен стол, которому политика интереснее охоты на монстров. Первая редакция издана по-русски как «Городские легенды» (Студия 101).",["Monsterhearts 2","Dresden Files (Fate)","Vampire: The Masquerade V5"],["интриги","отношения","монстры"]),
-R("City of Mist","CoM (2d6+тэги)","Современность",2017,"Да",0,"Средне","В",[6,4,7,6,6,6,4,3,7,6],"Нуар о людях, в которых проснулись легенды: детектив с телом обычного человека и силой мифа ведёт дела, где обе половины его жизни тянут в разные стороны.||Тэги вместо характеристик выразительны, но новичков путают — свободной форме нужен опытный ведущий. Линейка передала эстафету наследникам (Otherscape, Legend in the Mist), где та же система стала чище.",["Legend in the Mist","Urban Shadows 2e","The Between"],["расследование","отношения","интриги"]),
+R("City of Mist","Mist Engine","Современность",2017,"Да",0,"Средне","В",[6,4,7,6,6,6,4,3,7,6],"Нуар о людях, в которых проснулись легенды: детектив с телом обычного человека и силой мифа ведёт дела, где обе половины его жизни тянут в разные стороны.||Тэги вместо характеристик выразительны, но новичков путают — свободной форме нужен опытный ведущий. Линейка передала эстафету наследникам (Otherscape, Legend in the Mist), где та же система стала чище.",["Legend in the Mist","Urban Shadows 2e","The Between"],["расследование","отношения","интриги"]),
 R("Monster of the Week","PbtA","Современность",2012,"Ч",0,"Легко","В",[8,8,9,9,8,5,9,8,7,8],"Охотники на нечисть в духе «Баффи» и «Сверхъестественного»: каждая сессия — серия с монстром недели, роли раздаются готовыми архетипами, и даже провал броска толкает историю вперёд.||Самый надёжный вариант «собрались и играем»: объясняется за десять минут, бесплатных мистерий десятки, включая официальные, и он вытянет даже пассивный стол. Идеал открытых столов и фестивалей.",["Brindlewood Bay","Urban Shadows 2e","Apocalypse World"],["расследование","монстры","юмор"]),
 R("Brindlewood Bay","Carved from Brindlewood","Современность",2019,"—",0,"Легко","В",[8,8,8,8,9,6,9,8,6,6],"Старушки из клуба любителей детективов раскрывают убийства в приморском городке — и постепенно замечают, что за уютом прячется культ.||Свежайшая идея детектива за декаду: у тайны нет заранее верного ответа, разгадку собирают сами игроки из улик — и она рождается на глазах. «Она написала убийство» пополам с Лавкрафтом.",["The Between","Monster of the Week","Call of Cthulhu 7e"],["расследование","юмор","хоррор"]),
 R("The Between","Carved from Brindlewood","Хоррор",2022,"—",0,"Средне","В",[8,7,8,8,9,8,6,6,7,4],"Викторианский Лондон, особняк охотников на чудовищ: днём — светские маски и личные тайны, ночью — существа, которых нет в газетах.||Недооценённый шедевр: детектив собирается по правилам Brindlewood, но каждая охота цепляется за прошлое конкретного персонажа. Темп неспешный — для группы, которой личные тайны интереснее погонь.",["Brindlewood Bay","Vaesen","Urban Shadows 2e"],["расследование","хоррор","отношения","интриги"]),
@@ -630,7 +634,7 @@ R("Savage Worlds SWADE","SW","Универсальные",2018,"Да",0,"Сре�
 R("GURPS 4e","GURPS","Универсальные",2004,"Ч",0,"Сложно","В",[5,2,6,6,6,5,2,2,7,9],"Симуляция чего угодно: от каменного века до звёздных империй — одна система, где просчитаны и дуэль на рапирах, и падение с орбиты.||Справочники (Low-Tech, Space) хороши как энциклопедии и полезны ведущему любой системы. Порог сборки кампании высочайший; GURPS читают больше, чем играют, и это устойчивое состояние последних двадцати лет.",["Savage Worlds SWADE","FATE Core","Mutants & Masterminds"],["приключение","тактика","песочница","билдострой"]),
 R("Cortex Prime","Cortex","Универсальные",2020,"—",0,"Сложно","В",[6,4,6,5,7,5,3,3,6,4],"Не игра, а набор деталей: пулы кубов, черты и модули, из которых собирается система под ваш сериал — от супергероики до семейной саги.||Собрать можно что угодно — если уже знаешь, что собираешь: это инструмент дизайнера, не готовый продукт. Официальные сборки (Tales of Xadia) показывают потолок; новичку без опыта конструктор противопоказан.",["FATE Core","GURPS 4e","Genesys"],["приключение","отношения"]),
 R("Genesys","Genesys-кубы","Универсальные",2017,"Да",0,"Средне","В",[6,4,7,6,7,5,4,4,7,6],"Те самые повествовательные кубы, но без «Звёздных войн»: успех с угрозой и провал с удачей в любом жанре, от фэнтези до киберпанка.||Идея переносится хорошо: кому кубы понравились в Star Wars — получит их без лицензии. Поддержка вялая: линейка сеттингов почти остановилась, сообщество держится на самодельных конверсиях.",["Star Wars (FFG/Edge)","Savage Worlds SWADE","FATE Core"],["приключение","героика"]),
-R("Numenera / Cypher","Cypher","Sci-fi",2013,"Да",0,"Средне","В",[7,6,7,7,6,4,5,5,7,8],"Девятый Мир: Земля через миллиард лет, где технологии восьми погибших цивилизаций неотличимы от магии, а персонаж описывается одной фразой.||Вся математика на стороне игроков — вести очень легко, вмешательства ведущего встроены в экономику опыта. Сеттинг сильнее механики: система ровная, местами пресная; линейка Monte Cook Games огромна.",["Old Gods of Appalachia","Savage Worlds SWADE","13th Age"],["приключение","песочница","магия"]),
+R("Numenera / Cypher","Cypher","Sci-fi",2013,"—",0,"Средне","В",[7,6,7,7,6,4,5,5,7,8],"Девятый Мир: Земля через миллиард лет, где технологии восьми погибших цивилизаций неотличимы от магии, а персонаж описывается одной фразой.||Вся математика на стороне игроков — вести очень легко, вмешательства ведущего встроены в экономику опыта. Сеттинг сильнее механики: система ровная, местами пресная; линейка Monte Cook Games огромна.",["Old Gods of Appalachia","Savage Worlds SWADE","13th Age"],["приключение","песочница","магия"]),
 R("Index Card RPG","ICRPG","Универсальные",2017,"Ч",0,"Легко","В",[8,8,7,7,6,4,8,8,5,6],"Конструктор быстрых приключений: цель каждой сцены лежит на столе, таймеры тикают, добыча раздаётся картами — правила подчинены темпу.||Покупается ради инструментов ведущего: таймеры, видимая цель каждой сцены и структура комнат переносимы в любую систему. Как самостоятельная игра прост до утилитарности; хорош для коротких игр без подготовки.",["Into the Odd / Cairn","Shadowdark","Nimble 2"],["приключение","тактика"]),
 R("Эра Водолея","ЭВ d10","Современность",2000,"Да",1,"Средне","В",[4,4,5,4,3,5,3,4,4,2],"Городская мистика России девяностых: тайные ордена в знакомых дворах — первая крупная отечественная ролевая игра.||Историческая веха: тираж 7500, с неё началась русская сцена. Механика эпоху не пережила — сегодня это документ времени и источник сеттинга, а не рабочая система.",["Urban Shadows 2e","Красная Земля (Fate)","Vampire: The Masquerade V5"],["расследование","интриги"]),
 R("Заколдованная Страна","наст.-гибрид","Фэнтези",1990,"Да",1,"Легко","В",[3,4,4,4,2,2,3,5,2,1],"Первая ролевая игра СССР (1990): поле, фишки и классы — гибрид настолки и ролевой игры, по которому страна узнала слово «подземелье».||Музейный экспонат и точка отсчёта отечественной истории хобби; играть сегодня — археология. Ценность сугубо историческая — для коллекции и для понимания, откуда всё пошло.",["Эра Водолея","D&D 5e / 5.5e","Dračí doupě"],["приключение"]),
@@ -693,7 +697,10 @@ R("Shadowrun 5e","SR d6-пулы","Sci-fi",2013,"—",0,"Сложно","В",[4,2
 let W={...PRESETS["Игра как игра"]};
 const presetsEl=document.getElementById("presets");
 Object.keys(PRESETS).forEach(name=>{const b=document.createElement("button");b.className="chip";b.textContent=name;
- b.onclick=()=>{W={...PRESETS[name]};presetTag=PRESET_TAG[name]||"";sync();mark();render();};presetsEl.appendChild(b);});
+ b.onclick=()=>{const p=PRESETS[name];
+  if(name!=="Игра как игра"&&AX.every(a=>p[a.k]===W[a.k])){W={...PRESETS["Игра как игра"]};presetTag="";}
+  else{W={...p};presetTag=PRESET_TAG[name]||"";}
+  sync();mark();render();};presetsEl.appendChild(b);});
 const customChip=document.createElement("button");customChip.className="chip";customChip.textContent="Свои веса";
 customChip.style.borderStyle="dashed";customChip.onclick=()=>{};presetsEl.appendChild(customChip);
 function mark(){let any=false;[...presetsEl.children].forEach(b=>{if(b===customChip)return;
@@ -717,6 +724,7 @@ function fam(e){e=e.toLowerCase();
  if(e.includes("2d20"))return "2d20";
  if(e.includes("fate"))return "Fate";
  if(e.includes("fortune"))return "Fortune";
+ if(e.includes("mist"))return "Mist Engine";
  if(e.includes("ito")||e.includes("knave")||e.includes("mb d20")||e.includes("osr"))return "OSR / минимализм";
  if(e.includes("d20")||e.includes("5e")||e.includes("pf2")||e.includes("d&d"))return "d20-семья";
  return "Другое";}
@@ -793,7 +801,7 @@ function card(d,p,rank){
    <div class="bar"><i style="width:${p}%"></i></div></div></div>
   <div class="sys-body">${noteHtml}${tagsHtml}${simHtml}
    <div class="axes">${AX.map(a=>`<div class="ax"><span class="lab ${W[a.k]===0?"dim":""}${sortAx===a.k?" srt":""}" data-sort="${a.k}" title="Сортировать список по этой оси"><span>${sortAx===a.k?"↓ ":""}${a.n}</span><span>${d.s[a.k]}/10${W[a.k]>0?" ×"+W[a.k]:""}</span></span><div class="mb"><i class="${W[a.k]>=4?"hot":""}" style="width:${d.s[a.k]*10}%"></i></div></div>`).join("")}</div>
-   <a class="lnk" href="${L.u}" target="_blank" rel="noopener">${L.t}</a><span class="cmpc${compareSet.has(d.n)?" on":""}" data-cmp="${d.n}">${compareSet.has(d.n)?"✓ в сравнении":"сравнить"}</span><a class="dis" href="https://t.me/vasaris" target="_blank" rel="noopener">не согласен с оценкой?</a></div>`;
+   <a class="lnk" href="${L.u}" target="_blank" rel="noopener">${L.t}</a><span class="cmpc${compareSet.has(d.n)?" on":""}" data-cmp="${d.n}">${compareSet.has(d.n)?"✓ в сравнении":"сравнить"}</span><span class="shrc" data-share="${d.n}" title="Скопировать прямую ссылку на эту систему">ссылка</span><a class="dis" href="https://t.me/vasaris" target="_blank" rel="noopener">не согласен с оценкой?</a></div>`;
  el.querySelector(".sys-main").onclick=(e)=>{
   const b=e.target.closest("[data-tip]");
   if(b){showTip(b);e.stopPropagation();return;}
@@ -801,6 +809,7 @@ function card(d,p,rank){
   if(el.classList.contains("open"))openSet.add(d.n);else openSet.delete(d.n);};
  el.querySelectorAll(".simc").forEach(c=>{c.onclick=()=>jumpTo(c.dataset.sim);});
  el.querySelector(".cmpc").onclick=(e)=>toggleCmp(e.target);
+ el.querySelectorAll("[data-share]").forEach(c=>{c.onclick=()=>{const sp=new URLSearchParams();sp.set("s",c.dataset.share);copyToClip(location.href.split("#")[0]+"#"+sp.toString(),c,"ссылка");};});
  el.querySelectorAll("[data-sort]").forEach(c=>{c.onclick=()=>{const k=c.dataset.sort;sortAx=sortAx===k?null:k;render();};});
  return el;
 }
@@ -994,7 +1003,6 @@ const LOC_OFF=[
  {n:"Pathfinder 2e",t:"«Pathfinder. Вторая редакция»",p:"Hobby World",u:"https://hobbyworld.ru"},
  {n:"Pathfinder 1e",t:"",p:"Hobby World",u:"https://hobbyworld.ru"},
  {n:"Starfinder",t:"«Starfinder»",p:"Hobby World",u:"https://hobbyworld.ru"},
- {n:"Numenera / Cypher",t:"«Нуменера»",p:"Hobby World",u:"https://hobbyworld.ru"},
  {n:"Dune 2d20",t:"«Дюна»",p:"Hobby World",u:"https://hobbyworld.ru"},
  {n:"The Witcher (R.Talsorian)",t:"«Ведьмак»",p:"Hobby World",u:"https://hobbyworld.ru"},
  {n:"Shadowrun 6e",t:"«Shadowrun: Шестой мир»",p:"Hobby World",u:"https://hobbyworld.ru"},

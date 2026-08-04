@@ -3386,7 +3386,7 @@
   },
   {
    "name": "City of Mist",
-   "engine": "CoM (2d6+тэги)",
+   "engine": "Mist Engine",
    "genre": "Современность",
    "year": 2017,
    "confidence": "В",
@@ -3973,13 +3973,8 @@
    "genre": "Sci-fi",
    "year": 2013,
    "confidence": "В",
-   "russian_edition": "Да",
+   "russian_edition": "—",
    "russian_origin": false,
-   "localization": {
-    "status": "официальная",
-    "title": "«Нуменера»",
-    "publisher": "Hobby World"
-   },
    "scores": {
     "gm": 7,
     "ease": 6,
