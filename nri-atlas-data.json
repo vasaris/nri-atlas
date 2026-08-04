@@ -6,7 +6,7 @@
   "systems": 150,
   "license": "CC-BY-4.0",
   "attribution": "Данные: НРИ-Атлас Ивана Трифонова (vasaris.github.io/nri-atlas). Оценки авторские, шкалы описаны в методологии атласа.",
-  "vtt_methodology": "Поле vtt: поддержка виртуальных столов, верифицирована по витринам платформ и страницам издателей 04.08.2026 (батч 1 из 6 — топ-25 рейтинга). foundry=official означает: издатель официально продаёт/выпускает свой контент или систему на платформе. Отсутствие поля vtt = ещё не проверялось."
+  "vtt_methodology": "Поле vtt: поддержка виртуальных столов, верифицирована по витринам платформ и страницам издателей 04.08.2026 (батчи 1–2 из 6 — топ-50 рейтинга). foundry=official означает: издатель официально продаёт/выпускает свой контент или систему на платформе. Бинарные платформы = играбельная поддержка (рулсет, лист или контент). Отсутствие поля vtt = ещё не проверялось; foundry=none во всех полях = проверено, поддержки нет."
  },
  "axes": [
   {
@@ -100,7 +100,14 @@
     "билдострой"
    ],
    "dice": "d20",
-   "free": "quickstart"
+   "free": "quickstart",
+   "vtt": {
+    "foundry": "official",
+    "roll20": true,
+    "alchemy": true,
+    "fantasy_grounds": true,
+    "demiplane": true
+   }
   },
   {
    "name": "Pathfinder 2e",
@@ -141,7 +148,14 @@
     "билдострой"
    ],
    "dice": "d20",
-   "free": "full"
+   "free": "full",
+   "vtt": {
+    "foundry": "official",
+    "roll20": true,
+    "alchemy": true,
+    "fantasy_grounds": true,
+    "demiplane": true
+   }
   },
   {
    "name": "Pathfinder 1e",
@@ -372,7 +386,14 @@
     "интриги"
    ],
    "dice": "d20",
-   "free": "full"
+   "free": "full",
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Draw Steel",
@@ -501,7 +522,7 @@
    "vtt": {
     "foundry": "official",
     "roll20": false,
-    "alchemy": false,
+    "alchemy": true,
     "fantasy_grounds": false,
     "demiplane": false
    }
@@ -659,7 +680,14 @@
     "песочница"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "official",
+    "roll20": true,
+    "alchemy": true,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "The One Ring 2e",
@@ -899,7 +927,14 @@
     "отношения"
    ],
    "dice": "разные кубы",
-   "free": "quickstart"
+   "free": "quickstart",
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Ryuutama",
@@ -1083,7 +1118,14 @@
     "песочница"
    ],
    "dice": "d6",
-   "free": "full"
+   "free": "full",
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Mythic Bastionland",
@@ -1367,7 +1409,14 @@
     "песочница"
    ],
    "dice": "d20",
-   "free": "full"
+   "free": "full",
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Electric Bastionland",
@@ -1407,7 +1456,14 @@
     "ограбление"
    ],
    "dice": "d20",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Mausritter",
@@ -1447,7 +1503,14 @@
     "песочница"
    ],
    "dice": "d20",
-   "free": "full"
+   "free": "full",
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Knave 2e",
@@ -1562,7 +1625,7 @@
    "vtt": {
     "foundry": "official",
     "roll20": true,
-    "alchemy": false,
+    "alchemy": true,
     "fantasy_grounds": true,
     "demiplane": false
    }
@@ -1686,7 +1749,14 @@
     "монстры"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Unknown Armies 3",
@@ -1804,7 +1874,14 @@
     "трагедия"
    ],
    "dice": "разные кубы",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": true,
+    "fantasy_grounds": false,
+    "demiplane": true
+   }
   },
   {
    "name": "Werewolf: The Apocalypse W5",
@@ -2122,7 +2199,7 @@
    "vtt": {
     "foundry": "official",
     "roll20": true,
-    "alchemy": false,
+    "alchemy": true,
     "fantasy_grounds": true,
     "demiplane": true
    }
@@ -2201,7 +2278,14 @@
     "трагедия"
    ],
    "dice": "разные кубы",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "official",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Twilight 2000 4e",
@@ -2309,7 +2393,14 @@
     "интриги"
    ],
    "dice": "d20",
-   "free": "full"
+   "free": "full",
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Mothership 1e",
@@ -2580,7 +2671,14 @@
     "героика"
    ],
    "dice": "разные кубы",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Cyberpunk RED",
@@ -2781,7 +2879,15 @@
     "отношения"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false,
+    "note": "есть оф. онлайн-формат Turbo вне классических VTT"
+   }
   },
   {
    "name": "Vaults of Vaarn",
@@ -2892,7 +2998,14 @@
     "трагедия"
    ],
    "dice": "d20",
-   "free": "full"
+   "free": "full",
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": true,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Liminal Horror",
@@ -2967,7 +3080,15 @@
     "выживание"
    ],
    "dice": "разные кубы",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "none",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false,
+    "note": "проверено — играбельной поддержки нет"
+   }
   },
   {
    "name": "Ten Candles",
@@ -3005,7 +3126,15 @@
     "хоррор"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false,
+    "note": "на Roll20 — аддон-симулятор свечей"
+   }
   },
   {
    "name": "Dread",
@@ -3040,7 +3169,15 @@
     "выживание"
    ],
    "dice": "карты и другое",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "none",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false,
+    "note": "проверено — играбельной поддержки нет"
+   }
   },
   {
    "name": "Monsterhearts 2",
@@ -3076,7 +3213,14 @@
     "хоррор"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Urban Shadows 2e",
@@ -3282,7 +3426,15 @@
     "интриги"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "none",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false,
+    "note": "проверено — играбельной поддержки нет"
+   }
   },
   {
    "name": "Apocalypse World",
@@ -3369,7 +3521,7 @@
    "vtt": {
     "foundry": "community",
     "roll20": true,
-    "alchemy": false,
+    "alchemy": true,
     "fantasy_grounds": false,
     "demiplane": false
    }
@@ -3409,7 +3561,14 @@
     "интриги"
    ],
    "dice": "разные кубы",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Paranoia (Perfect Edition)",
@@ -4798,7 +4957,14 @@
     "тактика"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "The Wildsea",
@@ -4834,7 +5000,14 @@
     "выживание"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Legend in the Mist",
@@ -5036,7 +5209,14 @@
     "выживание"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Trophy Gold",
@@ -5072,7 +5252,15 @@
     "трагедия"
    ],
    "dice": "разные кубы",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "none",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false,
+    "note": "проверено — играбельной поддержки нет"
+   }
   },
   {
    "name": "Cities Without Number",
@@ -5108,7 +5296,14 @@
     "интриги"
    ],
    "dice": "d20",
-   "free": "full"
+   "free": "full",
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Death in Space",
@@ -5818,7 +6013,14 @@
     "монстры"
    ],
    "dice": "разные кубы",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Shadowrun 5e",

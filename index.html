@@ -446,15 +446,15 @@ const VTT={
  "Blades in the Dark":[1,1,0,0,0],
  "Daggerheart":[1,1,0,0,1],
  "Monster of the Week":[1,1,0,0,0],
- "Call of Cthulhu 7e":[2,1,0,1,0],
+ "Call of Cthulhu 7e":[2,1,1,1,0],
  "Delta Green":[1,1,0,1,0],
  "Mothership 1e":[1,0,0,0,0],
- "Alien RPG":[2,1,0,1,1],
+ "Alien RPG":[2,1,1,1,1],
  "Shadow of the Demon Lord":[2,1,0,0,0],
  "Heart: The City Beneath":[1,0,0,0,0],
  "Brindlewood Bay":[1,0,0,0,0],
  "Legend in the Mist":[2,0,0,0,0],
- "Dragonbane":[2,0,0,0,0],
+ "Dragonbane":[2,0,1,0,0],
  "Shadowdark":[1,1,0,0,0],
  "The One Ring 2e":[1,0,0,0,0],
  "Spire":[1,0,0,0,0],
@@ -463,10 +463,37 @@ const VTT={
  "Pendragon 6":[2,0,0,0,0],
  "Scum & Villainy":[1,0,0,0,0],
  "Dolmenwood":[2,1,0,0,0],
- "Masks":[1,1,0,0,0],
+ "Masks":[1,1,1,0,0],
  "Draw Steel":[2,0,0,0,0],
+ /* батч 2 (строки 26–50 рейтинга) + хвосты батча 1, верифицировано 04.08.2026 */
+ "D&D 5e / 5.5e":[2,1,1,1,1],
+ "Grimwild":[1,0,0,0,0],
+ "Mausritter":[1,0,0,0,0],
+ "Star Wars (FFG/Edge)":[1,1,0,0,0],
+ "Triangle Agency":[1,0,0,0,0],
+ "The Wildsea":[1,0,0,0,0],
+ "Mörk Borg":[1,1,1,0,0],
+ "Pathfinder 2e":[2,1,1,1,1],
+ "Stars Without Number":[1,1,0,0,0],
+ "Vampire: The Masquerade V5":[1,1,1,0,1],
+ "Worlds Without Number":[1,0,0,0,0],
+ "Vampire: The Masquerade V20":[1,1,0,0,0],
+ "Slugblaster":[1,0,0,0,0],
+ "Fabula Ultima":[1,0,0,0,0],
+ "Forbidden Lands":[2,1,1,0,0],
+ "Into the Odd / Cairn":[1,1,0,0,0],
+ "Monsterhearts 2":[1,1,0,0,0],
+ "Band of Blades":[1,0,0,0,0],
+ "Blade Runner":[2,1,0,0,0],
+ "Electric Bastionland":[1,0,0,0,0],
+ "Ten Candles":[1,0,0,0,0],
+ "Cities Without Number":[1,0,0,0,0],
+ "Night's Black Agents":[1,1,0,0,0],
+ "Stonetop":[1,0,0,0,0],
 };
-const VTT_NOTE={"Dolmenwood":"оф. система Foundry — ранний доступ","Vaesen":"Alchemy — в разработке у Free League"};
+/* Проверено — поддержки нет ни на одной из пяти платформ (дата в методологии). Бейдж не показываем. */
+const VTT_NONE=new Set(["Trophy Dark","Trophy Gold","Dread","The Between"]);
+const VTT_NOTE={"Dolmenwood":"оф. система Foundry — ранний доступ","Vaesen":"Alchemy — в разработке у Free League","Ten Candles":"на Roll20 — аддон-симулятор свечей","Slugblaster":"есть оф. онлайн-формат Turbo вне классических VTT"};
 const VTT_PLAT=["Foundry","Roll20","Alchemy","Fantasy Grounds","Demiplane"];
 function vttTip(n){const v=VTT[n];if(!v)return"";
  const parts=[];
