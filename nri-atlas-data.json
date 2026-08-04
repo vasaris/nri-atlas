@@ -6,7 +6,7 @@
   "systems": 150,
   "license": "CC-BY-4.0",
   "attribution": "Данные: НРИ-Атлас Ивана Трифонова (vasaris.github.io/nri-atlas). Оценки авторские, шкалы описаны в методологии атласа.",
-  "vtt_methodology": "Поле vtt: поддержка виртуальных столов, верифицирована по витринам платформ и страницам издателей 04.08.2026 (батчи 1–4 из 6 — топ-100 рейтинга; отложены 3 строки батчей 5–6). foundry=official означает: издатель официально продаёт/выпускает свой контент или систему на платформе. Бинарные платформы = играбельная поддержка (рулсет, лист или контент). Отсутствие поля vtt = ещё не проверялось; foundry=none во всех полях = проверено, поддержки нет."
+  "vtt_methodology": "Поле vtt: поддержка виртуальных столов, верифицирована по витринам платформ и страницам издателей 04.08.2026 (батчи 1–5 из 6 — топ-125 рейтинга; отложено 6 строк). foundry=official означает: издатель официально продаёт/выпускает свой контент или систему на платформе. Бинарные платформы = играбельная поддержка (рулсет, лист или контент). Отсутствие поля vtt = ещё не проверялось; foundry=none во всех полях = проверено, поддержки нет."
  },
  "axes": [
   {
@@ -1035,7 +1035,15 @@
     "приключение"
    ],
    "dice": "разные кубы",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false,
+    "note": "контент англ. издания включён с разрешения Kotodama"
+   }
   },
   {
    "name": "7th Sea 2e",
@@ -1071,7 +1079,14 @@
     "героика"
    ],
    "dice": "разные кубы",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Legend of the Five Rings 5e",
@@ -1381,7 +1396,14 @@
     "отношения"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Heart: The City Beneath",
@@ -1647,7 +1669,14 @@
     "песочница"
    ],
    "dice": "d20",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "CY_BORG",
@@ -1886,7 +1915,8 @@
    "localization": {
     "status": "официальная",
     "title": "«Неизвестные Армии»",
-    "publisher": "издатель уточняется"
+    "publisher": "Pandora's Box Studio",
+    "url": "https://rpgbook.ru/PandoraBoxStudio"
    },
    "scores": {
     "gm": 7,
@@ -2088,7 +2118,14 @@
     "интриги"
    ],
    "dice": "разные кубы",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Curseborne",
@@ -2124,7 +2161,14 @@
     "отношения"
    ],
    "dice": "разные кубы",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Candela Obscura",
@@ -2899,7 +2943,14 @@
     "интриги"
    ],
    "dice": "разные кубы",
-   "free": "quickstart"
+   "free": "quickstart",
+   "vtt": {
+    "foundry": "official",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": true,
+    "demiplane": false
+   }
   },
   {
    "name": "Shadowrun 6e",
@@ -3105,7 +3156,14 @@
     "выживание"
    ],
    "dice": "d20",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Degenesis",
@@ -3503,7 +3561,14 @@
     "интриги"
    ],
    "dice": "разные кубы",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": true,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Monster of the Week",
@@ -3806,7 +3871,15 @@
     "интриги"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false,
+    "note": "оф. Roll20-версия анонсировалась Mongoose"
+   }
   },
   {
    "name": "Feng Shui 2",
@@ -3885,7 +3958,15 @@
     "отношения"
    ],
    "dice": "разные кубы",
-   "free": "full"
+   "free": "full",
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false,
+    "note": "система Fate Core Official — с одобрения Evil Hat"
+   }
   },
   {
    "name": "Savage Worlds SWADE",
@@ -3972,7 +4053,14 @@
     "билдострой"
    ],
    "dice": "d6",
-   "free": "quickstart"
+   "free": "quickstart",
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Cortex Prime",
@@ -4302,7 +4390,15 @@
     "отношения"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "none",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false,
+    "note": "проверено — на пяти западных платформах нет; японская сцена играет на Cocofolia и Udonarium"
+   }
   },
   {
    "name": "Zweihänder",
@@ -4374,7 +4470,14 @@
     "космос"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "official",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "WH40k: Imperium Maledictum",
@@ -4795,7 +4898,15 @@
     "расследование"
    ],
    "dice": "разные кубы",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "none",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": true,
+    "note": "на Foundry ведут через Cypher-систему, без выделенного профиля"
+   }
   },
   {
    "name": "Nimble 2",
@@ -4876,7 +4987,15 @@
     "билдострой"
    ],
    "dice": "d20",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "official",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false,
+    "note": "Alchemy обещана кикстартер-стретчем"
+   }
   },
   {
    "name": "Cosmere RPG",
@@ -4956,7 +5075,14 @@
     "тактика"
    ],
    "dice": "d20",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "official",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": true
+   }
   },
   {
    "name": "Level Up: Advanced 5e",
@@ -4992,7 +5118,14 @@
     "путешествие"
    ],
    "dice": "d20",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Pirate Borg",
@@ -5074,7 +5207,14 @@
     "отношения"
    ],
    "dice": "разные кубы",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": true,
+    "alchemy": true,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Break!!",
@@ -5369,7 +5509,14 @@
     "путешествие"
    ],
    "dice": "d20",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "official",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Dolmenwood",
@@ -6023,7 +6170,14 @@
     "песочница"
    ],
    "dice": "d20",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "community",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false
+   }
   },
   {
    "name": "Night Witches",
@@ -6236,7 +6390,15 @@
     "монстры"
    ],
    "dice": "разные кубы",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "none",
+    "roll20": true,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false,
+    "note": "на Foundry — через generic-Fate системы"
+   }
   },
   {
    "name": "Vampire: The Masquerade V20",

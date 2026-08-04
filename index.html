@@ -552,10 +552,32 @@ const VTT={
  "CY_BORG":[1,1,0,0,0],
  "Mutants & Masterminds":[1,1,0,1,0],
  "Genesys":[1,1,0,0,0],
+ /* батч 5 (строки 101–125 рейтинга), верифицировано 04.08.2026; отложены: Royal Blood, The Sprawl, Neuroshima */
+ "Knave 2e":[1,0,0,0,0],
+ "Cyberpunk RED":[2,1,0,1,0],
+ "City of Mist":[1,1,1,0,0],
+ "FATE Core":[1,1,0,0,0],
+ "DC20":[2,0,0,0,0],
+ "Old Gods of Appalachia":[0,0,0,0,1],
+ "Curseborne":[1,0,0,0,0],
+ "Dresden Files (Fate)":[0,1,0,0,0],
+ "WH40k: Wrath & Glory":[2,0,0,0,0],
+ "Paranoia (Perfect Edition)":[1,0,0,0,0],
+ "Salvage Union":[1,0,0,0,0],
+ "The Dark Eye (DSA)":[2,1,0,0,0],
+ "Avatar Legends":[1,1,0,0,0],
+ "Tales of the Valiant":[2,1,0,0,1],
+ "7th Sea 2e":[1,1,0,0,0],
+ "Level Up: Advanced 5e":[1,1,0,0,0],
+ "Ryuutama":[1,0,0,0,0],
+ "Vaults of Vaarn":[1,0,0,0,0],
+ "GURPS 4e":[1,1,0,0,0],
+ "Mage: The Ascension 20th":[1,1,0,0,0],
+ "Kids on Bikes":[1,1,1,0,0],
 };
 /* Проверено — поддержки нет ни на одной из пяти платформ (дата в методологии). Бейдж не показываем. */
-const VTT_NONE=new Set(["Trophy Dark","Trophy Gold","Dread","The Between","Красная Земля (Fate)","По ту сторону Врат","Godbound","Night Witches","His Majesty the Worm"]);
-const VTT_NOTE={"Dolmenwood":"оф. система Foundry — ранний доступ","Vaesen":"Alchemy — в разработке у Free League","Ten Candles":"на Roll20 — аддон-симулятор свечей","Slugblaster":"есть оф. онлайн-формат Turbo вне классических VTT","Traveller (Mongoose 2e)":"оф. система от Mongoose, контент-модулей пока нет","Symbaroum":"на Alchemy есть Ruins of Symbaroum (5e-версия)","Outgunned":"официальный релиз на Alchemy","Mouse Guard":"Foundry-система давно не обновлялась","RuneQuest: Glorantha":"оф. модули Chaosium анонсированы","Unknown Armies 3":"Foundry — установка по манифесту с GitHub","Nimble 2":"поддержка Alchemy анонсирована"};
+const VTT_NONE=new Set(["Trophy Dark","Trophy Gold","Dread","The Between","Красная Земля (Fate)","По ту сторону Врат","Godbound","Night Witches","His Majesty the Worm","Shinobigami"]);
+const VTT_NOTE={"Dolmenwood":"оф. система Foundry — ранний доступ","Vaesen":"Alchemy — в разработке у Free League","Ten Candles":"на Roll20 — аддон-симулятор свечей","Slugblaster":"есть оф. онлайн-формат Turbo вне классических VTT","Traveller (Mongoose 2e)":"оф. система от Mongoose, контент-модулей пока нет","Symbaroum":"на Alchemy есть Ruins of Symbaroum (5e-версия)","Outgunned":"официальный релиз на Alchemy","Mouse Guard":"Foundry-система давно не обновлялась","RuneQuest: Glorantha":"оф. модули Chaosium анонсированы","Unknown Armies 3":"Foundry — установка по манифесту с GitHub","Nimble 2":"поддержка Alchemy анонсирована","FATE Core":"система Fate Core Official — с одобрения Evil Hat","DC20":"Alchemy обещана кикстартер-стретчем","Old Gods of Appalachia":"на Foundry ведут через Cypher-систему, без выделенного профиля","Dresden Files (Fate)":"на Foundry — через generic-Fate системы","Paranoia (Perfect Edition)":"оф. Roll20-версия анонсировалась Mongoose","Ryuutama":"контент англ. издания включён с разрешения Kotodama"};
 const VTT_PLAT=["Foundry","Roll20","Alchemy","Fantasy Grounds","Demiplane"];
 function vttTip(n){const v=VTT[n];if(!v)return"";
  const parts=[];
@@ -1058,7 +1080,7 @@ const LOC_OFF=[
  {n:"Feng Shui 2",t:"«Фэншуй 2. Ролевая игра о блокбастерах»",p:"Пандора Бокс",u:"https://rpgbook.ru/fengshui-2"},
  {n:"Mausritter",t:"«Мышерыцарь»",p:"Рыжий Библиотекарь",u:"https://rpgbook.ru/Mausritter"},
  {n:"Eclipse Phase 2e",t:"«Фаза затмения»",p:"издатель уточняется",u:""},
- {n:"Unknown Armies 3",t:"«Неизвестные Армии»",p:"издатель уточняется",u:""},
+ {n:"Unknown Armies 3",t:"«Неизвестные Армии»",p:"Pandora's Box Studio",u:"https://rpgbook.ru/PandoraBoxStudio"},
  {n:"Root: The RPG",t:"«Корни»",p:"издатель уточняется",u:""},
  {n:"Эра Водолея",t:"",p:"авторское издание",u:""},
  {n:"Красная Земля (Fate)",t:"",p:"издатель уточняется",u:""},
