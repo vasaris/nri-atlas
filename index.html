@@ -732,19 +732,27 @@ function openCompare(){
 const WIZQ=[
  {q:"Кто за столом?",o:["Все впервые","Уже пробовали","Опытная группа"]},
  {q:"Сколько времени готовы вложить?",o:["Один вечер","Несколько встреч","Долгая кампания"]},
- {q:"Какое настроение нужно?",o:["Смех и лёгкость","Приключение","Тайна и жуть","Тяжёлая драма"]},
+ {q:"Какое настроение нужно? Можно выбрать два.",o:["Смех и лёгкость","Приключение","Тайна и жуть","Тяжёлая драма"],multi:true},
  {q:"Что в игре важнее?",o:["Люди и отношения","Тактика и бой","Исследование мира"]},
  {q:"Язык правил?",o:["Только русский","Английский не пугает"]}];
-let wizA=[null,null,null,null,null];
-function openWiz(){wizA=[null,null,null,null,null];drawWiz();}
+let wizA=[null,null,[],null,null];
+function openWiz(){wizA=[null,null,[],null,null];drawWiz();}
 function drawWiz(){
  const qs=WIZQ.map((w,i)=>`<div class="wq"><b>${i+1}</b>${w.q}</div><div class="wopts">${
-  w.o.map((o,j)=>`<span class="wopt${wizA[i]===j?" on":""}" data-q="${i}" data-o="${j}">${o}</span>`).join("")}</div>`).join("");
- const ready=wizA.every(a=>a!==null);
+  w.o.map((o,j)=>`<span class="wopt${(w.multi?wizA[i].includes(j):wizA[i]===j)?" on":""}" data-q="${i}" data-o="${j}">${o}</span>`).join("")}</div>`).join("");
+ const ready=wizA.every(a=>Array.isArray(a)?a.length>0:a!==null);
  openOvl(`<button class="pnl-x" onclick="closeOvl()">✕</button><h2>Подбор системы</h2>
   <div style="font-size:12px;color:var(--muted)">Пять ответов — три кандидата. Это стартовая тройка, а не приговор.</div>
   ${qs}<div id="wizOut">${ready?wizResults():""}</div>`);
- ovlPanel.querySelectorAll(".wopt").forEach(c=>{c.onclick=()=>{wizA[+c.dataset.q]=+c.dataset.o;const sc=ovl.scrollTop;drawWiz();ovl.scrollTop=sc;};});
+ ovlPanel.querySelectorAll(".wopt").forEach(c=>{c.onclick=()=>{
+  const q=+c.dataset.q,o=+c.dataset.o;
+  if(WIZQ[q].multi){
+   const arr=wizA[q];
+   if(arr.includes(o))wizA[q]=arr.filter(x=>x!==o);
+   else if(arr.length<2)wizA[q]=arr.concat(o);
+   else return;
+  } else wizA[q]=o;
+  const sc=ovl.scrollTop;drawWiz();ovl.scrollTop=sc;};});
  ovlPanel.querySelectorAll(".wres .act[data-open]").forEach(c=>{c.onclick=()=>{closeOvl();jumpTo(c.dataset.open);};});}
 function wizResults(){
  const [exp,time,mood,focus,lang]=wizA;
@@ -752,10 +760,11 @@ function wizResults(){
  if(exp===0){W2.onb=5;W2.ease=4;}else if(exp===1){W2.onb=2;W2.ease=2;}else{W2.mech=2;W2.gm=2;}
  if(time===0){W2.shot=5;}else if(time===1){W2.shot=2;W2.camp=2;}else{W2.camp=5;W2.sup=3;}
  let tagBoost=[],band=null;
- if(mood===0){band=[0,3];tagBoost=["юмор"];}
- else if(mood===1){band=[3,7];tagBoost=["приключение"];}
- else if(mood===2){tagBoost=["расследование","хоррор"];W2.drama=1;}
- else{W2.drama=5;tagBoost=["трагедия"];}
+ const addBand=(lo,hi)=>{band=band?[Math.min(band[0],lo),Math.max(band[1],hi)]:[lo,hi];};
+ if(mood.includes(0)){addBand(0,3);tagBoost.push("юмор");}
+ if(mood.includes(1)){addBand(3,7);tagBoost.push("приключение");}
+ if(mood.includes(2)){tagBoost.push("расследование","хоррор");W2.drama=Math.max(W2.drama,1);}
+ if(mood.includes(3)){W2.drama=5;tagBoost.push("трагедия");}
  if(focus===0){tagBoost.push("отношения");W2.pl+=1;}
  else if(focus===1){tagBoost.push("тактика");W2.mech+=3;}
  else{tagBoost.push("песочница","путешествие");W2.gm+=2;}
@@ -768,7 +777,7 @@ function wizResults(){
   const hits=d.tags.filter(x=>tagBoost.includes(x));
   p+=hits.length*7;
   if(band&&d.s.drama>=band[0]&&d.s.drama<=band[1])p+=6;
-  if(mood===3&&d.s.drama>=8)p+=4;
+  if(mood.includes(3)&&d.s.drama>=8)p+=4;
   return{d,p,hits};}).sort((a,b)=>b.p-a.p).slice(0,3);
  return picks.map((x,i)=>{
   const r=[];
