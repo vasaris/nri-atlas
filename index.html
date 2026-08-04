@@ -75,7 +75,7 @@
   .fader{margin:0 0 13px}
   .fader .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:3px}
   .fader .nm{font-size:13px;color:var(--parchment);flex:1;min-width:0}
-  .fader .nm small{display:block;color:var(--faded-deep);font-size:11px;line-height:1.35;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .fader .nm small{display:block;color:var(--faded-deep);font-size:11px;line-height:1.35;margin-top:1px;text-wrap:pretty}
   .fader .v{font-family:var(--mono);font-size:13px;color:var(--brass)}
   .fader:has(input.zero) .nm{color:var(--faded-deep)}
   .fader:has(input.zero) .v{color:var(--faded-deep)}
@@ -265,6 +265,13 @@
   }
   .bico{display:inline-block;width:15px;height:15px;vertical-align:-2.5px;margin-right:3px}
   .glyph-ru{display:inline-block;font-family:var(--mono,monospace);font-size:9px;letter-spacing:.05em;border:1px solid currentColor;border-radius:2px;padding:0 3px;vertical-align:1px;margin-right:3px}
+  html,body{max-width:100%;overflow-x:clip}
+  #cmpbar{max-width:calc(100vw - 16px)}
+  @media(max-width:560px){
+    .tag{display:inline-block;margin:10px 0 0;white-space:normal}
+    .m-grid{gap:14px}
+    .hero-line{font-size:17px}
+  }
 </style>
 </head>
 <body>
@@ -331,14 +338,14 @@
 <script>
 const AX=[
  {k:"gm",n:"Удовольствие мастера",s:"интересно ли готовить и вести: инструменты, простор, отдача"},
- {k:"ease",n:"Лёгкость ведения",s:"сколько сил едят подготовка и правила (10 — почти ничего)"},
+ {k:"ease",n:"Лёгкость ведения",s:"вес поднимает системы, лёгкие в подготовке и ведении"},
  {k:"pl",n:"Удовольствие игроков",s:"вовлечённость стола и желание вернуться"},
  {k:"rec",n:"Отклик сообщества",s:"приём реальными столами: рецензии, живая игра — не продажи"},
  {k:"mech",n:"Качество механики",s:"насколько хорошо собраны правила и служат ли они жанру"},
- {k:"drama",n:"Тон: комедия ↔ драма",s:"0 — чистая комедия · 5 — универсальный тон · 10 — тяжёлое «стекло»"},
+ {k:"drama",n:"Тон: комедия ↔ драма",s:"вес тянет наверх драматичные системы; для комедии и лёгкого тона ставь 0"},
  {k:"shot",n:"Игра одного вечера",s:"работает ли за 3–4 часа с нуля и с незнакомцами"},
  {k:"camp",n:"Длинная кампания",s:"раскрывается ли на дистанции: развитие, арки"},
- {k:"onb",n:"Дружелюбие к новичкам",s:"как быстро новичок играет уверенно (10 — мгновенно)"},
+ {k:"onb",n:"Дружелюбие к новичкам",s:"вес поднимает системы, в которые входят без опыта"},
  {k:"sup",n:"Материалы и поддержка",s:"живость линейки: приключения, дополнения, инструменты"}];
 const PRESETS={
  "Игра как игра":{gm:5,ease:2,pl:5,rec:4,mech:4,drama:3,shot:1,camp:4,onb:1,sup:3},
