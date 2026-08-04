@@ -24,6 +24,7 @@ eval('var FREE=' + js.match(/const FREE=(new Set\(\[[\s\S]*?\]\));/)[1]);
 eval('var FREE_QS=' + js.match(/const FREE_QS=(new Set\(\[[\s\S]*?\]\));/)[1]);
 eval(cut('const LOC_OFF', 'function openLocs').replace(/const /g, 'var '));
 eval('var PRESET_TAG=' + js.match(/const PRESET_TAG=(\{[^}]+\});/)[1]);
+eval('var AUTHOR_PICKS=' + js.match(/const AUTHOR_PICKS=(new Set\(\[[\s\S]*?\]\));/)[1]);
 eval('var GSEARCH=' + js.match(/const GSEARCH=(new Set\(\[[\s\S]*?\]\));/)[1]);
 
 const names = new Set(DATA.map(d => d.n));
@@ -60,6 +61,8 @@ check([...FREE_QS].filter(n => FREE.has(n)).length === 0, 'ярусы беспл
   [...FREE_QS].filter(n => FREE.has(n)));
 check([...GSEARCH].filter(n => !names.has(n)).length === 0, 'поисковые ссылки без сирот',
   [...GSEARCH].filter(n => !names.has(n)));
+check([...AUTHOR_PICKS].filter(n => !names.has(n)).length === 0, 'выбор автора без сирот',
+  [...AUTHOR_PICKS].filter(n => !names.has(n)));
 const allTags = new Set(); DATA.forEach(d => d.tags.forEach(t => allTags.add(t)));
 check(Object.values(PRESET_TAG).every(t => allTags.has(t)), 'теги пресетов существуют', PRESET_TAG);
 
