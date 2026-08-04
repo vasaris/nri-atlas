@@ -308,8 +308,9 @@
   <div class="divider"></div>
   <h3>Фильтры</h3>
   <div class="filt">
-    <input type="text" id="q" placeholder="Поиск: название, движок, тег, слово из вердикта…">
+    <input type="text" id="q" placeholder="Поиск: название, движок, тег, вердикт… -слово исключает">
     <div class="row"><span>Жанр</span><select id="fGen"><option value="">Все</option></select></div>
+    <div class="row"><span>Тег</span><select id="fTag"><option value="">Все</option></select></div>
     <div class="row"><span>Сложность ≤</span><select id="fDiff"><option value="3">Любая</option><option value="1">Легко</option><option value="2">Средне</option></select></div>
     <div class="row"><span>Семейство движка</span><select id="fFam"><option value="">Все</option></select></div>
     <div class="row"><span>Кубы</span><select id="fDice"><option value="">Любые</option><option>d20</option><option>d100</option><option>d6</option><option>d12</option><option>разные кубы</option><option>карты и другое</option></select></div>
@@ -735,7 +736,9 @@ const genSel=document.getElementById("fGen");
 [...new Set(DATA.map(d=>d.g))].sort().forEach(g=>{const o=document.createElement("option");o.value=g;o.textContent=g;genSel.appendChild(o);});
 const famSel=document.getElementById("fFam");
 [...new Set(DATA.map(d=>fam(d.e)))].sort().forEach(f=>{const o=document.createElement("option");o.value=f;o.textContent=f;famSel.appendChild(o);});
-let q="",fGen="",fDiff=3,fRu=false,fRuO=false,fConf=false,fFam="",fYear=0,fFree="",fDice="",fPick=false;
+const tagSel=document.getElementById("fTag");
+[...new Set(DATA.flatMap(d=>d.tags))].sort().forEach(t=>{const o=document.createElement("option");o.value=t;o.textContent=t;tagSel.appendChild(o);});
+let q="",fGen="",fDiff=3,fRu=false,fRuO=false,fConf=false,fFam="",fYear=0,fFree="",fDice="",fPick=false,fTag="";
 document.getElementById("fDice").addEventListener("change",e=>{fDice=e.target.value;render();});
 document.getElementById("fFree").addEventListener("change",e=>{fFree=e.target.value;render();});
 document.getElementById("fPick").addEventListener("change",e=>{fPick=e.target.checked;render();});
@@ -743,11 +746,12 @@ famSel.addEventListener("change",e=>{fFam=e.target.value;render();});
 document.getElementById("fYear").addEventListener("change",e=>{fYear=+e.target.value;render();});
 document.getElementById("q").addEventListener("input",e=>{q=e.target.value.toLowerCase().trim();render();});
 genSel.addEventListener("change",e=>{fGen=e.target.value;render();});
+tagSel.addEventListener("change",e=>{fTag=e.target.value;render();});
 document.getElementById("fDiff").addEventListener("change",e=>{fDiff=+e.target.value;render();});
 document.getElementById("fRu").addEventListener("change",e=>{fRu=e.target.checked;render();});
 document.getElementById("fRuO").addEventListener("change",e=>{fRuO=e.target.checked;render();});
 document.getElementById("fConf").addEventListener("change",e=>{fConf=e.target.checked;render();});
-document.getElementById("reset").onclick=()=>{W={...PRESETS["Игра как игра"]};q="";fGen="";fDiff=3;fRu=false;fRuO=false;fConf=false;fFam="";fYear=0;fFree="";fDice="";fPick=false;presetTag="";document.getElementById("fDice").value="";document.getElementById("fFree").value="";
+document.getElementById("reset").onclick=()=>{W={...PRESETS["Игра как игра"]};q="";fGen="";fDiff=3;fRu=false;fRuO=false;fConf=false;fFam="";fYear=0;fFree="";fDice="";fPick=false;fTag="";presetTag="";document.getElementById("fDice").value="";document.getElementById("fFree").value="";document.getElementById("fTag").value="";
  document.getElementById("q").value="";genSel.value="";famSel.value="";document.getElementById("fDiff").value="3";document.getElementById("fYear").value="0";
  ["fRu","fRuO","fConf","fPick"].forEach(id=>document.getElementById(id).checked=false);sync();mark();render();};
 /* scoring */
@@ -757,6 +761,8 @@ let openSet=new Set(),sortAx=null,pendingWiz=false,pendingCmp=false;
 function render(){
  let rows=DATA.filter(d=>{
   if(fRu&&d.ru==="—")return false;
+  if(fGen&&d.g!==fGen)return false;
+  if(fTag&&!d.tags.includes(fTag))return false;
   if(fRuO&&!d.ro)return false;
   if(DIFFN[d.d]>fDiff)return false;
   if(fConf&&d.cf==="Н")return false;
@@ -767,7 +773,10 @@ function render(){
   if(fFam&&fam(d.e)!==fFam)return false;
   if(fYear&&d.y<fYear)return false;
   if(fPick&&!AUTHOR_PICKS.has(d.n))return false;
-  if(q&&!(d.n.toLowerCase().includes(q)||d.e.toLowerCase().includes(q)||d.tags.some(t=>t.includes(q))||d.note.toLowerCase().includes(q)))return false;
+  if(q){const th=t=>d.n.toLowerCase().includes(t)||d.e.toLowerCase().includes(t)||d.tags.some(x=>x.includes(t))||d.note.toLowerCase().includes(t);
+   for(const t of q.split(/\s+/)){if(!t||t==="-")continue;
+    if(t[0]==="-"){if(th(t.slice(1)))return false;}
+    else if(!th(t))return false;}}
   return true;}).map(d=>({d,p:score(d)})).sort(sortAx?((a,b)=>b.d.s[sortAx]-a.d.s[sortAx]||b.p-a.p||a.d.n.localeCompare(b.d.n)):((a,b)=>b.p-a.p||a.d.n.localeCompare(b.d.n)));
  if(sortAx){const an=AX.find(a=>a.k===sortAx).n;
   cntEl.innerHTML=`${rows.length} систем · по оси «${an}» по убыванию · <span id="srtOff" style="cursor:pointer;border-bottom:1px dashed var(--muted);color:var(--muted)">вернуть по совпадению</span>`;
@@ -841,7 +850,7 @@ function jumpTo(name){
  q=name.toLowerCase();document.getElementById("q").value=name;
  openSet.clear();openSet.add(name);render();
  let t=[...listEl.children].find(x=>x.dataset.k===name);
- if(!t){fGen="";fDiff=3;fFam="";fYear=0;fRu=false;fRuO=false;fConf=false;fFree="";fDice="";fPick=false;document.getElementById("fDice").value="";document.getElementById("fFree").value="";
+ if(!t){fGen="";fTag="";fDiff=3;fFam="";fYear=0;fRu=false;fRuO=false;fConf=false;fFree="";fDice="";fPick=false;document.getElementById("fDice").value="";document.getElementById("fFree").value="";document.getElementById("fTag").value="";
   genSel.value="";famSel.value="";document.getElementById("fDiff").value="3";document.getElementById("fYear").value="0";
   ["fRu","fRuO","fConf","fPick"].forEach(id=>document.getElementById(id).checked=false);render();
   t=[...listEl.children].find(x=>x.dataset.k===name);}
@@ -1060,7 +1069,7 @@ function shareUrl(){
  if(preset){if(preset!=="Игра как игра")p.set("p",preset);}
  else p.set("w",AX.map(a=>W[a.k]).join(""));
  if(q)p.set("q",q);if(fGen)p.set("g",fGen);if(fDiff!==3)p.set("d",fDiff);
- if(fFam)p.set("f",fFam);if(fYear)p.set("y",fYear);
+ if(fFam)p.set("f",fFam);if(fYear)p.set("y",fYear);if(fTag)p.set("tg",fTag);
  if(fRu)p.set("ru","1");if(fRuO)p.set("ro","1");if(fConf)p.set("c","1");if(fFree)p.set("fb",fFree);if(fPick)p.set("ap","1");
  const o=[...openSet];if(o.length)p.set("s",o[o.length-1]);
  if(sortAx)p.set("srt",sortAx);
@@ -1082,6 +1091,7 @@ document.getElementById("share").onclick=()=>copyToClip(shareUrl(),document.getE
  const w=p.get("w");if(w&&w.length===AX.length)AX.forEach((a,i)=>W[a.k]=Math.min(5,+w[i]||0));
  if(p.get("q")){q=p.get("q").toLowerCase();document.getElementById("q").value=p.get("q");}
  if(p.get("g")){fGen=p.get("g");genSel.value=fGen;}
+ if(p.get("tg")){fTag=p.get("tg");document.getElementById("fTag").value=fTag;}
  if(p.get("d")){fDiff=+p.get("d")||3;document.getElementById("fDiff").value=String(fDiff);}
  if(p.get("f")){fFam=p.get("f");famSel.value=fFam;}
  if(p.get("y")){fYear=+p.get("y")||0;document.getElementById("fYear").value=String(fYear);}
