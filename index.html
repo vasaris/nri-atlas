@@ -286,7 +286,7 @@
 <div class="wrap">
 <header>
   <h1>НРИ<span class="dot">·</span>Атлас<span class="tag">150 систем · 10 осей</span></h1>
-  <p class="sub">Интерактивный рейтинг настольных ролевых игр с ведущим (безмастеровые и соло-системы не включены). Десять осей 0–10, вес каждой настраивается ползунком, итог пересчитывается на лету. Метка уверенности: <b>В</b> — оценка на твёрдой базе, <b>С</b> — приём проверен частично, <b>Н</b> — эскиз. <b>РФ</b> — российская разработка; зелёный бейдж — есть локализация (Ч — частичная или фанатская). Как считается рейтинг — пояснение внизу страницы.</p>
+  <p class="sub">Интерактивный рейтинг настольных ролевых игр с ведущим (безмастеровые и соло-системы не включены). Десять осей 0–10, вес каждой настраивается ползунком, итог пересчитывается на лету. Метка уверенности: <b>В</b> — оценка на твёрдой базе, <b>С</b> — приём проверен частично, <b>Н</b> — эскиз. <b>РФ</b> — российская разработка; зелёный бейдж — есть локализация (Ч — частичная или фанатская). Бейдж <b>VTT</b> — поддержка виртуальных столов, проверена для всех 150 систем: латунный — официальная от издателя, детали в подсказке; нет бейджа — поддержки нет. Как считается рейтинг — пояснение внизу страницы.</p>
 <div class="hero">
   <div class="hero-line">Какую настольную ролевую игру взять? Рейтинг под твою задачу, подбор за минуту и честные вердикты по всем 150 системам.</div>
   <div class="hero-btns">
@@ -574,10 +574,28 @@ const VTT={
  "GURPS 4e":[1,1,0,0,0],
  "Mage: The Ascension 20th":[1,1,0,0,0],
  "Kids on Bikes":[1,1,1,0,0],
+ /* батч 6 (строки 126–150 + отложенные всех батчей), верифицировано 04.08.2026 — КОЛОНКА ЗАКРЫТА 150/150 */
+ "Candela Obscura":[1,1,0,0,0],
+ "Zweihänder":[1,1,0,0,0],
+ "Pathfinder 1e":[1,1,0,1,0],
+ "Cortex Prime":[1,0,0,0,0],
+ "Feng Shui 2":[1,0,0,0,0],
+ "The Electric State":[2,0,0,0,0],
+ "Dune 2d20":[2,1,1,0,0],
+ "Werewolf: The Apocalypse W5":[1,1,0,0,1],
+ "Eclipse Phase 2e":[1,1,0,0,0],
+ "The Expanse":[1,1,0,1,0],
+ "Hunter: The Reckoning 5e":[1,1,0,0,1],
+ "Shadowrun 5e":[1,1,0,0,0],
+ "Fallout 2d20":[2,0,1,1,0],
+ "The Witcher (R.Talsorian)":[1,1,0,0,0],
+ "Shadowrun 6e":[1,1,0,0,0],
+ "Broken Compass":[1,0,0,0,0],
+ "Break!!":[2,0,0,0,0],
 };
 /* Проверено — поддержки нет ни на одной из пяти платформ (дата в методологии). Бейдж не показываем. */
-const VTT_NONE=new Set(["Trophy Dark","Trophy Gold","Dread","The Between","Красная Земля (Fate)","По ту сторону Врат","Godbound","Night Witches","His Majesty the Worm","Shinobigami"]);
-const VTT_NOTE={"Dolmenwood":"оф. система Foundry — ранний доступ","Vaesen":"Alchemy — в разработке у Free League","Ten Candles":"на Roll20 — аддон-симулятор свечей","Slugblaster":"есть оф. онлайн-формат Turbo вне классических VTT","Traveller (Mongoose 2e)":"оф. система от Mongoose, контент-модулей пока нет","Symbaroum":"на Alchemy есть Ruins of Symbaroum (5e-версия)","Outgunned":"официальный релиз на Alchemy","Mouse Guard":"Foundry-система давно не обновлялась","RuneQuest: Glorantha":"оф. модули Chaosium анонсированы","Unknown Armies 3":"Foundry — установка по манифесту с GitHub","Nimble 2":"поддержка Alchemy анонсирована","FATE Core":"система Fate Core Official — с одобрения Evil Hat","DC20":"Alchemy обещана кикстартер-стретчем","Old Gods of Appalachia":"на Foundry ведут через Cypher-систему, без выделенного профиля","Dresden Files (Fate)":"на Foundry — через generic-Fate системы","Paranoia (Perfect Edition)":"оф. Roll20-версия анонсировалась Mongoose","Ryuutama":"контент англ. издания включён с разрешения Kotodama"};
+const VTT_NONE=new Set(["Trophy Dark","Trophy Gold","Dread","The Between","Красная Земля (Fate)","По ту сторону Врат","Godbound","Night Witches","His Majesty the Worm","Shinobigami","Рождественская Эдда","Příběhy Impéria","Everway","Golden Sky Stories","Dračí doupě","Dzikie Pola","1000 рентген в час","Эра Водолея","Neuroshima","Lady Blackbird","Royal Blood","The Sprawl","Золото и прах"]);
+const VTT_NOTE={"Dolmenwood":"оф. система Foundry — ранний доступ","Vaesen":"Alchemy — в разработке у Free League","Ten Candles":"на Roll20 — аддон-симулятор свечей","Slugblaster":"есть оф. онлайн-формат Turbo вне классических VTT","Traveller (Mongoose 2e)":"оф. система от Mongoose, контент-модулей пока нет","Symbaroum":"на Alchemy есть Ruins of Symbaroum (5e-версия)","Outgunned":"официальный релиз на Alchemy","Mouse Guard":"Foundry-система давно не обновлялась","RuneQuest: Glorantha":"оф. модули Chaosium анонсированы","Unknown Armies 3":"Foundry — установка по манифесту с GitHub","Nimble 2":"поддержка Alchemy анонсирована","FATE Core":"система Fate Core Official — с одобрения Evil Hat","DC20":"Alchemy обещана кикстартер-стретчем","Old Gods of Appalachia":"на Foundry ведут через Cypher-систему, без выделенного профиля","Dresden Files (Fate)":"на Foundry — через generic-Fate системы","Paranoia (Perfect Edition)":"оф. Roll20-версия анонсировалась Mongoose","Ryuutama":"контент англ. издания включён с разрешения Kotodama","Feng Shui 2":"системы на GitLab — установка по манифесту","Break!!":"платный корник-модуль анонсирован издателем"};
 const VTT_PLAT=["Foundry","Roll20","Alchemy","Fantasy Grounds","Demiplane"];
 function vttTip(n){const v=VTT[n];if(!v)return"";
  const parts=[];
