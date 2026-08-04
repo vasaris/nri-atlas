@@ -6,7 +6,7 @@
   "systems": 150,
   "license": "CC-BY-4.0",
   "attribution": "Данные: НРИ-Атлас Ивана Трифонова (vasaris.github.io/nri-atlas). Оценки авторские, шкалы описаны в методологии атласа.",
-  "vtt_methodology": "Поле vtt: поддержка виртуальных столов, верифицирована по витринам платформ и страницам издателей 04.08.2026 (батчи 1–4 из 6 — топ-100 рейтинга; отложено 6 строк). foundry=official означает: издатель официально продаёт/выпускает свой контент или систему на платформе. Бинарные платформы = играбельная поддержка (рулсет, лист или контент). Отсутствие поля vtt = ещё не проверялось; foundry=none во всех полях = проверено, поддержки нет."
+  "vtt_methodology": "Поле vtt: поддержка виртуальных столов, верифицирована по витринам платформ и страницам издателей 04.08.2026 (батчи 1–4 из 6 — топ-100 рейтинга; отложены 3 строки батчей 5–6). foundry=official означает: издатель официально продаёт/выпускает свой контент или систему на платформе. Бинарные платформы = играбельная поддержка (рулсет, лист или контент). Отсутствие поля vtt = ещё не проверялось; foundry=none во всех полях = проверено, поддержки нет."
  },
  "axes": [
   {
@@ -1482,8 +1482,8 @@
    "russian_origin": false,
    "localization": {
     "status": "официальная",
-    "title": "Cairn 2e — полный перевод (бета); Into the Odd — рус. издание",
-    "publisher": "Hex Cat, CC-BY-SA (Cairn); издатель ItO уточняется",
+    "title": "Cairn 2e — полный перевод (бета); движок — «Чудная печать» (рус. SRD)",
+    "publisher": "Hex Cat / Станция «Ролевая», CC-BY-SA",
     "url": "https://ru.cairnrpg.com"
    },
    "scores": {
@@ -1703,7 +1703,8 @@
    "localization": {
     "status": "официальная",
     "title": "«Зов Ктулху»",
-    "publisher": "Студия 101 (ранее Hobby World)"
+    "publisher": "Hobby World",
+    "url": "https://hobbyworld.ru"
    },
    "scores": {
     "gm": 8,
@@ -5655,7 +5656,15 @@
     "отношения"
    ],
    "dice": "карты и другое",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "none",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false,
+    "note": "проверено — играбельной поддержки нет"
+   }
   },
   {
    "name": "Starfinder",
@@ -5934,7 +5943,15 @@
     "магия"
    ],
    "dice": "d20",
-   "free": "full"
+   "free": "full",
+   "vtt": {
+    "foundry": "none",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false,
+    "note": "проверено — играбельной поддержки нет"
+   }
   },
   {
    "name": "The Electric State",
@@ -6046,7 +6063,15 @@
     "отношения"
    ],
    "dice": "d6",
-   "free": null
+   "free": null,
+   "vtt": {
+    "foundry": "none",
+    "roll20": false,
+    "alchemy": false,
+    "fantasy_grounds": false,
+    "demiplane": false,
+    "note": "проверено — играбельной поддержки нет"
+   }
   },
   {
    "name": "AGON",

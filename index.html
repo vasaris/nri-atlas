@@ -7,7 +7,7 @@
 <meta name="description" content="Интерактивный справочник по 150 настольным ролевым играм: рейтинг под вашу задачу, подбор за пять вопросов, сравнение систем, русские локализации и честные вердикты.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="НРИ-Атлас — какую настольную ролевую игру взять">
-<meta property="og:description" content="135 систем, честные вердикты, подбор за минуту. Рейтинг под вашу задачу, сравнение и таблица русских локализаций.">
+<meta property="og:description" content="150 систем, честные вердикты, подбор за минуту. Рейтинг под вашу задачу, сравнение и таблица русских локализаций.">
 <meta property="og:url" content="https://vasaris.github.io/nri-atlas/">
 <meta property="og:image" content="https://vasaris.github.io/nri-atlas/og.png">
 <meta property="og:image:width" content="1200">
@@ -543,7 +543,7 @@ const VTT={
  "Genesys":[1,1,0,0,0],
 };
 /* Проверено — поддержки нет ни на одной из пяти платформ (дата в методологии). Бейдж не показываем. */
-const VTT_NONE=new Set(["Trophy Dark","Trophy Gold","Dread","The Between","Красная Земля (Fate)","По ту сторону Врат"]);
+const VTT_NONE=new Set(["Trophy Dark","Trophy Gold","Dread","The Between","Красная Земля (Fate)","По ту сторону Врат","Godbound","Night Witches","His Majesty the Worm"]);
 const VTT_NOTE={"Dolmenwood":"оф. система Foundry — ранний доступ","Vaesen":"Alchemy — в разработке у Free League","Ten Candles":"на Roll20 — аддон-симулятор свечей","Slugblaster":"есть оф. онлайн-формат Turbo вне классических VTT","Traveller (Mongoose 2e)":"оф. система от Mongoose, контент-модулей пока нет","Symbaroum":"на Alchemy есть Ruins of Symbaroum (5e-версия)","Outgunned":"официальный релиз на Alchemy","Mouse Guard":"Foundry-система давно не обновлялась","RuneQuest: Glorantha":"оф. модули Chaosium анонсированы","Unknown Armies 3":"Foundry — установка по манифесту с GitHub","Nimble 2":"поддержка Alchemy анонсирована"};
 const VTT_PLAT=["Foundry","Roll20","Alchemy","Fantasy Grounds","Demiplane"];
 function vttTip(n){const v=VTT[n];if(!v)return"";
@@ -553,6 +553,7 @@ function vttTip(n){const v=VTT[n];if(!v)return"";
  return parts.join(" · ")+(VTT_NOTE[n]?" · "+VTT_NOTE[n]:"");}
 /* Глоссарий семейств движков — одна строка без птичьего языка */
 const GLOSS={
+ "GUMSHOE":"Движок расследований Робина Лоза: улики находятся всегда — броски решают не «нашёл ли», а «что это стоило». Семья от «Следа Ктулху» до Night's Black Agents.",
  "Mist Engine":"Семейство City of Mist: 2d6 плюс свободные тэги вместо характеристик — персонаж описан фразами, которые дают плюсы к броскам и меняются по ходу истории.",
  "d20-семья":"Наследники D&D: бросаешь двадцатигранник, прибавляешь модификатор и стараешься перебить заданную сложность. Классы и уровни — самая привычная механика хобби.",
  "PbtA-семья":"Powered by the Apocalypse: бросаешь два шестигранника, и самый частый итог — «получилось, но с осложнением». Правила читаются за минуты, историю двигают провалы.",
@@ -750,6 +751,7 @@ function fam(e){e=e.toLowerCase();
  if(e.includes("fate"))return "Fate";
  if(e.includes("fortune"))return "Fortune";
  if(e.includes("mist"))return "Mist Engine";
+ if(e.includes("gumshoe"))return "GUMSHOE";
  if(e.includes("ito")||e.includes("knave")||e.includes("mb d20")||e.includes("osr"))return "OSR / минимализм";
  if(e.includes("d20")||e.includes("5e")||e.includes("pf2")||e.includes("d&d"))return "d20-семья";
  return "Другое";}
@@ -1006,7 +1008,7 @@ document.getElementById("wiz").onclick=openWiz;
 /* локализации: официальные русские издания */
 const LOC_OFF=[
  {n:"Blades in the Dark",t:"«Клинки во тьме»",p:"Студия 101",u:"https://studio101.ru"},
- {n:"Call of Cthulhu 7e",t:"«Зов Ктулху»",p:"Студия 101 (ранее Hobby World)",u:"https://studio101.ru"},
+ {n:"Call of Cthulhu 7e",t:"«Зов Ктулху»",p:"Hobby World",u:"https://hobbyworld.ru"},
  {n:"Vampire: The Masquerade V5",t:"«Вампиры: Маскарад. Пятая редакция»",p:"Студия 101",u:"https://studio101.ru"},
  {n:"Forbidden Lands",t:"«Запретные земли»",p:"Студия 101",u:"https://studio101.ru"},
  {n:"Coriolis: The Third Horizon",t:"«Кориолис»",p:"Студия 101",u:"https://studio101.ru"},
@@ -1023,7 +1025,7 @@ const LOC_OFF=[
  {n:"Night Witches",t:"«Ночные ведьмы»",p:"издатель уточняется",u:""},
  {n:"Lady Blackbird",t:"«Леди Блэкбёрд»",p:"издатель уточняется",u:""},
  {n:"The One Ring 2e",t:"",p:"издатель уточняется",u:""},
- {n:"Into the Odd / Cairn",t:"Cairn 2e — полный перевод (бета); Into the Odd — рус. издание",p:"Hex Cat, CC-BY-SA (Cairn); издатель ItO уточняется",u:"https://ru.cairnrpg.com"},
+ {n:"Into the Odd / Cairn",t:"Cairn 2e — полный перевод (бета); движок — «Чудная печать» (рус. SRD)",p:"Hex Cat / Станция «Ролевая», CC-BY-SA",u:"https://ru.cairnrpg.com"},
  {n:"Electric Bastionland",t:"",p:"издатель уточняется",u:""},
  {n:"City of Mist",t:"«Город Тумана»",p:"Студия 101",u:"https://studio101.ru"},
  {n:"Band of Blades",t:"«Братство Клинков»",p:"Студия 101",u:"https://studio101.ru"},
