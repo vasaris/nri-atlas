@@ -19,7 +19,7 @@
 <style>
   :root{
     --binding:#101914;--binding-deep:#0B120E;--board:#18241D;--board-raised:#1E2C24;--board-hover:#213127;
-    --parchment:#E8DFC8;--parchment-bright:#F4EDDC;--faded:#97927D;--faded-deep:#6E6A5A;
+    --parchment:#E8DFC8;--parchment-bright:#F4EDDC;--faded:#97927D;--faded-deep:#8F8A75;
     --wax:#B5432E;--wax-bright:#C9503A;--wax-deep:#8E3323;--wax-tint:rgba(181,67,46,.14);--wax-line:rgba(181,67,46,.45);
     --brass:#C29A4B;--brass-bright:#D4AC5D;--brass-deep:#A07C33;--brass-tint:rgba(194,154,75,.10);--brass-line:rgba(194,154,75,.38);--brass-hairline:rgba(194,154,75,.22);
     --rule:#243529;--rule-strong:#2F4436;--scrim:rgba(8,13,10,.72);
@@ -60,7 +60,7 @@
   .rail{position:sticky;top:16px;max-height:calc(100vh - 32px);overflow-y:auto}
   .card{background:var(--board);border:1px solid var(--rule);border-radius:6px}
   .rail .card{padding:0}
-  .rail-check{display:none}
+  .rail-check{position:absolute;opacity:0;width:1px;height:1px}
   .rail-head{display:none}
   .rail-body{padding:20px}
   .rail h3{font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--faded);margin:0 0 10px}
@@ -99,7 +99,7 @@
   input[type=text]{width:100%;margin-bottom:6px}
   input[type=text]::placeholder{color:var(--faded-deep)}
   .toggle{display:inline-flex;align-items:center;gap:8px;cursor:pointer;user-select:none;padding:8px 0}
-  .toggle input{display:none}
+  .toggle input{position:absolute;opacity:0;width:16px;height:16px;margin:0}
   .sw{width:40px;height:22px;border-radius:4px;background:var(--binding-deep);border:1px solid var(--brass-hairline);position:relative;transition:background 90ms var(--ease),border-color 90ms var(--ease);flex:none}
   .sw::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:2px;background:var(--brass-deep);transition:transform 90ms var(--ease),background 90ms var(--ease)}
   .toggle:hover .sw{border-color:var(--brass-line)}
@@ -280,6 +280,10 @@
     .m-grid{gap:14px}
     .hero-line{font-size:17px}
   }
+.empty{padding:44px 20px;text-align:center;color:var(--parchment);line-height:1.7}
+.empty button{margin-top:14px;cursor:pointer;font:400 13px/1 var(--ui);color:var(--parchment);background:none;border:1px dashed var(--rule-strong);border-radius:4px;padding:10px 16px}
+:focus-visible{outline:2px solid var(--brass-bright);outline-offset:2px}
+.toggle input:focus-visible+.sw{outline:2px solid var(--brass-bright);outline-offset:2px}
 </style>
 </head>
 <body>
@@ -785,11 +789,11 @@ function mark(){let any=false;[...presetsEl.children].forEach(b=>{if(b===customC
  customChip.classList.toggle("on",!any);}
 const fadersEl=document.getElementById("faders");
 AX.forEach(a=>{const w=document.createElement("div");w.className="fader";
- w.innerHTML=`<div class="top"><span class="nm">${a.n}<small>${a.s}</small></span><span class="v" id="v-${a.k}"></span></div><input type="range" min="0" max="5" step="1" id="r-${a.k}">`;
+ w.innerHTML=`<div class="top"><span class="nm">${a.n}<small>${a.s}</small></span><span class="v" id="v-${a.k}"></span></div><input type="range" min="0" max="5" step="1" id="r-${a.k}" aria-label="${a.n}">`;
  fadersEl.appendChild(w);
  w.querySelector("input").addEventListener("input",e=>{W[a.k]=+e.target.value;
   document.getElementById("v-"+a.k).textContent=e.target.value;
-  e.target.classList.toggle("zero",+e.target.value===0);mark();render();});});
+  e.target.classList.toggle("zero",+e.target.value===0);mark();renderDeb();});});
 function sync(){AX.forEach(a=>{const r=document.getElementById("r-"+a.k);r.value=W[a.k];
  document.getElementById("v-"+a.k).textContent=W[a.k];r.classList.toggle("zero",W[a.k]===0);});}
 /* filters */
@@ -818,7 +822,8 @@ document.getElementById("fFree").addEventListener("change",e=>{fFree=e.target.va
 document.getElementById("fPick").addEventListener("change",e=>{fPick=e.target.checked;render();});
 famSel.addEventListener("change",e=>{fFam=e.target.value;render();});
 document.getElementById("fYear").addEventListener("change",e=>{fYear=+e.target.value;render();});
-document.getElementById("q").addEventListener("input",e=>{q=e.target.value.toLowerCase().trim();render();});
+const renderDeb=(()=>{let t;return()=>{clearTimeout(t);t=setTimeout(render,120);};})();
+document.getElementById("q").addEventListener("input",e=>{q=e.target.value.toLowerCase().trim();renderDeb();});
 genSel.addEventListener("change",e=>{fGen=e.target.value;render();});
 tagSel.addEventListener("change",e=>{fTag=e.target.value;render();});
 document.getElementById("fDiff").addEventListener("change",e=>{fDiff=+e.target.value;render();});
@@ -831,6 +836,10 @@ document.getElementById("reset").onclick=()=>{W={...PRESETS["Игра как и�
 /* scoring */
 function score(d){let t=0,m=0;AX.forEach(a=>{t+=W[a.k]*d.s[a.k];m+=W[a.k]*10;});return m>0?t/m*100:0;}
 const listEl=document.getElementById("list"),cntEl=document.getElementById("cnt");
+listEl.addEventListener("keydown",e=>{if(e.key!=="Enter"&&e.key!==" ")return;const t=e.target;
+  if(t.classList.contains("sys")){e.preventDefault();(t.querySelector(".sys-main")||t).click();}
+  else if(t.matches(".cmpb,.shrc,[data-tip]")){e.preventDefault();t.click();}});
+listEl.addEventListener("click",e=>{if(e.target.id==="emptyReset")document.getElementById("reset").click();});
 let openSet=new Set(),sortAx=null,pendingWiz=false,pendingCmp=false;
 function render(){
  let rows=DATA.filter(d=>{
@@ -854,24 +863,29 @@ function render(){
  if(sortAx){const an=AX.find(a=>a.k===sortAx).n;
   cntEl.innerHTML=`${rows.length} систем · по оси «${an}» по убыванию · <span id="srtOff" style="cursor:pointer;border-bottom:1px dashed var(--muted);color:var(--muted)">вернуть по совпадению</span>`;
   document.getElementById("srtOff").onclick=()=>{sortAx=null;render();};}
- else cntEl.textContent=`${rows.length} систем · по убыванию совпадения с весами`;
+ else cntEl.textContent=rows.length?`${rows.length} систем · по убыванию совпадения с весами`:"0 систем — фильтры отсекли всё";
  const old=new Map();[...listEl.children].forEach(el=>old.set(el.dataset.k,el.getBoundingClientRect()));
  listEl.innerHTML="";
+  if(!rows.length){listEl.innerHTML=`<div class="empty">Под эти фильтры ничего не нашлось.<br><button id="emptyReset" type="button">Сбросить фильтры</button></div>`;}
  rows.forEach((r,i)=>listEl.appendChild(card(r.d,r.p,i+1)));
+  [...listEl.children].forEach(c=>{if(!c.classList.contains("sys"))return;
+    c.tabIndex=0;c.setAttribute("role","button");c.setAttribute("aria-expanded",String(c.classList.contains("open")));
+    c.querySelectorAll(".cmpb,.shrc,[data-tip]").forEach(a=>{a.tabIndex=0;a.setAttribute("role","button");});});
  [...listEl.children].forEach(el=>{const o=old.get(el.dataset.k);if(!o)return;
   const n=el.getBoundingClientRect(),dy=o.top-n.top;
   if(Math.abs(dy)>1){el.style.transform=`translateY(${dy}px)`;el.style.transition="none";
    requestAnimationFrame(()=>{el.style.transition="transform .4s cubic-bezier(.2,.7,.2,1)";el.style.transform="";});}});
 }
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 function card(d,p,rank){
  const el=document.createElement("div");
  el.className="sys"+(rank===1?" top1":"")+(openSet.has(d.n)?" open":"");
  el.dataset.k=d.n;
  const ruTip=d.ru==="Да"?"Есть официальная русская локализация":"Локализована частично: фанатские или неполные переводы";
- const ruL=d.ru!=="—"?`<span class="bdg ruL" data-tip="${ruTip}">RU: ${d.ru}</span>`:"";
+ const ruL=d.ru!=="—"?`<span class="bdg ruL" data-tip="${esc(ruTip)}">RU: ${d.ru}</span>`:"";
  const ruO=d.ro?`<span class="bdg ruO" data-tip="Российская разработка">РФ</span>`:"";
  const cfTip=d.cf==="Н"?"Уверенность оценки низкая: по репутации и откликам, книгу не разбирали":"Уверенность оценки средняя: частичное чтение и обзоры";
- const cfB=d.cf!=="В"?`<span class="bdg ${d.cf==="Н"?"cN":"cS"}" data-tip="${cfTip}">уверенность: ${d.cf}</span>`:"";
+ const cfB=d.cf!=="В"?`<span class="bdg ${d.cf==="Н"?"cN":"cS"}" data-tip="${esc(cfTip)}">уверенность: ${d.cf}</span>`:"";
  const L=linkFor(d);
  const noteHtml=d.note.includes("||")
   ?(()=>{const nn=d.note.split("||");return `<div class="note"><span class="wt">Что это</span>${nn[0].trim()}<div class="vd"><span class="wt">Вердикт</span>${nn[1].trim()}</div></div>`;})()
@@ -881,7 +895,7 @@ function card(d,p,rank){
  el.innerHTML=`<div class="sys-main">
   <div class="rank">${rank}</div>
   <div class="nm2"><div class="n">${d.n}${AUTHOR_PICKS.has(d.n)?` <span class="apick" data-tip="Выбор автора: лично вожу и рекомендую">★</span>`:``}</div>
-   <div class="meta"><span class="bdg eng" data-tip="${GLOSS[fam(d.e)]||""}">${d.e}</span><span class="bdg">${d.g}</span><span class="bdg">${d.y}</span><span class="bdg">${d.d}</span>${ruO}${ruL}${cfB}${FREE.has(d.n)?`<span class="bdg fr" data-tip="Официальная бесплатная версия: полные правила или играбельная база">бесплатно</span>`:""}${VTT[d.n]?`<span class="bdg vt${VTT[d.n].some(x=>x===2)?" vtOf":""}" data-tip="${vttTip(d.n)}">VTT</span>`:""}</div></div>
+   <div class="meta"><span class="bdg eng" data-tip="${GLOSS[fam(d.e)]||""}">${d.e}</span><span class="bdg">${d.g}</span><span class="bdg">${d.y}</span><span class="bdg">${d.d}</span>${ruO}${ruL}${cfB}${FREE.has(d.n)?`<span class="bdg fr" data-tip="Официальная бесплатная версия: полные правила или играбельная база">бесплатно</span>`:""}${VTT[d.n]?`<span class="bdg vt${VTT[d.n].some(x=>x===2)?" vtOf":""}" data-tip="${esc(vttTip(d.n))}">VTT</span>`:""}</div></div>
   <div class="score"><span class="pct" style="color:${p>=70?"var(--ember)":p>=55?"#d9b96a":"var(--paper)"}">${Math.round(p)}<small style="font-size:10px;color:var(--muted2)">%</small></span>
    <div class="bar"><i style="width:${p}%"></i></div></div></div>
   <div class="sys-body">${noteHtml}${tagsHtml}${simHtml}
@@ -890,8 +904,8 @@ function card(d,p,rank){
  el.querySelector(".sys-main").onclick=(e)=>{
   const b=e.target.closest("[data-tip]");
   if(b){showTip(b);e.stopPropagation();return;}
-  el.classList.toggle("open");
-  if(el.classList.contains("open"))openSet.add(d.n);else openSet.delete(d.n);};
+  el.classList.toggle("open");el.setAttribute("aria-expanded",String(el.classList.contains("open")));
+   if(el.classList.contains("open"))openSet.add(d.n);else openSet.delete(d.n);};
  el.querySelectorAll(".simc").forEach(c=>{c.onclick=()=>jumpTo(c.dataset.sim);});
  el.querySelector(".cmpc").onclick=(e)=>toggleCmp(e.target);
  el.querySelectorAll("[data-share]").forEach(c=>{c.onclick=()=>{const sp=new URLSearchParams();sp.set("s",c.dataset.share);copyToClip(location.href.split("#")[0]+"#"+sp.toString(),c,"ссылка");};});
@@ -958,9 +972,21 @@ function renderCmpBar(){
   `<button class="clr" id="cmpClr">✕</button>`;
  const g=document.getElementById("cmpGo");if(g)g.onclick=openCompare;
  document.getElementById("cmpClr").onclick=()=>{compareSet.clear();renderCmpBar();render();};}
-function openOvl(html){ovlPanel.innerHTML=html;ovl.classList.add("show");document.body.style.overflow="hidden";}
-function closeOvl(){ovl.classList.remove("show");document.body.style.overflow="";}
+let lastFocus=null;
+function openOvl(html){lastFocus=document.activeElement;ovlPanel.innerHTML=html;ovl.setAttribute("role","dialog");ovl.setAttribute("aria-modal","true");ovl.classList.add("show");document.body.style.overflow="hidden";ovlPanel.tabIndex=-1;ovlPanel.focus();}
+function closeOvl(){ovl.classList.remove("show");document.body.style.overflow="";if(lastFocus&&lastFocus.focus)lastFocus.focus();}
 ovl.addEventListener("click",e=>{if(e.target===ovl)closeOvl();});
+document.addEventListener("keydown",e=>{
+  if(!ovl.classList.contains("show"))return;
+  if(e.key==="Escape"){closeOvl();return;}
+  if(e.key==="Tab"){
+    const f=[...ovlPanel.querySelectorAll('a[href],button,input,select,[tabindex]:not([tabindex="-1"])')].filter(x=>x.offsetParent!==null);
+    if(!f.length)return;
+    const first=f[0],last=f[f.length-1];
+    if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+    else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+  }
+});
 function openCompare(){
  const items=[...compareSet].map(n=>NAME_IX.get(n)).filter(Boolean);
  if(items.length<2)return;
@@ -1180,6 +1206,9 @@ document.getElementById("share").onclick=()=>copyToClip(shareUrl(),document.getE
  const wza=p.get("wz")?wizDec(p.get("wz")):null;if(wza){wizA=wza;pendingWiz=true;}
 }catch(e){}})();
 sync();mark();render();
+document.querySelectorAll(".row").forEach(r=>{const sp=r.querySelector("span");const c=r.querySelector("select,input");
+  if(sp&&c&&!c.hasAttribute("aria-label"))c.setAttribute("aria-label",sp.textContent.trim());});
+const qEl=document.getElementById("q");if(qEl&&!qEl.hasAttribute("aria-label"))qEl.setAttribute("aria-label","Поиск по системам");
 if(compareSet.size)renderCmpBar();
 if(pendingCmp)openCompare();
 if(pendingWiz)drawWiz();
