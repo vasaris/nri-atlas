@@ -127,12 +127,17 @@
   .list{display:flex;flex-direction:column;gap:8px}
   .sys{position:relative;background:var(--board);border:1px solid var(--rule);border-radius:6px;overflow:hidden;transition:background 90ms var(--ease),border-color 90ms var(--ease)}
   .sys:hover{background:var(--board-hover)}
-  .sys.open{border-color:var(--rule-strong)}
+  .sys.open{border-color:var(--brass-line);background:var(--board-raised)}
+  .exp{display:flex;align-items:center;justify-content:center;width:32px;height:32px;padding:0;background:transparent;border:1px solid var(--rule-strong);border-radius:6px;color:var(--faded);cursor:pointer;transition:transform 140ms var(--ease),color 90ms var(--ease),border-color 90ms var(--ease)}
+  .exp svg{width:18px;height:18px}
+  .exp:hover{color:var(--parchment);border-color:var(--brass-line)}
+  .sys.open .exp{transform:rotate(180deg);color:var(--brass);border-color:var(--brass-line)}
+  @media(prefers-reduced-motion:reduce){.exp{transition:none}}
   .sys.open::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--brass);z-index:1}
   .sys.spin{border-color:var(--brass);background:var(--brass-tint)}
   .sys.lucky{border-color:var(--wax-line);background:var(--wax-tint)}
   .sys.lucky.open::before{background:var(--wax)}
-  .sys-main{position:relative;z-index:0;display:grid;grid-template-columns:34px 1fr auto;gap:14px;align-items:center;padding:13px 18px;cursor:pointer;min-height:56px}
+  .sys-main{position:relative;z-index:0;display:grid;grid-template-columns:34px 1fr auto auto;gap:14px;align-items:center;padding:13px 18px;cursor:pointer;min-height:56px}
   .rank{position:relative;z-index:0;width:34px;height:38px;display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-weight:600;font-size:14px;color:var(--brass);line-height:1}
   .rank::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--brass-line);-webkit-clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
   .rank::after{content:"";position:absolute;inset:1px;z-index:-1;background:var(--board);-webkit-clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);transition:background 90ms var(--ease)}
@@ -140,7 +145,7 @@
   .sys.top1 .rank::before,.sys.top1 .rank::after,.sys.lucky .rank::before,.sys.lucky .rank::after{background:var(--wax)}
   .sys.top1 .rank,.sys.lucky .rank{color:var(--parchment-bright)}
   .nm2{min-width:0}
-  .nm2 .n{font-family:var(--disp);font-size:18px;font-weight:600;line-height:1.25;letter-spacing:-.005em}
+  .nm2 .n{font-family:var(--disp);font-size:18px;font-weight:600;line-height:1.25;letter-spacing:-.005em;margin:0}
   .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;align-items:center}
   .apick{color:var(--brass);font-size:15px;cursor:pointer}
   .bdg{font-family:var(--mono);font-size:11px;line-height:1;letter-spacing:.08em;text-transform:uppercase;color:var(--faded-deep);border:1px solid currentColor;border-radius:4px;padding:4px 7px;white-space:nowrap}
@@ -161,6 +166,7 @@
   /* раскрытый лист */
   .sys-body{display:none;padding:0 18px 18px;border-top:1px solid var(--rule)}
   .sys.open .sys-body{display:block}
+  .sys.open .sys-main{border-bottom:1px solid var(--brass-hairline)}
   .note{font-size:14px;line-height:1.62;color:var(--parchment);margin:15px 0;max-width:64ch;text-wrap:pretty}
   .note .wt{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--faded-deep);margin-bottom:3px}
   .note .vd{margin-top:12px}
@@ -898,8 +904,7 @@ document.getElementById("reset").onclick=()=>{W={...PRESETS["Игра как и�
 function score(d){let t=0,m=0;AX.forEach(a=>{t+=W[a.k]*d.s[a.k];m+=W[a.k]*10;});return m>0?t/m*100:0;}
 const listEl=document.getElementById("list"),cntEl=document.getElementById("cnt");
 listEl.addEventListener("keydown",e=>{if(e.key!=="Enter"&&e.key!==" ")return;const t=e.target;
-  if(t.classList.contains("sys")){e.preventDefault();(t.querySelector(".sys-main")||t).click();}
-  else if(t.matches(".cmpc,.shrc,[data-tip]")){e.preventDefault();t.click();}});
+  if(t.matches(".cmpc,.shrc,.simc,[data-tip]")){e.preventDefault();t.click();}});
 listEl.addEventListener("click",e=>{if(e.target.id==="emptyReset")document.getElementById("reset").click();});
 let openSet=new Set(),sortAx=null,pendingWiz=false,pendingCmp=false;
 function render(){
@@ -930,7 +935,10 @@ function render(){
   if(!rows.length){listEl.innerHTML=`<div class="empty">Под эти фильтры ничего не нашлось.<br><button id="emptyReset" type="button">Сбросить фильтры</button></div>`;}
  rows.forEach((r,i)=>listEl.appendChild(card(r.d,r.p,i+1)));
   [...listEl.children].forEach(c=>{if(!c.classList.contains("sys"))return;
-    c.setAttribute("aria-expanded",String(c.classList.contains("open")));
+    const eb=c.querySelector(".exp");
+    if(eb){const on=c.classList.contains("open");
+     eb.setAttribute("aria-expanded",String(on));
+     eb.setAttribute("aria-label",(on?"Свернуть":"Развернуть")+" карточку: "+c.dataset.k);}
     c.querySelectorAll(".cmpc,.shrc,[data-tip]").forEach(a=>{a.tabIndex=0;a.setAttribute("role","button");});});
  [...listEl.children].forEach(el=>{const o=old.get(el.dataset.k);if(!o)return;
   const n=el.getBoundingClientRect(),dy=o.top-n.top;
@@ -939,7 +947,7 @@ function render(){
 }
 const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 function card(d,p,rank){
- const el=document.createElement("div");
+ const el=document.createElement("article");
  el.className="sys"+(rank===1?" top1":"")+(openSet.has(d.n)?" open":"");
  el.dataset.k=d.n;
  const ruTip=d.ru==="Да"?"Есть официальная русская локализация":"Локализована частично: фанатские или неполные переводы";
@@ -953,12 +961,12 @@ function card(d,p,rank){
  const verdictHtml=SHOW_TEXTS&&d.note.includes("||")
   ?`<div class="note vd"><span class="wt">Вердикт</span>${d.note.split("||")[1].trim()}</div>`:"";
  const tagsHtml=d.tags.length?`<div class="trow">${d.tags.map(t=>`<span class="tagc">${t}</span>`).join("")}</div>`:"";
- const simHtml=d.sim.length?`<div class="trow"><span class="simlab">похоже на:</span>${d.sim.map(s2=>`<span class="simc" data-sim="${s2}">${s2}</span>`).join("")}</div>`:"";
+ const simHtml=d.sim.length?`<div class="trow"><span class="simlab">похоже на:</span>${d.sim.map(s2=>`<span class="simc" data-sim="${s2}" role="button" tabindex="0" aria-label="Открыть: ${esc(s2)}">${s2}</span>`).join("")}</div>`:"";
  el.innerHTML=`<div class="sys-main">
   <div class="rank">${rank}</div>
-  <div class="nm2"><div class="n">${d.n}${AUTHOR_PICKS.has(d.n)?` <span class="apick" data-tip="Выбор автора: лично вожу и рекомендую">★</span>`:``}</div>
+  <div class="nm2"><h2 class="n">${d.n}${AUTHOR_PICKS.has(d.n)?` <span class="apick" data-tip="Выбор автора: лично вожу и рекомендую">★</span>`:``}</h2>
    <div class="meta"><span class="bdg eng" data-tip="${GLOSS[fam(d.e)]||""}">${d.e}</span><span class="bdg">${d.g}</span><span class="bdg">${d.y}</span><span class="bdg">${d.d}</span>${ruO}${ruL}${cfB}${FREE.has(d.n)?`<span class="bdg fr" data-tip="Официальная бесплатная версия: полные правила или играбельная база">бесплатно</span>`:""}${SUPERSEDED[d.n]?`<span class="bdg sup" data-jump="${esc(SUPERSEDED[d.n])}" title="Эта строка остаётся в каталоге, но начинать лучше с другой">лучше начать с: ${esc(SUPERSEDED[d.n])}</span>`:""}${VTT[d.n]?`<span class="bdg vt${VTT[d.n].some(x=>x===2)?" vtOf":""}" data-tip="${esc(vttTip(d.n))}">VTT</span>`:""}</div></div>
-  ${SHOW_SCORES?`<div class="score"><span class="pct" style="color:${p>=70?"var(--ember)":p>=55?"#d9b96a":"var(--paper)"}">${Math.round(p)}<small style="font-size:10px;color:var(--muted2)">%</small></span>
+  <button type="button" class="exp" aria-expanded="false" aria-label="Развернуть карточку: ${esc(d.n)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>${SHOW_SCORES?`<div class="score"><span class="pct" style="color:${p>=70?"var(--ember)":p>=55?"#d9b96a":"var(--paper)"}">${Math.round(p)}<small style="font-size:10px;color:var(--muted2)">%</small></span>
    <div class="bar"><i style="width:${p}%"></i></div></div>`:""}</div>
   <div class="sys-body">${descHtml(d)}${verdictHtml}${tagsHtml}${simHtml}
    ${SHOW_SCORES?`<div class="axes">${AX.map(a=>`<div class="ax"><span class="lab ${W[a.k]===0?"dim":""}${sortAx===a.k?" srt":""}" data-sort="${a.k}" title="Сортировать список по этой оси"><span>${sortAx===a.k?"↓ ":""}${a.n}</span><span>${d.s[a.k]}/10${W[a.k]>0?" ×"+W[a.k]:""}</span></span><div class="mb"><i class="${W[a.k]>=4?"hot":""}" style="width:${d.s[a.k]*10}%"></i></div></div>`).join("")}</div>`:""}
@@ -966,8 +974,15 @@ function card(d,p,rank){
  el.querySelector(".sys-main").onclick=(e)=>{
   const b=e.target.closest("[data-tip]");
   if(b){showTip(b);e.stopPropagation();return;}
-  el.classList.toggle("open");el.setAttribute("aria-expanded",String(el.classList.contains("open")));
-   if(el.classList.contains("open")){openSet.add(d.n);gcCard(d.n);}else openSet.delete(d.n);};
+  toggleCard();};
+ function toggleCard(){
+  el.classList.toggle("open");
+  const on=el.classList.contains("open");
+  const b=el.querySelector(".exp");
+  if(b){b.setAttribute("aria-expanded",String(on));
+   b.setAttribute("aria-label",(on?"Свернуть":"Развернуть")+" карточку: "+d.n);}
+  if(on){openSet.add(d.n);gcCard(d.n);}else openSet.delete(d.n);}
+ el.querySelector(".exp").onclick=(e)=>{e.stopPropagation();toggleCard();};
  el.querySelectorAll(".simc").forEach(c=>{c.onclick=()=>jumpTo(c.dataset.sim);});
  el.querySelector(".cmpc").onclick=(e)=>toggleCmp(e.target);
  el.querySelectorAll("[data-jump]").forEach(c=>{c.tabIndex=0;c.setAttribute("role","button");
@@ -988,7 +1003,10 @@ document.getElementById("lucky").onclick=()=>{
  const reveal=()=>{
   rows.forEach(r=>r.classList.remove("lucky","spin","open"));openSet.clear();
   pick.classList.add("lucky","open");openSet.add(pick.dataset.k);
-  pick.setAttribute("aria-expanded","true");
+  /* карточка раскрывается без перерисовки — синхронизируем её кнопку вручную */
+  const pb=pick.querySelector(".exp");
+  if(pb){pb.setAttribute("aria-expanded","true");
+   pb.setAttribute("aria-label","Свернуть карточку: "+pick.dataset.k);}
   pick.scrollIntoView({block:"center",behavior:"smooth"});
   spinning=false;};
  /* мало вариантов или человек просил меньше движения — показываем сразу */
