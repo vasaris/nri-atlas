@@ -431,6 +431,14 @@ const QFIX={"Paranoia (Perfect Edition)":"Paranoia","Traveller (Mongoose 2e)":"T
  "Werewolf: The Apocalypse W5":"Werewolf The Apocalypse 5th Edition","Mage: The Ascension 20th":"Mage the Ascension 20th Anniversary",
  "Monsterhearts 2":"Monsterhearts","The Dark Eye (DSA)":"The Dark Eye","Mutant: Year Zero":"Mutant Year Zero","Kult: Divinity Lost":"Kult Divinity Lost",
  "Level Up: Advanced 5e":"Level Up Advanced 5th Edition","Root: The RPG":"Root RPG","Heart: The City Beneath":"Heart City Beneath","Feng Shui 2":"Feng Shui"};
+/* Аналитика: какие карточки реально открывают. Одно событие на систему за сессию,
+   чтобы повторные клики не искажали картину. Данные нужны, чтобы понимать,
+   какие описания переписывать в первую очередь. */
+const gcSeen=new Set();
+function gcCard(name){
+ if(gcSeen.has(name))return;gcSeen.add(name);
+ try{if(window.goatcounter&&window.goatcounter.count)
+  window.goatcounter.count({path:"card/"+name,title:"Карточка: "+name,event:true});}catch(e){}}
 function linkFor(d){
  const t="Узнать больше и купить →";
  if(OFFICIAL[d.n])return{u:OFFICIAL[d.n],t};
@@ -629,7 +637,7 @@ const GLOSS={
  "Fortune":"Движок Two Little Mice: кидаешь горсть шестигранников и ищешь пары и тройки, как в покере. Быстрый, азартный, кинематографичный.",
  "OSR / минимализм":"Старая школа: правил мало, смертность высокая, изобретательность игроков важнее цифр на листе персонажа.",
  "Другое":"Авторский движок вне крупных семейств — как играется, смотри в заметке."};
-// [gm,ease,pl,rec,mech,drama,shot,onb,nov]
+// порядок массива оценок (совпадает с картой R, НЕ с порядком AX): [gm,ease,pl,rec,mech,drama,shot,onb,camp,sup]
 const R=(n,e,g,y,ru,ro,d,cf,s,note,sim,tags)=>({n,e,g,y,ru,ro,d,cf,s:{gm:s[0],ease:s[1],pl:s[2],rec:s[3],mech:s[4],drama:s[5],shot:s[6],onb:s[7],camp:s[8],sup:s[9]},note,sim:sim||[],tags:tags||[]});
 const DATA=[
 R("D&D 5e / 5.5e","d20","Фэнтези",2024,"Ч",0,"Средне","В",[6,5,8,8,6,5,6,7,8,10],"То самое фэнтези про партию героев, подземелья и драконов — язык, на котором говорит всё хобби: если человек играл хоть во что-то, он играл в это.||Максимум игроков, контента и готовых столов; по каждой отдельной оси — середняк. Ревизия 2024-го отполировала, не изменив. Лучшая точка входа в хобби — и повод однажды попробовать что-то ещё.",["Pathfinder 2e","Daggerheart","13th Age"],["героика","приключение","тактика","билдострой"]),
@@ -914,7 +922,7 @@ function card(d,p,rank){
   const b=e.target.closest("[data-tip]");
   if(b){showTip(b);e.stopPropagation();return;}
   el.classList.toggle("open");el.setAttribute("aria-expanded",String(el.classList.contains("open")));
-   if(el.classList.contains("open"))openSet.add(d.n);else openSet.delete(d.n);};
+   if(el.classList.contains("open")){openSet.add(d.n);gcCard(d.n);}else openSet.delete(d.n);};
  el.querySelectorAll(".simc").forEach(c=>{c.onclick=()=>jumpTo(c.dataset.sim);});
  el.querySelector(".cmpc").onclick=(e)=>toggleCmp(e.target);
  el.querySelectorAll("[data-share]").forEach(c=>{c.onclick=()=>{const sp=new URLSearchParams();sp.set("s",c.dataset.share);copyToClip(location.href.split("#")[0]+"#"+sp.toString(),c,"ссылка");};});

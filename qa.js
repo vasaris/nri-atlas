@@ -168,5 +168,65 @@ DATA.forEach(d => {
 });
 check(par.length === 0, 'паритет JSON <-> HTML: год, RU, движок, сложность, free, кубы, VTT', par.slice(0, 15));
 
+// 13b. Глубокий паритет: авторские поля, на которых держится доверие к продукту.
+// Раньше не сторожились вовсе — а именно их правят массово.
+const eqArr = (a, b) => Array.isArray(a) && Array.isArray(b) &&
+  a.length === b.length && a.every((x, i) => x === b[i]);
+const AXK = AX.map(a => a.k);
+let deep = [];
+DATA.forEach(d => {
+  const s = jBy.get(d.n); if (!s) return;
+  // оценки: все десять осей
+  const js = s.scores || {};
+  AXK.forEach(k => { if (js[k] !== d.s[k]) deep.push(`${d.n}:scores.${k}`); });
+  // тексты: note в HTML = "что это||вердикт"
+  const parts = String(d.note).split('||');
+  if ((parts[0] || '').trim() !== String(s.what_is_it || '').trim()) deep.push(d.n + ':what_is_it');
+  if ((parts[1] || '').trim() !== String(s.verdict || '').trim()) deep.push(d.n + ':verdict');
+  // связи, теги, жанр, уверенность, российское происхождение
+  if (!eqArr(d.sim, s.similar || [])) deep.push(d.n + ':similar');
+  if (!eqArr(d.tags, s.tags || [])) deep.push(d.n + ':tags');
+  if (s.genre !== d.g) deep.push(d.n + ':genre');
+  if (s.confidence !== d.cf) deep.push(d.n + ':confidence');
+  if (Boolean(s.russian_origin) !== Boolean(d.ro)) deep.push(d.n + ':russian_origin');
+});
+check(deep.length === 0,
+  'глубокий паритет: оценки, тексты, связи, теги, жанр, уверенность', deep.slice(0, 15));
+
+// 13c. Локализации: HTML-таблицы обязаны совпадать с localization в JSON
+const offBy = new Map(LOC_OFF.map(l => [l.n, l]));
+const partBy = new Map(LOC_PART.map(l => [l.n, l]));
+let loc = [];
+DATA.forEach(d => {
+  const s = jBy.get(d.n); if (!s) return;
+  const jl = s.localization || null;
+  if (d.ru === 'Да') {
+    const h = offBy.get(d.n);
+    if (!h || !jl) { loc.push(d.n + ':loc-missing'); return; }
+    if (jl.status !== 'официальная') loc.push(d.n + ':loc-status');
+    if ((h.t || '') !== (jl.title || '')) loc.push(d.n + ':loc-title');
+    if ((h.p || '') !== (jl.publisher || '')) loc.push(d.n + ':loc-publisher');
+    if ((h.u || '') !== (jl.url || '')) loc.push(d.n + ':loc-url');
+  } else if (d.ru === 'Ч') {
+    const h = partBy.get(d.n);
+    if (!h || !jl) { loc.push(d.n + ':loc-missing'); return; }
+    if (jl.status !== 'частичная') loc.push(d.n + ':loc-status');
+    if ((h.note || '') !== (jl.note || '')) loc.push(d.n + ':loc-note');
+  } else if (jl) loc.push(d.n + ':loc-unexpected');
+});
+check(loc.length === 0, 'паритет локализаций: статус, издатель, ссылка, нота', loc.slice(0, 15));
+
+// 13d. Позиционный массив оценок: длина и порядок должны совпадать с картой R.
+// AX и R расходятся в позициях 7/8 (camp/onb) — комментарий у DATA обязан отражать R,
+// иначе правка массива «по порядку осей» молча переставит две оценки.
+const rMap = [...js.matchAll(/(\w+):s\[(\d)\]/g)].map(m => [m[1], +m[2]])
+  .sort((a, b) => a[1] - b[1]).map(x => x[0]);
+check(rMap.length === 10, 'конструктор R разбирает ровно десять осей', rMap);
+check(rMap.slice().sort().join() === AXK.slice().sort().join(),
+  'набор осей в R совпадает с AX', { rMap, AXK });
+const cmt = (js.match(/\[([a-z,]+)\]\s*$/m) || [])[1];
+check(cmt === rMap.join(','),
+  'комментарий у DATA описывает реальный порядок массива', { comment: cmt, real: rMap.join(',') });
+
 console.log(fails === 0 ? '\nБАТАРЕЯ ЗЕЛЁНАЯ' : '\nПРОВАЛОВ: ' + fails);
 process.exit(fails === 0 ? 0 : 1);
