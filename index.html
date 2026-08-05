@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>НРИ-Атлас — какую настольную ролевую игру взять</title>
-<meta name="description" content="Интерактивный справочник по 150 настольным ролевым играм: рейтинг под вашу задачу, подбор за пять вопросов, сравнение систем, русские локализации и авторские вердикты.">
+<title>НРИ-Атлас — справочник настольных ролевых игр</title>
+<meta name="description" content="Справочник по 150 настольным ролевым играм: год, движок, кубы, сложность, русские локализации и поддержка виртуальных столов. Фильтры, поиск и сравнение.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="НРИ-Атлас — какую настольную ролевую игру взять">
-<meta property="og:description" content="150 систем, авторские вердикты, подбор за минуту. Рейтинг под вашу задачу, сравнение и таблица русских локализаций.">
+<meta property="og:description" content="150 систем: русские издания, поддержка VTT, бесплатные версии. Фильтры, поиск, сравнение.">
 <meta property="og:url" content="https://vasaris.github.io/nri-atlas/">
-<meta property="og:image" content="https://vasaris.github.io/nri-atlas/og.png?v=2">
+<meta property="og:image" content="https://vasaris.github.io/nri-atlas/og.png?v=3">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -305,10 +305,10 @@
 <a class="skip" href="#catalog">К каталогу систем</a>
 <div class="wrap">
 <header>
-  <h1>НРИ<span class="dot">·</span>Атлас<span class="tag">150 систем · 10 осей</span></h1>
-  <p class="sub">Интерактивный рейтинг настольных ролевых игр с ведущим (безмастеровые и соло-системы не включены). Десять осей 0–10, вес каждой настраивается ползунком, итог пересчитывается на лету. <a href="#method">Что значат оценки и бейджи</a> — внизу страницы.</p>
+  <h1>НРИ<span class="dot">·</span>Атлас<span class="tag">150 систем · факты и фильтры</span></h1>
+  <p class="sub">Справочник настольных ролевых игр с ведущим (безмастеровые и соло-системы не включены). Год, движок, кубы, сложность, русские издания и поддержка виртуальных столов — с фильтрами и поиском. <b>Авторские оценки и описания временно скрыты: они пересматриваются.</b> <a href="#method">Что значат бейджи</a> — внизу страницы.</p>
 <div class="hero">
-  <div class="hero-line">Какую настольную ролевую игру взять? Рейтинг под твою задачу, подбор за минуту и авторские вердикты по всем 150 системам.</div>
+  <div class="hero-line">Какую настольную ролевую игру взять? 150 систем с проверенными фактами: язык, кубы, цена входа, поддержка виртуальных столов.</div>
   <div class="hero-btns">
    <button class="hbtn hb1" id="heroWiz"><svg class="bico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2.2 5-5 2.2 2.2-5z"/></svg> Подобрать игру</button>
    <button class="hbtn" id="heroLucky"><svg class="bico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2l8.7 5v10L12 22 3.3 17V7L12 2z"/><path d="M12 8.2 6.2 15h11.6L12 8.2zM12 2v6.2M3.3 7l2.9 8M20.7 7l-2.9 8M12 22l-5.8-7M12 22l5.8-7"/></svg> Мне повезёт</button>
@@ -327,9 +327,9 @@
   <input type="checkbox" class="rail-check" id="railOpen">
   <label class="rail-head" for="railOpen">Веса и фильтры</label>
   <div class="rail-body">
-  <h3>Пресеты весов</h3><div class="presets" id="presets"></div>
+  <div id="wBox"><h3>Пресеты весов</h3><div class="presets" id="presets"></div>
   <h3>Оси (вес 0–5)</h3>
-  <p class="whint">Ползунок — важность критерия для подбора, а не оценка систем: 0 — не учитывать, 5 — решающий. Подпись под осью говорит, какие системы поднимает высокий вес.</p><div id="faders"></div>
+  <p class="whint">Ползунок — важность критерия для подбора, а не оценка систем: 0 — не учитывать, 5 — решающий. Подпись под осью говорит, какие системы поднимает высокий вес.</p><div id="faders"></div></div>
   <div class="divider"></div>
   <h3>Фильтры</h3>
   <div class="filt">
@@ -661,6 +661,10 @@ const GLOSS={
  "OSR / минимализм":"Старая школа: правил мало, смертность высокая, изобретательность игроков важнее цифр на листе персонажа.",
  "Другое":"Авторский движок вне крупных семейств — как играется, смотри в заметке."};
 // порядок массива оценок (совпадает с картой R, НЕ с порядком AX): [gm,ease,pl,rec,mech,drama,shot,onb,camp,sup]
+/* Слой оценок и ИИ-текстов скрыт до решения автора о их судьбе.
+   Данные целы в nri-atlas-data.json; вернуть — поставить true. */
+const SHOW_SCORES=false;
+const SHOW_TEXTS=false;
 const R=(n,e,g,y,ru,ro,d,cf,s,note,sim,tags)=>({n,e,g,y,ru,ro,d,cf,s:{gm:s[0],ease:s[1],pl:s[2],rec:s[3],mech:s[4],drama:s[5],shot:s[6],onb:s[7],camp:s[8],sup:s[9]},note,sim:sim||[],tags:tags||[]});
 const DATA=[
 R("D&D 5e / 5.5e","d20","Фэнтези",2024,"Ч",0,"Средне","В",[6,5,8,8,6,5,6,7,8,10],"То самое фэнтези про партию героев, подземелья и драконов — язык, на котором говорит всё хобби: если человек играл хоть во что-то, он играл в это.||Максимум игроков, контента и готовых столов; по механике и тону — середняк, по отдаче для игроков и объёму поддержки — верх каталога. Ревизия 2024-го отполировала, не изменив. Лучшая точка входа в хобби — и повод однажды попробовать что-то ещё.",["Pathfinder 2e","Daggerheart","13th Age"],["героика","приключение","тактика","билдострой"]),
@@ -856,7 +860,8 @@ const famSel=document.getElementById("fFam");
 [...new Set(DATA.map(d=>fam(d.e)))].sort().forEach(f=>{const o=document.createElement("option");o.value=f;o.textContent=f;famSel.appendChild(o);});
 const tagSel=document.getElementById("fTag");
 [...new Set(DATA.flatMap(d=>d.tags))].sort().forEach(t=>{const o=document.createElement("option");o.value=t;o.textContent=t;tagSel.appendChild(o);});
-let q="",fGen="",fDiff=3,fRu=false,fRuO=false,fConf=false,fFam="",fYear=0,fFree="",fDice="",fPick=false,fTag="";
+let pendingOldWz=false;
+ let q="",fGen="",fDiff=3,fRu=false,fRuO=false,fConf=false,fFam="",fYear=0,fFree="",fDice="",fPick=false,fTag="";
 document.getElementById("fDice").addEventListener("change",e=>{fDice=e.target.value;render();});
 document.getElementById("fFree").addEventListener("change",e=>{fFree=e.target.value;render();});
 document.getElementById("fPick").addEventListener("change",e=>{fPick=e.target.checked;render();});
@@ -895,7 +900,7 @@ function render(){
   if(fFam&&fam(d.e)!==fFam)return false;
   if(fYear&&d.y<fYear)return false;
   if(fPick&&!AUTHOR_PICKS.has(d.n))return false;
-  if(q){const th=t=>d.n.toLowerCase().includes(t)||d.e.toLowerCase().includes(t)||d.tags.some(x=>x.includes(t))||d.note.toLowerCase().includes(t);
+  if(q){const th=t=>d.n.toLowerCase().includes(t)||d.e.toLowerCase().includes(t)||d.tags.some(x=>x.includes(t))||(SHOW_TEXTS&&d.note.toLowerCase().includes(t));
    for(const t of q.split(/\s+/)){if(!t||t==="-")continue;
     if(t[0]==="-"){if(th(t.slice(1)))return false;}
     else if(!th(t))return false;}}
@@ -903,7 +908,7 @@ function render(){
  if(sortAx){const an=AX.find(a=>a.k===sortAx).n;
   cntEl.innerHTML=`${rows.length} систем · по оси «${an}» по убыванию · <span id="srtOff" style="cursor:pointer;border-bottom:1px dashed var(--muted);color:var(--muted)">вернуть по совпадению</span>`;
   document.getElementById("srtOff").onclick=()=>{sortAx=null;render();};}
- else cntEl.textContent=rows.length?`${rows.length} систем · по убыванию совпадения с весами`:"0 систем — фильтры отсекли всё";
+ else cntEl.textContent=rows.length?`${rows.length} систем`+(SHOW_SCORES?" · по убыванию совпадения с весами":""):"0 систем — фильтры отсекли всё";
  const old=new Map();[...listEl.children].forEach(el=>old.set(el.dataset.k,el.getBoundingClientRect()));
  listEl.innerHTML="";
   if(!rows.length){listEl.innerHTML=`<div class="empty">Под эти фильтры ничего не нашлось.<br><button id="emptyReset" type="button">Сбросить фильтры</button></div>`;}
@@ -936,10 +941,10 @@ function card(d,p,rank){
   <div class="rank">${rank}</div>
   <div class="nm2"><div class="n">${d.n}${AUTHOR_PICKS.has(d.n)?` <span class="apick" data-tip="Выбор автора: лично вожу и рекомендую">★</span>`:``}</div>
    <div class="meta"><span class="bdg eng" data-tip="${GLOSS[fam(d.e)]||""}">${d.e}</span><span class="bdg">${d.g}</span><span class="bdg">${d.y}</span><span class="bdg">${d.d}</span>${ruO}${ruL}${cfB}${FREE.has(d.n)?`<span class="bdg fr" data-tip="Официальная бесплатная версия: полные правила или играбельная база">бесплатно</span>`:""}${SUPERSEDED[d.n]?`<span class="bdg sup" data-jump="${esc(SUPERSEDED[d.n])}" title="Эта строка остаётся в каталоге, но начинать лучше с другой">лучше начать с: ${esc(SUPERSEDED[d.n])}</span>`:""}${VTT[d.n]?`<span class="bdg vt${VTT[d.n].some(x=>x===2)?" vtOf":""}" data-tip="${esc(vttTip(d.n))}">VTT</span>`:""}</div></div>
-  <div class="score"><span class="pct" style="color:${p>=70?"var(--ember)":p>=55?"#d9b96a":"var(--paper)"}">${Math.round(p)}<small style="font-size:10px;color:var(--muted2)">%</small></span>
-   <div class="bar"><i style="width:${p}%"></i></div></div></div>
-  <div class="sys-body">${noteHtml}${tagsHtml}${simHtml}
-   <div class="axes">${AX.map(a=>`<div class="ax"><span class="lab ${W[a.k]===0?"dim":""}${sortAx===a.k?" srt":""}" data-sort="${a.k}" title="Сортировать список по этой оси"><span>${sortAx===a.k?"↓ ":""}${a.n}</span><span>${d.s[a.k]}/10${W[a.k]>0?" ×"+W[a.k]:""}</span></span><div class="mb"><i class="${W[a.k]>=4?"hot":""}" style="width:${d.s[a.k]*10}%"></i></div></div>`).join("")}</div>
+  ${SHOW_SCORES?`<div class="score"><span class="pct" style="color:${p>=70?"var(--ember)":p>=55?"#d9b96a":"var(--paper)"}">${Math.round(p)}<small style="font-size:10px;color:var(--muted2)">%</small></span>
+   <div class="bar"><i style="width:${p}%"></i></div></div>`:""}</div>
+  <div class="sys-body">${SHOW_TEXTS?noteHtml:""}${tagsHtml}${simHtml}
+   ${SHOW_SCORES?`<div class="axes">${AX.map(a=>`<div class="ax"><span class="lab ${W[a.k]===0?"dim":""}${sortAx===a.k?" srt":""}" data-sort="${a.k}" title="Сортировать список по этой оси"><span>${sortAx===a.k?"↓ ":""}${a.n}</span><span>${d.s[a.k]}/10${W[a.k]>0?" ×"+W[a.k]:""}</span></span><div class="mb"><i class="${W[a.k]>=4?"hot":""}" style="width:${d.s[a.k]*10}%"></i></div></div>`).join("")}</div>`:""}
    <a class="lnk" href="${L.u}" target="_blank" rel="noopener">${L.t}</a><span class="cmpc${compareSet.has(d.n)?" on":""}" data-cmp="${d.n}">${compareSet.has(d.n)?"✓ в сравнении":"сравнить"}</span><span class="shrc" data-share="${d.n}" title="Скопировать прямую ссылку на эту систему">ссылка</span><a class="dis" href="https://t.me/vasaris" target="_blank" rel="noopener">не согласен с оценкой?</a>${TEXT_BY[d.n]?`<span class="txtby">текст: ${esc(TEXT_BY[d.n])}</span>`:""}</div>`;
  el.querySelector(".sys-main").onclick=(e)=>{
   const b=e.target.closest("[data-tip]");
@@ -1054,12 +1059,22 @@ function openCompare(){
  const items=[...compareSet].map(n=>NAME_IX.get(n)).filter(Boolean);
  if(items.length<2)return;
  const th=items.map(d=>`<th>${d.n}<div class="mini">${d.e} · ${d.y} · ${d.d}</div></th>`).join("");
- const what=`<tr><td class="axn">Что это</td>${items.map(d=>`<td style="font-size:11.5px;color:#cdc6b6">${d.note.split("||")[0]}</td>`).join("")}</tr>`;
- const axRows=AX.map(a=>{
+ const what=!SHOW_TEXTS?"":`<tr><td class="axn">Что это</td>${items.map(d=>`<td style="font-size:11.5px;color:#cdc6b6">${d.note.split("||")[0]}</td>`).join("")}</tr>`;
+ const factRow=(lab,fn)=>`<tr><td class="axn">${lab}</td>${items.map(d=>`<td>${fn(d)}</td>`).join("")}</tr>`;
+ const axRows=SHOW_SCORES?AX.map(a=>{
   const vals=items.map(d=>d.s[a.k]);
   const best=a.k==="drama"?null:Math.max(...vals);
   const tds=items.map(d=>`<td class="${best!==null&&d.s[a.k]===best?"best":""}">${d.s[a.k]}/10</td>`).join("");
-  return `<tr><td class="axn">${a.n}</td>${tds}</tr>`;}).join("");
+  return `<tr><td class="axn">${a.n}</td>${tds}</tr>`;}).join("")
+ :[factRow("Год",d=>d.y),
+   factRow("Движок",d=>esc(d.e)),
+   factRow("Кубы",d=>esc(diceCat(d))),
+   factRow("Сложность",d=>esc(d.d)),
+   factRow("Жанр",d=>esc(d.g)),
+   factRow("Русский",d=>d.ru==="—"?"нет":(d.ru==="Да"?"официальный":"частично")),
+   factRow("Бесплатно",d=>FREE.has(d.n)?"полные правила":(FREE_QS.has(d.n)?"квикстарт":"нет")),
+   factRow("VTT",d=>VTT[d.n]?(VTT[d.n].some(x=>x===2)?"есть, официальная":"есть"):"нет"),
+   factRow("Уверенность",d=>esc(d.cf))].join("");
  const links=`<tr><td class="axn"></td>${items.map(d=>{const L=linkFor(d);
   return `<td><a class="lnk" style="margin:0" href="${L.u}" target="_blank" rel="noopener">Узнать больше →</a></td>`;}).join("")}</tr>`;
  openOvl(`<button class="pnl-x" aria-label="Закрыть" onclick="closeOvl()">✕</button><h2>Сравнение</h2>
@@ -1077,6 +1092,30 @@ const WIZQ=[
  {q:"Язык правил?",o:["Только русский","Английский не пугает"]}];
 let wizA=[null,null,[],null,null];
 function openWiz(){wizA=[null,null,[],null,null];drawWiz();}
+/* Подбор без оценок: ответы выставляют фильтры каталога.
+   Ранжирования нет — оно держалось на скрытом слое оценок. */
+const FWQ=[
+ {q:"Какой жанр?",k:"gen",o:[["","Любой"],["Фэнтези","Фэнтези"],["Sci-fi","Sci-fi"],["Хоррор","Хоррор"],["Современность","Современность"],["Историч./др.","Историческое"],["Универсальные","Универсальные"]]},
+ {q:"Нужен русский язык?",k:"ru",o:[["","Не важно"],["1","Только с локализацией"]]},
+ {q:"Хотите сначала попробовать бесплатно?",k:"free",o:[["","Не важно"],["f","Только полные бесплатные"],["q","Бесплатные и квикстарты"]]},
+ {q:"Насколько сложные правила?",k:"diff",o:[["3","Любые"],["1","Только лёгкие"],["2","Лёгкие и средние"]]}];
+let fwA={gen:"",ru:"",free:"",diff:"3"};
+function drawFWiz(){
+ const qs=FWQ.map((w,i)=>`<div class="wq"><b>${i+1}</b>${w.q}</div><div class="wopts">${
+  w.o.map(([v,lab])=>`<button type="button" class="wopt${fwA[w.k]===v?" on":""}" data-k="${w.k}" data-v="${esc(v)}" aria-pressed="${fwA[w.k]===v}">${lab}</button>`).join("")}</div>`).join("");
+ openOvl(`<button class="pnl-x" aria-label="Закрыть" onclick="closeOvl()">✕</button><h2>Подбор системы</h2>
+  <div style="font-size:12px;color:var(--muted)">Четыре ответа — отфильтрованный каталог. Атлас пока не ранжирует системы: оценки скрыты до пересмотра, поэтому подбор сужает список, а выбираете вы.</div>
+  ${qs}<div style="margin-top:16px"><button class="chip" id="fwGo">Показать подходящие</button></div>`);
+ ovlPanel.querySelectorAll(".wopt").forEach(c=>{c.onclick=()=>{fwA[c.dataset.k]=c.dataset.v;drawFWiz();};});
+ const go=document.getElementById("fwGo");
+ if(go)go.onclick=()=>{applyFWiz();closeOvl();
+  document.getElementById("list").scrollIntoView({block:"start",behavior:"smooth"});};}
+function applyFWiz(){
+ fGen=fwA.gen;genSel.value=fwA.gen;
+ fRu=fwA.ru==="1";document.getElementById("fRu").checked=fRu;
+ fFree=fwA.free;document.getElementById("fFree").value=fwA.free;
+ fDiff=+fwA.diff;document.getElementById("fDiff").value=fwA.diff;
+ render();}
 function drawWiz(){
  const qs=WIZQ.map((w,i)=>`<div class="wq"><b>${i+1}</b>${w.q}</div><div class="wopts">${
   w.o.map((o,j)=>`<button type="button" class="wopt${(w.multi?wizA[i].includes(j):wizA[i]===j)?" on":""}" data-q="${i}" data-o="${j}" aria-pressed="${(w.multi?wizA[i].includes(j):wizA[i]===j)}">${o}</button>`).join("")}</div>`).join("");
@@ -1144,7 +1183,7 @@ function wizDec(x){
  const md=[...new Set(p[2].split("").map(Number))].sort();
  if(md.length<1||md.length>2||md.some(y=>y>3))return null;
  return [e1,t1,md,f1,l1];}
-document.getElementById("wiz").onclick=openWiz;
+document.getElementById("wiz").onclick=()=>{if(SHOW_SCORES)openWiz();else drawFWiz();};
 /* локализации: официальные русские издания */
 const LOC_OFF=[
  {n:"Blades in the Dark",t:"«Клинки во тьме»",p:"Студия 101",u:"https://studio101.ru"},
@@ -1268,11 +1307,13 @@ document.getElementById("share").onclick=()=>copyToClip(shareUrl(),document.getE
  if(p.get("fb")){const v=p.get("fb")==="1"?"f":p.get("fb");const el=document.getElementById("fFree");el.value=v;fFree=el.value===v?v:"";}  if(p.get("dice")){const el=document.getElementById("fDice");el.value=p.get("dice");fDice=el.value===p.get("dice")?p.get("dice"):"";}
  if(p.get("ap")==="1"){fPick=true;document.getElementById("fPick").checked=true;}
  if(p.get("s"))openSet.add(p.get("s"));
- const sr=p.get("srt");if(sr&&AX.some(a=>a.k===sr))sortAx=sr;
+ const sr=p.get("srt");if(SHOW_SCORES&&sr&&AX.some(a=>a.k===sr))sortAx=sr;
  const cm=p.get("cmp");if(cm)cm.split("~").forEach(n=>{if(NAME_IX.has(n)&&compareSet.size<3)compareSet.add(n);});
  if(p.get("co")&&compareSet.size>=2)pendingCmp=true;
- const wza=p.get("wz")?wizDec(p.get("wz")):null;if(wza){wizA=wza;pendingWiz=true;}
+ const wza=p.get("wz")?wizDec(p.get("wz")):null;
+ if(wza){if(SHOW_SCORES){wizA=wza;pendingWiz=true;}else pendingOldWz=true;}
 }catch(e){}})();
+if(!SHOW_SCORES){const wb=document.getElementById("wBox");if(wb)wb.style.display="none";}
 sync();mark();render();
 document.querySelectorAll(".row").forEach(r=>{const sp=r.querySelector("span");const c=r.querySelector("select,input");
   if(sp&&c&&!c.hasAttribute("aria-label"))c.setAttribute("aria-label",sp.textContent.trim());});
@@ -1280,6 +1321,9 @@ const qEl=document.getElementById("q");if(qEl&&!qEl.hasAttribute("aria-label"))q
 if(compareSet.size)renderCmpBar();
 if(pendingCmp)openCompare();
 if(pendingWiz)drawWiz();
+if(pendingOldWz){const b=document.createElement("div");b.className="alpha";
+ b.innerHTML='<div class="alpha-ttl">Подбор изменился</div><p>Ссылка вела на подборку, собранную по прежним оценкам. Оценки временно скрыты и пересматриваются, поэтому такая подборка больше не воспроизводится. Ниже — полный каталог из 150 систем с фильтрами.</p>';
+ const lst=document.getElementById("list");if(lst&&lst.parentNode)lst.parentNode.insertBefore(b,lst);}
 </script>
 <script data-goatcounter="https://vasaris.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>

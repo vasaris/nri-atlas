@@ -37,9 +37,9 @@ const tld = DATA.filter(d => d.n.includes('~')).map(d => d.n);
 check(tld.length === 0, 'в именах нет «~» (разделитель cmp-пермалинка)', tld);
 
 // 3. Счётчики в текстах = реальность
-const tag = html.match(/(\d+) систем[аы]? · 10 осей/);
+const tag = html.match(/<span class="tag">(\d+) систем/);
 check(tag && +tag[1] === DATA.length, 'счётчик в шапке = ' + DATA.length, tag && tag[1]);
-const hero = html.match(/по всем (\d+) системам/);
+const hero = html.match(/<div class="hero-line">[^<]*?(\d+) систем/);
 check(hero && +hero[1] === DATA.length, 'счётчик в манифесте = ' + DATA.length, hero && hero[1]);
 
 // 4. Граф «похоже на»
@@ -71,8 +71,8 @@ const vttBad = Object.entries(VTT).filter(([n, v]) => !Array.isArray(v) || v.len
 check(vttBad.length === 0, 'VTT: форма значений корректна', vttBad);
 const vnOrph = [...VTT_NONE].filter(n => !names.has(n));
 check(vnOrph.length === 0, 'VTT_NONE без сирот', vnOrph);
-const metaN = (html.match(/справочник по (\d+) настольным/)||[])[1];
-const ogN = (html.match(/content="(\d+) систем, авторские вердикты/)||[])[1];
+const metaN = (html.match(/<meta name="description" content="[^"]*?(\d+) настольным/)||[])[1];
+const ogN = (html.match(/og:description" content="(\d+) систем/)||[])[1];
 check(metaN === String(DATA.length) && ogN === String(DATA.length), 'счётчики в meta и og = ' + DATA.length, metaN + '/' + ogN);
 const vnClash = [...VTT_NONE].filter(n => VTT[n]);
 check(vnClash.length === 0, 'VTT и VTT_NONE не пересекаются', vnClash);
