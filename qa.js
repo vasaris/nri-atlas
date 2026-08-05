@@ -216,6 +216,16 @@ const supJson = DATA.filter(d => {
 }).map(d => d.n);
 check(supJson.length === 0, 'superseded_by: HTML и JSON совпадают', supJson);
 
+// 13a2b. Русские синонимы: карта без сирот, значения непустые
+eval('var RU_ALIAS=' + js.match(/const RU_ALIAS=(\{[\s\S]*?\});/)[1]);
+const raOrph = Object.keys(RU_ALIAS).filter(n => !names.has(n));
+check(raOrph.length === 0, 'RU_ALIAS без сирот', raOrph);
+const raEmpty = Object.entries(RU_ALIAS).filter(([, v]) => !String(v).trim()).map(([n]) => n);
+check(raEmpty.length === 0, 'RU_ALIAS: у каждой записи есть синонимы', raEmpty);
+const raLat = Object.entries(RU_ALIAS)
+  .filter(([, v]) => !/[а-яё]/i.test(String(v))).map(([n]) => n);
+check(raLat.length === 0, 'RU_ALIAS: синонимы содержат кириллицу', raLat);
+
 // 13a3. Описания «что это»: карта без сирот и с корректной формой записей
 eval('var DESC=' + js.match(/const DESC=(\{[\s\S]*?\});/)[1]);
 const dOrph = Object.keys(DESC).filter(n => !names.has(n));

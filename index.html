@@ -43,11 +43,11 @@
   h1{font-family:var(--disp);font-weight:700;font-size:clamp(28px,4.2vw,41px);letter-spacing:-.005em;margin:0;line-height:1.05}
   h1 .dot{color:var(--wax)}
   .tag{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--faded);border:1px solid currentColor;border-radius:4px;padding:5px 9px;margin-left:14px;vertical-align:middle;white-space:nowrap}
-  .sub{color:var(--faded);max-width:74ch;margin:14px 0 0;font-size:14px;line-height:1.62}
+  .sub{color:var(--faded);max-width:700px;margin:14px 0 0;font-size:14px;line-height:1.62}
   .sub b{color:var(--parchment)}
   /* герой */
   .hero{margin:24px 0 28px}
-  .hero-line{font-family:var(--disp);font-weight:600;font-size:21px;line-height:1.36;letter-spacing:-.005em;color:var(--parchment);margin-bottom:16px;max-width:900px;text-wrap:pretty}
+  .hero-line{font-family:var(--disp);font-weight:600;font-size:21px;line-height:1.36;letter-spacing:-.005em;color:var(--parchment);margin-bottom:16px;max-width:700px;text-wrap:pretty}
   .hero-btns{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px}
   .hbtn{appearance:none;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font:500 15px/1 var(--ui);color:var(--parchment);background:transparent;border:1px solid var(--brass-line);border-radius:6px;padding:14px 22px;min-height:48px;transition:background 90ms var(--ease),border-color 90ms var(--ease),color 90ms var(--ease)}
   .hbtn:hover{background:var(--brass-tint);border-color:var(--brass)}
@@ -56,9 +56,9 @@
   .hbtn:active{background:var(--wax-tint);border-color:var(--wax)}
   .hbtn.hb1:active{background:var(--wax-deep);border-color:var(--wax-deep)}
   .hero-by{font-size:13px;color:var(--faded)}
-  .alpha{margin:18px 0 0;padding:13px 15px;background:var(--board);border:1px solid var(--rule);border-left:3px solid var(--wax);border-radius:6px}
+  .alpha{margin:18px 0 0;max-width:700px;padding:13px 15px;background:var(--board);border:1px solid var(--rule);border-left:3px solid var(--wax);border-radius:6px}
   .alpha-ttl{font-family:var(--disp);font-size:15px;font-weight:700;color:var(--parchment-bright);margin-bottom:6px}
-  .alpha p{font-size:13px;line-height:1.55;color:var(--parchment);margin:6px 0 0;max-width:78ch}
+  .alpha p{font-size:13px;line-height:1.55;color:var(--parchment);margin:6px 0 0}
   .alpha a{color:var(--brass);border-bottom:1px solid var(--brass-line)}
   .hero-by a{border-bottom:1px dashed var(--brass-line)} .hero-by a:hover{border-bottom-style:solid}
   /* раскладка */
@@ -123,6 +123,10 @@
   .toggle:hover .sw{border-color:var(--brass-line)}
   .toggle input:checked+.sw{background:var(--wax);border-color:var(--wax)}
   .toggle input:checked+.sw::after{transform:translateX(18px);background:var(--parchment-bright)}
+  .jumpbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 12px;padding:10px 14px;background:var(--board);border:1px solid var(--rule);border-left:3px solid var(--brass);border-radius:6px;font-size:13px;color:var(--parchment)}
+  .jumpbar[hidden]{display:none}
+  .jumpbar button{font-family:var(--ui);font-size:13px;padding:6px 12px;min-height:32px;margin-left:auto;background:transparent;color:var(--brass);border:1px solid var(--brass-line);border-radius:4px;cursor:pointer}
+  .jumpbar button:hover{background:var(--brass-tint)}
   .fbar{display:inline-flex;align-items:center;gap:8px;margin-left:10px;font-size:12px;font-family:var(--ui);color:var(--faded);text-transform:none;letter-spacing:0}
   .fbar button{font-family:var(--ui);font-size:12px;padding:4px 10px;min-height:28px;background:transparent;color:var(--brass);border:1px solid var(--brass-line);border-radius:4px;cursor:pointer}
   .fbar button:hover{background:var(--brass-tint)}
@@ -353,7 +357,7 @@
   <div class="divider"></div>
   <h3>Фильтры</h3>
   <div class="filt">
-    <div class="qwrap"><input type="text" id="q" placeholder="Поиск: название, движок, тег, вердикт… -слово исключает"><button type="button" id="qClear" class="qx" aria-label="Очистить поиск" hidden>✕</button></div>
+    <div class="qwrap"><input type="text" id="q" placeholder="Поиск: название или русское, движок, тег… -слово исключает"><button type="button" id="qClear" class="qx" aria-label="Очистить поиск" hidden>✕</button></div>
     <div class="row"><span>Жанр</span><select id="fGen"><option value="">Все</option></select></div>
     <div class="row"><span>Тег</span><select id="fTag"><option value="">Все</option></select></div>
     <div class="row"><span>Сложность ≤</span><select id="fDiff"><option value="3">Любая</option><option value="1">Легко</option><option value="2">Средне</option></select></div>
@@ -370,6 +374,7 @@
   </div>
 </div></aside>
 <div>
+  <div class="jumpbar" id="jumpBar" role="status" hidden></div>
   <div class="results-head"><span class="cnt" id="cnt"></span><span class="fbar" id="fbar"></span>
  <span class="head-actions"><span class="cnt">клик по строке — разбор · по оси в разборе — сортировка</span>
  <button class="chip" id="lucky"><svg class="bico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2l8.7 5v10L12 22 3.3 17V7L12 2z"/><path d="M12 8.2 6.2 15h11.6L12 8.2zM12 2v6.2M3.3 7l2.9 8M20.7 7l-2.9 8M12 22l-5.8-7M12 22l5.8-7"/></svg> Мне повезёт</button>
@@ -474,6 +479,81 @@ function gcCard(name){
  if(gcSeen.has(name))return;gcSeen.add(name);
  try{if(window.goatcounter&&window.goatcounter.count)
   window.goatcounter.count({path:"card/"+name,title:"Карточка: "+name,event:true});}catch(e){}}
+/* Русский поиск: в названиях систем кириллицы почти нет, а описания скрыты.
+   Здесь — ходовые транслитерации и разговорные названия. Официальные русские
+   издания подтягиваются отдельно из таблиц локализаций, выдумывать их не надо. */
+const RU_ALIAS={
+ "D&D 5e / 5.5e":"днд дынка подземелья и драконы данжеонс энд дрэгонс",
+ "Pathfinder 2e":"пасфайндер патфайндер пасфиндер",
+ "Pathfinder 1e":"пасфайндер патфайндер",
+ "Call of Cthulhu 7e":"ктулху зов ктулху ктулаху",
+ "Trail of Cthulhu":"ктулху след ктулху",
+ "Delta Green":"дельта грин ктулху",
+ "Shadowrun 6e":"шэдоуран шадоуран тени",
+ "Shadowrun 5e":"шэдоуран шадоуран тени",
+ "Cyberpunk RED":"киберпанк сайберпанк",
+ "Vampire: The Masquerade V5":"вампиры маскарад вампирский",
+ "Vampire: The Masquerade V20":"вампиры маскарад вампирский",
+ "Werewolf: The Apocalypse W5":"оборотни вервольф апокалипсис",
+ "Hunter: The Reckoning 5e":"охотники хантер",
+ "Mage: The Ascension 20th":"маги восхождение",
+ "Warhammer Fantasy RP 4e":"вархаммер ваха фэнтези",
+ "WH40k: Wrath & Glory":"вархаммер ваха сорокатысячник",
+ "WH40k: Imperium Maledictum":"вархаммер ваха сорокатысячник",
+ "Age of Sigmar: Soulbound":"вархаммер ваха сигмар",
+ "Blades in the Dark":"клинки клинки во тьме",
+ "The One Ring 2e":"кольцо всевластья толкин средиземье властелин колец",
+ "Daggerheart":"даггерхарт кинжальное сердце",
+ "Mörk Borg":"морк борг мёрк",
+ "Pirate Borg":"пират борг пиратский",
+ "CY_BORG":"сай борг киберборг",
+ "Traveller (Mongoose 2e)":"траваллер травеллер",
+ "FATE Core":"фейт фэйт судьба",
+ "Savage Worlds SWADE":"дневник авантюриста саважи саваж свейд",
+ "Mothership 1e":"мазершип материнский корабль",
+ "Alien RPG":"чужой чужие",
+ "Vaesen":"весен вэсен нордический",
+ "Dragonbane":"драконья погибель драгонбейн",
+ "Symbaroum":"симбарум",
+ "Numenera / Cypher":"нуменера сайфер",
+ "Apocalypse World":"мир апокалипсиса апокалипсис",
+ "Dungeon World":"данжен ворлд подземный мир",
+ "Ten Candles":"десять свечей",
+ "Monster of the Week":"монстр недели монстры",
+ "Star Wars (FFG/Edge)":"звёздные войны звездные войны стар варс",
+ "Star Trek Adventures 2e":"стар трек звёздный путь",
+ "RuneQuest: Glorantha":"рунквест глоранта",
+ "The Witcher (R.Talsorian)":"ведьмак witcher",
+ "Kult: Divinity Lost":"культ",
+ "Legend of the Five Rings 5e":"легенда пяти колец роккуган",
+ "Coriolis: The Third Horizon":"кориолис третий горизонт",
+ "Coriolis: The Great Dark":"кориолис великая тьма",
+ "Forbidden Lands":"запретные земли",
+ "Mutant: Year Zero":"мутант год ноль",
+ "Tales from the Loop":"сказки петли лупа",
+ "Heart: The City Beneath":"сердце город внизу",
+ "Spire":"шпиль",
+ "Eclipse Phase 2e":"фаза затмения",
+ "Electric Bastionland":"бастион земли электричества",
+ "Mausritter":"мышерыцарь мыши",
+ "Mouse Guard":"мышиная стража мыши",
+ "Root: The RPG":"корни",
+ "Lady Blackbird":"леди блэкбёрд блэкберд",
+ "Old-School Essentials":"осе старая школа",
+ "Shadowdark":"шэдоударк тьма",
+ "Draw Steel":"дро стил",
+ "Lancer":"лансер лэнсер мехи"};
+/* Официальные русские названия берём из данных, а не переписываем руками.
+   Строим лениво: таблицы локализаций объявлены ниже по файлу. */
+let RU_TITLE=null;
+function ruTitles(){
+ if(RU_TITLE)return RU_TITLE;
+ RU_TITLE={};
+ try{[].concat(LOC_OFF,LOC_PART).forEach(l=>{
+  if(l&&l.t)RU_TITLE[l.n]=(RU_TITLE[l.n]||"")+" "+l.t;});}catch(e){}
+ return RU_TITLE;}
+function ruIndex(name){
+ return ((RU_ALIAS[name]||"")+" "+(ruTitles()[name]||"")).toLowerCase();}
 function linkFor(d){
  const t="Узнать больше и купить →";
  if(OFFICIAL[d.n])return{u:OFFICIAL[d.n],t};
@@ -899,6 +979,9 @@ document.getElementById("fPick").addEventListener("change",e=>{fPick=e.target.ch
 famSel.addEventListener("change",e=>{fFam=e.target.value;render();});
 document.getElementById("fYear").addEventListener("change",e=>{fYear=+e.target.value;render();});
 const renderDeb=(()=>{let t;return()=>{clearTimeout(t);t=setTimeout(render,120);};})();
+/* любое ручное изменение подборки закрывает плашку возврата */
+["fGen","fTag","fDiff","fFam","fYear","fFree","fDice","fRu","fRuO","fConf","fPick"]
+ .forEach(id=>{const e=document.getElementById(id);if(e)e.addEventListener("change",clearJump);});
 document.getElementById("q").addEventListener("input",e=>{q=e.target.value.toLowerCase().trim();renderDeb();});
 genSel.addEventListener("change",e=>{fGen=e.target.value;render();});
 tagSel.addEventListener("change",e=>{fTag=e.target.value;render();});
@@ -927,6 +1010,7 @@ function activeFilters(){
  if(q)a++;if(fGen)a++;if(fTag)a++;if(fFam)a++;if(fYear)a++;if(fDice)a++;
  if(fFree)a++;if(fDiff<3)a++;if(fRu)a++;if(fRuO)a++;if(fConf)a++;if(fPick)a++;
  return a;}
+function clearJump(){if(jumpBack){jumpBack=null;renderJumpBar();}}
 function renderFbar(){
  const el=document.getElementById("fbar");if(!el)return;
  const a=activeFilters();
@@ -948,7 +1032,7 @@ function render(){
   if(fFam&&fam(d.e)!==fFam)return false;
   if(fYear&&d.y<fYear)return false;
   if(fPick&&!AUTHOR_PICKS.has(d.n))return false;
-  if(q){const th=t=>d.n.toLowerCase().includes(t)||d.e.toLowerCase().includes(t)||d.tags.some(x=>x.includes(t))||(DESC[d.n]&&DESC[d.n].t.toLowerCase().includes(t))||(SHOW_TEXTS&&d.note.toLowerCase().includes(t));
+  if(q){const th=t=>d.n.toLowerCase().includes(t)||d.e.toLowerCase().includes(t)||d.tags.some(x=>x.includes(t))||ruIndex(d.n).includes(t)||(DESC[d.n]&&DESC[d.n].t.toLowerCase().includes(t))||(SHOW_TEXTS&&d.note.toLowerCase().includes(t));
    for(const t of q.split(/\s+/)){if(!t||t==="-")continue;
     if(t[0]==="-"){if(th(t.slice(1)))return false;}
     else if(!th(t))return false;}}
@@ -957,7 +1041,7 @@ function render(){
   cntEl.innerHTML=`${esc(plural(rows.length))} · по оси «${an}» по убыванию · <span id="srtOff" style="cursor:pointer;border-bottom:1px dashed var(--muted);color:var(--muted)">вернуть по совпадению</span>`;
   document.getElementById("srtOff").onclick=()=>{sortAx=null;render();};}
  else cntEl.innerHTML=rows.length?esc(plural(rows.length))+(SHOW_SCORES?" · по убыванию совпадения с весами":""):"Ничего не нашлось";
- renderFbar();
+ renderFbar();renderJumpBar();
  const old=new Map();[...listEl.children].forEach(el=>old.set(el.dataset.k,el.getBoundingClientRect()));
  listEl.innerHTML="";
   if(!rows.length){listEl.innerHTML=`<div class="empty">Под эти фильтры ничего не нашлось.<br><button id="emptyReset" type="button">Сбросить фильтры</button></div>`;}
@@ -1046,7 +1130,42 @@ document.getElementById("lucky").onclick=()=>{
  setTimeout(()=>{luckyOvl.classList.remove("show");reveal();},850);
 };
 /* переход к похожей системе */
+/* Снимок подборки: чтобы после перехода можно было вернуться ровно туда, где были */
+let jumpBack=null;
+function snapState(){return {q,qRaw:document.getElementById("q").value,
+ fGen,fTag,fDiff,fFam,fYear,fFree,fDice,fRu,fRuO,fConf,fPick,
+ open:[...openSet],sort:sortAx};}
+function restoreState(st){
+ q=st.q;document.getElementById("q").value=st.qRaw!==undefined?st.qRaw:st.q;
+ fGen=st.fGen;genSel.value=st.fGen;
+ fTag=st.fTag;document.getElementById("fTag").value=st.fTag;
+ fDiff=st.fDiff;document.getElementById("fDiff").value=String(st.fDiff);
+ fFam=st.fFam;famSel.value=st.fFam;
+ fYear=st.fYear;document.getElementById("fYear").value=String(st.fYear);
+ fFree=st.fFree;document.getElementById("fFree").value=st.fFree;
+ fDice=st.fDice;document.getElementById("fDice").value=st.fDice;
+ fRu=st.fRu;document.getElementById("fRu").checked=st.fRu;
+ fRuO=st.fRuO;document.getElementById("fRuO").checked=st.fRuO;
+ fConf=st.fConf;document.getElementById("fConf").checked=st.fConf;
+ fPick=st.fPick;document.getElementById("fPick").checked=st.fPick;
+ sortAx=st.sort;openSet=new Set(st.open);
+ jumpBack=null;render();}
+const FLT_NAMES={fGen:"Жанр",fTag:"Тег",fDiff:"Сложность",fFam:"Семейство движка",
+ fYear:"Год издания",fFree:"Бесплатная версия",fDice:"Кубы",fRu:"Только с RU-локализацией",
+ fRuO:"Только российские",fConf:"Скрыть низкую уверенность",fPick:"Выбор автора"};
+function renderJumpBar(){
+ const el=document.getElementById("jumpBar");if(!el)return;
+ if(!jumpBack){el.innerHTML="";el.hidden=true;return;}
+ el.hidden=false;
+ const dropped=jumpBack.dropped.length
+  ? `<span>Сняты фильтры: ${esc(jumpBack.dropped.join(", "))}.</span>` : "";
+ el.innerHTML=`<span>Открыта одна система: <b>${esc(jumpBack.name)}</b>.</span>${dropped}`
+  +`<button type="button" id="jumpBackBtn">Вернуться к подборке</button>`;
+ document.getElementById("jumpBackBtn").onclick=()=>restoreState(jumpBack.state);}
+
 function jumpTo(name){
+ const before=snapState();
+ const dropped=[];
  q=name.toLowerCase();document.getElementById("q").value=name;
  openSet.clear();openSet.add(name);render();
  let t=[...listEl.children].find(x=>x.dataset.k===name);
@@ -1055,21 +1174,22 @@ function jumpTo(name){
      все одиннадцать, и переход по одной ссылке уничтожал весь поисковый контекст. */
   const d=DATA.find(x=>x.n===name);
   if(d){
-   if(fGen&&d.g!==fGen){fGen="";genSel.value="";}
-   if(fTag&&!d.tags.includes(fTag)){fTag="";document.getElementById("fTag").value="";}
-   if(DIFFN[d.d]>fDiff){fDiff=3;document.getElementById("fDiff").value="3";}
-   if(fFam&&fam(d.e)!==fFam){fFam="";famSel.value="";}
-   if(fYear&&d.y<fYear){fYear=0;document.getElementById("fYear").value="0";}
-   if(fRu&&d.ru==="\u2014"){fRu=false;document.getElementById("fRu").checked=false;}
-   if(fRuO&&!d.ro){fRuO=false;document.getElementById("fRuO").checked=false;}
-   if(fConf&&d.cf==="\u041d"){fConf=false;document.getElementById("fConf").checked=false;}
-   if(fFree==="f"&&!FREE.has(d.n)){fFree="";document.getElementById("fFree").value="";}
-   if(fFree==="q"&&!FREE.has(d.n)&&!FREE_QS.has(d.n)){fFree="";document.getElementById("fFree").value="";}
-   if(fDice&&diceCat(d)!==fDice){fDice="";document.getElementById("fDice").value="";}
-   if(fPick&&!AUTHOR_PICKS.has(d.n)){fPick=false;document.getElementById("fPick").checked=false;}
+   if(fGen&&d.g!==fGen){fGen="";genSel.value="";dropped.push(FLT_NAMES.fGen);}
+   if(fTag&&!d.tags.includes(fTag)){fTag="";document.getElementById("fTag").value="";dropped.push(FLT_NAMES.fTag);}
+   if(DIFFN[d.d]>fDiff){fDiff=3;document.getElementById("fDiff").value="3";dropped.push(FLT_NAMES.fDiff);}
+   if(fFam&&fam(d.e)!==fFam){fFam="";famSel.value="";dropped.push(FLT_NAMES.fFam);}
+   if(fYear&&d.y<fYear){fYear=0;document.getElementById("fYear").value="0";dropped.push(FLT_NAMES.fYear);}
+   if(fRu&&d.ru==="\u2014"){fRu=false;document.getElementById("fRu").checked=false;dropped.push(FLT_NAMES.fRu);}
+   if(fRuO&&!d.ro){fRuO=false;document.getElementById("fRuO").checked=false;dropped.push(FLT_NAMES.fRuO);}
+   if(fConf&&d.cf==="\u041d"){fConf=false;document.getElementById("fConf").checked=false;dropped.push(FLT_NAMES.fConf);}
+   if(fFree==="f"&&!FREE.has(d.n)){fFree="";document.getElementById("fFree").value="";dropped.push(FLT_NAMES.fFree);}
+   if(fFree==="q"&&!FREE.has(d.n)&&!FREE_QS.has(d.n)){fFree="";document.getElementById("fFree").value="";dropped.push(FLT_NAMES.fFree);}
+   if(fDice&&diceCat(d)!==fDice){fDice="";document.getElementById("fDice").value="";dropped.push(FLT_NAMES.fDice);}
+   if(fPick&&!AUTHOR_PICKS.has(d.n)){fPick=false;document.getElementById("fPick").checked=false;dropped.push(FLT_NAMES.fPick);}
   }
   render();
   t=[...listEl.children].find(x=>x.dataset.k===name);}
+ jumpBack={name,state:before,dropped};renderJumpBar();
  if(t)t.scrollIntoView({block:"center",behavior:"smooth"});}
 /* тултип-глоссарий: тап по пунктирному бейджу */
 const tipEl=document.getElementById("tip");
@@ -1390,7 +1510,7 @@ document.querySelectorAll(".row").forEach(r=>{const sp=r.querySelector("span");c
   if(sp&&c&&!c.hasAttribute("aria-label"))c.setAttribute("aria-label",sp.textContent.trim());});
 const qEl=document.getElementById("q");if(qEl&&!qEl.hasAttribute("aria-label"))qEl.setAttribute("aria-label","Поиск по системам");
 document.getElementById("qClear").onclick=()=>{
- const el=document.getElementById("q");el.value="";q="";render();el.focus();};
+ clearJump();const el=document.getElementById("q");el.value="";q="";render();el.focus();};
 renderFbar();
 if(compareSet.size)renderCmpBar();
 if(pendingCmp)openCompare();
