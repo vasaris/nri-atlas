@@ -168,6 +168,29 @@ DATA.forEach(d => {
 });
 check(par.length === 0, 'паритет JSON <-> HTML: год, RU, движок, сложность, free, кубы, VTT', par.slice(0, 15));
 
+// 12b. I12: каждая система обязана иметь VTT-решение — либо запись, либо явный none.
+// Сейчас покрытие полное случайно; новая строка не должна проскочить без решения.
+const vttUndecided = DATA.filter(d => !VTT[d.n] && !VTT_NONE.has(d.n)).map(d => d.n);
+check(vttUndecided.length === 0,
+  'у каждой системы есть VTT-решение (запись или явный none)', vttUndecided);
+
+// 12c. I13: схема локализаций — статус в JSON обязан соответствовать коду RU,
+// у «Да» должен быть издатель, у «Ч» — пояснительная нота.
+let locSchema = [];
+DATA.forEach(d => {
+  const j = jBy.get(d.n); if (!j) return;
+  const L = j.localization || null;
+  if (d.ru === 'Да') {
+    if (!L || L.status !== 'официальная') locSchema.push(d.n + ':status');
+    else if (!L.publisher || !String(L.publisher).trim()) locSchema.push(d.n + ':publisher');
+  } else if (d.ru === 'Ч') {
+    if (!L || L.status !== 'частичная') locSchema.push(d.n + ':status');
+    else if (!L.note || !String(L.note).trim()) locSchema.push(d.n + ':note');
+  } else if (L) locSchema.push(d.n + ':unexpected');
+});
+check(locSchema.length === 0,
+  'схема локализаций: статус соответствует коду, поля заполнены', locSchema.slice(0, 12));
+
 // 13a2. «Лучше начать с»: цель обязана существовать, ссылка не должна вести в никуда
 eval('var SUPERSEDED=' + js.match(/const SUPERSEDED=(\{[\s\S]*?\});/)[1]);
 const supBad = Object.entries(SUPERSEDED)

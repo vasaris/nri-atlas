@@ -63,6 +63,11 @@
   .hero-by a{border-bottom:1px dashed var(--brass-line)} .hero-by a:hover{border-bottom-style:solid}
   /* раскладка */
   .compass{display:grid;grid-template-columns:288px 1fr;gap:24px;margin-top:10px;align-items:start}
+  .lucky-ovl{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;background:var(--scrim)}
+  .lucky-ovl.show{display:flex}
+  .lucky-ovl svg{width:64px;height:64px;color:var(--brass);animation:luckySpin 850ms linear}
+  @keyframes luckySpin{from{transform:rotate(0)}to{transform:rotate(540deg)}}
+  @media(prefers-reduced-motion:reduce){.lucky-ovl svg{animation:none}}
   .rail{position:sticky;top:16px;max-height:calc(100vh - 32px);overflow-y:auto}
   .card{background:var(--board);border:1px solid var(--rule);border-radius:6px}
   .rail .card{padding:0}
@@ -361,6 +366,7 @@
   <div id="cmpbar"></div>
   <div class="ovl" id="ovl"><div class="panel" id="ovlPanel"></div></div>
   <div id="tip"></div>
+  <div class="lucky-ovl" id="luckyOvl" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2l8.7 5v10L12 22 3.3 17V7L12 2z"/><path d="M12 8.2 6.2 15h11.6L12 8.2zM12 2v6.2M3.3 7l2.9 8M20.7 7l-2.9 8M12 22l-5.8-7M12 22l5.8-7"/></svg></div>
 </div>
 </section></main>
 <div class="card method" id="method">
@@ -664,7 +670,7 @@ const GLOSS={
  "PbtA-семья":"Powered by the Apocalypse: бросаешь два шестигранника, и самый частый итог — «получилось, но с осложнением». Правила читаются за минуты, историю двигают провалы.",
  "FitD-семья":"Forged in the Dark: кидаешь горсть шестигранников, считается лучший; таймеры угроз тикают, а вместо долгого планирования — флешбэк «я это предусмотрел». Создано для дерзких дел.",
  "Year Zero":"Движок Free League: горсть шестигранников, успех на шестёрках; снаряжение и тело персонажа изнашиваются от нагрузки. Просто объяснить, жёстко играется.",
- "d100 / BRP":"Процентная классика: навык записан как 45% — кидаешь стогранный бросок и хочешь выбросить меньше. Понятно с первой секунды; родная механика расследований и хоррора.",
+ "d100 / BRP":"Процентная классика: навык записан как 45% — кидаешь стогранный бросок и хочешь выбросить меньше или равно. Понятно с первой секунды; родная механика расследований и хоррора.",
  "2d20":"Движок Modiphius: бросаешь два двадцатигранника, каждый ниже навыка — успех; плюс общие копилки очков стола (Momentum и Threat), к которым нужно привыкнуть.",
  "Fate":"Аспекты — короткие фразы о персонаже и сцене («бывший чемпион с больным коленом»), которые включаются в игру за жетоны. Максимум соавторства, минимум симуляции.",
  "Fortune":"Движок Two Little Mice: кидаешь горсть шестигранников и ищешь пары и тройки, как в покере. Быстрый, азартный, кинематографичный.",
@@ -956,7 +962,7 @@ function card(d,p,rank){
    <div class="bar"><i style="width:${p}%"></i></div></div>`:""}</div>
   <div class="sys-body">${descHtml(d)}${verdictHtml}${tagsHtml}${simHtml}
    ${SHOW_SCORES?`<div class="axes">${AX.map(a=>`<div class="ax"><span class="lab ${W[a.k]===0?"dim":""}${sortAx===a.k?" srt":""}" data-sort="${a.k}" title="Сортировать список по этой оси"><span>${sortAx===a.k?"↓ ":""}${a.n}</span><span>${d.s[a.k]}/10${W[a.k]>0?" ×"+W[a.k]:""}</span></span><div class="mb"><i class="${W[a.k]>=4?"hot":""}" style="width:${d.s[a.k]*10}%"></i></div></div>`).join("")}</div>`:""}
-   <a class="lnk" href="${L.u}" target="_blank" rel="noopener">${L.t}</a><span class="cmpc${compareSet.has(d.n)?" on":""}" data-cmp="${d.n}">${compareSet.has(d.n)?"✓ в сравнении":"сравнить"}</span><span class="shrc" data-share="${d.n}" title="Скопировать прямую ссылку на эту систему">ссылка</span><a class="dis" href="https://t.me/vasaris" target="_blank" rel="noopener">не согласен с оценкой?</a></div>`;
+   <a class="lnk" href="${L.u}" target="_blank" rel="noopener">${L.t}</a><span class="cmpc${compareSet.has(d.n)?" on":""}" data-cmp="${d.n}">${compareSet.has(d.n)?"✓ в сравнении":"сравнить"}</span><span class="shrc" data-share="${d.n}" title="Скопировать прямую ссылку на эту систему">ссылка на систему</span><a class="dis" href="https://t.me/vasaris" target="_blank" rel="noopener">не согласен с оценкой?</a></div>`;
  el.querySelector(".sys-main").onclick=(e)=>{
   const b=e.target.closest("[data-tip]");
   if(b){showTip(b);e.stopPropagation();return;}
@@ -972,25 +978,26 @@ function card(d,p,rank){
  return el;
 }
 let spinning=false;
+/* Раньше рулетка прокручивала страницу двадцать раз подряд — от мельтешения
+   людям физически плохо. Теперь: затемнение с кубиком, потом одна карточка. */
 document.getElementById("lucky").onclick=()=>{
  if(spinning)return;
  const rows=[...listEl.children].filter(x=>x.classList.contains("sys"));
  if(!rows.length){const c=document.getElementById("cnt");if(c)c.setAttribute("aria-live","polite");return;}
+ const pick=rows[Math.floor(Math.random()*rows.length)];
+ const reveal=()=>{
+  rows.forEach(r=>r.classList.remove("lucky","spin","open"));openSet.clear();
+  pick.classList.add("lucky","open");openSet.add(pick.dataset.k);
+  pick.setAttribute("aria-expanded","true");
+  pick.scrollIntoView({block:"center",behavior:"smooth"});
+  spinning=false;};
+ /* мало вариантов или человек просил меньше движения — показываем сразу */
+ let reduced=false;
+ try{reduced=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;}catch(e){}
+ if(rows.length<5||reduced){reveal();return;}
  spinning=true;
- rows.forEach(r=>r.classList.remove("lucky","spin","open"));openSet.clear();
- let t=0,d=45,seq=[];
- for(let i=0;i<20;i++){seq.push(d);d=Math.round(d*1.16);}
- seq.forEach((delay,i)=>{t+=delay;
-  setTimeout(()=>{
-   rows.forEach(r=>r.classList.remove("spin"));
-   const pick=rows[Math.floor(Math.random()*rows.length)];
-   pick.classList.add("spin");
-   pick.scrollIntoView({block:"center",behavior:"auto"});
-   if(i===seq.length-1){
-    pick.classList.remove("spin");pick.classList.add("lucky","open");
-    openSet.add(pick.dataset.k);spinning=false;
-    pick.scrollIntoView({block:"center",behavior:"smooth"});}
-  },t);});
+ luckyOvl.classList.add("show");
+ setTimeout(()=>{luckyOvl.classList.remove("show");reveal();},850);
 };
 /* переход к похожей системе */
 function jumpTo(name){
@@ -1020,14 +1027,19 @@ function jumpTo(name){
  if(t)t.scrollIntoView({block:"center",behavior:"smooth"});}
 /* тултип-глоссарий: тап по пунктирному бейджу */
 const tipEl=document.getElementById("tip");
+let tipOwner=null;
 function showTip(b){
  const t=b.dataset.tip||"";
- if(!t){tipEl.style.display="none";return;}
+ if(!t){tipEl.style.display="none";tipOwner=null;return;}
+ /* второй клик по той же плашке закрывает подсказку */
+ if(tipOwner===b&&tipEl.style.display==="block"){
+  tipEl.style.display="none";tipOwner=null;return;}
+ tipOwner=b;
  tipEl.textContent=t;tipEl.style.display="block";
  const r=b.getBoundingClientRect();
  tipEl.style.left=Math.max(8,Math.min(r.left,innerWidth-tipEl.offsetWidth-12))+"px";
  tipEl.style.top=(r.bottom+7)+"px";}
-document.addEventListener("click",e=>{if(!e.target.closest("[data-tip]"))tipEl.style.display="none";});
+document.addEventListener("click",e=>{if(!e.target.closest("[data-tip]")){tipEl.style.display="none";tipOwner=null;}});
 addEventListener("scroll",()=>{tipEl.style.display="none";},{passive:true});
 /* сравнение: до трёх систем бок о бок */
 const NAME_IX=new Map(DATA.map(d=>[d.n,d]));
