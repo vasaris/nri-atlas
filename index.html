@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>НРИ-Атлас — какую настольную ролевую игру взять</title>
-<meta name="description" content="Интерактивный справочник по 150 настольным ролевым играм: рейтинг под вашу задачу, подбор за пять вопросов, сравнение систем, русские локализации и честные вердикты.">
+<meta name="description" content="Интерактивный справочник по 150 настольным ролевым играм: рейтинг под вашу задачу, подбор за пять вопросов, сравнение систем, русские локализации и авторские вердикты.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="НРИ-Атлас — какую настольную ролевую игру взять">
-<meta property="og:description" content="150 систем, честные вердикты, подбор за минуту. Рейтинг под вашу задачу, сравнение и таблица русских локализаций.">
+<meta property="og:description" content="150 систем, авторские вердикты, подбор за минуту. Рейтинг под вашу задачу, сравнение и таблица русских локализаций.">
 <meta property="og:url" content="https://vasaris.github.io/nri-atlas/">
 <meta property="og:image" content="https://vasaris.github.io/nri-atlas/og.png">
 <meta property="og:image:width" content="1200">
@@ -54,6 +54,10 @@
   .hbtn:active{background:var(--wax-tint);border-color:var(--wax)}
   .hbtn.hb1:active{background:var(--wax-deep);border-color:var(--wax-deep)}
   .hero-by{font-size:13px;color:var(--faded)}
+  .alpha{margin:18px 0 0;padding:13px 15px;background:var(--board);border:1px solid var(--rule);border-left:3px solid var(--wax-bright);border-radius:6px}
+  .alpha-ttl{font-family:var(--disp);font-size:15px;font-weight:600;color:var(--parchment-bright);margin-bottom:6px}
+  .alpha p{font-size:13px;line-height:1.55;color:var(--parchment);margin:6px 0 0;max-width:78ch}
+  .alpha a{color:var(--brass);border-bottom:1px solid var(--brass-line)}
   .hero-by a{border-bottom:1px dashed var(--brass-line)} .hero-by a:hover{border-bottom-style:solid}
   /* раскладка */
   .compass{display:grid;grid-template-columns:288px 1fr;gap:24px;margin-top:10px;align-items:start}
@@ -292,13 +296,18 @@
   <h1>НРИ<span class="dot">·</span>Атлас<span class="tag">150 систем · 10 осей</span></h1>
   <p class="sub">Интерактивный рейтинг настольных ролевых игр с ведущим (безмастеровые и соло-системы не включены). Десять осей 0–10, вес каждой настраивается ползунком, итог пересчитывается на лету. Метка уверенности: <b>В</b> — оценка на твёрдой базе, <b>С</b> — приём проверен частично, <b>Н</b> — эскиз. <b>РФ</b> — российская разработка; зелёный бейдж — есть локализация (Ч — частичная или фанатская). Бейдж <b>VTT</b> — поддержка виртуальных столов, проверена для всех 150 систем: латунный — официальная от издателя, детали в подсказке; нет бейджа — поддержки нет. Как считается рейтинг — пояснение внизу страницы.</p>
 <div class="hero">
-  <div class="hero-line">Какую настольную ролевую игру взять? Рейтинг под твою задачу, подбор за минуту и честные вердикты по всем 150 системам.</div>
+  <div class="hero-line">Какую настольную ролевую игру взять? Рейтинг под твою задачу, подбор за минуту и авторские вердикты по всем 150 системам.</div>
   <div class="hero-btns">
    <button class="hbtn hb1" id="heroWiz"><svg class="bico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2.2 5-5 2.2 2.2-5z"/></svg> Подобрать игру</button>
    <button class="hbtn" id="heroLucky"><svg class="bico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2l8.7 5v10L12 22 3.3 17V7L12 2z"/><path d="M12 8.2 6.2 15h11.6L12 8.2zM12 2v6.2M3.3 7l2.9 8M20.7 7l-2.9 8M12 22l-5.8-7M12 22l5.8-7"/></svg> Мне повезёт</button>
    <button class="hbtn" id="heroList">К рейтингу ↓</button>
   </div>
   <div class="hero-by">Собрал Иван (<a href="https://t.me/vasaris" target="_blank" rel="noopener">@vasaris</a>) · тг-канал <a href="https://t.me/dndanube" target="_blank" rel="noopener">@dndanube</a> · оценки: август 2026</div>
+  <div class="alpha" role="note" aria-labelledby="alphaTtl">
+   <div class="alpha-ttl" id="alphaTtl">Альфа-версия: содержание ещё проверяется</div>
+   <p>Атлас запущен 4 августа 2026 года как рабочий скелет: интерфейс и структура готовы, содержание — не везде. Часть описаний и оценок собрана с помощью ИИ по открытым источникам и <b>пока не прошла ручную сверку</b>. Такие тексты я заменяю на проверенные вручную; методология и полный список источников будут опубликованы.</p>
+   <p>Оценки авторские и субъективные — это отправная точка для выбора, а не приговор системе. Нашли ошибку или готовы написать текст о системе, которую хорошо знаете, — <a href="https://t.me/vasaris" target="_blank" rel="noopener">напишите мне</a>: сейчас это самая полезная помощь проекту.</p>
+  </div>
 </div>
 </header>
 <section class="compass">

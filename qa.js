@@ -72,7 +72,7 @@ check(vttBad.length === 0, 'VTT: форма значений корректна'
 const vnOrph = [...VTT_NONE].filter(n => !names.has(n));
 check(vnOrph.length === 0, 'VTT_NONE без сирот', vnOrph);
 const metaN = (html.match(/справочник по (\d+) настольным/)||[])[1];
-const ogN = (html.match(/content="(\d+) систем, честные вердикты/)||[])[1];
+const ogN = (html.match(/content="(\d+) систем, авторские вердикты/)||[])[1];
 check(metaN === String(DATA.length) && ogN === String(DATA.length), 'счётчики в meta и og = ' + DATA.length, metaN + '/' + ogN);
 const vnClash = [...VTT_NONE].filter(n => VTT[n]);
 check(vnClash.length === 0, 'VTT и VTT_NONE не пересекаются', vnClash);
