@@ -29,6 +29,8 @@
     /* псевдонимы для инлайн-стилей внутри скрипта (не менять) */
     --ember:var(--brass);--paper:var(--parchment);--muted:var(--faded);--muted2:var(--faded-deep);}
   *{box-sizing:border-box} html,body{margin:0}
+  .skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--board-raised);color:var(--parchment-bright);padding:10px 16px;border:1px solid var(--brass-line);border-radius:0 0 6px 0}
+  .skip:focus{left:0}
   body{overflow-x:hidden;background:var(--binding);color:var(--parchment);font-family:var(--ui);font-size:15px;line-height:1.58;padding:0 0 96px;-webkit-font-smoothing:antialiased}
   a{color:var(--brass);text-decoration:none} a:hover{color:var(--brass-bright)}
   b,strong{font-weight:500;color:var(--parchment)}
@@ -224,7 +226,11 @@
   .method{margin-top:32px;padding:24px;font-size:14px;color:var(--parchment);line-height:1.62}
   .method h3{font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--faded);margin:0 0 12px}
   .method p{text-wrap:pretty;margin:0}
-  .m-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 36px;max-width:1080px}
+  .m-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 36px;align-items:start;max-width:1080px}
+  .m-grid>.m-wide{grid-column:1 / -1}
+  .m-mem>h3{margin:0 0 6px}
+  .m-h{font-family:var(--disp);font-size:20px;font-weight:600;margin:0 0 14px}
+  @media(max-width:720px){.m-grid{grid-template-columns:1fr}}
   .m-grid p{font-size:13.5px;line-height:1.58}
   .mk{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--brass);margin-bottom:5px}
   .method b{color:var(--parchment);font-weight:600}
@@ -293,10 +299,11 @@
 </style>
 </head>
 <body>
+<a class="skip" href="#catalog">К каталогу систем</a>
 <div class="wrap">
 <header>
   <h1>НРИ<span class="dot">·</span>Атлас<span class="tag">150 систем · 10 осей</span></h1>
-  <p class="sub">Интерактивный рейтинг настольных ролевых игр с ведущим (безмастеровые и соло-системы не включены). Десять осей 0–10, вес каждой настраивается ползунком, итог пересчитывается на лету. Метка уверенности — насколько глубоко систему разбирал автор: <b>В</b> — прочитана или сыграна, проверена по первичным источникам; <b>С</b> — частичное чтение плюс независимые обзоры; <b>Н</b> — предварительная оценка по репутации и откликам, книгу не разбирали. <b>РФ</b> — российская разработка; бейдж <b>RU</b> — есть локализация (Ч — частичная, прежняя редакция, предзаказ или фанатский перевод, подробности в подсказке). Бейдж <b>VTT</b> — поддержка виртуальных столов: латунный — официальная от издателя, детали в подсказке; нет бейджа — поддержки не нашлось. Колонка размечена по витринам платформ, сплошная перепроверка официальных статусов ещё идёт. Как считается рейтинг — пояснение внизу страницы.</p>
+  <p class="sub">Интерактивный рейтинг настольных ролевых игр с ведущим (безмастеровые и соло-системы не включены). Десять осей 0–10, вес каждой настраивается ползунком, итог пересчитывается на лету. <a href="#method">Что значат оценки и бейджи</a> — внизу страницы.</p>
 <div class="hero">
   <div class="hero-line">Какую настольную ролевую игру взять? Рейтинг под твою задачу, подбор за минуту и авторские вердикты по всем 150 системам.</div>
   <div class="hero-btns">
@@ -312,7 +319,7 @@
   </div>
 </div>
 </header>
-<section class="compass">
+<main id="catalog"><section class="compass">
 <aside class="rail"><div class="card">
   <input type="checkbox" class="rail-check" id="railOpen">
   <label class="rail-head" for="railOpen">Веса и фильтры</label>
@@ -352,11 +359,11 @@
   <div class="ovl" id="ovl"><div class="panel" id="ovlPanel"></div></div>
   <div id="tip"></div>
 </div>
-</section>
-<div class="card method">
-<h3>Как считается рейтинг</h3>
+</section></main>
+<div class="card method" id="method">
+<h2 class="m-h">Как считается рейтинг</h2>
 <div class="m-grid">
-<p><span class="mk">Десять осей, шкала 0–10 — что значат оценки.</span><br>
+<p class="m-wide"><span class="mk">Десять осей, шкала 0–10 — что значат оценки.</span><br>
 <b>Отдача для мастера.</b> Сколько система возвращает за вложенное время: 8–10 — готовить интересно, инструменты подкидывают идеи сами (фронты, часы, генераторы); 3–4 — мастер обслуживает правила, а не историю.<br>
 <b>Лёгкость ведения.</b> 8–10 — сессию ведут после одного прочтения и готовят за полчаса; 3–4 — вечер подготовки на вечер игры и справочники под рукой.<br>
 <b>Отдача для игроков.</b> Вовлечённость стола и желание вернуться: высоко — там, где игроки принимают решения каждые несколько минут; низко — где ждут своего хода и слушают.<br>
@@ -369,10 +376,11 @@
 <b>Материалы и поддержка.</b> Живость линейки сегодня: 9–10 — регулярные приключения, дополнения, инструменты; 2–3 — базовая книга и тишина.<br>
 Каталог — о том, во что играть сегодня; исторические вехи вроде «Заколдованной страны» (1990, первая ролевая игра СССР) мы помним, но строк им не выделяем.</p>
 <p><span class="mk">Формула.</span> Итог = Σ(вес × оценка) / Σ(вес × 10). Веса — ползунками; <b>пресеты</b> — девять контрастных профилей задач: каждый весит только определяющие его оси, остальные ставит в ноль, иначе общее качество систем задавило бы разницу между задачами. Два пресета-настроения — «Быстрое приключение» и «Смех и веселье» — дополнительно сужают список по тегу; любой другой пресет или движение ползунка снимает это сужение. Любое движение ползунка — режим «Свои веса». <b>«Мне повезёт»</b> крутит рулетку среди строк, прошедших текущие фильтры.</p>
+<p><span class="mk">Метки и бейджи.</span> <b>Уверенность</b> — насколько глубоко систему разбирал автор: <b>В</b> — прочитана или сыграна, проверена по первичным источникам; <b>С</b> — частичное чтение плюс независимые обзоры; <b>Н</b> — предварительная оценка по репутации и откликам, книгу не разбирали.<br><b>РФ</b> — российская разработка. <b>RU</b> — есть локализация; <b>Ч</b> — частичная: прежняя редакция, предзаказ или фанатский перевод, подробности в подсказке у бейджа.<br><b>VTT</b> — поддержка виртуальных столов; латунный бейдж означает официальную поддержку от издателя, детали в подсказке; нет бейджа — поддержки не нашлось. Колонка размечена по витринам платформ, сплошная перепроверка официальных статусов ещё идёт.</p>
 <p><span class="mk">На чём основаны оценки.</span> Тексты правил и практика систем; задокументированный приём сообществом — рецензии, обсуждения, соотношение продаж и реальной игры; история линейки. Оценки <b>экспертные, а не измеренные прибором</b>: метка уверенности (В / С / Н) показывает, насколько прочна база под строкой.</p>
 <p><span class="mk">Открытые данные.</span> Все данные атласа доступны одним файлом: <a href="nri-atlas-data.json">nri-atlas-data.json</a> — лицензия CC-BY 4.0, используйте свободно со ссылкой на атлас.</p>
 <p><span class="mk">Что сознательно не учитывается.</span> Цена и доступность книг (меняются по странам и времени), качество конкретных изданий и переводов, вкусы конкретного стола — для этого и существуют ползунки.</p>
-<h3>Память</h3><p>Две строки атлас снял с довольствия по общему бару живой сцены — и хранит здесь. «Эра Водолея» (2000) — первая большая русская система, тираж 7500, с неё началась наша сцена; механика эпоху не пережила, и в таблице ей делать нечего, а здесь — самое место. «1000 рентген в час» (2019) — самый амбициозный проект новой русской волны; вернётся в таблицу, когда наберёт обкатку, позволяющую честные оценки.</p></div>
+<div class="m-mem"><h3>Память</h3><p>Две строки атлас снял с довольствия по общему бару живой сцены — и хранит здесь. «Эра Водолея» (2000) — первая большая русская система, тираж 7500, с неё началась наша сцена; механика эпоху не пережила, и в таблице ей делать нечего, а здесь — самое место. «1000 рентген в час» (2019) — самый амбициозный проект новой русской волны; вернётся в таблицу, когда наберёт обкатку, позволяющую честные оценки.</p></div></div>
 </div>
 <script>
 const AX=[
@@ -888,7 +896,7 @@ function render(){
   if(!rows.length){listEl.innerHTML=`<div class="empty">Под эти фильтры ничего не нашлось.<br><button id="emptyReset" type="button">Сбросить фильтры</button></div>`;}
  rows.forEach((r,i)=>listEl.appendChild(card(r.d,r.p,i+1)));
   [...listEl.children].forEach(c=>{if(!c.classList.contains("sys"))return;
-    c.tabIndex=0;c.setAttribute("role","button");c.setAttribute("aria-expanded",String(c.classList.contains("open")));
+    c.setAttribute("aria-expanded",String(c.classList.contains("open")));
     c.querySelectorAll(".cmpc,.shrc,[data-tip]").forEach(a=>{a.tabIndex=0;a.setAttribute("role","button");});});
  [...listEl.children].forEach(el=>{const o=old.get(el.dataset.k);if(!o)return;
   const n=el.getBoundingClientRect(),dy=o.top-n.top;
@@ -928,7 +936,7 @@ function card(d,p,rank){
  el.querySelectorAll(".simc").forEach(c=>{c.onclick=()=>jumpTo(c.dataset.sim);});
  el.querySelector(".cmpc").onclick=(e)=>toggleCmp(e.target);
  el.querySelectorAll("[data-share]").forEach(c=>{c.onclick=()=>{const sp=new URLSearchParams();sp.set("s",c.dataset.share);copyToClip(location.href.split("#")[0]+"#"+sp.toString(),c,"ссылка");};});
- el.querySelectorAll("[data-sort]").forEach(c=>{c.onclick=()=>{const k=c.dataset.sort;sortAx=sortAx===k?null:k;render();};});
+ el.querySelectorAll("[data-sort]").forEach(c=>{c.tabIndex=0;c.setAttribute("role","button");c.setAttribute("aria-label","Сортировать по оси");const go=()=>{const k=c.dataset.sort;sortAx=sortAx===k?null:k;render();};c.onclick=go;c.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}};});
  return el;
 }
 let spinning=false;
@@ -1039,7 +1047,7 @@ let wizA=[null,null,[],null,null];
 function openWiz(){wizA=[null,null,[],null,null];drawWiz();}
 function drawWiz(){
  const qs=WIZQ.map((w,i)=>`<div class="wq"><b>${i+1}</b>${w.q}</div><div class="wopts">${
-  w.o.map((o,j)=>`<span class="wopt${(w.multi?wizA[i].includes(j):wizA[i]===j)?" on":""}" data-q="${i}" data-o="${j}">${o}</span>`).join("")}</div>`).join("");
+  w.o.map((o,j)=>`<button type="button" class="wopt${(w.multi?wizA[i].includes(j):wizA[i]===j)?" on":""}" data-q="${i}" data-o="${j}" aria-pressed="${(w.multi?wizA[i].includes(j):wizA[i]===j)}">${o}</button>`).join("")}</div>`).join("");
  const ready=wizA.every(a=>Array.isArray(a)?a.length>0:a!==null);
  openOvl(`<button class="pnl-x" aria-label="Закрыть" onclick="closeOvl()">✕</button><h2>Подбор системы</h2>
   <div style="font-size:12px;color:var(--muted)">Пять ответов — пять кандидатов. Это стартовая пятёрка, а не приговор.</div>
