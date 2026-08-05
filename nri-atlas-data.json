@@ -771,8 +771,9 @@
    "russian_origin": false,
    "localization": {
     "status": "официальная",
-    "title": null,
-    "publisher": "издатель уточняется"
+    "publisher": "Студия «Пандора Бокс» / «Тридевятое»",
+    "title": "«Кольцо Всевластья»",
+    "url": "https://rpgbook.ru/theOneRing"
    },
    "scores": {
     "gm": 8,
@@ -1366,8 +1367,9 @@
    "russian_origin": false,
    "localization": {
     "status": "официальная",
+    "publisher": "Crowd Games",
     "title": "«Корни»",
-    "publisher": "издатель уточняется"
+    "url": "https://www.crowdgames.ru/collection/nastolnaya-rolevaya-igra-korni"
    },
    "scores": {
     "gm": 7,
@@ -1601,8 +1603,9 @@
    "russian_origin": false,
    "localization": {
     "status": "официальная",
-    "title": null,
-    "publisher": "издатель уточняется"
+    "publisher": "«Рыжий Библиотекарь»",
+    "title": "«Бастион. Земли электричества»",
+    "url": "https://red-librarian.itch.io/electric-bastionland-demo-rus"
    },
    "scores": {
     "gm": 9,
@@ -2801,12 +2804,11 @@
    "genre": "Sci-fi",
    "year": 2019,
    "confidence": "В",
-   "russian_edition": "Да",
+   "russian_edition": "Ч",
    "russian_origin": false,
    "localization": {
-    "status": "официальная",
-    "title": "«Фаза затмения»",
-    "publisher": "издатель уточняется"
+    "status": "частичная",
+    "note": "на русском вышли стартовый набор, правила быстрого старта и приключения (Студия «Пандора Бокс»); полный корник второй редакции отдельным изданием не подтверждён"
    },
    "scores": {
     "gm": 6,
@@ -4147,7 +4149,8 @@
    "localization": {
     "status": "официальная",
     "title": "Fate Core (рус.)",
-    "publisher": "Indigo Games"
+    "publisher": "Indigo Games",
+    "url": "https://indigogames.ru"
    },
    "scores": {
     "gm": 6,
@@ -4472,8 +4475,8 @@
    "russian_origin": true,
    "localization": {
     "status": "официальная",
-    "title": null,
-    "publisher": "издатель уточняется"
+    "publisher": "Silver Hoof Games",
+    "url": "https://silverhoofgames.ru/product/redlands/"
    },
    "scores": {
     "gm": 7,
@@ -6548,13 +6551,9 @@
    "genre": "Историч./др.",
    "year": 2015,
    "confidence": "В",
-   "russian_edition": "Да",
+   "russian_edition": "—",
    "russian_origin": false,
-   "localization": {
-    "status": "официальная",
-    "title": "«Ночные ведьмы»",
-    "publisher": "издатель уточняется"
-   },
+   "localization": null,
    "scores": {
     "gm": 7,
     "ease": 6,
@@ -6694,8 +6693,9 @@
    "russian_origin": false,
    "localization": {
     "status": "официальная",
+    "publisher": "Студия 101",
     "title": "«Леди Блэкбёрд»",
-    "publisher": "издатель уточняется"
+    "url": "https://studio101.ru"
    },
    "scores": {
     "gm": 7,
