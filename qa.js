@@ -168,6 +168,23 @@ DATA.forEach(d => {
 });
 check(par.length === 0, 'паритет JSON <-> HTML: год, RU, движок, сложность, free, кубы, VTT', par.slice(0, 15));
 
+// 13a2. «Лучше начать с»: цель обязана существовать, ссылка не должна вести в никуда
+eval('var SUPERSEDED=' + js.match(/const SUPERSEDED=(\{[\s\S]*?\});/)[1]);
+const supBad = Object.entries(SUPERSEDED)
+  .filter(([a, b]) => !names.has(a) || !names.has(b) || a === b)
+  .map(([a, b]) => a + '→' + b);
+check(supBad.length === 0, 'superseded_by ведёт на существующие строки', supBad);
+const supJson = DATA.filter(d => {
+  const j = jBy.get(d.n);
+  return (j && j.superseded_by ? j.superseded_by : null) !== (SUPERSEDED[d.n] || null);
+}).map(d => d.n);
+check(supJson.length === 0, 'superseded_by: HTML и JSON совпадают', supJson);
+
+// 13a3. Авторство текстов: карта без сирот
+eval('var TEXT_BY=' + js.match(/const TEXT_BY=(\{[\s\S]*?\});/)[1]);
+const tbOrph = Object.keys(TEXT_BY).filter(n => !names.has(n));
+check(tbOrph.length === 0, 'TEXT_BY без сирот', tbOrph);
+
 // 13b. Глубокий паритет: авторские поля, на которых держится доверие к продукту.
 // Раньше не сторожились вовсе — а именно их правят массово.
 const eqArr = (a, b) => Array.isArray(a) && Array.isArray(b) &&

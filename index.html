@@ -143,6 +143,9 @@
   .bdg.ruL,.bdg.fr{color:var(--brass)}
   .bdg.ruO{color:var(--wax-bright)}
   .bdg.vt{color:var(--faded)}
+  .txtby{font-size:12px;color:var(--faded-deep);margin-left:auto}
+  .bdg.sup{color:var(--wax-bright);cursor:pointer}
+  .bdg.sup:hover{background:var(--wax-tint)}
   .bdg.vtOf{color:var(--brass)}
   .bdg.cN,.bdg.cS{color:var(--faded-deep);border-style:dashed}
   .bdg[data-tip]{cursor:help;border-bottom-style:dotted}
@@ -477,6 +480,16 @@ function diceCat(d){
  if(f==="Fate")return "разные кубы";
  if(f==="2d20"||f==="d20-семья"||f==="OSR / минимализм")return "d20";
  return "разные кубы";}
+/* Авторство текстов: строка есть — текст проверен человеком по источникам.
+   Отсутствие = ИИ-черновик, это объяснено в дисклеймере наверху. */
+const TEXT_BY={};
+/* «Лучше начать с»: строка остаётся в каталоге как часть ландшафта,
+   но выбирающему честно показываем более подходящую точку входа. */
+const SUPERSEDED={
+  "Coriolis: The Third Horizon":"Coriolis: The Great Dark",
+  "City of Mist":"Legend in the Mist",
+  "Shadowrun 6e":"Shadowrun 5e",
+  "Pathfinder 1e":"Pathfinder 2e"};
 /* Выбор автора: лично вожу и рекомендую */
 const AUTHOR_PICKS=new Set(["Daggerheart","The One Ring 2e","Vaesen","D&D 5e / 5.5e","Красная Земля (Fate)","Ten Candles"]);
 /* Официальные бесплатные квикстарты и стартовые наборы (сверх полных бесплатных FREE) */
@@ -922,12 +935,12 @@ function card(d,p,rank){
  el.innerHTML=`<div class="sys-main">
   <div class="rank">${rank}</div>
   <div class="nm2"><div class="n">${d.n}${AUTHOR_PICKS.has(d.n)?` <span class="apick" data-tip="Выбор автора: лично вожу и рекомендую">★</span>`:``}</div>
-   <div class="meta"><span class="bdg eng" data-tip="${GLOSS[fam(d.e)]||""}">${d.e}</span><span class="bdg">${d.g}</span><span class="bdg">${d.y}</span><span class="bdg">${d.d}</span>${ruO}${ruL}${cfB}${FREE.has(d.n)?`<span class="bdg fr" data-tip="Официальная бесплатная версия: полные правила или играбельная база">бесплатно</span>`:""}${VTT[d.n]?`<span class="bdg vt${VTT[d.n].some(x=>x===2)?" vtOf":""}" data-tip="${esc(vttTip(d.n))}">VTT</span>`:""}</div></div>
+   <div class="meta"><span class="bdg eng" data-tip="${GLOSS[fam(d.e)]||""}">${d.e}</span><span class="bdg">${d.g}</span><span class="bdg">${d.y}</span><span class="bdg">${d.d}</span>${ruO}${ruL}${cfB}${FREE.has(d.n)?`<span class="bdg fr" data-tip="Официальная бесплатная версия: полные правила или играбельная база">бесплатно</span>`:""}${SUPERSEDED[d.n]?`<span class="bdg sup" data-jump="${esc(SUPERSEDED[d.n])}" title="Эта строка остаётся в каталоге, но начинать лучше с другой">лучше начать с: ${esc(SUPERSEDED[d.n])}</span>`:""}${VTT[d.n]?`<span class="bdg vt${VTT[d.n].some(x=>x===2)?" vtOf":""}" data-tip="${esc(vttTip(d.n))}">VTT</span>`:""}</div></div>
   <div class="score"><span class="pct" style="color:${p>=70?"var(--ember)":p>=55?"#d9b96a":"var(--paper)"}">${Math.round(p)}<small style="font-size:10px;color:var(--muted2)">%</small></span>
    <div class="bar"><i style="width:${p}%"></i></div></div></div>
   <div class="sys-body">${noteHtml}${tagsHtml}${simHtml}
    <div class="axes">${AX.map(a=>`<div class="ax"><span class="lab ${W[a.k]===0?"dim":""}${sortAx===a.k?" srt":""}" data-sort="${a.k}" title="Сортировать список по этой оси"><span>${sortAx===a.k?"↓ ":""}${a.n}</span><span>${d.s[a.k]}/10${W[a.k]>0?" ×"+W[a.k]:""}</span></span><div class="mb"><i class="${W[a.k]>=4?"hot":""}" style="width:${d.s[a.k]*10}%"></i></div></div>`).join("")}</div>
-   <a class="lnk" href="${L.u}" target="_blank" rel="noopener">${L.t}</a><span class="cmpc${compareSet.has(d.n)?" on":""}" data-cmp="${d.n}">${compareSet.has(d.n)?"✓ в сравнении":"сравнить"}</span><span class="shrc" data-share="${d.n}" title="Скопировать прямую ссылку на эту систему">ссылка</span><a class="dis" href="https://t.me/vasaris" target="_blank" rel="noopener">не согласен с оценкой?</a></div>`;
+   <a class="lnk" href="${L.u}" target="_blank" rel="noopener">${L.t}</a><span class="cmpc${compareSet.has(d.n)?" on":""}" data-cmp="${d.n}">${compareSet.has(d.n)?"✓ в сравнении":"сравнить"}</span><span class="shrc" data-share="${d.n}" title="Скопировать прямую ссылку на эту систему">ссылка</span><a class="dis" href="https://t.me/vasaris" target="_blank" rel="noopener">не согласен с оценкой?</a>${TEXT_BY[d.n]?`<span class="txtby">текст: ${esc(TEXT_BY[d.n])}</span>`:""}</div>`;
  el.querySelector(".sys-main").onclick=(e)=>{
   const b=e.target.closest("[data-tip]");
   if(b){showTip(b);e.stopPropagation();return;}
@@ -935,6 +948,9 @@ function card(d,p,rank){
    if(el.classList.contains("open")){openSet.add(d.n);gcCard(d.n);}else openSet.delete(d.n);};
  el.querySelectorAll(".simc").forEach(c=>{c.onclick=()=>jumpTo(c.dataset.sim);});
  el.querySelector(".cmpc").onclick=(e)=>toggleCmp(e.target);
+ el.querySelectorAll("[data-jump]").forEach(c=>{c.tabIndex=0;c.setAttribute("role","button");
+  const go=(e)=>{e.stopPropagation();jumpTo(c.dataset.jump);};
+  c.onclick=go;c.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go(e);}};});
  el.querySelectorAll("[data-share]").forEach(c=>{c.onclick=()=>{const sp=new URLSearchParams();sp.set("s",c.dataset.share);copyToClip(location.href.split("#")[0]+"#"+sp.toString(),c,"ссылка");};});
  el.querySelectorAll("[data-sort]").forEach(c=>{c.tabIndex=0;c.setAttribute("role","button");c.setAttribute("aria-label","Сортировать по оси");const go=()=>{const k=c.dataset.sort;sortAx=sortAx===k?null:k;render();};c.onclick=go;c.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}};});
  return el;
@@ -965,9 +981,25 @@ function jumpTo(name){
  q=name.toLowerCase();document.getElementById("q").value=name;
  openSet.clear();openSet.add(name);render();
  let t=[...listEl.children].find(x=>x.dataset.k===name);
- if(!t){fGen="";fTag="";fDiff=3;fFam="";fYear=0;fRu=false;fRuO=false;fConf=false;fFree="";fDice="";fPick=false;document.getElementById("fDice").value="";document.getElementById("fFree").value="";document.getElementById("fTag").value="";
-  genSel.value="";famSel.value="";document.getElementById("fDiff").value="3";document.getElementById("fYear").value="0";
-  ["fRu","fRuO","fConf","fPick"].forEach(id=>document.getElementById(id).checked=false);render();
+ if(!t){
+  /* Снимаем ТОЛЬКО те фильтры, которые реально мешают цели: раньше сбрасывались
+     все одиннадцать, и переход по одной ссылке уничтожал весь поисковый контекст. */
+  const d=DATA.find(x=>x.n===name);
+  if(d){
+   if(fGen&&d.g!==fGen){fGen="";genSel.value="";}
+   if(fTag&&!d.tags.includes(fTag)){fTag="";document.getElementById("fTag").value="";}
+   if(DIFFN[d.d]>fDiff){fDiff=3;document.getElementById("fDiff").value="3";}
+   if(fFam&&fam(d.e)!==fFam){fFam="";famSel.value="";}
+   if(fYear&&d.y<fYear){fYear=0;document.getElementById("fYear").value="0";}
+   if(fRu&&d.ru==="\u2014"){fRu=false;document.getElementById("fRu").checked=false;}
+   if(fRuO&&!d.ro){fRuO=false;document.getElementById("fRuO").checked=false;}
+   if(fConf&&d.cf==="\u041d"){fConf=false;document.getElementById("fConf").checked=false;}
+   if(fFree==="f"&&!FREE.has(d.n)){fFree="";document.getElementById("fFree").value="";}
+   if(fFree==="q"&&!FREE.has(d.n)&&!FREE_QS.has(d.n)){fFree="";document.getElementById("fFree").value="";}
+   if(fDice&&diceCat(d)!==fDice){fDice="";document.getElementById("fDice").value="";}
+   if(fPick&&!AUTHOR_PICKS.has(d.n)){fPick=false;document.getElementById("fPick").checked=false;}
+  }
+  render();
   t=[...listEl.children].find(x=>x.dataset.k===name);}
  if(t)t.scrollIntoView({block:"center",behavior:"smooth"});}
 /* тултип-глоссарий: тап по пунктирному бейджу */
@@ -1197,6 +1229,9 @@ function shareUrl(){
  const p=new URLSearchParams();
  const preset=Object.keys(PRESETS).find(n=>AX.every(a=>PRESETS[n][a.k]===W[a.k]));
  if(preset){if(preset!=="Игра как игра")p.set("p",preset);}
+ /* тег кодируем явно: иначе декодер навесит PRESET_TAG заново,
+    даже если пользователь снял его вручную (кодек был необратим) */
+ if(preset&&PRESET_TAG[preset])p.set("tg",fTag||"");
  else p.set("w",AX.map(a=>W[a.k]).join(""));
  if(q)p.set("q",q);if(fGen)p.set("g",fGen);if(fDiff!==3)p.set("d",fDiff);
  if(fFam)p.set("f",fFam);if(fYear)p.set("y",fYear);if(fTag)p.set("tg",fTag);if(fDice)p.set("dice",fDice);
@@ -1217,7 +1252,9 @@ document.getElementById("share").onclick=()=>copyToClip(shareUrl(),document.getE
 (function(){try{
  const h=location.hash.slice(1);if(!h)return;
  const p=new URLSearchParams(h);
- const pn=p.get("p");if(pn&&PRESETS[pn]){W={...PRESETS[pn]};if(PRESET_TAG[pn]){fTag=PRESET_TAG[pn];document.getElementById("fTag").value=fTag;}}
+ const pn=p.get("p");if(pn&&PRESETS[pn]){W={...PRESETS[pn]};
+  /* тег из пресета ставим только если он не задан в ссылке явно */
+  if(PRESET_TAG[pn]&&!p.has("tg")){fTag=PRESET_TAG[pn];document.getElementById("fTag").value=fTag;}}
  const w=p.get("w");if(w&&/^[0-5]{10}$/.test(w))AX.forEach((a,i)=>W[a.k]=Math.min(5,+w[i]||0));
  if(p.get("q")){q=p.get("q").toLowerCase();document.getElementById("q").value=p.get("q");}
  if(p.get("g")){genSel.value=p.get("g");fGen=genSel.value===p.get("g")?p.get("g"):"";}

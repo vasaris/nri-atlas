@@ -207,7 +207,8 @@
     "fantasy_grounds": true,
     "demiplane": false
    },
-   "difficulty": "Сложно"
+   "difficulty": "Сложно",
+   "superseded_by": "Pathfinder 2e"
   },
   {
    "name": "13th Age",
@@ -2531,7 +2532,8 @@
     "fantasy_grounds": false,
     "demiplane": false
    },
-   "difficulty": "Средне"
+   "difficulty": "Средне",
+   "superseded_by": "Coriolis: The Great Dark"
   },
   {
    "name": "Coriolis: The Great Dark",
@@ -3168,7 +3170,8 @@
     "fantasy_grounds": false,
     "demiplane": false
    },
-   "difficulty": "Сложно"
+   "difficulty": "Сложно",
+   "superseded_by": "Shadowrun 5e"
   },
   {
    "name": "The Sprawl",
@@ -3767,7 +3770,8 @@
     "fantasy_grounds": false,
     "demiplane": false
    },
-   "difficulty": "Средне"
+   "difficulty": "Средне",
+   "superseded_by": "Legend in the Mist"
   },
   {
    "name": "Monster of the Week",
