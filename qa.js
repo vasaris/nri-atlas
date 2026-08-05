@@ -180,10 +180,16 @@ const supJson = DATA.filter(d => {
 }).map(d => d.n);
 check(supJson.length === 0, 'superseded_by: HTML и JSON совпадают', supJson);
 
-// 13a3. Авторство текстов: карта без сирот
-eval('var TEXT_BY=' + js.match(/const TEXT_BY=(\{[\s\S]*?\});/)[1]);
-const tbOrph = Object.keys(TEXT_BY).filter(n => !names.has(n));
-check(tbOrph.length === 0, 'TEXT_BY без сирот', tbOrph);
+// 13a3. Описания «что это»: карта без сирот и с корректной формой записей
+eval('var DESC=' + js.match(/const DESC=(\{[\s\S]*?\});/)[1]);
+const dOrph = Object.keys(DESC).filter(n => !names.has(n));
+check(dOrph.length === 0, 'DESC без сирот', dOrph);
+const SRCS = ['srd', 'pub', 'author', 'volunteer'];
+const dBad = Object.entries(DESC).filter(([, x]) =>
+  !x || typeof x.t !== 'string' || !x.t.trim() || !SRCS.includes(x.src)).map(([n]) => n);
+check(dBad.length === 0, 'DESC: у каждой записи есть текст и известный тип источника', dBad);
+const dNoBy = Object.entries(DESC).filter(([, x]) => !x.by || !String(x.by).trim()).map(([n]) => n);
+check(dNoBy.length === 0, 'DESC: у каждой записи указан источник или автор', dNoBy);
 
 // 13b. Глубокий паритет: авторские поля, на которых держится доверие к продукту.
 // Раньше не сторожились вовсе — а именно их правят массово.

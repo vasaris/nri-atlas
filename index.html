@@ -143,7 +143,7 @@
   .bdg.ruL,.bdg.fr{color:var(--brass)}
   .bdg.ruO{color:var(--wax-bright)}
   .bdg.vt{color:var(--faded)}
-  .txtby{font-size:12px;color:var(--faded-deep);margin-left:auto}
+  .dsrc{display:block;margin-top:8px;font-size:12px;color:var(--faded-deep)}
   .bdg.sup{color:var(--wax-bright);cursor:pointer}
   .bdg.sup:hover{background:var(--wax-tint)}
   .bdg.vtOf{color:var(--brass)}
@@ -480,9 +480,18 @@ function diceCat(d){
  if(f==="Fate")return "разные кубы";
  if(f==="2d20"||f==="d20-семья"||f==="OSR / минимализм")return "d20";
  return "разные кубы";}
-/* Авторство текстов: строка есть — текст проверен человеком по источникам.
-   Отсутствие = ИИ-черновик, это объяснено в дисклеймере наверху. */
-const TEXT_BY={};
+/* Описания «что это»: строка здесь — текст проверен человеком.
+   Отсутствие = описания пока нет (ИИ-черновик скрыт), см. дисклеймер наверху.
+   src: srd — из свободных правил; pub — цитата издателя; author — Иван;
+        volunteer — прислано читателем. by: имя для подписи (у srd/pub — источник). */
+const DESC={};
+const SRC_LABEL={srd:"по свободным правилам",pub:"из описания издателя",
+                 author:"текст:",volunteer:"текст:"};
+function descHtml(d){
+ const x=DESC[d.n];
+ if(!x)return "";
+ const by=x.by?`<span class="dsrc">${SRC_LABEL[x.src]||"источник:"} ${esc(x.by)}</span>`:"";
+ return `<div class="note"><span class="wt">Что это</span>${esc(x.t)}${by}</div>`;}
 /* «Лучше начать с»: строка остаётся в каталоге как часть ландшафта,
    но выбирающему честно показываем более подходящую точку входа. */
 const SUPERSEDED={
@@ -900,7 +909,7 @@ function render(){
   if(fFam&&fam(d.e)!==fFam)return false;
   if(fYear&&d.y<fYear)return false;
   if(fPick&&!AUTHOR_PICKS.has(d.n))return false;
-  if(q){const th=t=>d.n.toLowerCase().includes(t)||d.e.toLowerCase().includes(t)||d.tags.some(x=>x.includes(t))||(SHOW_TEXTS&&d.note.toLowerCase().includes(t));
+  if(q){const th=t=>d.n.toLowerCase().includes(t)||d.e.toLowerCase().includes(t)||d.tags.some(x=>x.includes(t))||(DESC[d.n]&&DESC[d.n].t.toLowerCase().includes(t))||(SHOW_TEXTS&&d.note.toLowerCase().includes(t));
    for(const t of q.split(/\s+/)){if(!t||t==="-")continue;
     if(t[0]==="-"){if(th(t.slice(1)))return false;}
     else if(!th(t))return false;}}
@@ -932,9 +941,10 @@ function card(d,p,rank){
  const cfTip=d.cf==="Н"?"Уверенность оценки низкая: по репутации и откликам, книгу не разбирали":"Уверенность оценки средняя: частичное чтение и обзоры";
  const cfB=d.cf!=="В"?`<span class="bdg ${d.cf==="Н"?"cN":"cS"}" data-tip="${esc(cfTip)}">уверенность: ${d.cf}</span>`:"";
  const L=linkFor(d);
- const noteHtml=d.note.includes("||")
-  ?(()=>{const nn=d.note.split("||");return `<div class="note"><span class="wt">Что это</span>${nn[0].trim()}<div class="vd"><span class="wt">Вердикт</span>${nn[1].trim()}</div></div>`;})()
-  :`<div class="note">${d.note}</div>`;
+ /* Вердикты — оценочный слой, вернутся вместе с решением по оценкам.
+    Описания живут отдельно и построчно (карта DESC). */
+ const verdictHtml=SHOW_TEXTS&&d.note.includes("||")
+  ?`<div class="note vd"><span class="wt">Вердикт</span>${d.note.split("||")[1].trim()}</div>`:"";
  const tagsHtml=d.tags.length?`<div class="trow">${d.tags.map(t=>`<span class="tagc">${t}</span>`).join("")}</div>`:"";
  const simHtml=d.sim.length?`<div class="trow"><span class="simlab">похоже на:</span>${d.sim.map(s2=>`<span class="simc" data-sim="${s2}">${s2}</span>`).join("")}</div>`:"";
  el.innerHTML=`<div class="sys-main">
@@ -943,9 +953,9 @@ function card(d,p,rank){
    <div class="meta"><span class="bdg eng" data-tip="${GLOSS[fam(d.e)]||""}">${d.e}</span><span class="bdg">${d.g}</span><span class="bdg">${d.y}</span><span class="bdg">${d.d}</span>${ruO}${ruL}${cfB}${FREE.has(d.n)?`<span class="bdg fr" data-tip="Официальная бесплатная версия: полные правила или играбельная база">бесплатно</span>`:""}${SUPERSEDED[d.n]?`<span class="bdg sup" data-jump="${esc(SUPERSEDED[d.n])}" title="Эта строка остаётся в каталоге, но начинать лучше с другой">лучше начать с: ${esc(SUPERSEDED[d.n])}</span>`:""}${VTT[d.n]?`<span class="bdg vt${VTT[d.n].some(x=>x===2)?" vtOf":""}" data-tip="${esc(vttTip(d.n))}">VTT</span>`:""}</div></div>
   ${SHOW_SCORES?`<div class="score"><span class="pct" style="color:${p>=70?"var(--ember)":p>=55?"#d9b96a":"var(--paper)"}">${Math.round(p)}<small style="font-size:10px;color:var(--muted2)">%</small></span>
    <div class="bar"><i style="width:${p}%"></i></div></div>`:""}</div>
-  <div class="sys-body">${SHOW_TEXTS?noteHtml:""}${tagsHtml}${simHtml}
+  <div class="sys-body">${descHtml(d)}${verdictHtml}${tagsHtml}${simHtml}
    ${SHOW_SCORES?`<div class="axes">${AX.map(a=>`<div class="ax"><span class="lab ${W[a.k]===0?"dim":""}${sortAx===a.k?" srt":""}" data-sort="${a.k}" title="Сортировать список по этой оси"><span>${sortAx===a.k?"↓ ":""}${a.n}</span><span>${d.s[a.k]}/10${W[a.k]>0?" ×"+W[a.k]:""}</span></span><div class="mb"><i class="${W[a.k]>=4?"hot":""}" style="width:${d.s[a.k]*10}%"></i></div></div>`).join("")}</div>`:""}
-   <a class="lnk" href="${L.u}" target="_blank" rel="noopener">${L.t}</a><span class="cmpc${compareSet.has(d.n)?" on":""}" data-cmp="${d.n}">${compareSet.has(d.n)?"✓ в сравнении":"сравнить"}</span><span class="shrc" data-share="${d.n}" title="Скопировать прямую ссылку на эту систему">ссылка</span><a class="dis" href="https://t.me/vasaris" target="_blank" rel="noopener">не согласен с оценкой?</a>${TEXT_BY[d.n]?`<span class="txtby">текст: ${esc(TEXT_BY[d.n])}</span>`:""}</div>`;
+   <a class="lnk" href="${L.u}" target="_blank" rel="noopener">${L.t}</a><span class="cmpc${compareSet.has(d.n)?" on":""}" data-cmp="${d.n}">${compareSet.has(d.n)?"✓ в сравнении":"сравнить"}</span><span class="shrc" data-share="${d.n}" title="Скопировать прямую ссылку на эту систему">ссылка</span><a class="dis" href="https://t.me/vasaris" target="_blank" rel="noopener">не согласен с оценкой?</a></div>`;
  el.querySelector(".sys-main").onclick=(e)=>{
   const b=e.target.closest("[data-tip]");
   if(b){showTip(b);e.stopPropagation();return;}
