@@ -19,9 +19,9 @@
 <style>
   :root{
     --binding:#101914;--binding-deep:#0B120E;--board:#18241D;--board-raised:#1E2C24;--board-hover:#213127;
-    --parchment:#E8DFC8;--parchment-bright:#F4EDDC;--faded:#97927D;--faded-deep:#8F8A75;
-    --wax:#B5432E;--wax-bright:#C9503A;--wax-deep:#8E3323;--wax-tint:rgba(181,67,46,.14);--wax-line:rgba(181,67,46,.45);
-    --brass:#C29A4B;--brass-bright:#D4AC5D;--brass-deep:#A07C33;--brass-tint:rgba(194,154,75,.10);--brass-line:rgba(194,154,75,.38);--brass-hairline:rgba(194,154,75,.22);
+    --parchment:#E0DBD0;--parchment-bright:#EDEAE2;--faded:#959285;--faded-deep:#8E8A7D;
+    --wax:#B5432E;--wax-bright:#C47264;--wax-hover:#A83B27;--wax-deep:#8E3323;--wax-tint:rgba(181,67,46,.14);--wax-line:rgba(181,67,46,.45);
+    --brass:#B69D6B;--brass-bright:#C6AF80;--brass-deep:#8F7644;--brass-tint:rgba(182,157,107,.10);--brass-line:rgba(182,157,107,.38);--brass-hairline:rgba(182,157,107,.22);
     --rule:#243529;--rule-strong:#2F4436;--scrim:rgba(8,13,10,.72);
     --shadow-sheet:0 24px 56px rgba(6,10,8,.62);
     --disp:"Spectral",Georgia,serif;--ui:"Golos Text",system-ui,sans-serif;--mono:"PT Mono",monospace;
@@ -29,7 +29,7 @@
     /* псевдонимы для инлайн-стилей внутри скрипта (не менять) */
     --ember:var(--brass);--paper:var(--parchment);--muted:var(--faded);--muted2:var(--faded-deep);}
   *{box-sizing:border-box} html,body{margin:0}
-  body{background:var(--binding);color:var(--parchment);font-family:var(--ui);font-size:15px;line-height:1.58;padding:0 0 96px;-webkit-font-smoothing:antialiased}
+  body{overflow-x:hidden;background:var(--binding);color:var(--parchment);font-family:var(--ui);font-size:15px;line-height:1.58;padding:0 0 96px;-webkit-font-smoothing:antialiased}
   a{color:var(--brass);text-decoration:none} a:hover{color:var(--brass-bright)}
   b,strong{font-weight:500;color:var(--parchment)}
   ::selection{background:rgba(181,67,46,.38)}
@@ -50,11 +50,11 @@
   .hbtn{appearance:none;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font:500 15px/1 var(--ui);color:var(--parchment);background:transparent;border:1px solid var(--brass-line);border-radius:6px;padding:14px 22px;min-height:48px;transition:background 90ms var(--ease),border-color 90ms var(--ease),color 90ms var(--ease)}
   .hbtn:hover{background:var(--brass-tint);border-color:var(--brass)}
   .hbtn.hb1{background:var(--wax);border-color:var(--wax);color:var(--parchment-bright)}
-  .hbtn.hb1:hover{background:var(--wax-bright);border-color:var(--wax-bright)}
+  .hbtn.hb1:hover{background:var(--wax-hover);border-color:var(--wax-hover)}
   .hbtn:active{background:var(--wax-tint);border-color:var(--wax)}
   .hbtn.hb1:active{background:var(--wax-deep);border-color:var(--wax-deep)}
   .hero-by{font-size:13px;color:var(--faded)}
-  .alpha{margin:18px 0 0;padding:13px 15px;background:var(--board);border:1px solid var(--rule);border-left:3px solid var(--wax-bright);border-radius:6px}
+  .alpha{margin:18px 0 0;padding:13px 15px;background:var(--board);border:1px solid var(--rule);border-left:3px solid var(--wax);border-radius:6px}
   .alpha-ttl{font-family:var(--disp);font-size:15px;font-weight:600;color:var(--parchment-bright);margin-bottom:6px}
   .alpha p{font-size:13px;line-height:1.55;color:var(--parchment);margin:6px 0 0;max-width:78ch}
   .alpha a{color:var(--brass);border-bottom:1px solid var(--brass-line)}
@@ -64,6 +64,7 @@
   .rail{position:sticky;top:16px;max-height:calc(100vh - 32px);overflow-y:auto}
   .card{background:var(--board);border:1px solid var(--rule);border-radius:6px}
   .rail .card{padding:0}
+  .rail-check:focus-visible+.rail-head{outline:2px solid var(--brass);outline-offset:3px}
   .rail-check{position:absolute;opacity:0;width:1px;height:1px}
   .rail-head{display:none}
   .rail-body{padding:20px}
@@ -74,7 +75,7 @@
   .chip:hover{color:var(--parchment);background:var(--brass-tint);border-color:var(--brass-line)}
   .chip.on{background:var(--wax);border-color:var(--wax);color:var(--parchment-bright)}
   #lucky{background:var(--wax);border-color:var(--wax);color:var(--parchment-bright);font-weight:500}
-  #lucky:hover{background:var(--wax-bright);border-color:var(--wax-bright)}
+  #lucky:hover{background:var(--wax-hover);border-color:var(--wax-hover)}
   /* веса */
   .whint{font-size:12px;color:var(--faded-deep);margin:0 0 10px;line-height:1.5}
   .fader{margin:0 0 13px}
@@ -98,7 +99,8 @@
   .row{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:38px}
   .row>span:first-child{color:var(--faded)}
   select,input[type=text]{font-family:var(--ui);font-size:13px;color:var(--parchment);background:var(--binding-deep);border:1px solid var(--rule);border-radius:4px;padding:10px 11px;transition:border-color 90ms var(--ease)}
-  select:hover,input[type=text]:hover,select:focus,input[type=text]:focus{border-color:var(--brass-line);outline:none}
+  select:hover,input[type=text]:hover{border-color:var(--brass-line)}
+  select:focus-visible,input[type=text]:focus-visible{border-color:var(--brass-line);outline:2px solid var(--brass);outline-offset:2px}
   select option{background:var(--board);color:var(--parchment)}
   input[type=text]{width:100%;margin-bottom:6px}
   input[type=text]::placeholder{color:var(--faded-deep)}
@@ -185,7 +187,7 @@
   #cmpbar.show{display:flex}
   #cmpbar>span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   #cmpbar .go{background:var(--wax);color:var(--parchment-bright);border:1px solid var(--wax);border-radius:4px;padding:9px 14px;font:500 13px/1 var(--ui);min-height:36px;cursor:pointer;transition:background 90ms var(--ease)}
-  #cmpbar .go:hover{background:var(--wax-bright);border-color:var(--wax-bright)}
+  #cmpbar .go:hover{background:var(--wax-hover);border-color:var(--wax-hover)}
   #cmpbar .clr{background:none;border:none;color:var(--faded);cursor:pointer;font-family:var(--mono);font-size:15px;padding:9px;margin:-4px}
   #cmpbar .clr:hover{color:var(--parchment)}
   /* лист-оверлей */
@@ -263,12 +265,12 @@
     .ax{font-size:11.5px}
     .ax .lab span:last-child{font-size:10.5px}
     .row{min-height:44px}
-    .chip{min-height:40px}
-    .simc,.cmpc,.shrc{min-height:40px}
+    .chip{min-height:44px}
+    .simc,.cmpc,.shrc{min-height:44px}
     .tag{margin-left:10px;font-size:10px}
     .panel{padding:18px 14px 20px}
     #cmpbar{left:12px;right:12px;transform:none;bottom:12px}
-    #cmpbar .go{min-height:40px}
+    #cmpbar .go{min-height:44px}
   }
   @media(prefers-reduced-motion:reduce){
     .ovl.show .panel{animation:none}
@@ -855,7 +857,7 @@ function score(d){let t=0,m=0;AX.forEach(a=>{t+=W[a.k]*d.s[a.k];m+=W[a.k]*10;});
 const listEl=document.getElementById("list"),cntEl=document.getElementById("cnt");
 listEl.addEventListener("keydown",e=>{if(e.key!=="Enter"&&e.key!==" ")return;const t=e.target;
   if(t.classList.contains("sys")){e.preventDefault();(t.querySelector(".sys-main")||t).click();}
-  else if(t.matches(".cmpb,.shrc,[data-tip]")){e.preventDefault();t.click();}});
+  else if(t.matches(".cmpc,.shrc,[data-tip]")){e.preventDefault();t.click();}});
 listEl.addEventListener("click",e=>{if(e.target.id==="emptyReset")document.getElementById("reset").click();});
 let openSet=new Set(),sortAx=null,pendingWiz=false,pendingCmp=false;
 function render(){
@@ -887,7 +889,7 @@ function render(){
  rows.forEach((r,i)=>listEl.appendChild(card(r.d,r.p,i+1)));
   [...listEl.children].forEach(c=>{if(!c.classList.contains("sys"))return;
     c.tabIndex=0;c.setAttribute("role","button");c.setAttribute("aria-expanded",String(c.classList.contains("open")));
-    c.querySelectorAll(".cmpb,.shrc,[data-tip]").forEach(a=>{a.tabIndex=0;a.setAttribute("role","button");});});
+    c.querySelectorAll(".cmpc,.shrc,[data-tip]").forEach(a=>{a.tabIndex=0;a.setAttribute("role","button");});});
  [...listEl.children].forEach(el=>{const o=old.get(el.dataset.k);if(!o)return;
   const n=el.getBoundingClientRect(),dy=o.top-n.top;
   if(Math.abs(dy)>1){el.style.transform=`translateY(${dy}px)`;el.style.transition="none";
@@ -932,7 +934,8 @@ function card(d,p,rank){
 let spinning=false;
 document.getElementById("lucky").onclick=()=>{
  if(spinning)return;
- const rows=[...listEl.children]; if(!rows.length)return;
+ const rows=[...listEl.children].filter(x=>x.classList.contains("sys"));
+ if(!rows.length){const c=document.getElementById("cnt");if(c)c.setAttribute("aria-live","polite");return;}
  spinning=true;
  rows.forEach(r=>r.classList.remove("lucky","spin","open"));openSet.clear();
  let t=0,d=45,seq=[];
@@ -990,7 +993,10 @@ function renderCmpBar(){
  const g=document.getElementById("cmpGo");if(g)g.onclick=openCompare;
  document.getElementById("cmpClr").onclick=()=>{compareSet.clear();renderCmpBar();render();};}
 let lastFocus=null;
-function openOvl(html){lastFocus=document.activeElement;ovlPanel.innerHTML=html;ovl.setAttribute("role","dialog");ovl.setAttribute("aria-modal","true");ovl.classList.add("show");document.body.style.overflow="hidden";ovlPanel.tabIndex=-1;ovlPanel.focus();}
+function openOvl(html){lastFocus=document.activeElement;ovlPanel.innerHTML=html;ovl.setAttribute("role","dialog");ovl.setAttribute("aria-modal","true");
+ {const h=ovlPanel.querySelector("h2");
+  if(h){if(!h.id)h.id="ovlTitle";ovl.setAttribute("aria-labelledby",h.id);}
+  else ovl.setAttribute("aria-label","Диалог");}ovl.classList.add("show");document.body.style.overflow="hidden";ovlPanel.tabIndex=-1;ovlPanel.focus();}
 function closeOvl(){ovl.classList.remove("show");document.body.style.overflow="";if(lastFocus&&lastFocus.focus)lastFocus.focus();}
 ovl.addEventListener("click",e=>{if(e.target===ovl)closeOvl();});
 document.addEventListener("keydown",e=>{
@@ -1016,7 +1022,7 @@ function openCompare(){
   return `<tr><td class="axn">${a.n}</td>${tds}</tr>`;}).join("");
  const links=`<tr><td class="axn"></td>${items.map(d=>{const L=linkFor(d);
   return `<td><a class="lnk" style="margin:0" href="${L.u}" target="_blank" rel="noopener">Узнать больше →</a></td>`;}).join("")}</tr>`;
- openOvl(`<button class="pnl-x" onclick="closeOvl()">✕</button><h2>Сравнение</h2>
+ openOvl(`<button class="pnl-x" aria-label="Закрыть" onclick="closeOvl()">✕</button><h2>Сравнение</h2>
   <div style="font-size:11px;color:var(--muted)">Лучшее значение по оси подсвечено. По оси «Тон» подсветки нет: это шкала от комедии к драме, а не оценка качества.</div>
   <div class="cmp-wrap"><table class="cmp-t"><tr><td></td>${th}</tr>${what}${axRows}${links}</table></div>
   <button class="chip" id="cmpShare" style="margin-top:12px" title="Ссылка откроет это сравнение сразу">Ссылка на сравнение</button>`);
@@ -1035,7 +1041,7 @@ function drawWiz(){
  const qs=WIZQ.map((w,i)=>`<div class="wq"><b>${i+1}</b>${w.q}</div><div class="wopts">${
   w.o.map((o,j)=>`<span class="wopt${(w.multi?wizA[i].includes(j):wizA[i]===j)?" on":""}" data-q="${i}" data-o="${j}">${o}</span>`).join("")}</div>`).join("");
  const ready=wizA.every(a=>Array.isArray(a)?a.length>0:a!==null);
- openOvl(`<button class="pnl-x" onclick="closeOvl()">✕</button><h2>Подбор системы</h2>
+ openOvl(`<button class="pnl-x" aria-label="Закрыть" onclick="closeOvl()">✕</button><h2>Подбор системы</h2>
   <div style="font-size:12px;color:var(--muted)">Пять ответов — пять кандидатов. Это стартовая пятёрка, а не приговор.</div>
   <div style="font-size:12px;color:var(--muted);margin-top:6px">Подбор пока не спрашивает про жанр и заметно смещён к расследованиям и хоррору: часть систем в него не попадает. Полный список из 150 — в таблице ниже.</div>
   ${qs}<div id="wizOut">${ready?wizResults():""}</div>`);
@@ -1168,7 +1174,7 @@ const LOC_PART=[  {n:"Dresden Files (Fate)",note:"идёт официальны�
  {n:"Index Card RPG",note:"официального русского издания нет"}];
 function openLocs(){
  const row=l=>`<tr><td><span class="act" data-open="${l.n}" style="border-bottom:1px dashed var(--ember);cursor:pointer;color:var(--ember)">${l.n}</span>${l.t?`<div class="mini" style="color:var(--muted2);font-size:10.5px">${l.t}</div>`:""}</td><td>${l.u?`<a class="lnk" style="margin:0" href="${l.u}" target="_blank" rel="noopener">${l.p}</a>`:l.p}</td></tr>`;
- openOvl(`<button class="pnl-x" onclick="closeOvl()">✕</button><h2>Русские локализации</h2>
+ openOvl(`<button class="pnl-x" aria-label="Закрыть" onclick="closeOvl()">✕</button><h2>Русские локализации</h2>
   <div style="font-size:12px;color:var(--muted);margin-bottom:4px">Официальные издания — проверены по издателям (август 2026). Доступность тиражей меняется — актуальность уточняй в магазине издателя. Заметил ошибку — напиши: <a class="lnk" style="margin:0" href="https://t.me/vasaris" target="_blank" rel="noopener">t.me/vasaris</a>.</div>
   <div class="cmp-wrap"><table class="cmp-t" style="min-width:0"><tr><th>Система</th><th>Издатель</th></tr>${LOC_OFF.map(row).join("")}</table></div>
   <h2 style="margin-top:18px;font-size:17px">Частичные и неофициальные</h2>
