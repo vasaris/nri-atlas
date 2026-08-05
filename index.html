@@ -311,13 +311,13 @@
   <div class="hero-btns">
    <button class="hbtn hb1" id="heroWiz"><svg class="bico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2.2 5-5 2.2 2.2-5z"/></svg> Подобрать игру</button>
    <button class="hbtn" id="heroLucky"><svg class="bico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2l8.7 5v10L12 22 3.3 17V7L12 2z"/><path d="M12 8.2 6.2 15h11.6L12 8.2zM12 2v6.2M3.3 7l2.9 8M20.7 7l-2.9 8M12 22l-5.8-7M12 22l5.8-7"/></svg> Мне повезёт</button>
-   <button class="hbtn" id="heroList">К рейтингу ↓</button>
+   <button class="hbtn" id="heroList">К таблице ↓</button>
   </div>
-  <div class="hero-by">Собрал Иван (<a href="https://t.me/vasaris" target="_blank" rel="noopener">@vasaris</a>) · тг-канал <a href="https://t.me/dndanube" target="_blank" rel="noopener">@dndanube</a> · оценки: август 2026</div>
+  <div class="hero-by">Собрал Иван (<a href="https://t.me/vasaris" target="_blank" rel="noopener">@vasaris</a>) · тг-канал <a href="https://t.me/dndanube" target="_blank" rel="noopener">@dndanube</a> · данные: август 2026</div>
   <div class="alpha" role="note" aria-labelledby="alphaTtl">
    <div class="alpha-ttl" id="alphaTtl">Альфа-версия: содержание проверяется</div>
    <p>Атлас запущен 4 августа 2026 года. Сейчас на карточках только то, что можно проверить: год, движок, кубы, сложность, русские издания с издателем и ссылкой, поддержка виртуальных столов.</p>
-   <p>Авторские оценки и описания собирались с помощью ИИ по открытым источникам и <b>ручную сверку не прошли — поэтому они скрыты</b>. Возвращаться будут по одной строке: по мере того как я проверю текст сам или получу его от человека, который систему знает. У каждого описания будет указан источник. Скрытый слой остаётся в <a href="#method">открытых данных</a> — чтобы было видно, что именно снято.</p>
+   <p>Авторские оценки и описания собирались с помощью ИИ по открытым источникам и <b>ручную сверку не прошли — поэтому они скрыты</b>. Возвращаться будут по одной строке: по мере того как я проверю текст сам или получу его от человека, который систему знает. У каждого описания будет указан источник.</p>
    <p>Нашли ошибку или готовы написать текст о системе, которую хорошо знаете, — <a href="https://t.me/vasaris" target="_blank" rel="noopener">напишите мне</a>: сейчас это самая полезная помощь проекту.</p>
   </div>
 </div>
@@ -325,7 +325,7 @@
 <main id="catalog"><section class="compass">
 <aside class="rail"><div class="card">
   <input type="checkbox" class="rail-check" id="railOpen">
-  <label class="rail-head" for="railOpen">Веса и фильтры</label>
+  <label class="rail-head" for="railOpen" id="railHead">Веса и фильтры</label>
   <div class="rail-body">
   <div id="wBox"><h3>Пресеты весов</h3><div class="presets" id="presets"></div>
   <h3>Оси (вес 0–5)</h3>
@@ -364,7 +364,7 @@
 </div>
 </section></main>
 <div class="card method" id="method">
-<h2 class="m-h">Как считается рейтинг</h2>
+<h2 class="m-h">Как устроен атлас</h2>
 <div class="m-grid">
 <p class="m-wide"><span class="mk">Метки и бейджи.</span> <b>Уверенность</b> — насколько глубоко систему разбирал автор: <b>В</b> — прочитана или сыграна, проверена по первичным источникам; <b>С</b> — частичное чтение плюс независимые обзоры; <b>Н</b> — предварительная оценка по репутации и откликам, книгу не разбирали.<br><b>РФ</b> — российская разработка. <b>RU</b> — есть локализация; <b>Ч</b> — частичная: прежняя редакция, предзаказ или фанатский перевод, подробности в подсказке у бейджа.<br><b>VTT</b> — поддержка виртуальных столов; латунный бейдж означает официальную поддержку от издателя, детали в подсказке; нет бейджа — поддержки не нашлось. Колонка размечена по витринам платформ, сплошная перепроверка официальных статусов ещё идёт.</p>
 <p class="m-wide sc-only"><span class="mk">Десять осей, шкала 0–10 — что значат оценки.</span><br>
@@ -1325,7 +1325,8 @@ document.getElementById("share").onclick=()=>copyToClip(shareUrl(),document.getE
  if(wza){if(SHOW_SCORES){wizA=wza;pendingWiz=true;}else pendingOldWz=true;}
 }catch(e){}})();
 if(!SHOW_SCORES){const wb=document.getElementById("wBox");if(wb)wb.style.display="none";
- document.querySelectorAll(".sc-only").forEach(e=>e.style.display="none");}
+ document.querySelectorAll(".sc-only").forEach(e=>e.style.display="none");
+ const rh=document.getElementById("railHead");if(rh)rh.textContent="Фильтры";}
 sync();mark();render();
 document.querySelectorAll(".row").forEach(r=>{const sp=r.querySelector("span");const c=r.querySelector("select,input");
   if(sp&&c&&!c.hasAttribute("aria-label"))c.setAttribute("aria-label",sp.textContent.trim());});
