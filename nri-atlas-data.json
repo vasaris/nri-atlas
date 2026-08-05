@@ -3,10 +3,11 @@
   "title": "НРИ-Атлас",
   "url": "https://vasaris.github.io/nri-atlas/",
   "updated": "2026-08-05",
+  "schema_version": 2,
   "systems": 150,
   "license": "CC-BY-4.0",
   "attribution": "Данные: НРИ-Атлас Ивана Трифонова (vasaris.github.io/nri-atlas). Оценки авторские, шкалы описаны в методологии атласа.",
-  "vtt_methodology": "Поле vtt: поддержка виртуальных столов, верифицирована по витринам платформ и страницам издателей 04.08.2026. Колонка закрыта: все 150 систем проверены (батчи 1–6). foundry=official означает: издатель официально продаёт/выпускает свой контент или систему на платформе. Бинарные платформы = играбельная поддержка (рулсет, лист или контент). foundry=none во всех полях = проверено, поддержки нет (см. note). Обновление 04.08: на бинарных платформах значение может быть повышено до official — издатель официально представлен на витрине платформы; в index.html это код 2."
+  "vtt_methodology": "Поле vtt: поддержка виртуальных столов, верифицирована по витринам платформ и страницам издателей 04.08.2026. Колонка закрыта: все 150 систем проверены (батчи 1–6). foundry=official означает: издатель официально продаёт/выпускает свой контент или систему на платформе. Бинарные платформы = играбельная поддержка (рулсет, лист или контент). foundry=none во всех полях = проверено, поддержки нет (см. note). Обновление 04.08: на бинарных платформах значение может быть повышено до official — издатель официально представлен на витрине платформы; в index.html это код 2. Схема 2 (05.08.2026): все пять платформ используют один набор значений none | community | official. Раньше foundry был строкой, а остальные четыре — true/false; значения не изменились, изменился только словарь (true = community, false = none). Внимание: \"none\" — строка, и проверка поля на истинность больше не работает, сравнивайте со значением явно."
  },
  "axes": [
   {
@@ -105,7 +106,7 @@
     "roll20": "official",
     "alchemy": "official",
     "fantasy_grounds": "official",
-    "demiplane": true
+    "demiplane": "community"
    },
    "difficulty": "Средне"
   },
@@ -153,7 +154,7 @@
    "vtt": {
     "foundry": "official",
     "roll20": "official",
-    "alchemy": true,
+    "alchemy": "community",
     "fantasy_grounds": "official",
     "demiplane": "official"
    },
@@ -202,10 +203,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": true,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "community",
+    "demiplane": "none"
    },
    "difficulty": "Сложно",
    "superseded_by": "Pathfinder 2e"
@@ -250,10 +251,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
+    "roll20": "community",
+    "alchemy": "none",
     "fantasy_grounds": "official",
-    "demiplane": false
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -294,10 +295,10 @@
    "free": "quickstart",
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Легко"
   },
@@ -341,10 +342,10 @@
    "free": "full",
    "vtt": {
     "foundry": "official",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Легко"
   },
@@ -385,10 +386,10 @@
    "free": "quickstart",
    "vtt": {
     "foundry": "official",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": true,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "community",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -429,10 +430,10 @@
    "free": "full",
    "vtt": {
     "foundry": "community",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -474,10 +475,10 @@
    "free": null,
    "vtt": {
     "foundry": "official",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Сложно"
   },
@@ -522,7 +523,7 @@
     "foundry": "community",
     "roll20": "official",
     "alchemy": "official",
-    "fantasy_grounds": false,
+    "fantasy_grounds": "none",
     "demiplane": "official",
     "note": "официальные пакеты Darrington Press заведены в каталоге Foundry со статусом Unreleased — поддержка анонсирована, но не вышла"
    },
@@ -567,8 +568,8 @@
     "foundry": "official",
     "roll20": "official",
     "alchemy": "official",
-    "fantasy_grounds": false,
-    "demiplane": false
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Легко"
   },
@@ -612,10 +613,10 @@
    "free": "quickstart",
    "vtt": {
     "foundry": "official",
-    "roll20": true,
+    "roll20": "community",
     "alchemy": "official",
-    "fantasy_grounds": true,
-    "demiplane": false,
+    "fantasy_grounds": "community",
+    "demiplane": "none",
     "note": "на Alchemy есть Ruins of Symbaroum (5e-версия)"
    },
    "difficulty": "Средне"
@@ -663,9 +664,9 @@
    "vtt": {
     "foundry": "official",
     "roll20": "official",
-    "alchemy": false,
-    "fantasy_grounds": true,
-    "demiplane": false
+    "alchemy": "none",
+    "fantasy_grounds": "community",
+    "demiplane": "none"
    },
    "difficulty": "Сложно"
   },
@@ -706,10 +707,10 @@
    "free": null,
    "vtt": {
     "foundry": "official",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -755,10 +756,10 @@
    "free": "quickstart",
    "vtt": {
     "foundry": "official",
-    "roll20": true,
+    "roll20": "community",
     "alchemy": "official",
-    "fantasy_grounds": false,
-    "demiplane": false
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -804,10 +805,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -849,10 +850,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Сложно"
   },
@@ -894,10 +895,10 @@
    "free": "quickstart",
    "vtt": {
     "foundry": "official",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -938,10 +939,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Сложно"
   },
@@ -987,10 +988,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "Foundry-система давно не обновлялась"
    },
    "difficulty": "Средне"
@@ -1032,10 +1033,10 @@
    "free": "quickstart",
    "vtt": {
     "foundry": "community",
-    "roll20": false,
+    "roll20": "none",
     "alchemy": "official",
-    "fantasy_grounds": false,
-    "demiplane": false
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -1076,10 +1077,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "контент англ. издания включён с разрешения Kotodama"
    },
    "difficulty": "Легко"
@@ -1121,10 +1122,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -1168,10 +1169,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Сложно"
   },
@@ -1213,10 +1214,10 @@
    "free": "quickstart",
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "оф. модули Chaosium анонсированы"
    },
    "difficulty": "Сложно"
@@ -1258,10 +1259,10 @@
    "free": "full",
    "vtt": {
     "foundry": "community",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Легко"
   },
@@ -1303,10 +1304,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Легко"
   },
@@ -1351,10 +1352,10 @@
    "free": "full",
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Легко"
   },
@@ -1400,10 +1401,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -1447,10 +1448,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -1494,10 +1495,10 @@
    "free": "quickstart",
    "vtt": {
     "foundry": "community",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -1538,10 +1539,10 @@
    "free": "quickstart",
    "vtt": {
     "foundry": "community",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -1587,10 +1588,10 @@
    "free": "full",
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Легко"
   },
@@ -1636,10 +1637,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Легко"
   },
@@ -1685,10 +1686,10 @@
    "free": "full",
    "vtt": {
     "foundry": "community",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Легко"
   },
@@ -1728,10 +1729,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Легко"
   },
@@ -1772,10 +1773,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Легко"
   },
@@ -1824,7 +1825,7 @@
     "roll20": "official",
     "alchemy": "official",
     "fantasy_grounds": "official",
-    "demiplane": false
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -1868,10 +1869,10 @@
    "free": "quickstart",
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": true,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "community",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -1916,10 +1917,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -1960,10 +1961,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Сложно"
   },
@@ -2010,10 +2011,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "Foundry — установка по манифесту с GitHub"
    },
    "difficulty": "Сложно"
@@ -2055,10 +2056,10 @@
    "free": "quickstart",
    "vtt": {
     "foundry": "community",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -2105,10 +2106,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
+    "roll20": "community",
     "alchemy": "official",
-    "fantasy_grounds": false,
-    "demiplane": true
+    "fantasy_grounds": "none",
+    "demiplane": "community"
    },
    "difficulty": "Средне"
   },
@@ -2149,10 +2150,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": true
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "community"
    },
    "difficulty": "Средне"
   },
@@ -2197,10 +2198,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Сложно"
   },
@@ -2241,10 +2242,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -2284,10 +2285,10 @@
    "free": "quickstart",
    "vtt": {
     "foundry": "community",
-    "roll20": true,
+    "roll20": "community",
     "alchemy": "official",
-    "fantasy_grounds": false,
-    "demiplane": false
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Легко"
   },
@@ -2333,8 +2334,8 @@
     "foundry": "official",
     "roll20": "official",
     "alchemy": "official",
-    "fantasy_grounds": true,
-    "demiplane": false,
+    "fantasy_grounds": "community",
+    "demiplane": "none",
     "note": "Alchemy — в разработке у Free League"
    },
    "difficulty": "Легко"
@@ -2381,10 +2382,10 @@
    "free": null,
    "vtt": {
     "foundry": "official",
-    "roll20": true,
+    "roll20": "community",
     "alchemy": "official",
-    "fantasy_grounds": false,
-    "demiplane": false
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Легко"
   },
@@ -2430,10 +2431,10 @@
    "free": "quickstart",
    "vtt": {
     "foundry": "official",
-    "roll20": true,
+    "roll20": "community",
     "alchemy": "official",
-    "fantasy_grounds": false,
-    "demiplane": true
+    "fantasy_grounds": "none",
+    "demiplane": "community"
    },
    "difficulty": "Средне"
   },
@@ -2479,7 +2480,7 @@
    "vtt": {
     "foundry": "official",
     "roll20": "official",
-    "alchemy": true,
+    "alchemy": "community",
     "fantasy_grounds": "official",
     "demiplane": "official"
    },
@@ -2527,10 +2528,10 @@
    "free": null,
    "vtt": {
     "foundry": "official",
-    "roll20": true,
+    "roll20": "community",
     "alchemy": "official",
-    "fantasy_grounds": false,
-    "demiplane": false
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне",
    "superseded_by": "Coriolis: The Great Dark"
@@ -2572,10 +2573,10 @@
    "free": "quickstart",
    "vtt": {
     "foundry": "official",
-    "roll20": false,
+    "roll20": "none",
     "alchemy": "official",
-    "fantasy_grounds": false,
-    "demiplane": false
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -2616,10 +2617,10 @@
    "free": null,
    "vtt": {
     "foundry": "official",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -2660,10 +2661,10 @@
    "free": null,
    "vtt": {
     "foundry": "official",
-    "roll20": true,
+    "roll20": "community",
     "alchemy": "official",
-    "fantasy_grounds": false,
-    "demiplane": false
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -2704,10 +2705,10 @@
    "free": null,
    "vtt": {
     "foundry": "official",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": true,
-    "demiplane": false,
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "community",
+    "demiplane": "none",
     "note": "оф. система от Mongoose, контент-модулей пока нет"
    },
    "difficulty": "Средне"
@@ -2749,10 +2750,10 @@
    "free": "full",
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -2793,10 +2794,10 @@
    "free": "full",
    "vtt": {
     "foundry": "community",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Легко"
   },
@@ -2840,10 +2841,10 @@
    "free": "full",
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Сложно"
   },
@@ -2885,10 +2886,10 @@
    "free": "full",
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Сложно"
   },
@@ -2928,10 +2929,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": true,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "community",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -2977,10 +2978,10 @@
    "free": "quickstart",
    "vtt": {
     "foundry": "official",
-    "roll20": true,
-    "alchemy": true,
+    "roll20": "community",
+    "alchemy": "community",
     "fantasy_grounds": "official",
-    "demiplane": false
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -3024,10 +3025,10 @@
    "free": "quickstart",
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
+    "roll20": "community",
+    "alchemy": "none",
     "fantasy_grounds": "official",
-    "demiplane": false
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -3068,10 +3069,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -3115,10 +3116,10 @@
    "free": "quickstart",
    "vtt": {
     "foundry": "official",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": true,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "community",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -3165,10 +3166,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Сложно",
    "superseded_by": "Shadowrun 5e"
@@ -3210,10 +3211,10 @@
    "free": null,
    "vtt": {
     "foundry": "none",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "проверено — выделенной поддержки нет; играбельна через generic-PbtA системы"
    },
    "difficulty": "Легко"
@@ -3261,10 +3262,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -3306,10 +3307,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "есть оф. онлайн-формат Turbo вне классических VTT"
    },
    "difficulty": "Средне"
@@ -3351,10 +3352,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Легко"
   },
@@ -3395,10 +3396,10 @@
    "free": "full",
    "vtt": {
     "foundry": "community",
-    "roll20": false,
+    "roll20": "none",
     "alchemy": "official",
-    "fantasy_grounds": false,
-    "demiplane": false
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Сложно"
   },
@@ -3442,10 +3443,10 @@
    "free": "full",
    "vtt": {
     "foundry": "community",
-    "roll20": true,
+    "roll20": "community",
     "alchemy": "official",
-    "fantasy_grounds": false,
-    "demiplane": false
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Легко"
   },
@@ -3486,10 +3487,10 @@
    "free": "full",
    "vtt": {
     "foundry": "community",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Легко"
   },
@@ -3533,10 +3534,10 @@
    "free": null,
    "vtt": {
     "foundry": "none",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "проверено — играбельной поддержки нет"
    },
    "difficulty": "Легко"
@@ -3580,10 +3581,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "на Roll20 — аддон-симулятор свечей"
    },
    "difficulty": "Легко"
@@ -3624,10 +3625,10 @@
    "free": null,
    "vtt": {
     "foundry": "none",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "проверено — играбельной поддержки нет"
    },
    "difficulty": "Легко"
@@ -3669,10 +3670,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -3716,10 +3717,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -3765,10 +3766,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
+    "roll20": "community",
     "alchemy": "official",
-    "fantasy_grounds": false,
-    "demiplane": false
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне",
    "superseded_by": "Legend in the Mist"
@@ -3813,10 +3814,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Легко"
   },
@@ -3857,10 +3858,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Легко"
   },
@@ -3902,10 +3903,10 @@
    "free": null,
    "vtt": {
     "foundry": "none",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "проверено — играбельной поддержки нет"
    },
    "difficulty": "Средне"
@@ -3952,10 +3953,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -3996,10 +3997,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
+    "roll20": "community",
     "alchemy": "official",
-    "fantasy_grounds": false,
-    "demiplane": false
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -4041,10 +4042,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -4084,10 +4085,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": false,
+    "roll20": "none",
     "alchemy": "official",
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "оф. Roll20-версия анонсировалась Mongoose"
    },
    "difficulty": "Легко"
@@ -4134,10 +4135,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "системы на GitLab — установка по манифесту"
    },
    "difficulty": "Средне"
@@ -4181,10 +4182,10 @@
    "free": "full",
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "система Fate Core Official — с одобрения Evil Hat"
    },
    "difficulty": "Сложно"
@@ -4231,10 +4232,10 @@
    "free": "quickstart",
    "vtt": {
     "foundry": "official",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": true,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "community",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -4279,10 +4280,10 @@
    "free": "quickstart",
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Сложно"
   },
@@ -4322,10 +4323,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Сложно"
   },
@@ -4370,10 +4371,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -4413,10 +4414,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "localization": null,
    "difficulty": "Средне"
@@ -4460,10 +4461,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Легко"
   },
@@ -4508,10 +4509,10 @@
    "free": null,
    "vtt": {
     "foundry": "none",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "проверено — играбельной поддержки нет"
    },
    "difficulty": "Средне"
@@ -4553,10 +4554,10 @@
    "free": null,
    "vtt": {
     "foundry": "none",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "проверено — на пяти западных платформах нет; японская сцена играет на Cocofolia и Udonarium"
    },
    "difficulty": "Средне"
@@ -4598,10 +4599,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Сложно"
   },
@@ -4642,10 +4643,10 @@
    "free": null,
    "vtt": {
     "foundry": "official",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -4686,10 +4687,10 @@
    "free": null,
    "vtt": {
     "foundry": "official",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -4733,10 +4734,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": false,
+    "roll20": "none",
     "alchemy": "official",
-    "fantasy_grounds": false,
-    "demiplane": false
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -4777,10 +4778,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Легко"
   },
@@ -4821,10 +4822,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": false,
+    "roll20": "none",
     "alchemy": "official",
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "официальный релиз на Alchemy"
    },
    "difficulty": "Легко"
@@ -4865,10 +4866,10 @@
    "free": null,
    "vtt": {
     "foundry": "none",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "проверено — играбельной поддержки нет"
    },
    "difficulty": "Средне"
@@ -4910,10 +4911,10 @@
    "free": null,
    "vtt": {
     "foundry": "none",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "проверено — играбельной поддержки нет"
    },
    "difficulty": "Средне"
@@ -4960,10 +4961,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -5003,10 +5004,10 @@
    "free": null,
    "vtt": {
     "foundry": "none",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "проверено — заброшенный фан-мод; у наследницы Dračí Hlídka есть оф. Foundry-модуль и Roll20-лист"
    },
    "difficulty": "Средне"
@@ -5047,10 +5048,10 @@
    "free": null,
    "vtt": {
     "foundry": "none",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "проверено — играбельной поддержки нет"
    },
    "difficulty": "Средне"
@@ -5092,10 +5093,10 @@
    "free": "quickstart",
    "vtt": {
     "foundry": "official",
-    "roll20": false,
+    "roll20": "none",
     "alchemy": "official",
-    "fantasy_grounds": true,
-    "demiplane": false
+    "fantasy_grounds": "community",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -5135,10 +5136,10 @@
    "free": null,
    "vtt": {
     "foundry": "none",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": true,
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "community",
     "note": "на Foundry ведут через Cypher-систему, без выделенного профиля"
    },
    "difficulty": "Средне"
@@ -5180,10 +5181,10 @@
    "free": null,
    "vtt": {
     "foundry": "official",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "поддержка Alchemy анонсирована"
    },
    "difficulty": "Легко"
@@ -5226,10 +5227,10 @@
    "free": null,
    "vtt": {
     "foundry": "official",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "Alchemy обещана кикстартер-стретчем"
    },
    "difficulty": "Сложно"
@@ -5272,10 +5273,10 @@
    "free": null,
    "vtt": {
     "foundry": "official",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": true,
-    "demiplane": true
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "community",
+    "demiplane": "community"
    },
    "difficulty": "Средне"
   },
@@ -5316,10 +5317,10 @@
    "free": null,
    "vtt": {
     "foundry": "official",
-    "roll20": true,
+    "roll20": "community",
     "alchemy": "official",
-    "fantasy_grounds": false,
-    "demiplane": true
+    "fantasy_grounds": "none",
+    "demiplane": "community"
    },
    "difficulty": "Средне"
   },
@@ -5360,10 +5361,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Сложно"
   },
@@ -5407,10 +5408,10 @@
    "free": null,
    "vtt": {
     "foundry": "official",
-    "roll20": false,
+    "roll20": "none",
     "alchemy": "official",
-    "fantasy_grounds": false,
-    "demiplane": false
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Легко"
   },
@@ -5451,10 +5452,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
+    "roll20": "community",
     "alchemy": "official",
-    "fantasy_grounds": false,
-    "demiplane": false
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Легко"
   },
@@ -5495,10 +5496,10 @@
    "free": null,
    "vtt": {
     "foundry": "official",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "платный корник-модуль анонсирован издателем"
    },
    "difficulty": "Средне"
@@ -5545,10 +5546,10 @@
    "free": "full",
    "vtt": {
     "foundry": "community",
-    "roll20": true,
+    "roll20": "community",
     "alchemy": "official",
-    "fantasy_grounds": false,
-    "demiplane": false
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -5594,10 +5595,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Сложно"
   },
@@ -5638,10 +5639,10 @@
    "free": "full",
    "vtt": {
     "foundry": "community",
-    "roll20": false,
+    "roll20": "none",
     "alchemy": "official",
-    "fantasy_grounds": false,
-    "demiplane": false
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -5682,10 +5683,10 @@
    "free": null,
    "vtt": {
     "foundry": "official",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -5727,10 +5728,10 @@
    "free": null,
    "vtt": {
     "foundry": "official",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -5771,10 +5772,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "Foundry: комьюнити-система, одобренная издателем"
    },
    "difficulty": "Средне"
@@ -5816,10 +5817,10 @@
    "free": null,
    "vtt": {
     "foundry": "official",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Сложно"
   },
@@ -5860,10 +5861,10 @@
    "free": null,
    "vtt": {
     "foundry": "official",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "оф. система Foundry — ранний доступ"
    },
    "difficulty": "Легко"
@@ -5905,10 +5906,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -5949,10 +5950,10 @@
    "free": null,
    "vtt": {
     "foundry": "none",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "проверено — играбельной поддержки нет"
    },
    "difficulty": "Легко"
@@ -5994,10 +5995,10 @@
    "free": "full",
    "vtt": {
     "foundry": "community",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -6038,10 +6039,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Легко"
   },
@@ -6081,10 +6082,10 @@
    "free": null,
    "vtt": {
     "foundry": "none",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "проверено — на пяти западных платформах нет; японская сцена играет на Cocofolia и Udonarium"
    },
    "difficulty": "Легко"
@@ -6125,10 +6126,10 @@
    "free": null,
    "vtt": {
     "foundry": "none",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "проверено — играбельной поддержки нет"
    },
    "difficulty": "Средне"
@@ -6174,10 +6175,10 @@
    "free": "full",
    "vtt": {
     "foundry": "official",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": true,
-    "demiplane": true
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "community",
+    "demiplane": "community"
    },
    "difficulty": "Сложно"
   },
@@ -6218,10 +6219,10 @@
    "free": null,
    "vtt": {
     "foundry": "none",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "проверено — играбельной поддержки нет"
    },
    "difficulty": "Легко"
@@ -6262,10 +6263,10 @@
    "free": null,
    "vtt": {
     "foundry": "none",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "проверено — играбельной поддержки нет"
    },
    "difficulty": "Легко"
@@ -6312,10 +6313,10 @@
    "free": null,
    "vtt": {
     "foundry": "none",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "проверено — играбельной поддержки нет"
    },
    "difficulty": "Средне"
@@ -6362,10 +6363,10 @@
    "free": null,
    "vtt": {
     "foundry": "none",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "проверено — играбельной поддержки нет"
    },
    "difficulty": "Легко"
@@ -6407,10 +6408,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": true
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "community"
    },
    "difficulty": "Средне"
   },
@@ -6451,10 +6452,10 @@
    "free": "full",
    "vtt": {
     "foundry": "none",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "проверено — играбельной поддержки нет"
    },
    "difficulty": "Средне"
@@ -6496,10 +6497,10 @@
    "free": null,
    "vtt": {
     "foundry": "official",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Легко"
   },
@@ -6540,10 +6541,10 @@
    "free": "quickstart",
    "vtt": {
     "foundry": "community",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Легко"
   },
@@ -6584,10 +6585,10 @@
    "free": null,
    "vtt": {
     "foundry": "none",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "проверено — играбельной поддержки нет"
    },
    "difficulty": "Средне"
@@ -6634,10 +6635,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Легко"
   },
@@ -6678,10 +6679,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": true,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "community",
+    "demiplane": "none"
    },
    "difficulty": "Сложно"
   },
@@ -6726,10 +6727,10 @@
    "free": "full",
    "vtt": {
     "foundry": "none",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "проверено — играбельной поддержки нет"
    },
    "difficulty": "Легко"
@@ -6774,10 +6775,10 @@
    "free": null,
    "vtt": {
     "foundry": "none",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "на Foundry — через generic-Fate системы"
    },
    "difficulty": "Сложно"
@@ -6824,10 +6825,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Средне"
   },
@@ -6869,10 +6870,10 @@
    "free": null,
    "vtt": {
     "foundry": "community",
-    "roll20": true,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false
+    "roll20": "community",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "difficulty": "Сложно"
   },
@@ -6911,10 +6912,10 @@
    "dice": "d6",
    "vtt": {
     "foundry": "community",
-    "roll20": false,
+    "roll20": "none",
     "alchemy": "official",
-    "fantasy_grounds": false,
-    "demiplane": false
+    "fantasy_grounds": "none",
+    "demiplane": "none"
    },
    "free": null,
    "localization": null,
@@ -6959,10 +6960,10 @@
    "dice": "d20",
    "vtt": {
     "foundry": "none",
-    "roll20": false,
-    "alchemy": false,
-    "fantasy_grounds": false,
-    "demiplane": false,
+    "roll20": "none",
+    "alchemy": "none",
+    "fantasy_grounds": "none",
+    "demiplane": "none",
     "note": "проверено — играбельной поддержки нет"
    },
    "free": null,

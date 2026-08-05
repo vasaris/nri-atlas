@@ -150,7 +150,9 @@ const onlyH = DATA.filter(d => !jBy.has(d.n)).map(d => d.n);
 const onlyJ = J.systems.filter(s => !names.has(s.name)).map(s => s.name);
 check(!onlyH.length && !onlyJ.length && J.systems.length === DATA.length,
   'паритет: состав строк совпадает с data.json', { onlyH, onlyJ });
-const vc = v => v === true ? 1 : v === false ? 0 : v === 'official' ? 2 : v === 'community' ? 1 : v === 'none' ? 0 : NaN;
+// Схема 2: все пять платформ на едином enum. Булевы значения отвергаются,
+// чтобы старый формат не вернулся незаметно.
+const vc = v => v === 'official' ? 2 : v === 'community' ? 1 : v === 'none' ? 0 : NaN;
 let par = [];
 DATA.forEach(d => {
   const s = jBy.get(d.n); if (!s) return;
@@ -167,6 +169,17 @@ DATA.forEach(d => {
   else if (VTT_NONE.has(d.n)) { if (jArr && jArr.some(x => x)) par.push(d.n + ':vtt-none'); }
 });
 check(par.length === 0, 'паритет JSON <-> HTML: год, RU, движок, сложность, free, кубы, VTT', par.slice(0, 15));
+
+// 12a. I15: единый словарь VTT во всех пяти полях + версия схемы
+const VP = ['foundry', 'roll20', 'alchemy', 'fantasy_grounds', 'demiplane'];
+const ENUM = ['none', 'community', 'official'];
+let vttEnum = [];
+J.systems.forEach(r => VP.forEach(k => {
+  if (!ENUM.includes((r.vtt || {})[k])) vttEnum.push(`${r.name}.${k}=${JSON.stringify((r.vtt || {})[k])}`);
+}));
+check(vttEnum.length === 0,
+  'VTT: все пять платформ на едином enum none|community|official', vttEnum.slice(0, 10));
+check(J.meta.schema_version === 2, 'meta.schema_version = 2', J.meta.schema_version);
 
 // 12b. I12: каждая система обязана иметь VTT-решение — либо запись, либо явный none.
 // Сейчас покрытие полное случайно; новая строка не должна проскочить без решения.
