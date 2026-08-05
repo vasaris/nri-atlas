@@ -110,6 +110,11 @@
   select:focus-visible,input[type=text]:focus-visible{border-color:var(--brass-line);outline:2px solid var(--brass);outline-offset:2px}
   select option{background:var(--board);color:var(--parchment)}
   input[type=text]{width:100%;margin-bottom:6px}
+  .qwrap{position:relative}
+  .qwrap input[type=text]{padding-right:34px}
+  .qx{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:26px;height:26px;display:flex;align-items:center;justify-content:center;padding:0;background:transparent;border:0;border-radius:4px;color:var(--faded);font-size:14px;line-height:1;cursor:pointer}
+  .qx:hover{color:var(--parchment);background:var(--brass-tint)}
+  .qx[hidden]{display:none}
   input[type=text]::placeholder{color:var(--faded-deep)}
   .toggle{display:inline-flex;align-items:center;gap:8px;cursor:pointer;user-select:none;padding:8px 0}
   .toggle input{position:absolute;opacity:0;width:16px;height:16px;margin:0}
@@ -118,6 +123,9 @@
   .toggle:hover .sw{border-color:var(--brass-line)}
   .toggle input:checked+.sw{background:var(--wax);border-color:var(--wax)}
   .toggle input:checked+.sw::after{transform:translateX(18px);background:var(--parchment-bright)}
+  .fbar{display:inline-flex;align-items:center;gap:8px;margin-left:10px;font-size:12px;font-family:var(--ui);color:var(--faded);text-transform:none;letter-spacing:0}
+  .fbar button{font-family:var(--ui);font-size:12px;padding:4px 10px;min-height:28px;background:transparent;color:var(--brass);border:1px solid var(--brass-line);border-radius:4px;cursor:pointer}
+  .fbar button:hover{background:var(--brass-tint)}
   .reset{margin-top:14px;width:100%;cursor:pointer;font:400 13px/1 var(--ui);color:var(--faded);background:none;border:1px dashed var(--rule-strong);border-radius:4px;padding:12px;min-height:40px;transition:color 90ms var(--ease),border-color 90ms var(--ease)}
   .reset:hover{color:var(--parchment);border-color:var(--brass-line)}
   /* список */
@@ -345,7 +353,7 @@
   <div class="divider"></div>
   <h3>Фильтры</h3>
   <div class="filt">
-    <input type="text" id="q" placeholder="Поиск: название, движок, тег, вердикт… -слово исключает">
+    <div class="qwrap"><input type="text" id="q" placeholder="Поиск: название, движок, тег, вердикт… -слово исключает"><button type="button" id="qClear" class="qx" aria-label="Очистить поиск" hidden>✕</button></div>
     <div class="row"><span>Жанр</span><select id="fGen"><option value="">Все</option></select></div>
     <div class="row"><span>Тег</span><select id="fTag"><option value="">Все</option></select></div>
     <div class="row"><span>Сложность ≤</span><select id="fDiff"><option value="3">Любая</option><option value="1">Легко</option><option value="2">Средне</option></select></div>
@@ -362,7 +370,7 @@
   </div>
 </div></aside>
 <div>
-  <div class="results-head"><span class="cnt" id="cnt"></span>
+  <div class="results-head"><span class="cnt" id="cnt"></span><span class="fbar" id="fbar"></span>
  <span class="head-actions"><span class="cnt">клик по строке — разбор · по оси в разборе — сортировка</span>
  <button class="chip" id="lucky"><svg class="bico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2l8.7 5v10L12 22 3.3 17V7L12 2z"/><path d="M12 8.2 6.2 15h11.6L12 8.2zM12 2v6.2M3.3 7l2.9 8M20.7 7l-2.9 8M12 22l-5.8-7M12 22l5.8-7"/></svg> Мне повезёт</button>
  <button class="chip" id="wiz"><svg class="bico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2.2 5-5 2.2 2.2-5z"/></svg> Подбор</button>
@@ -908,6 +916,24 @@ listEl.addEventListener("keydown",e=>{if(e.key!=="Enter"&&e.key!==" ")return;con
   if(t.matches(".cmpc,.shrc,.simc,[data-tip]")){e.preventDefault();t.click();}});
 listEl.addEventListener("click",e=>{if(e.target.id==="emptyReset")document.getElementById("reset").click();});
 let openSet=new Set(),sortAx=null,pendingWiz=false,pendingCmp=false;
+/* «1 система», «2 системы», «5 систем» — счётчик у всех на виду, ошибка бросается в глаза */
+function plural(k){
+ const n1=k%10,n2=k%100;
+ const w=(n2>=11&&n2<=14)?"систем":n1===1?"система":(n1>=2&&n1<=4)?"системы":"систем";
+ return k+" "+w;}
+/* Сколько фильтров сейчас сужают выдачу */
+function activeFilters(){
+ let a=0;
+ if(q)a++;if(fGen)a++;if(fTag)a++;if(fFam)a++;if(fYear)a++;if(fDice)a++;
+ if(fFree)a++;if(fDiff<3)a++;if(fRu)a++;if(fRuO)a++;if(fConf)a++;if(fPick)a++;
+ return a;}
+function renderFbar(){
+ const el=document.getElementById("fbar");if(!el)return;
+ const a=activeFilters();
+ const qx=document.getElementById("qClear");if(qx)qx.hidden=!q;
+ if(!a){el.innerHTML="";return;}
+ el.innerHTML=`<span>${a===1?"фильтр":"фильтров"}: ${a}</span><button type="button" id="fbarReset">сбросить</button>`;
+ document.getElementById("fbarReset").onclick=()=>document.getElementById("reset").click();}
 function render(){
  let rows=DATA.filter(d=>{
   if(fRu&&d.ru==="—")return false;
@@ -928,9 +954,10 @@ function render(){
     else if(!th(t))return false;}}
   return true;}).map(d=>({d,p:score(d)})).sort(sortAx?((a,b)=>b.d.s[sortAx]-a.d.s[sortAx]||b.p-a.p||a.d.n.localeCompare(b.d.n)):((a,b)=>b.p-a.p||a.d.n.localeCompare(b.d.n)));
  if(sortAx){const an=AX.find(a=>a.k===sortAx).n;
-  cntEl.innerHTML=`${rows.length} систем · по оси «${an}» по убыванию · <span id="srtOff" style="cursor:pointer;border-bottom:1px dashed var(--muted);color:var(--muted)">вернуть по совпадению</span>`;
+  cntEl.innerHTML=`${esc(plural(rows.length))} · по оси «${an}» по убыванию · <span id="srtOff" style="cursor:pointer;border-bottom:1px dashed var(--muted);color:var(--muted)">вернуть по совпадению</span>`;
   document.getElementById("srtOff").onclick=()=>{sortAx=null;render();};}
- else cntEl.textContent=rows.length?`${rows.length} систем`+(SHOW_SCORES?" · по убыванию совпадения с весами":""):"0 систем — фильтры отсекли всё";
+ else cntEl.innerHTML=rows.length?esc(plural(rows.length))+(SHOW_SCORES?" · по убыванию совпадения с весами":""):"Ничего не нашлось";
+ renderFbar();
  const old=new Map();[...listEl.children].forEach(el=>old.set(el.dataset.k,el.getBoundingClientRect()));
  listEl.innerHTML="";
   if(!rows.length){listEl.innerHTML=`<div class="empty">Под эти фильтры ничего не нашлось.<br><button id="emptyReset" type="button">Сбросить фильтры</button></div>`;}
@@ -1362,6 +1389,9 @@ sync();mark();render();
 document.querySelectorAll(".row").forEach(r=>{const sp=r.querySelector("span");const c=r.querySelector("select,input");
   if(sp&&c&&!c.hasAttribute("aria-label"))c.setAttribute("aria-label",sp.textContent.trim());});
 const qEl=document.getElementById("q");if(qEl&&!qEl.hasAttribute("aria-label"))qEl.setAttribute("aria-label","Поиск по системам");
+document.getElementById("qClear").onclick=()=>{
+ const el=document.getElementById("q");el.value="";q="";render();el.focus();};
+renderFbar();
 if(compareSet.size)renderCmpBar();
 if(pendingCmp)openCompare();
 if(pendingWiz)drawWiz();
