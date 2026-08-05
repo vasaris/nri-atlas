@@ -1019,7 +1019,7 @@ function drawWiz(){
   w.o.map((o,j)=>`<span class="wopt${(w.multi?wizA[i].includes(j):wizA[i]===j)?" on":""}" data-q="${i}" data-o="${j}">${o}</span>`).join("")}</div>`).join("");
  const ready=wizA.every(a=>Array.isArray(a)?a.length>0:a!==null);
  openOvl(`<button class="pnl-x" onclick="closeOvl()">✕</button><h2>Подбор системы</h2>
-  <div style="font-size:12px;color:var(--muted)">Пять ответов — три кандидата. Это стартовая тройка, а не приговор.</div>
+  <div style="font-size:12px;color:var(--muted)">Пять ответов — пять кандидатов. Это стартовая пятёрка, а не приговор.</div>
   ${qs}<div id="wizOut">${ready?wizResults():""}</div>`);
  ovlPanel.querySelectorAll(".wopt").forEach(c=>{c.onclick=()=>{
   const q=+c.dataset.q,o=+c.dataset.o;
@@ -1032,7 +1032,7 @@ function drawWiz(){
   const sc=ovl.scrollTop;drawWiz();ovl.scrollTop=sc;};});
  ovlPanel.querySelectorAll(".wres .act[data-open]").forEach(c=>{c.onclick=()=>{closeOvl();jumpTo(c.dataset.open);};});
  const ws=ovlPanel.querySelector("#wizShare");
- if(ws)ws.onclick=()=>{const sp=new URLSearchParams();sp.set("wz",wizEnc(wizA));copyToClip(location.href.split("#")[0]+"#"+sp.toString(),ws,"Ссылка на тройку");};}
+ if(ws)ws.onclick=()=>{const sp=new URLSearchParams();sp.set("wz",wizEnc(wizA));copyToClip(location.href.split("#")[0]+"#"+sp.toString(),ws,"Ссылка на пятёрку");};}
 function wizResults(){
  const [exp,time,mood,focus,lang]=wizA;
  const W2={gm:0,ease:0,pl:3,rec:2,mech:0,drama:0,shot:0,camp:0,onb:0,sup:0};
@@ -1057,7 +1057,7 @@ function wizResults(){
   p+=hits.length*7;
   if(band&&d.s.drama>=band[0]&&d.s.drama<=band[1])p+=6;
   if(mood.includes(3)&&d.s.drama>=8)p+=4;
-  return{d,p,hits};}).sort((a,b)=>b.p-a.p).slice(0,3);
+  return{d,p,hits};}).sort((a,b)=>b.p-a.p).slice(0,5);
  return picks.map((x,i)=>{
   const r=[];
   if(exp===0&&x.d.s.onb>=7)r.push("дружелюбна к новичкам");
@@ -1069,7 +1069,7 @@ function wizResults(){
   return `<div class="wres"><div class="nm3">${i+1}. ${x.d.n}</div>
    <div class="what">${x.d.note.split("||")[0]}</div>
    ${r.length?`<div class="why">Почему: ${r.join(" · ")}</div>`:""}
-   <span class="act" data-open="${x.d.n}">Открыть в атласе</span><a class="lnk" style="margin:0" href="${L.u}" target="_blank" rel="noopener">Узнать больше →</a></div>`;}).join("")+`<div style="margin-top:14px"><button class="chip" id="wizShare" title="Скопировать ссылку на эту тройку">Ссылка на тройку</button></div>`;}
+   <span class="act" data-open="${x.d.n}">Открыть в атласе</span><a class="lnk" style="margin:0" href="${L.u}" target="_blank" rel="noopener">Узнать больше →</a></div>`;}).join("")+`<div style="margin-top:14px"><button class="chip" id="wizShare" title="Скопировать ссылку на эту пятёрку">Ссылка на пятёрку</button></div>`;}
 function wizEnc(a){return [a[0],a[1],[...a[2]].sort().join(""),a[3],a[4]].join("-");}
 function wizDec(x){
  const p=String(x).split("-");if(p.length!==5)return null;

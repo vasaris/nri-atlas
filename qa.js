@@ -90,14 +90,14 @@ check(AX.every(a => !/10/.test(a.s)), 'в подписях осей нет «10�
 eval(cut('function wizResults', 'document.getElementById("wiz")')
   .replace('const [exp,time,mood,focus,lang]=wizA;', 'const [exp,time,mood,focus,lang]=globalThis.wizA;'));
 const moods = [[0],[1],[2],[3],[0,1],[0,2],[0,3],[1,2],[1,3],[2,3]];
-let wizErr = 0, combos = 0, not3 = 0;
+let wizErr = 0, combos = 0, not5 = 0;
 for (let a = 0; a < 3; a++) for (let b = 0; b < 3; b++) for (const md of moods)
   for (let d = 0; d < 3; d++) for (let e = 0; e < 2; e++) {
     globalThis.wizA = [a, b, md, d, e]; combos++;
-    try { if ((wizResults().match(/class="wres"/g) || []).length < 3) not3++; }
+    try { if ((wizResults().match(/class="wres"/g) || []).length < 5) not5++; }
     catch (x) { wizErr++; }
   }
-check(wizErr === 0 && not3 === 0, 'визард: ' + combos + ' комбинаций, всегда тройка', { errors: wizErr, not3 });
+check(wizErr === 0 && not5 === 0, 'визард: ' + combos + ' комбинаций, всегда пятёрка', { errors: wizErr, not5 });
 
 // 8b. wz-пермалинк: кодек обратим и отбрасывает мусор
 let rtBad = 0;
