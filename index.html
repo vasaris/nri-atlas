@@ -331,7 +331,7 @@
   <h1>НРИ<span class="dot">·</span>Атлас<span class="tag">150 систем · факты и фильтры</span></h1>
   <p class="sub">Справочник настольных ролевых игр с ведущим (безмастеровые и соло-системы не включены). Год, движок, кубы, сложность, русские издания и поддержка виртуальных столов — с фильтрами и поиском. <b>Авторские оценки и описания временно скрыты: они пересматриваются.</b> <a href="#method">Что значат бейджи</a> — внизу страницы.</p>
 <div class="hero">
-  <div class="hero-line">Какую настольную ролевую игру взять? 150 систем с проверенными фактами: язык, кубы, цена входа, поддержка виртуальных столов.</div>
+  <div class="hero-line">Какую настольную ролевую игру взять?</div>
   <div class="hero-btns">
    <button class="hbtn hb1" id="heroWiz"><svg class="bico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2.2 5-5 2.2 2.2-5z"/></svg> Подобрать игру</button>
    <button class="hbtn" id="heroLucky"><svg class="bico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2l8.7 5v10L12 22 3.3 17V7L12 2z"/><path d="M12 8.2 6.2 15h11.6L12 8.2zM12 2v6.2M3.3 7l2.9 8M20.7 7l-2.9 8M12 22l-5.8-7M12 22l5.8-7"/></svg> Мне повезёт</button>
@@ -376,7 +376,7 @@
 <div>
   <div class="jumpbar" id="jumpBar" role="status" hidden></div>
   <div class="results-head"><span class="cnt" id="cnt"></span><span class="fbar" id="fbar"></span>
- <span class="head-actions"><span class="cnt">клик по строке — разбор · по оси в разборе — сортировка</span>
+ <span class="head-actions"><span class="cnt">клик по строке — разбор</span>
  <button class="chip" id="lucky"><svg class="bico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2l8.7 5v10L12 22 3.3 17V7L12 2z"/><path d="M12 8.2 6.2 15h11.6L12 8.2zM12 2v6.2M3.3 7l2.9 8M20.7 7l-2.9 8M12 22l-5.8-7M12 22l5.8-7"/></svg> Мне повезёт</button>
  <button class="chip" id="wiz"><svg class="bico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2.2 5-5 2.2 2.2-5z"/></svg> Подбор</button>
  <button class="chip" id="locs"><span class="glyph-ru" aria-hidden="true">RU</span> Локализации</button>
@@ -1036,11 +1036,15 @@ function render(){
    for(const t of q.split(/\s+/)){if(!t||t==="-")continue;
     if(t[0]==="-"){if(th(t.slice(1)))return false;}
     else if(!th(t))return false;}}
-  return true;}).map(d=>({d,p:score(d)})).sort(sortAx?((a,b)=>b.d.s[sortAx]-a.d.s[sortAx]||b.p-a.p||a.d.n.localeCompare(b.d.n)):((a,b)=>b.p-a.p||a.d.n.localeCompare(b.d.n)));
+  return true;}).map(d=>({d,p:score(d)})).sort(sortAx?((a,b)=>b.d.s[sortAx]-a.d.s[sortAx]||b.p-a.p||a.d.n.localeCompare(b.d.n))
+  /* Оценки скрыты — значит и порядок по ним показывать нельзя: номера строк
+     читались как рейтинг, и это было верное прочтение. Алфавит нейтрален. */
+  :SHOW_SCORES?((a,b)=>b.p-a.p||a.d.n.localeCompare(b.d.n))
+  :((a,b)=>a.d.n.localeCompare(b.d.n,"en")));
  if(sortAx){const an=AX.find(a=>a.k===sortAx).n;
   cntEl.innerHTML=`${esc(plural(rows.length))} · по оси «${an}» по убыванию · <span id="srtOff" style="cursor:pointer;border-bottom:1px dashed var(--muted);color:var(--muted)">вернуть по совпадению</span>`;
   document.getElementById("srtOff").onclick=()=>{sortAx=null;render();};}
- else cntEl.innerHTML=rows.length?esc(plural(rows.length))+(SHOW_SCORES?" · по убыванию совпадения с весами":""):"Ничего не нашлось";
+ else cntEl.innerHTML=rows.length?esc(plural(rows.length))+(SHOW_SCORES?" · по убыванию совпадения с весами":" · по алфавиту, это не рейтинг"):"Ничего не нашлось";
  renderFbar();renderJumpBar();
  const old=new Map();[...listEl.children].forEach(el=>old.set(el.dataset.k,el.getBoundingClientRect()));
  listEl.innerHTML="";
@@ -1075,7 +1079,7 @@ function card(d,p,rank){
  const tagsHtml=d.tags.length?`<div class="trow">${d.tags.map(t=>`<span class="tagc">${t}</span>`).join("")}</div>`:"";
  const simHtml=d.sim.length?`<div class="trow"><span class="simlab">похоже на:</span>${d.sim.map(s2=>`<span class="simc" data-sim="${s2}" role="button" tabindex="0" aria-label="Открыть: ${esc(s2)}">${s2}</span>`).join("")}</div>`:"";
  el.innerHTML=`<div class="sys-main">
-  <div class="rank">${rank}</div>
+  <div class="rank">${SHOW_SCORES?rank:""}</div>
   <div class="nm2"><h2 class="n">${d.n}${AUTHOR_PICKS.has(d.n)?` <span class="apick" data-tip="Выбор автора: лично вожу и рекомендую">★</span>`:``}</h2>
    <div class="meta"><span class="bdg eng" data-tip="${GLOSS[fam(d.e)]||""}">${d.e}</span><span class="bdg">${d.g}</span><span class="bdg">${d.y}</span><span class="bdg">${d.d}</span>${ruO}${ruL}${cfB}${FREE.has(d.n)?`<span class="bdg fr" data-tip="Официальная бесплатная версия: полные правила или играбельная база">бесплатно</span>`:""}${SUPERSEDED[d.n]?`<span class="bdg sup" data-jump="${esc(SUPERSEDED[d.n])}" title="Эта строка остаётся в каталоге, но начинать лучше с другой">лучше начать с: ${esc(SUPERSEDED[d.n])}</span>`:""}${VTT[d.n]?`<span class="bdg vt${VTT[d.n].some(x=>x===2)?" vtOf":""}" data-tip="${esc(vttTip(d.n))}">VTT</span>`:""}</div></div>
   <button type="button" class="exp" aria-expanded="false" aria-label="Развернуть карточку: ${esc(d.n)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>${SHOW_SCORES?`<div class="score"><span class="pct" style="color:${p>=70?"var(--ember)":p>=55?"#d9b96a":"var(--paper)"}">${Math.round(p)}<small style="font-size:10px;color:var(--muted2)">%</small></span>
