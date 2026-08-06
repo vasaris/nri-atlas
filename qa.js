@@ -39,8 +39,14 @@ check(tld.length === 0, 'в именах нет «~» (разделитель cm
 // 3. Счётчики в текстах = реальность
 const tag = html.match(/<span class="tag">(\d+) систем/);
 check(tag && +tag[1] === DATA.length, 'счётчик в шапке = ' + DATA.length, tag && tag[1]);
-const hero = html.match(/<div class="hero-line">[^<]*?(\d+) систем/);
-check(hero && +hero[1] === DATA.length, 'счётчик в манифесте = ' + DATA.length, hero && hero[1]);
+// Раньше проверялся счётчик в одном конкретном блоке. Теперь — ВСЕ числовые
+// утверждения «N систем» в видимом тексте: так ловится и будущее место,
+// где кто-нибудь напишет число заново.
+const visible = html.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<!--[\s\S]*?-->/g, '');
+const claims = [...visible.matchAll(/(\d+)\s+систем/g)].map(m => +m[1]);
+const wrongClaims = claims.filter(v => v !== DATA.length);
+check(claims.length > 0 && wrongClaims.length === 0,
+  `все счётчики «N систем» в тексте = ${DATA.length}`, { claims, wrong: wrongClaims });
 
 // 4. Граф «похоже на»
 let badSim = [];
