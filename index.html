@@ -150,6 +150,8 @@
   .sys.lucky{border-color:var(--wax-line);background:var(--wax-tint)}
   .sys.lucky.open::before{background:var(--wax)}
   .sys-main{position:relative;z-index:0;display:grid;grid-template-columns:34px 1fr auto auto;gap:14px;align-items:center;padding:13px 18px;cursor:pointer;min-height:56px}
+  body.no-rank .rank{display:none}
+  body.no-rank .sys-main{grid-template-columns:1fr auto auto}
   .rank{position:relative;z-index:0;width:34px;height:38px;display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-weight:600;font-size:14px;color:var(--brass);line-height:1}
   .rank::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--brass-line);-webkit-clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
   .rank::after{content:"";position:absolute;inset:1px;z-index:-1;background:var(--board);-webkit-clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);transition:background 90ms var(--ease)}
@@ -393,6 +395,7 @@
 <h2 class="m-h">Как устроен атлас</h2>
 <div class="m-grid">
 <p class="m-wide"><span class="mk">Метки и бейджи.</span> <b>Уверенность</b> — насколько глубоко систему разбирал автор: <b>В</b> — прочитана или сыграна, проверена по первичным источникам; <b>С</b> — частичное чтение плюс независимые обзоры; <b>Н</b> — предварительная оценка по репутации и откликам, книгу не разбирали.<br><b>РФ</b> — российская разработка. <b>RU</b> — есть локализация; <b>Ч</b> — частичная: прежняя редакция, предзаказ или фанатский перевод, подробности в подсказке у бейджа.<br><b>VTT</b> — поддержка виртуальных столов; латунный бейдж означает официальную поддержку от издателя, детали в подсказке; нет бейджа — поддержки не нашлось. Колонка размечена по витринам платформ, сплошная перепроверка официальных статусов ещё идёт.</p>
+<p class="m-wide"><span class="mk">Кто попадает в атлас.</span> Система с ведущим, которую можно выбрать для игры сегодня, а не только изучать как веху. Минимум — легальная доступность правил; сверх неё желательны хотя бы два признака живой сцены: поддержка издателя, русское издание или заметное русскоязычное сообщество, инструменты для виртуальных столов, бесплатная точка входа, документируемая игровая активность. Старая редакция получает отдельную строку только если живёт самостоятельной веткой — легально продаётся и имеет своих игроков, инструменты или локальное издание. Поэтому здесь есть Shadowrun 5e, Pathfinder 1e и Vampire V20.<br><b>Отдельное исключение — национальная классика.</b> Несколько центрально- и восточноевропейских систем (Dračí doupě, Dzikie Pola, Příběhy Impéria, Neuroshima) оставлены, хотя не доступны по-русски и не имеют поддержки виртуальных столов: они формировали ролевую сцену своих стран и в справочнике по восточноевропейскому ландшафту им место есть.<br><b>Не попадают:</b> соло- и безмастеровые игры; сеттинги, приключения и дополнения, не являющиеся самостоятельными системами; устаревшие редакции без своей живой сцены; системы, чьё единственное основание — историческая важность; анонсированные, но не вышедшие редакции. Продажи, премии и громкая лицензия могут подтверждать охват, но сами по себе живой игры не доказывают.</p>
 <p class="m-wide sc-only"><span class="mk">Десять осей, шкала 0–10 — что значат оценки.</span><br>
 <b>Отдача для мастера.</b> Сколько система возвращает за вложенное время: 8–10 — готовить интересно, инструменты подкидывают идеи сами (фронты, часы, генераторы); 3–4 — мастер обслуживает правила, а не историю.<br>
 <b>Лёгкость ведения.</b> 8–10 — сессию ведут после одного прочтения и готовят за полчаса; 3–4 — вечер подготовки на вечер игры и справочники под рукой.<br>
@@ -406,7 +409,6 @@
 <b>Материалы и поддержка.</b> Живость линейки сегодня: 9–10 — регулярные приключения, дополнения, инструменты; 2–3 — базовая книга и тишина.<br>
 Каталог — о том, во что играть сегодня; исторические вехи вроде «Заколдованной страны» (1990, первая ролевая игра СССР) мы помним, но строк им не выделяем.</p>
 <p class="sc-only"><span class="mk">Формула.</span> Итог = Σ(вес × оценка) / Σ(вес × 10). Веса — ползунками; <b>пресеты</b> — девять контрастных профилей задач: каждый весит только определяющие его оси, остальные ставит в ноль, иначе общее качество систем задавило бы разницу между задачами. Два пресета-настроения — «Быстрое приключение» и «Смех и веселье» — дополнительно сужают список по тегу; любой другой пресет или движение ползунка снимает это сужение. Любое движение ползунка — режим «Свои веса». <b>«Мне повезёт»</b> крутит рулетку среди строк, прошедших текущие фильтры.</p>
-
 <p class="sc-only"><span class="mk">На чём основаны оценки.</span> Тексты правил и практика систем; задокументированный приём сообществом — рецензии, обсуждения, соотношение продаж и реальной игры; история линейки. Оценки <b>экспертные, а не измеренные прибором</b>: метка уверенности (В / С / Н) показывает, насколько прочна база под строкой.</p>
 <p><span class="mk">Открытые данные.</span> Все данные атласа доступны одним файлом: <a href="nri-atlas-data.json">nri-atlas-data.json</a> — лицензия CC-BY 4.0, используйте свободно со ссылкой на атлас. Версия схемы указана в <span class="mono">meta.schema_version</span>. В схеме 2 все пять полей поддержки виртуальных столов используют один набор значений <span class="mono">none | community | official</span> — раньше часть из них была <span class="mono">true/false</span>. Значения не изменились, но проверка поля на истинность больше не работает.</p>
 <p><span class="mk">Что сознательно не учитывается.</span> Цена и доступность книг (меняются по странам и времени), качество конкретных изданий и переводов, вкусы конкретного стола.</p>
@@ -596,7 +598,10 @@ function descHtml(d){
  return `<div class="note"><span class="wt">Что это</span>${esc(x.t)}${by}</div>`;}
 /* «Лучше начать с»: строка остаётся в каталоге как часть ландшафта,
    но выбирающему честно показываем более подходящую точку входа. */
-const SUPERSEDED={
+/* «Лучше начать с»: не «заменено на» — направление задаётся пользой для
+   выбирающего, а не хронологией. У Shadowrun 6e указатель ведёт на более
+   старую пятую редакцию, и это осознанно. */
+const BETTER_START={
   "Coriolis: The Third Horizon":"Coriolis: The Great Dark",
   "City of Mist":"Legend in the Mist",
   "Shadowrun 6e":"Shadowrun 5e",
@@ -1064,7 +1069,7 @@ function render(){
 const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 function card(d,p,rank){
  const el=document.createElement("article");
- el.className="sys"+(rank===1?" top1":"")+(openSet.has(d.n)?" open":"");
+ el.className="sys"+(SHOW_SCORES&&rank===1?" top1":"")+(openSet.has(d.n)?" open":"");
  el.dataset.k=d.n;
  const ruTip=d.ru==="Да"?"Есть официальная русская локализация":"Локализована частично: фанатские или неполные переводы";
  const ruL=d.ru!=="—"?`<span class="bdg ruL" data-tip="${esc(ruTip)}">RU: ${d.ru}</span>`:"";
@@ -1081,7 +1086,7 @@ function card(d,p,rank){
  el.innerHTML=`<div class="sys-main">
   <div class="rank">${SHOW_SCORES?rank:""}</div>
   <div class="nm2"><h2 class="n">${d.n}${AUTHOR_PICKS.has(d.n)?` <span class="apick" data-tip="Выбор автора: лично вожу и рекомендую">★</span>`:``}</h2>
-   <div class="meta"><span class="bdg eng" data-tip="${GLOSS[fam(d.e)]||""}">${d.e}</span><span class="bdg">${d.g}</span><span class="bdg">${d.y}</span><span class="bdg">${d.d}</span>${ruO}${ruL}${cfB}${FREE.has(d.n)?`<span class="bdg fr" data-tip="Официальная бесплатная версия: полные правила или играбельная база">бесплатно</span>`:""}${SUPERSEDED[d.n]?`<span class="bdg sup" data-jump="${esc(SUPERSEDED[d.n])}" title="Эта строка остаётся в каталоге, но начинать лучше с другой">лучше начать с: ${esc(SUPERSEDED[d.n])}</span>`:""}${VTT[d.n]?`<span class="bdg vt${VTT[d.n].some(x=>x===2)?" vtOf":""}" data-tip="${esc(vttTip(d.n))}">VTT</span>`:""}</div></div>
+   <div class="meta"><span class="bdg eng" data-tip="${GLOSS[fam(d.e)]||""}">${d.e}</span><span class="bdg">${d.g}</span><span class="bdg">${d.y}</span><span class="bdg">${d.d}</span>${ruO}${ruL}${cfB}${FREE.has(d.n)?`<span class="bdg fr" data-tip="Официальная бесплатная версия: полные правила или играбельная база">бесплатно</span>`:""}${BETTER_START[d.n]?`<span class="bdg sup" data-jump="${esc(BETTER_START[d.n])}" title="Эта строка остаётся в каталоге, но начинать лучше с другой">лучше начать с: ${esc(BETTER_START[d.n])}</span>`:""}${VTT[d.n]?`<span class="bdg vt${VTT[d.n].some(x=>x===2)?" vtOf":""}" data-tip="${esc(vttTip(d.n))}">VTT</span>`:""}</div></div>
   <button type="button" class="exp" aria-expanded="false" aria-label="Развернуть карточку: ${esc(d.n)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>${SHOW_SCORES?`<div class="score"><span class="pct" style="color:${p>=70?"var(--ember)":p>=55?"#d9b96a":"var(--paper)"}">${Math.round(p)}<small style="font-size:10px;color:var(--muted2)">%</small></span>
    <div class="bar"><i style="width:${p}%"></i></div></div>`:""}</div>
   <div class="sys-body">${descHtml(d)}${verdictHtml}${tagsHtml}${simHtml}
@@ -1506,7 +1511,8 @@ document.getElementById("share").onclick=()=>copyToClip(shareUrl(),document.getE
  const wza=p.get("wz")?wizDec(p.get("wz")):null;
  if(wza){if(SHOW_SCORES){wizA=wza;pendingWiz=true;}else pendingOldWz=true;}
 }catch(e){}})();
-if(!SHOW_SCORES){const wb=document.getElementById("wBox");if(wb)wb.style.display="none";
+if(!SHOW_SCORES){document.body.classList.add("no-rank");
+ const wb=document.getElementById("wBox");if(wb)wb.style.display="none";
  document.querySelectorAll(".sc-only").forEach(e=>e.style.display="none");
  const rh=document.getElementById("railHead");if(rh)rh.textContent="Фильтры";}
 sync();mark();render();

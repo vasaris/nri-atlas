@@ -211,16 +211,16 @@ check(locSchema.length === 0,
   'схема локализаций: статус соответствует коду, поля заполнены', locSchema.slice(0, 12));
 
 // 13a2. «Лучше начать с»: цель обязана существовать, ссылка не должна вести в никуда
-eval('var SUPERSEDED=' + js.match(/const SUPERSEDED=(\{[\s\S]*?\});/)[1]);
-const supBad = Object.entries(SUPERSEDED)
+eval('var BETTER_START=' + js.match(/const BETTER_START=(\{[\s\S]*?\});/)[1]);
+const supBad = Object.entries(BETTER_START)
   .filter(([a, b]) => !names.has(a) || !names.has(b) || a === b)
   .map(([a, b]) => a + '→' + b);
-check(supBad.length === 0, 'superseded_by ведёт на существующие строки', supBad);
+check(supBad.length === 0, '«лучше начать с» ведёт на существующие строки', supBad);
 const supJson = DATA.filter(d => {
   const j = jBy.get(d.n);
-  return (j && j.superseded_by ? j.superseded_by : null) !== (SUPERSEDED[d.n] || null);
+  return (j && j.better_start_with ? j.better_start_with : null) !== (BETTER_START[d.n] || null);
 }).map(d => d.n);
-check(supJson.length === 0, 'superseded_by: HTML и JSON совпадают', supJson);
+check(supJson.length === 0, '«лучше начать с»: HTML и JSON совпадают', supJson);
 
 // 13a2b. Русские синонимы: карта без сирот, значения непустые
 eval('var RU_ALIAS=' + js.match(/const RU_ALIAS=(\{[\s\S]*?\});/)[1]);
